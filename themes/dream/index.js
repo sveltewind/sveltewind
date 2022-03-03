@@ -1,8 +1,8 @@
-const inputBaseClasses = 'bg-transparent appearance-none rounded px-[1.5rem] py-[.5rem] transition duration-200 outline-none ring ring-transparent ring-offset-1 ring-offset-gray-500 hover:ring-offset-blue-500 focus:ring-offset-blue-500 focus:ring-blue-500/[.3]'
+const inputBaseClasses = 'bg-transparent appearance-none rounded px-[1.5rem] py-[.5rem] transition duration-200 outline-none ring ring-transparent ring-offset-1 ring-offset-gray-300 hover:ring-offset-blue-500 focus:ring-offset-blue-500 focus:ring-blue-500/[.3]'
 
 export default {
   button: 'bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 px-[1.5rem] py-[.5rem] rounded text-white transition duration-200 outline-none ring ring-transparent focus:ring-blue-500/30',
-  card: 'rounded-[1rem] flex flex-col bg-white p-[1.5rem] shadow',
+  card: 'rounded flex flex-col bg-white p-[1.5rem] shadow',
   fieldset: 'flex flex-col',
   form: 'flex flex-col space-y-[1rem]',
   h1: 'font-bold text-[4rem] leading-[6rem]',
