@@ -11,6 +11,7 @@
   const defaultClasses = '';
 
   // props (external)
+  export let cell;
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.td, $$props.class);
@@ -19,5 +20,8 @@
 <td
   class={classes}
 >
+  {#if cell !== undefined}
+    {cell}
+  {/if}
   <slot />
 </td>

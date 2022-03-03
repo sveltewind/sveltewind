@@ -1,6 +1,7 @@
 <script>
   // imports
   import { twMerge } from 'tailwind-merge';
+  import { Tr } from '../../components/index.js';
   import { theme } from '../../stores';
 
   // handlers
@@ -11,6 +12,8 @@
   const defaultClasses = '';
 
   // props (external)
+  export let data;
+  export let rows;
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.tbody, $$props.class);
@@ -19,5 +22,15 @@
 <tbody
   class={classes}
 >
+  {#if data !== undefined}
+    {#each data as row}
+      <Tr {row} />
+    {/each}
+  {/if}
+  {#if rows !== undefined}
+    {#each rows as row}
+      <Tr {row} />
+    {/each}
+  {/if}
   <slot />
 </tbody>
