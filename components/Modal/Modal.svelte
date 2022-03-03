@@ -31,7 +31,7 @@
     <Overlay on:click={() => show = !show} class="cursor-pointer" />
   {/if}
   {#if showBodyClose !== false || showTitleClose !== false || title !== undefined}
-    <Card class="relative space-y-[2rem] max-w-lg max-h-screen">
+    <Card class="relative space-y-[2rem] max-w-lg max-h-screen transform transition duration-500 {show ? 'scale-[1]' : 'scale-[.95]'}">
       {#if showTitleClose !== false || title !== undefined}
         <div class="flex items-center {showTitleClose === true && title !== undefined ? 'justify-between space-x-[2rem]' : showTitleClose === true ? 'justify-end' : 'justify-start'}">
           {#if title !== undefined}
