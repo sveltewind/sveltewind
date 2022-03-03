@@ -17,6 +17,7 @@ export default {
   main: 'flex flex-col h-screen relative overflow-hidden lg:flex-row-reverse',
   modal: 'fixed z-[1] top-0 left-0 h-full w-full transition duration-200 flex items-center justify-center',
   nav: 'flex justify-start items-center bg-gray-200 lg:flex-col',
+  option: '',
   overlay: 'absolute top-0 left-0 h-full w-full bg-black/70',
   p: 'text-[1rem] leading-[1.5rem]',
   safeArea: 'flex flex-col flex-grow pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] overflow-hidden',
