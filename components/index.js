@@ -14,3 +14,4 @@ export { default as Legend } from "./Legend/index.js";
 export { default as Main } from "./Main/index.js";
 export { default as Modal } from "./Modal/index.js";
 export { default as Nav } from "./Nav/index.js";
+export { default as Overlay } from "./Overlay/index.js";
