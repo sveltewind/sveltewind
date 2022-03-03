@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/sveltewind/sveltewind/issues"
   },
-  "homepage": "https://github.com/sveltewind/sveltewind#readme"
+  "homepage": "https://github.com/sveltewind/sveltewind#readme",
+  "dependencies": {
+    "svelte": "^3.46.4"
+  }
 }
