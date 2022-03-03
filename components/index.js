@@ -19,6 +19,7 @@ export { default as Overlay } from './Overlay/index.js';
 export { default as SafeArea } from './SafeArea/index.js';
 export { default as Select } from './Select/index.js';
 export { default as Tbody } from "./Tbody/index.js";
-
 export { default as Td } from "./Td/index.js";
+export { default as Thead } from "./Thead/index.js";
+
 export { default as Tr } from "./Tr/index.js";
