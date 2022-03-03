@@ -15,7 +15,7 @@ export default {
   input: inputBaseClasses,
   legend: '',
   main: 'flex flex-col h-screen relative overflow-hidden lg:flex-row-reverse',
-  modal: 'fixed z-[1] top-0 left-0 h-full w-full transition duration-200 flex items-center justify-center opacity-0 pointer-events-none',
+  modal: 'fixed z-[1] top-0 left-0 h-full w-full transition duration-200 flex items-center justify-center',
   nav: 'flex justify-start items-center bg-gray-200 lg:flex-col',
   overflow: 'overflow-y-auto',
   overlay: 'absolute top-0 left-0 h-full w-full bg-black/70',
