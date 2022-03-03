@@ -9,5 +9,6 @@ export { default as H4 } from "./H4/index.js";
 export { default as H5 } from "./H5/index.js";
 export { default as H6 } from "./H6/index.js";
 export { default as Icon } from "./Icon/index.js";
+export { default as Input } from "./Input/index.js";
 
 export { default as Legend } from "./Legend/index.js";
