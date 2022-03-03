@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/sveltewind/sveltewind#readme",
   "dependencies": {
-    "svelte": "^3.46.4"
+    "svelte": "^3.46.4",
+    "tailwind-merge": "^1.2.0"
   }
 }
