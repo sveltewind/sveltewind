@@ -13,3 +13,4 @@ export { default as Input } from "./Input/index.js";
 export { default as Legend } from "./Legend/index.js";
 export { default as Main } from "./Main/index.js";
 export { default as Modal } from "./Modal/index.js";
+export { default as Nav } from "./Nav/index.js";
