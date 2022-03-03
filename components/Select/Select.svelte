@@ -26,8 +26,8 @@
   {#if options !== undefined}
     {#each options as option}
       <Option
-        selected={options.value === value}
-        value={options.value}
+        selected={option.value === value}
+        value={option.value}
       >
         {option.label}
       </Option>
