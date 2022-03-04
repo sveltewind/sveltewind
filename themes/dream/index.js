@@ -16,9 +16,9 @@ export default {
   icon: 'h-[1.5rem] w-[1.5rem]',
   input: inputBaseClasses,
   legend: '',
-  main: 'flex flex-col h-screen relative overflow-hidden lg:flex-row-reverse',
+  main: 'flex flex-col flex-grow relative overflow-hidden lg:flex-row-reverse',
   modal:
-    'fixed z-[1] top-0 left-0 h-full w-full transition duration-200 flex items-center justify-center p-[1.5rem] pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)]',
+    'fixed z-[1] top-0 left-0 h-full w-full transition duration-200 flex items-center justify-center pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)]',
   nav: 'flex justify-start items-center bg-gray-200 lg:flex-col',
   option: '',
   overlay: 'absolute top-0 left-0 h-full w-full bg-black/70',
