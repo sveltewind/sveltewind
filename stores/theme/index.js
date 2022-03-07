@@ -8,13 +8,6 @@ const init = theme => {
   const { subscribe, update } = writable(theme);
 
   return {
-    init: obj =>
-      update(state => {
-        Object.keys(obj).forEach(
-          key => (state[key] = twMerge(state?.[key], obj[key])),
-        );
-        return state;
-      }),
     set: {
       component: ({ component, classes }) =>
         update(state => {
@@ -23,6 +16,13 @@ const init = theme => {
         }),
     },
     subscribe,
+    update: obj =>
+      update(state => {
+        Object.keys(obj).forEach(
+          key => (state[key] = twMerge(state?.[key], obj[key])),
+        );
+        return state;
+      }),
   };
 };
 
