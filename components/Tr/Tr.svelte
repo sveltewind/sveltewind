@@ -12,7 +12,7 @@
   const defaultClasses = '';
 
   // props (external)
-  export let row;
+  export let row = undefined;
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.tr, $$props.class);

@@ -12,7 +12,7 @@
   const defaultClasses = '';
 
   // props (external)
-  export let src;
+  export let src = undefined;
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.icon, $$props.class);

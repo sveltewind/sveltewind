@@ -11,7 +11,7 @@
   const defaultClasses = '';
 
   // props (external)
-  export let cell;
+  export let cell = undefined;
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.td, $$props.class);

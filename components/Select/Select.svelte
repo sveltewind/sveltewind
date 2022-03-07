@@ -12,7 +12,7 @@
   const defaultClasses = '';
 
   // props (external)
-  export let options;
+  export let options = undefined;
   export let value = '';
 
   // props (dynamic)
