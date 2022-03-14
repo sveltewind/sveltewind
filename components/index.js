@@ -1,3 +1,4 @@
+export { default as A } from './A/index.js';
 export { default as Button } from './Button/index.js';
 export { default as Card } from './Card/index.js';
 export { default as Fieldset } from './Fieldset/index.js';
@@ -17,8 +18,7 @@ export { default as Nav } from './Nav/index.js';
 export { default as Option } from './Option/index.js';
 export { default as Overlay } from './Overlay/index.js';
 export { default as P } from './P/index.js';
-export { default as Pwa } from "./Pwa/index.js";
-
+export { default as Pwa } from './Pwa/index.js';
 export { default as SafeArea } from './SafeArea/index.js';
 export { default as Select } from './Select/index.js';
 export { default as Table } from './Table/index.js';
@@ -26,4 +26,4 @@ export { default as Tbody } from './Tbody/index.js';
 export { default as Td } from './Td/index.js';
 export { default as Th } from './Th/index.js';
 export { default as Thead } from './Thead/index.js';
-export { default as Tr } from './Tr/index.js';
+export { default as Tr } from './Tr/index.js';
