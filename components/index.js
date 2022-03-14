@@ -27,4 +27,5 @@ export { default as Tbody } from './Tbody/index.js';
 export { default as Td } from './Td/index.js';
 export { default as Th } from './Th/index.js';
 export { default as Thead } from './Thead/index.js';
+export { default as Title } from './Title/index.js';
 export { default as Tr } from './Tr/index.js';
