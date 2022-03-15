@@ -5,7 +5,7 @@ export default {
   a:
     'relative outline-none before:rounded-none before:ring before:ring-blue-500/0 before:transition-all before:duration-200 before:bottom-[-.25rem] before:left-1/2 before:transform before:translate-x-[-50%] before:absolute before:content-[""] before:h-[1px] before:w-full before:bg-blue-500 before:z-[-1] hover:before:h-[calc(100%+1rem)] hover:before:bottom-[-.5rem] hover:before:w-[calc(100%+1.5rem)] hover:before:bg-blue-600 focus:before:h-[calc(100%+1rem)] focus:before:bottom-[-.5rem] focus:before:w-[calc(100%+1.5rem)] focus:before:bg-blue-600 focus:before:ring-blue-500/30 hover:before:rounded focus:before:rounded',
   button:
-    'bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 px-[1.5rem] py-[.5rem] rounded text-white transition duration-200 outline-none ring ring-transparent focus:ring-blue-500/30',
+    'flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 px-[1.5rem] py-[.5rem] rounded text-white transition duration-200 outline-none ring ring-transparent focus:ring-blue-500/30',
   card: 'rounded flex flex-col bg-white p-[1.5rem] shadow',
   fieldset: 'flex flex-col',
   form: 'flex flex-col space-y-[1rem]',
