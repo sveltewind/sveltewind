@@ -25,6 +25,7 @@ export default {
   option: '',
   overlay: 'absolute top-0 left-0 h-full w-full bg-black/70',
   p: 'text-[1rem] leading-[1.5rem]',
+  progressIndicator: '',
   safeArea:
     'flex flex-col flex-grow pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] overflow-hidden',
   select: `${inputBaseClasses} cursor-pointer`,

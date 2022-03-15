@@ -18,6 +18,7 @@ export { default as Nav } from './Nav/index.js';
 export { default as Option } from './Option/index.js';
 export { default as Overlay } from './Overlay/index.js';
 export { default as P } from './P/index.js';
+export { default as ProgressIndicator } from './ProgressIndicator/index.js';
 export { default as Pwa } from './Pwa/index.js';
 export { default as SafeArea } from './SafeArea/index.js';
 export { default as Select } from './Select/index.js';
