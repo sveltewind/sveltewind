@@ -18,6 +18,7 @@
       ,
       base
     ]
+    .filter(s => s !== '')
     .join(' - ')
   export let title = ''
 
