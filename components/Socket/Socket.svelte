@@ -6,7 +6,7 @@
 
   // lifecycle
   onMount(async () => {
-    $socket = await io();
+    await socket.init(io());
     $pageLoaded.socket = true;
   })
 </script>
