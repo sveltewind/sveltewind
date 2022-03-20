@@ -1,8 +1,9 @@
 {
   "name": "sveltewind",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Svelte UI framework focusing on Tailwindcss integration",
   "main": "index.js",
+  "svelte": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
