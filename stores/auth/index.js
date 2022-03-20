@@ -1,7 +1,7 @@
 import { get, writable } from 'svelte/store';
 import socketStore from '../socket/index.js';
 
-const store = () => {
+const createStore = () => {
   // initiate value
   let value;
 
@@ -28,7 +28,7 @@ const store = () => {
     await new Promise(res => {
       // emit to server
       socket.emit(
-        'auth-verify',
+        'authVerify',
         { token: JSON.parse(localStorage.getItem('token')) },
         ({ error, token }) => {
           if (error) localStorage.setItem('token', JSON.stringify(''));
@@ -53,4 +53,4 @@ const store = () => {
   }
 };
 
-export default store();
+export default createStore();
