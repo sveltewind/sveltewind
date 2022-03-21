@@ -22,7 +22,9 @@
     <link rel="apple-touch-icon" href="/icon-apple-touch.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content={viewport} />
-    <meta name="theme-color" content={themeColor} />
+    <slot name="theme">
+      <meta name="theme-color" content={themeColor} />
+    </slot>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content={appStatusBarStyle} />
   </slot>
