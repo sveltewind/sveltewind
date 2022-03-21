@@ -24,7 +24,7 @@ export { default as ProgressIndicator } from './ProgressIndicator/index.js';
 export { default as Pwa } from './Pwa/index.js';
 export { default as SafeArea } from './SafeArea/index.js';
 export { default as Select } from './Select/index.js';
-export { default as Socket } from './Socket/index.js';
+// export { default as Socket } from './Socket/index.js';
 export { default as SubmitButton } from './SubmitButton/index.js';
 export { default as Table } from './Table/index.js';
 export { default as Tbody } from './Tbody/index.js';
