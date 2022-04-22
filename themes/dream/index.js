@@ -32,11 +32,13 @@ export default {
   safeArea:
     'flex flex-col flex-grow pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] overflow-hidden',
   select: `${inputBaseClasses} cursor-pointer`,
-  table: 'text-left relative bg-white shadow',
+  table:
+    'text-left relative bg-white shadow dark:bg-white/[.025] dark:shadow-none dark:ring-1 dark:ring-white/[.05]',
   tbody: '',
   td: 'px-[1.5rem] py-[.5rem] whitespace-nowrap',
   th:
-    'px-[1.5rem] py-[.5rem] border-b border-black whitespace-nowrap top-0 bg-white',
+    'px-[1.5rem] py-[.5rem] border-b border-black whitespace-nowrap top-0 bg-white dark:border-white',
   thead: '',
-  tr: 'border-b border-black/10 last:border-b-0',
+  tr:
+    'border-b border-black/10 last:border-b-0 dark:border-white/10 dark:last:border-b-0',
 };

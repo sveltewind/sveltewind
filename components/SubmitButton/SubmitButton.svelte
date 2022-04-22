@@ -17,7 +17,7 @@
   $: classes = twMerge($$props.class);
 </script>
 
-<Button class={classes} {type}>
+<Button class={classes} on:click {type}>
   {#if submitted}
     <ProgressIndicator class='w-[1.5rem] h-[1.5rem]' />
   {:else}
