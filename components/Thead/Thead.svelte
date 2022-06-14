@@ -24,6 +24,7 @@
 <thead
   class={classes}
   use:events
+  {...$$restProps}
 >
   {#if columns !== undefined}
     {#each columns as column}

@@ -22,6 +22,7 @@
 <header
   class={classes}
   use:events
+  {...$$restProps}
 >
   <slot />
 </header>

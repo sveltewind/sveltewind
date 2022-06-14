@@ -24,6 +24,7 @@
 <fieldset
   class={classes}
   use:events
+  {...$$restProps}
 >
   {#if legend !== undefined}
     <Legend>{legend}</Legend>

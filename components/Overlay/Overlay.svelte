@@ -22,6 +22,7 @@
 <div
   class={classes}
   use:events
+  {...$$restProps}
 >
   <slot />
 </div>

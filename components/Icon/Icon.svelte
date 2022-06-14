@@ -19,5 +19,5 @@
 </script>
 
 {#if src !== undefined}
-  <Icon {src} class={classes} />
+  <Icon {src} class={classes} {...$$restProps}/>
 {/if}

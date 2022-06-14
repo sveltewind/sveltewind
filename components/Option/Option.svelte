@@ -26,6 +26,7 @@
   {selected}
   {value}
   use:events
+  {...$$restProps}
 >
   <slot />
 </option>

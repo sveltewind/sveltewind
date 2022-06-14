@@ -24,4 +24,4 @@
   $: classes = twMerge(defaultClasses, $theme.paginationInfo.default, $$props.class);
 </script>
 
-<div class={classes} use:events>Showing {paginatedRowIndexes.start + 1} to {Math.min(paginatedRowIndexes.end + 1, total)} of {total}</div>
+<div class={classes} use:events {...$$restProps}>Showing {paginatedRowIndexes.start + 1} to {Math.min(paginatedRowIndexes.end + 1, total)} of {total}</div>

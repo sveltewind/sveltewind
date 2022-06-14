@@ -22,6 +22,7 @@
 <h5
   class={classes}
   use:events
+  {...$$restProps}
 >
   <slot />
 </h5>

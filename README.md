@@ -16,16 +16,13 @@ npm i
 ```javascript
 // tailwind.config.cjs
 const config = {
-  content: [
-    './src/**/*.{html,js,svelte,ts}',
-    './node_modules/sveltewind/**/*.{html,js,svelte,ts}',
-  ],
+  content: ['./src/**/*.{html,js,svelte,ts}', './node_modules/sveltewind/**/*.{html,js,svelte,ts}'],
 
   theme: {
-    extend: {},
+    extend: {}
   },
 
-  plugins: [],
+  plugins: []
 };
 
 module.exports = config;
@@ -42,16 +39,16 @@ const config = {
     adapter: adapter(),
     vite: {
       optimizeDeps: {
-        include: ['hashlru'],
-      },
-    },
+        include: ['hashlru']
+      }
+    }
   },
 
   preprocess: [
     preprocess({
-      postcss: true,
-    }),
-  ],
+      postcss: true
+    })
+  ]
 };
 
 export default config;

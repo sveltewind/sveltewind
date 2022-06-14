@@ -22,6 +22,7 @@
 <nav
   class={classes}
   use:events
+  {...$$restProps}
 >
   <slot />
 </nav>

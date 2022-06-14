@@ -23,6 +23,7 @@
 <th
   class={classes}
   use:events
+  {...$$restProps}
 >
   {#if column !== undefined}
     {column}
