@@ -15,7 +15,7 @@
   const events = getEvents(current_component);
 
   // props (external)
-  export let size = 0;
+  export let size = '0';
   export let type = 'text';
   export let value = '';
 
@@ -27,7 +27,7 @@
   {...$$props}
   bind:value
   class={classes}
-  {size}
+  size={size.toString()}
   use:events
   use:setType={type}
 />
