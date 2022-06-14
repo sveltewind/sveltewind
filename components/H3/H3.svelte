@@ -1,5 +1,7 @@
 <script>
   // imports
+  import { getEvents } from '../../actions';
+  import { current_component } from 'svelte/internal';
   import { twMerge } from 'tailwind-merge';
   import { theme } from '../../stores';
 
@@ -8,6 +10,7 @@
   // utilities
 
   // props (internal)
+  const events = getEvents(current_component);
   const defaultClasses = '';
 
   // props (external)
@@ -18,6 +21,7 @@
 
 <h3
   class={classes}
+  use:events
 >
   <slot />
 </h3>

@@ -1,5 +1,7 @@
 <script>
   // imports
+  import { getEvents } from '../../actions';
+  import { current_component } from 'svelte/internal';
   import { twMerge } from 'tailwind-merge';
   import { Tr } from '../../components/index.js';
   import { theme } from '../../stores';
@@ -10,6 +12,7 @@
 
   // props (internal)
   const defaultClasses = '';
+  const events = getEvents(current_component);
 
   // props (external)
   export let data = undefined;
@@ -21,6 +24,7 @@
 
 <tbody
   class={classes}
+  use:events
 >
   {#if data !== undefined}
     {#each data as row}

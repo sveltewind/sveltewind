@@ -1,7 +1,9 @@
 <script>
   // imports
-  import { twMerge } from 'tailwind-merge';
+  import { getEvents } from '../../actions';
+  import { current_component } from 'svelte/internal';
   import { X } from 'svelte-hero-icons';
+  import { twMerge } from 'tailwind-merge';
   import { Button, Card, H6, Icon, Overlay, P } from '../../components/index.js';
   import { theme } from '../../stores';
 
@@ -11,6 +13,7 @@
 
   // props (internal)
   const defaultClasses = '';
+  const events = getEvents(current_component);
 
   // props (external)
   export let body = 'Here is where the modal\'s body is added.  Lorem ipsum dollar sit anet.';
@@ -26,6 +29,7 @@
 
 <div
   class={classes}
+  use:events
 >
   {#if showOverlay}
     <Overlay on:click={() => show = !show} class="cursor-pointer" />

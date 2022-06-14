@@ -1,5 +1,7 @@
 <script>
   // imports
+  import { getEvents } from '../../actions';
+  import { current_component } from 'svelte/internal';
   import { twMerge } from 'tailwind-merge';
   import { Button } from '../../components/index.js';
   import { theme } from '../../stores/index.js';
@@ -10,6 +12,7 @@
 
   // props (internal)
   const defaultClasses = '';
+  const events = getEvents(current_component);
 
   // props (external)
   export let currentPage = 0;
@@ -25,7 +28,7 @@
   };
 </script>
 
-<div class={classes}>
+<div class={classes} use:events>
   <slot>
     {#if currentPage > 0}
       <Button class={$theme.button.paginationButtonDefault} on:click={() => currentPage = 0}>First</Button>

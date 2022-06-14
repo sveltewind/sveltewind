@@ -1,5 +1,7 @@
 <script>
   // imports
+  import { getEvents } from '../../actions';
+  import { current_component } from 'svelte/internal';
   import { twMerge } from 'tailwind-merge';
   import { theme } from '../../stores';
 
@@ -9,6 +11,7 @@
 
   // props (internal)
   const defaultClasses = 'spinner-rotate w-[6.25rem] h-[6.25rem]';
+  const events = getEvents(current_component);
 
   // props (external)
 
@@ -43,6 +46,6 @@
   }
 </style>
 
-<svg class={classes} viewBox="25 25 50 50">
+<svg class={classes} viewBox="25 25 50 50" use:events>
   <circle class="spinner-dash" cx="50" cy="50" r="20" stroke="currentColor" fill="none" stroke-width="2" stroke-miterlimit="10"/>
 </svg>
