@@ -25,7 +25,6 @@
 <tbody
   class={classes}
   use:events
-  {...$$restProps}
 >
   {#if data !== undefined}
     {#each data as row}

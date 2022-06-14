@@ -22,7 +22,6 @@
 <form
   class={classes}
   use:events
-  {...$$restProps}
 >
   <slot />
 </form>

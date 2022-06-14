@@ -22,7 +22,6 @@
 <legend
   class={classes}
   use:events
-  {...$$restProps}
 >
   <slot />
 </legend>

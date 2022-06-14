@@ -27,7 +27,7 @@
   $: classes = twMerge(defaultClasses, $theme.pagination.default, $$props.class);
 </script>
 
-<div class={classes} use:events {...$$restProps}>
+<div class={classes} use:events>
   <slot>
     <PaginationInfo {paginatedRowIndexes} {total} />
     <PaginationButtons bind:currentPage {rowsPerPage} {total} />

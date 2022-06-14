@@ -1,6 +1,6 @@
 {
   "name": "sveltewind",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Svelte UI framework focusing on Tailwindcss integration",
   "main": "index.js",
   "svelte": "index.js",
@@ -36,9 +36,5 @@
     "svelte-hero-icons": "^4.0.3",
     "tailwind-merge": "^1.2.0"
   },
-  "type": "module",
-  "devDependencies": {
-    "prettier": "^2.7.0",
-    "prettier-plugin-svelte": "^2.7.0"
-  }
+  "type": "module"
 }

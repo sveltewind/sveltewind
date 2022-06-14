@@ -26,7 +26,6 @@
 <table
   class={classes}
   use:events
-  {...$$restProps}
 >
   {#if columns !== undefined && rows !== undefined}
     <Thead {columns} />

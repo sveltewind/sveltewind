@@ -20,7 +20,6 @@
   class={classes}
   {href}
   use:events
-  {...$$restProps}
 >
   <slot />
 </a>

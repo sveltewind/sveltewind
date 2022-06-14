@@ -26,7 +26,6 @@
   bind:value
   class={classes}
   use:events
-  {...$$restProps}
 >
   {#if options !== undefined}
     {#each options as option}

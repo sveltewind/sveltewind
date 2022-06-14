@@ -23,7 +23,6 @@
 <td
   class={classes}
   use:events
-  {...$$restProps}
 >
   {#if cell !== undefined}
     {cell}

@@ -28,7 +28,7 @@
   };
 </script>
 
-<div class={classes} use:events {...$$restProps}>
+<div class={classes} use:events>
   <slot>
     {#if currentPage > 0}
       <Button class={$theme.button.paginationButtonDefault} on:click={() => currentPage = 0}>First</Button>

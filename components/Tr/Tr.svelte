@@ -24,7 +24,6 @@
 <tr
   class={classes}
   use:events
-  {...$$restProps}
 >
   {#if row !== undefined}
     {#each row as cell}

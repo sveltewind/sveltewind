@@ -30,7 +30,6 @@
 <div
   class={classes}
   use:events
-  {...$$restProps}
 >
   {#if showOverlay}
     <Overlay on:click={() => show = !show} class="cursor-pointer" />

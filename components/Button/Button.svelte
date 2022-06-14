@@ -21,7 +21,6 @@
   class={classes}
   use:events
   use:setType={type}
-  {...$$restProps}
 >
   <slot />
 </button>

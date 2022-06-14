@@ -22,7 +22,6 @@
 <h3
   class={classes}
   use:events
-  {...$$restProps}
 >
   <slot />
 </h3>
