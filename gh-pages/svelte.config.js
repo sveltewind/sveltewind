@@ -6,6 +6,9 @@ import preprocess from 'svelte-preprocess';
 const config = {
 	kit: {
 		adapter: adapter(),
+		paths: {
+			base: process.env.NODE_ENV !== 'production' ? '' : '/sveltewind'
+		},
 		prerender: {
 			default: true
 		},
