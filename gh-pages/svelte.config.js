@@ -7,7 +7,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: process.env.NODE_ENV !== 'production' ? '' : '/sveltewind'
+			base: process.env.NODE_ENV !== 'production' ? '' : ''
 		},
 		prerender: {
 			default: true
