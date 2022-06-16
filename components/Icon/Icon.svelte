@@ -1,8 +1,8 @@
 <script>
   // imports
-  import { Icon } from 'svelte-hero-icons';
+  import { Icon } from '@steeze-ui/svelte-icon';
   import { twMerge } from 'tailwind-merge';
-  import { theme } from '../../stores';
+  import { theme as themeStore } from '../../stores';
 
   // handlers
 
@@ -13,11 +13,12 @@
 
   // props (external)
   export let src = undefined;
+  export let theme = undefined
 
   // props (dynamic)
-  $: classes = twMerge(defaultClasses, $theme.icon, $$props.class);
+  $: classes = twMerge(defaultClasses, $themeStore.icon, $$props.class);
 </script>
 
 {#if src !== undefined}
-  <Icon {src} class={classes} />
+  <Icon class={classes} {src} {theme} />
 {/if}

@@ -2,7 +2,7 @@
   // imports
   import { getEvents } from '../../actions';
   import { current_component } from 'svelte/internal';
-  import { X } from 'svelte-hero-icons';
+  import { X } from '../../components/Icons/index.js';
   import { twMerge } from 'tailwind-merge';
   import { Button, Card, H6, Icon, Overlay, P } from '../../components/index.js';
   import { theme } from '../../stores';
