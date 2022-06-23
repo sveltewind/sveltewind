@@ -5,6 +5,8 @@
   "main": "index.js",
   "svelte": "index.js",
   "scripts": {
+    "commit": "cz",
+    "release": "standard-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -37,5 +39,15 @@
     "svelte": "^3.46.4",
     "tailwind-merge": "^1.2.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "standard-version": "^9.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

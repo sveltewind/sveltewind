@@ -11,6 +11,7 @@
   const events = getEvents(current_component);
 
   // props (external)
+  export let disabled = false;
   export let style = undefined;
   export let type = "button";
 
@@ -18,6 +19,6 @@
   $: classes = twMerge(defaultClasses, $theme.button, $$props.class);
 </script>
 
-<button class={classes} {style} use:events use:setType={type}>
+<button class={classes} {disabled} {style} use:events use:setType={type}>
   <slot />
 </button>
