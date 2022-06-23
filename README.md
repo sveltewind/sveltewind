@@ -9,8 +9,11 @@ npm init svelte
 # add tailwindcss
 npx svelte-add@latest tailwindcss
 
-# install packages
+# install svelte packages
 npm i
+
+# install sveltewind
+npm i -D sveltewind
 ```
 
 ```javascript

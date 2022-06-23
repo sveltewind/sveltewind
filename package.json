@@ -5,9 +5,8 @@
   "main": "index.js",
   "svelte": "index.js",
   "scripts": {
-    "commit": "cz",
-    "release": "standard-version",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git add . && cz && npm run standard-version",
+    "standard-version": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -43,11 +42,19 @@
   "devDependencies": {
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.1",
     "standard-version": "^9.5.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "standard-version": {
+    "skip": {
+      "bump": false,
+      "commit": true,
+      "tag": true
     }
   }
 }
