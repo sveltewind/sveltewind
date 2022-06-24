@@ -8,6 +8,8 @@ export default {
     'flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 px-[1.5rem] py-[.5rem] rounded text-white transition duration-200 outline-none ring ring-transparent focus:ring-blue-500/30',
   card:
     'rounded flex flex-col bg-white p-[1.5rem] shadow dark:bg-white/[.025] dark:shadow-none dark:ring-1 dark:ring-white/[.05]',
+  checkbox: `${inputBaseClasses} mr-[.5rem] peer-focus:ring-offset-blue-500 peer-focus:ring-blue-500/[.3] cursor-pointer px-[0] py-[0]`,
+  checkboxChecked: 'bg-blue-500 dark:bg-blue-500',
   fieldset: 'flex flex-col space-y-[.25rem]',
   form: 'flex flex-col space-y-[1rem]',
   h1: 'font-bold text-[4rem] leading-[6rem]',
@@ -20,6 +22,7 @@ export default {
     'flex justify-end ring-1 ring-black/[.1] pb-[env(safe-area-inset-bottom)] lg:flex-col lg:justify-start dark:ring-white/[.05]',
   icon: 'h-[1.5rem] w-[1.5rem]',
   input: inputBaseClasses,
+  label: '',
   legend: '',
   main: 'flex flex-col flex-grow relative overflow-hidden lg:flex-row-reverse',
   modal:

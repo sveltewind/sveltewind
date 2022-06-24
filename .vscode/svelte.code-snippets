@@ -1,0 +1,60 @@
+{
+  "Initiate Component": {
+    "prefix": "@component",
+    "body": [
+      "<script>",
+      "\t// imports",
+      "\t// import {  } from '../../components';",
+      "\timport { current_component } from 'svelte/internal';",
+      "\timport { twMerge } from 'tailwind-merge';",
+      "\timport { getEvents } from '../../actions';",
+      "\timport { theme } from '../../stores';",
+      "\t",
+      "\t// handlers",
+      "\t",
+      "\t// helpers",
+      "\t",
+      "\t// props (internal)",
+      "\tconst events = getEvents(current_component);",
+      "\t",
+      "\t// props (external)",
+      "\t$2",
+      "\t// props (dynamic)",
+      "\t\\$: classes = twMerge('', \\$theme.${1:div}, \\$\\$props.class);",
+      "</script>",
+      "",
+      "<${1:div} class={classes} use:events>",
+      "\t<slot/>",
+      "</${1:div}>"
+    ]
+  },
+  "Initiate Route": {
+    "prefix": "@route",
+    "body": [
+      "<script>",
+      "\t// imports",
+      "\timport { RouteContainer } from '@components';",
+      "\timport { routeChange } from '@stores';",
+      "\timport { onMount } from 'svelte';",
+      "\t",
+      "\t// handlers",
+      "\t",
+      "\t// helpers",
+      "\t",
+      "\t// props (internal)",
+      "\t",
+      "\t// props (external)",
+      "\t",
+      "\t// props (dynamic)",
+      "\t",
+      "\t// lifecycle",
+      "\tonMount(async() => {",
+      "\t\t\\$routeChange = false;",
+      "\t});",
+      "</script>",
+      "",
+      "<RouteContainer title=\"$1\">",
+      "</RouteContainer>"
+    ]
+  }
+}

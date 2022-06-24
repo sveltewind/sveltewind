@@ -1,9 +1,8 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
-  import { setType } from "../../actions";
+  import { getEvents, setType } from "../../actions";
   import { theme } from "../../stores";
 
   // handlers

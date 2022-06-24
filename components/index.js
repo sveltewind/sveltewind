@@ -1,7 +1,7 @@
 export { default as A } from './A/index.js';
 export { default as Button } from './Button/index.js';
 export { default as Card } from './Card/index.js';
-// TODO add Checkbox component
+export { default as Checkbox } from './Checkbox/index.js';
 // TODO add Datatable component
 export { default as Fieldset } from './Fieldset/index.js';
 export { default as Form } from './Form/index.js';
@@ -14,7 +14,7 @@ export { default as H6 } from './H6/index.js';
 export { default as Header } from './Header/index.js';
 export { default as Icon } from './Icon/index.js';
 export { default as Input } from './Input/index.js';
-// TODO add Label component
+export { default as Label } from './Label/index.js';
 export { default as Legend } from './Legend/index.js';
 export { default as Main } from './Main/index.js';
 export { default as Modal } from './Modal/index.js';
