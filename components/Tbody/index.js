@@ -1,1 +1,1 @@
-export { default } from "./Tbody.svelte";
+export { default } from "./index.svelte";

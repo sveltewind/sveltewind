@@ -1,1 +1,1 @@
-export { default } from "./H4.svelte";
+export { default } from "./index.svelte";

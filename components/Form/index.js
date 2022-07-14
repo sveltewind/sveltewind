@@ -1,1 +1,1 @@
-export { default } from "./Form.svelte";
+export { default } from "./index.svelte";

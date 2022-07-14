@@ -1,1 +1,1 @@
-export { default } from './Pagination.svelte';
+export { default } from "./index.svelte";

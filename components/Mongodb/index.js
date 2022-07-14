@@ -1,1 +1,1 @@
-export { default } from './Mongodb.svelte';
+export { default } from "./index.svelte";

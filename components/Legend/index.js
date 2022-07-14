@@ -1,1 +1,1 @@
-export { default } from "./Legend.svelte";
+export { default } from "./index.svelte";

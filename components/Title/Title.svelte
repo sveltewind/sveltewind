@@ -2,30 +2,18 @@
   // imports
   import { page } from '$app/stores';
 
+  // props (internal)
+  const routeMap = (route) => route.split('-').map(wordMap).join(' ');
+  const wordMap = (string) => (string === '' ? 'Home' : string[0].toUpperCase() + string.slice(1));
+
   // props (external)
   export let base = '';
-  export let generateTitle = ({ base, pathname }) => [
-      pathname
-        .slice(1)
-        .split('/')
-        .reverse()
-        .map(directory=>directory
-          .split('-')
-          .map(word=>word === '' ? '' : word[0].toUpperCase() + word.slice(1))
-          .join(' ')
-        )
-        .join(' - ')
-      ,
-      base
-    ]
-    .filter(s => s !== '')
-    .join(' - ')
-  export let title = ''
 
   // props (dynamic)
-  $: if ($page && $page?.url?.pathname) {
-    title = generateTitle({ base, pathname: $page.url.pathname })
-  }
+  $: title = [
+    ...$page.url.pathname.slice(1).split('/').map(routeMap).reverse(),
+    base
+  ].join(' - ');
 </script>
 
 <svelte:head>

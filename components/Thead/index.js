@@ -1,1 +1,1 @@
-export { default } from "./Thead.svelte";
+export { default } from "./index.svelte";

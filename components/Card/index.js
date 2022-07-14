@@ -1,1 +1,1 @@
-export { default } from "./Card.svelte";
+export { default } from "./index.svelte";

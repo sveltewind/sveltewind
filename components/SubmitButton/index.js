@@ -1,1 +1,1 @@
-export { default } from './SubmitButton.svelte';
+export { default } from "./index.svelte";

@@ -1,1 +1,1 @@
-export { default } from "./Fieldset.svelte";
+export { default } from "./index.svelte";

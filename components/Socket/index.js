@@ -1,1 +1,1 @@
-export { default } from './Socket.svelte';
+export { default } from "./index.svelte";

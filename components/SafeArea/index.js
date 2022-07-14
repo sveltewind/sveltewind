@@ -1,1 +1,1 @@
-export { default } from "./SafeArea.svelte";
+export { default } from "./index.svelte";

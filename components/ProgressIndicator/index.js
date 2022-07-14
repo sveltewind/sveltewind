@@ -1,1 +1,1 @@
-export { default } from './ProgressIndicator.svelte';
+export { default } from "./index.svelte";

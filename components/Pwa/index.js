@@ -1,1 +1,1 @@
-export { default } from "./Pwa.svelte";
+export { default } from "./index.svelte";

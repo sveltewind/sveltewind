@@ -1,1 +1,1 @@
-export { default } from "./Option.svelte";
+export { default } from "./index.svelte";
