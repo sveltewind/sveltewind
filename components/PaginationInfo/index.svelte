@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
   import { theme } from "../../stores/index.js";
@@ -20,6 +20,7 @@
   };
   export let style = undefined;
   export let total = 0;
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(
@@ -29,7 +30,7 @@
   );
 </script>
 
-<div class={classes} {style} use:events>
+<div class={classes} {style} use:useAction={[events, ...use]}>
   Showing
   {paginatedRowIndexes.start + 1}
   to

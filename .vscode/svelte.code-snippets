@@ -23,7 +23,7 @@
       "\t\\$: classes = twMerge('', \\$theme.${1:div}, \\$\\$props.class);",
       "</script>",
       "",
-      "<${1:div} class={classes} use:events>",
+      "<${1:div} class={classes} use:useAction={[events, ...use]}>",
       "\t<slot/>",
       "</${1:div}>"
     ]

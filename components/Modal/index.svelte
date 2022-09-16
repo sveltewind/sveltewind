@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { X } from "../../components/Icons/index.js";
   import { twMerge } from "tailwind-merge";
@@ -31,6 +31,7 @@
   export let show = false;
   export let style = undefined;
   export let title = "Modal Title";
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(
@@ -41,7 +42,7 @@
   );
 </script>
 
-<div class={classes} {style} use:events>
+<div class={classes} {style} use:useAction={[events, ...use]}>
   {#if showOverlay}
     <Overlay on:click={() => (show = !show)} class="cursor-pointer" />
   {/if}
@@ -49,17 +50,27 @@
     {#if showBodyClose !== false || showTitleClose !== false || title !== undefined}
       <div class="p-[1.5rem]">
         <Card
-          class="relative space-y-[2rem] max-w-lg max-h-screen transform transition duration-500 {show ? 'scale-[1]' : 'scale-[.95]'}">
+          class="relative space-y-[2rem] max-w-lg max-h-screen transform transition duration-500 {show
+            ? 'scale-[1]'
+            : 'scale-[.95]'}"
+        >
           {#if showTitleClose !== false || title !== undefined}
             <div
-              class="flex items-center {showTitleClose === true && title !== undefined ? 'justify-between space-x-[2rem]' : showTitleClose === true ? 'justify-end' : 'justify-start'}">
+              class="flex items-center {showTitleClose === true &&
+              title !== undefined
+                ? 'justify-between space-x-[2rem]'
+                : showTitleClose === true
+                ? 'justify-end'
+                : 'justify-start'}"
+            >
               {#if title !== undefined}
                 <H6>{title}</H6>
               {/if}
               {#if showTitleClose !== false}
                 <Button
                   class="bg-transparent hover:bg-black/5 focus:bg-black/5 focus:ring-black/30 text-black px-[.5rem]"
-                  on:click={() => (show = !show)}>
+                  on:click={() => (show = !show)}
+                >
                   <Icon src={X} />
                 </Button>
               {/if}

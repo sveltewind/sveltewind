@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
   import { PaginationButtons, PaginationInfo } from "../../components/index.js";
@@ -23,6 +23,7 @@
   export let rowsPerPage = 10;
   export let style = undefined;
   export let total = 0;
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(
@@ -32,7 +33,7 @@
   );
 </script>
 
-<div class={classes} {style} use:events>
+<div class={classes} {style} use:useAction={[events, ...use]}>
   <slot>
     <PaginationInfo {paginatedRowIndexes} {total} />
     <PaginationButtons bind:currentPage {rowsPerPage} {total} />

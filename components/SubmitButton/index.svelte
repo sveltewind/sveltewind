@@ -13,12 +13,13 @@
   export let style = undefined;
   export let submitted = false;
   export let type = "submit";
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge($$props.class);
 </script>
 
-<Button class={classes} on:click {type} {style}>
+<Button class={classes} on:click {type} {style} {use}>
   {#if submitted}
     <ProgressIndicator class="w-[1.5rem] h-[1.5rem]" />
   {:else}

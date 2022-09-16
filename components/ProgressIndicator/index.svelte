@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
   import { theme } from "../../stores";
@@ -15,10 +15,29 @@
 
   // props (external)
   export let style = undefined;
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.progressIndicator, $$props.class);
 </script>
+
+<svg
+  class={classes}
+  viewBox="25 25 50 50"
+  {style}
+  use:useAction={[events, ...use]}
+>
+  <circle
+    class="spinner-dash"
+    cx="50"
+    cy="50"
+    r="20"
+    stroke="currentColor"
+    fill="none"
+    stroke-width="2"
+    stroke-miterlimit="10"
+  />
+</svg>
 
 <style>
   @keyframes spinner-dash {
@@ -50,15 +69,3 @@
     animation: spinner-rotate 2s linear infinite;
   }
 </style>
-
-<svg class={classes} viewBox="25 25 50 50" {style} use:events>
-  <circle
-    class="spinner-dash"
-    cx="50"
-    cy="50"
-    r="20"
-    stroke="currentColor"
-    fill="none"
-    stroke-width="2"
-    stroke-miterlimit="10" />
-</svg>

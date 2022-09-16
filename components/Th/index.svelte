@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
   import { theme } from "../../stores";
@@ -16,12 +16,13 @@
   // props (external)
   export let column = undefined;
   export let style = undefined;
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.th, $$props.class);
 </script>
 
-<th class={classes} {style} use:events>
+<th class={classes} {style} use:useAction={[events, ...use]}>
   {#if column !== undefined}{column}{/if}
   <slot />
 </th>

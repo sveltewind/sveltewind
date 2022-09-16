@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
   import { Tr } from "../../components/index.js";
@@ -18,12 +18,13 @@
   export let data = undefined;
   export let rows = undefined;
   export let style = undefined;
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.tbody, $$props.class);
 </script>
 
-<tbody class={classes} {style} use:events>
+<tbody class={classes} {style} use:useAction={[events, ...use]}>
   {#if data !== undefined}
     {#each data as row}
       <Tr {row} />

@@ -1,35 +1,17 @@
-import adapter from '@sveltejs/adapter-static';
-import path from 'path';
 import preprocess from 'svelte-preprocess';
+import adapter from '@sveltejs/adapter-auto';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		adapter: adapter(),
-		paths: {
-			base: process.env.NODE_ENV !== 'production' ? '' : ''
-		},
-		prerender: {
-			default: true
-		},
-		vite: {
-			optimizeDeps: {
-				exclude: ['@steeze-ui/svelte-icon']
-			},
-			resolve: {
-				alias: {
-					'@actions': path.resolve('../actions'),
-					'@components': path.resolve('../components')
-				}
-			}
-		}
-	},
+  kit: {
+    adapter: adapter()
+  },
 
-	preprocess: [
-		preprocess({
-			postcss: true
-		})
-	]
+  preprocess: [
+    preprocess({
+      postcss: true
+    })
+  ]
 };
 
 export default config;

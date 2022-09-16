@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
   import { theme } from "../../stores";
@@ -17,12 +17,13 @@
   // props (external)
   export let legend = undefined;
   export let style = undefined;
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.fieldset, $$props.class);
 </script>
 
-<fieldset class={classes} {style} use:events>
+<fieldset class={classes} {style} use:useAction={[events, ...use]}>
   <slot name="legend">
     {#if legend !== undefined}
       <Legend>{legend}</Legend>

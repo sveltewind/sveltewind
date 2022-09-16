@@ -1,6 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
   import { Button } from "../../components/index.js";
@@ -19,6 +19,7 @@
   export let rowsPerPage = 10;
   export let style = undefined;
   export let total = 0;
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(
@@ -33,36 +34,43 @@
   };
 </script>
 
-<div class={classes} {style} use:events>
+<div class={classes} {style} use:useAction={[events, ...use]}>
   <slot>
     {#if currentPage > 0}
       <Button
         class={$theme.button.paginationButtonDefault}
-        on:click={() => (currentPage = 0)}>
+        on:click={() => (currentPage = 0)}
+      >
         First
       </Button>
       <Button
         class={$theme.button.paginationButtonDefault}
-        on:click={() => currentPage--}>
+        on:click={() => currentPage--}
+      >
         Previous
       </Button>
     {/if}
     {#each [...Array(pageIndexes.end - pageIndexes.start + 1)] as __dirname, i}
       <Button
-        class={currentPage === pageIndexes.start + i ? $theme.button.paginationButtonCurrent : $theme.button.paginationButtonDefault}
-        on:click={() => (currentPage = pageIndexes.start + i)}>
+        class={currentPage === pageIndexes.start + i
+          ? $theme.button.paginationButtonCurrent
+          : $theme.button.paginationButtonDefault}
+        on:click={() => (currentPage = pageIndexes.start + i)}
+      >
         {pageIndexes.start + i + 1}
       </Button>
     {/each}
     {#if currentPage < pageIndexes.last}
       <Button
         class={$theme.button.paginationButtonDefault}
-        on:click={() => currentPage++}>
+        on:click={() => currentPage++}
+      >
         Next
       </Button>
       <Button
         class={$theme.button.paginationButtonDefault}
-        on:click={() => (currentPage = pageIndexes.last)}>
+        on:click={() => (currentPage = pageIndexes.last)}
+      >
         Last
       </Button>
     {/if}

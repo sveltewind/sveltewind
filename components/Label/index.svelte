@@ -1,7 +1,6 @@
 <script>
   // imports
-  import { getEvents } from "../../actions";
-  // import {  } from '../../components';
+  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
 
@@ -13,12 +12,13 @@
   const events = getEvents(current_component);
 
   // props (external)
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge("", $$props.class);
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
-<label class={classes} use:events>
+<label class={classes} use:useAction={[events, ...use]}>
   <slot />
 </label>

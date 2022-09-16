@@ -2,7 +2,7 @@
   // imports
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
-  import { getEvents, setType } from "../../actions";
+  import { getEvents, setType, use as useAction } from "../../actions";
   import { theme } from "../../stores";
 
   // handlers
@@ -17,6 +17,7 @@
   export let style = undefined;
   export let type = "text";
   export let value = "";
+  export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.input, $$props.class);
@@ -27,5 +28,5 @@
   bind:value
   class={classes}
   {style}
-  use:events
-  use:setType={type} />
+  use:useAction={[events, [setType, type], ...use]}
+/>
