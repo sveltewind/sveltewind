@@ -1,8 +1,8 @@
 <script>
   // imports
-  import { getEvents, use as useAction } from "../../actions";
   import { current_component } from "svelte/internal";
   import { twMerge } from "tailwind-merge";
+  import { getEvents, use as useAction } from "../../actions";
   import { theme } from "../../stores";
 
   // handlers
@@ -14,6 +14,8 @@
   const events = getEvents(current_component);
 
   // props (external)
+  export let action = undefined;
+  export let method = "POST";
   export let style = undefined;
   export let use = [];
 
@@ -21,6 +23,12 @@
   $: classes = twMerge(defaultClasses, $theme.form, $$props.class);
 </script>
 
-<form class={classes} {style} use:useAction={[events, ...use]}>
+<form
+  {action}
+  class={classes}
+  {method}
+  {style}
+  use:useAction={[events, ...use]}
+>
   <slot />
 </form>
