@@ -28,12 +28,14 @@
 </script>
 
 <Label class="relative flex">
-  <input
-    bind:checked
-    class="peer absolute top-0 left-0 opacity-0 w-0"
-    type="checkbox"
-    use:useAction={[events, ...use]}
-  />
+  <slot name="input">
+    <input
+      bind:checked
+      class="peer absolute top-0 left-0 opacity-0 w-0"
+      type="checkbox"
+      use:useAction={[events, ...use]}
+    />
+  </slot>
   <slot name="handle">
     <div class={classes}>
       <Icon
