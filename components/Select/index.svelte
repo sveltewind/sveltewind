@@ -15,7 +15,9 @@
   const events = getEvents(current_component);
 
   // props (external)
+  export let disabled = undefined;
   export let options = undefined;
+  export let readonly = undefined;
   export let style = undefined;
   export let use = [];
   export let value = "";
@@ -25,9 +27,10 @@
 </script>
 
 <select
-  {...$$props}
   bind:value
   class={classes}
+  {disabled}
+  {readonly}
   {style}
   use:useAction={[events, ...use]}
 >
