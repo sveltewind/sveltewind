@@ -24,7 +24,13 @@
   $: classes = twMerge(defaultClasses, $theme.select, $$props.class);
 </script>
 
-<select bind:value class={classes} {style} use:useAction={[events, ...use]}>
+<select
+  {...$$props}
+  bind:value
+  class={classes}
+  {style}
+  use:useAction={[events, ...use]}
+>
   {#if options !== undefined}
     {#each options as option}
       <Option selected={option.value === value} value={option.value}>
