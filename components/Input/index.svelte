@@ -14,6 +14,9 @@
   const events = getEvents(current_component);
 
   // props (external)
+  export let max = undefined;
+  export let min = undefined;
+  export let step = undefined;
   export let style = undefined;
   export let type = "text";
   export let value = "";
@@ -27,6 +30,9 @@
   {...$$props}
   bind:value
   class={classes}
+  {max}
+  {min}
+  {step}
   {style}
   use:useAction={[events, [setType, type], ...use]}
 />
