@@ -12,12 +12,13 @@
   // props (external)
   export let href = "#";
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.a, $$props.class);
 </script>
 
-<a class={classes} {href} {style} use:useAction={[events, ...use]}>
+<a class={classes} {href} {style} {tabindex} use:useAction={[events, ...use]}>
   <slot />
 </a>

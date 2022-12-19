@@ -19,6 +19,7 @@
   export let options = undefined;
   export let readonly = undefined;
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
   export let value = "";
 
@@ -32,6 +33,7 @@
   {disabled}
   {readonly}
   {style}
+  {tabindex}
   use:useAction={[events, ...use]}
 >
   {#if options !== undefined}

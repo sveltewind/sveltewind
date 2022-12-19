@@ -15,6 +15,7 @@
 
   // props (external)
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
@@ -25,6 +26,7 @@
   class={classes}
   viewBox="25 25 50 50"
   {style}
+  {tabindex}
   use:useAction={[events, ...use]}
 >
   <circle

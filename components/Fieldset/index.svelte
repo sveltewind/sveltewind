@@ -17,13 +17,14 @@
   // props (external)
   export let legend = undefined;
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.fieldset, $$props.class);
 </script>
 
-<fieldset class={classes} {style} use:useAction={[events, ...use]}>
+<fieldset class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   <slot name="legend">
     {#if legend !== undefined}
       <Legend>{legend}</Legend>

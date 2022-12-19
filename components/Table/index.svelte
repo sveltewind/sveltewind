@@ -19,13 +19,14 @@
   export let data = undefined;
   export let rows = undefined;
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.table, $$props.class);
 </script>
 
-<table class={classes} {style} use:useAction={[events, ...use]}>
+<table class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   {#if columns !== undefined && rows !== undefined}
     <Thead {columns} />
     <Tbody {columns} {rows} />

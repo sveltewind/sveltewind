@@ -17,13 +17,14 @@
   // props (external)
   export let columns = undefined;
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.thead, $$props.class);
 </script>
 
-<thead class={classes} {style} use:useAction={[events, ...use]}>
+<thead class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   {#if columns !== undefined}
     {#each columns as column}
       <Th {column} />

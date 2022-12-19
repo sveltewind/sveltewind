@@ -15,12 +15,13 @@
 
   // props (external)
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.legend, $$props.class);
 </script>
 
-<legend class={classes} {style} use:useAction={[events, ...use]}>
+<legend class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   <slot />
 </legend>

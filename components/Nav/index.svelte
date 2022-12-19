@@ -15,12 +15,13 @@
 
   // props (external)
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.nav, $$props.class);
 </script>
 
-<nav class={classes} {style} use:useAction={[events, ...use]}>
+<nav class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   <slot />
 </nav>

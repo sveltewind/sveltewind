@@ -22,6 +22,7 @@
   };
   export let rowsPerPage = 10;
   export let style = undefined;
+  export let tabindex = undefined;
   export let total = 0;
   export let use = [];
 
@@ -33,7 +34,7 @@
   );
 </script>
 
-<div class={classes} {style} use:useAction={[events, ...use]}>
+<div class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   <slot>
     <PaginationInfo {paginatedRowIndexes} {total} />
     <PaginationButtons bind:currentPage {rowsPerPage} {total} />

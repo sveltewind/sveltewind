@@ -12,6 +12,7 @@
   // props (external)
   export let disabled = false;
   export let style = undefined;
+  export let tabindex = undefined;
   export let type = "button";
   export let use = [];
 
@@ -23,6 +24,7 @@
   class={classes}
   {disabled}
   {style}
+  {tabindex}
   use:useAction={[events, [setType, type], ...use]}
 >
   <slot />

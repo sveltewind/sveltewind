@@ -18,6 +18,7 @@
   export let min = undefined;
   export let step = undefined;
   export let style = undefined;
+  export let tabindex = undefined;
   export let type = "text";
   export let value = "";
   export let use = [];
@@ -34,5 +35,6 @@
   {min}
   {step}
   {style}
+  {tabindex}
   use:useAction={[events, [setType, type], ...use]}
 />

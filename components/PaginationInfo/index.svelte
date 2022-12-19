@@ -19,6 +19,7 @@
     end: 9,
   };
   export let style = undefined;
+  export let tabindex = undefined;
   export let total = 0;
   export let use = [];
 
@@ -30,7 +31,7 @@
   );
 </script>
 
-<div class={classes} {style} use:useAction={[events, ...use]}>
+<div class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   Showing
   {paginatedRowIndexes.start + 1}
   to

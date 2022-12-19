@@ -17,13 +17,14 @@
   // props (external)
   export let row = undefined;
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(defaultClasses, $theme.tr, $$props.class);
 </script>
 
-<tr class={classes} {style} use:useAction={[events, ...use]}>
+<tr class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   {#if row !== undefined}
     {#each row as cell}
       <Td {cell} />

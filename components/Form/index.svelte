@@ -17,6 +17,7 @@
   export let action = undefined;
   export let method = "POST";
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
@@ -28,6 +29,7 @@
   class={classes}
   {method}
   {style}
+  {tabindex}
   use:useAction={[events, ...use]}
 >
   <slot />

@@ -14,6 +14,7 @@
   // props (external)
   export let src = undefined;
   export let style = undefined;
+  export let tabindex = undefined;
   export let theme = undefined;
 
   // props (dynamic)
@@ -21,5 +22,5 @@
 </script>
 
 {#if src !== undefined}
-  <Icon class={classes} {src} {style} {theme} />
+  <Icon class={classes} {src} {style} {tabindex} {theme} />
 {/if}

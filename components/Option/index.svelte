@@ -16,6 +16,7 @@
   // props (external)
   export let selected = false;
   export let style = undefined;
+  export let tabindex = undefined;
   export let use = [];
   export let value = "";
 
@@ -27,6 +28,7 @@
   class={classes}
   {selected}
   {style}
+  {tabindex}
   {value}
   use:useAction={[events, ...use]}
 >

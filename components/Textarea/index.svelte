@@ -15,6 +15,7 @@
 
   // props (external)
   export let style = undefined;
+  export let tabindex = undefined;
   export let value = "";
   export let use = [];
 
@@ -27,5 +28,6 @@
   bind:value
   class={classes}
   {style}
+  {tabindex}
   use:useAction={[events, ...use]}
 />

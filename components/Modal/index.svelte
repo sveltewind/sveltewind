@@ -30,6 +30,7 @@
   export let showTitleClose = true;
   export let show = false;
   export let style = undefined;
+  export let tabindex = undefined;
   export let title = "Modal Title";
   export let use = [];
 
@@ -42,7 +43,7 @@
   );
 </script>
 
-<div class={classes} {style} use:useAction={[events, ...use]}>
+<div class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
   {#if showOverlay}
     <Overlay on:click={() => (show = !show)} class="cursor-pointer" />
   {/if}
