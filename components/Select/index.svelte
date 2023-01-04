@@ -28,6 +28,7 @@
 </script>
 
 <select
+  {...$$props}
   bind:value
   class={classes}
   {disabled}
