@@ -1,9 +1,9 @@
 <script>
   // imports
-  import { getEvents, use as useAction } from "../../actions";
-  import { current_component } from "svelte/internal";
-  import { X } from "../../components/Icons/index.js";
-  import { twMerge } from "tailwind-merge";
+  import { getEvents, use as useAction } from '../../actions';
+  import { current_component } from 'svelte/internal';
+  import { X } from '../icons/index.js';
+  import { twMerge } from 'tailwind-merge';
   import {
     Button,
     Card,
@@ -11,15 +11,15 @@
     Icon,
     Overlay,
     P,
-  } from "../../components/index.js";
-  import { theme } from "../../stores";
+  } from '../../components/index.js';
+  import { theme } from '../../stores';
 
   // handlers
 
   // utilities
 
   // props (internal)
-  const defaultClasses = "";
+  const defaultClasses = '';
   const events = getEvents(current_component);
 
   // props (external)
@@ -31,15 +31,15 @@
   export let show = false;
   export let style = undefined;
   export let tabindex = undefined;
-  export let title = "Modal Title";
+  export let title = 'Modal Title';
   export let use = [];
 
   // props (dynamic)
   $: classes = twMerge(
     defaultClasses,
-    show ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
+    show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
     $theme.modal,
-    $$props.class
+    $$props.class,
   );
 </script>
 
