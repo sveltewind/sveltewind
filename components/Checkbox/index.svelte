@@ -2,7 +2,7 @@
   // imports
   import { getEvents, use as useAction } from '../../actions';
   import { Icon, Label } from '../../components';
-  import { Check } from '../../components/icons';
+  import { Check } from '../icons';
   import { current_component } from 'svelte/internal';
   import { twMerge } from 'tailwind-merge';
   import { theme } from '../../stores';
@@ -16,6 +16,7 @@
 
   // props (external)
   export let checked = false;
+  export let name = undefined;
   export let use = [];
 
   // props (dynamic)
@@ -32,6 +33,7 @@
     <input
       bind:checked
       class="peer absolute top-0 left-0 opacity-0 w-0"
+      {name}
       type="checkbox"
       use:useAction={[events, ...use]}
     />
