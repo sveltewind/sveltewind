@@ -24,7 +24,6 @@ export { default as Overlay } from './Overlay/index.js';
 export { default as P } from './P/index.js';
 export { default as ProgressIndicator } from './ProgressIndicator/index.js';
 export { default as Pwa } from './Pwa/index.js';
-export { default as SafeArea } from './SafeArea/index.js';
 export { default as Select } from './Select/index.js';
 export { default as SubmitButton } from './SubmitButton/index.js';
 export { default as Table } from './Table/index.js';
