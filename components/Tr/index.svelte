@@ -1,17 +1,17 @@
 <script>
   // imports
-  import { getEvents, use as useAction } from "../../actions";
-  import { current_component } from "svelte/internal";
-  import { twMerge } from "tailwind-merge";
-  import { Td } from "../../components/index.js";
-  import { theme } from "../../stores";
+  import { getEvents, use as useAction } from '../../actions';
+  import { current_component } from 'svelte/internal';
+  import { twMerge } from 'tailwind-merge';
+  import { Td } from '../../components/index.js';
+  import { theme } from '../../stores';
 
   // handlers
 
   // utilities
 
   // props (internal)
-  const defaultClasses = "";
+  const defaultClasses = '';
   const events = getEvents(current_component);
 
   // props (external)
@@ -24,7 +24,13 @@
   $: classes = twMerge(defaultClasses, $theme.tr, $$props.class);
 </script>
 
-<tr class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
+<tr
+  {...$$restProps}
+  class={classes}
+  {style}
+  {tabindex}
+  use:useAction={[events, ...use]}
+>
   {#if row !== undefined}
     {#each row as cell}
       <Td {cell} />

@@ -1,21 +1,20 @@
 <script>
   // imports
-  import { getEvents, use as useAction } from "../../actions";
-  import { current_component } from "svelte/internal";
-  import { twMerge } from "tailwind-merge";
-  import { theme } from "../../stores";
+  import { getEvents, use as useAction } from '../../actions';
+  import { current_component } from 'svelte/internal';
+  import { twMerge } from 'tailwind-merge';
+  import { theme } from '../../stores';
 
   // handlers
 
   // utilities
 
   // props (internal)
-  const defaultClasses = "spinner-rotate w-[6.25rem] h-[6.25rem]";
+  const defaultClasses = 'spinner-rotate w-[6.25rem] h-[6.25rem]';
   const events = getEvents(current_component);
 
   // props (external)
   export let style = undefined;
-  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
@@ -23,10 +22,10 @@
 </script>
 
 <svg
+  {...$$restProps}
   class={classes}
   viewBox="25 25 50 50"
   {style}
-  {tabindex}
   use:useAction={[events, ...use]}
 >
   <circle

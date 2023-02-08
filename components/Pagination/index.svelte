@@ -1,17 +1,17 @@
 <script>
   // imports
-  import { getEvents, use as useAction } from "../../actions";
-  import { current_component } from "svelte/internal";
-  import { twMerge } from "tailwind-merge";
-  import { PaginationButtons, PaginationInfo } from "../../components/index.js";
-  import { theme } from "../../stores/index.js";
+  import { getEvents, use as useAction } from '../../actions';
+  import { current_component } from 'svelte/internal';
+  import { twMerge } from 'tailwind-merge';
+  import { PaginationButtons, PaginationInfo } from '../../components/index.js';
+  import { theme } from '../../stores/index.js';
 
   // handlers
 
   // utilities
 
   // props (internal)
-  const defaultClasses = "";
+  const defaultClasses = '';
   const events = getEvents(current_component);
 
   // props (external)
@@ -22,7 +22,6 @@
   };
   export let rowsPerPage = 10;
   export let style = undefined;
-  export let tabindex = undefined;
   export let total = 0;
   export let use = [];
 
@@ -34,7 +33,7 @@
   );
 </script>
 
-<div class={classes} {style} {tabindex} use:useAction={[events, ...use]}>
+<div {...$$restProps} class={classes} {style} use:useAction={[events, ...use]}>
   <slot>
     <PaginationInfo {paginatedRowIndexes} {total} />
     <PaginationButtons bind:currentPage {rowsPerPage} {total} />

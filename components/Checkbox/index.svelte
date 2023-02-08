@@ -1,11 +1,11 @@
 <script>
   // imports
-  import { getEvents, use as useAction } from "../../actions";
-  import { Icon, Label } from "../../components";
-  import { Check } from "../../components/icons";
-  import { current_component } from "svelte/internal";
-  import { twMerge } from "tailwind-merge";
-  import { theme } from "../../stores";
+  import { getEvents, use as useAction } from '../../actions';
+  import { Icon, Label } from '../../components';
+  import { Check } from '../../components/icons';
+  import { current_component } from 'svelte/internal';
+  import { twMerge } from 'tailwind-merge';
+  import { theme } from '../../stores';
 
   // handlers
 
@@ -20,9 +20,9 @@
 
   // props (dynamic)
   $: classes = twMerge(
-    "transition duration-200",
+    'transition duration-200',
     $theme.checkbox,
-    !checked ? "" : $theme.checkboxChecked,
+    !checked ? '' : $theme.checkboxChecked,
     $$props.class
   );
 </script>

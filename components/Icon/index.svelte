@@ -1,20 +1,19 @@
 <script>
   // imports
-  import { Icon } from "@steeze-ui/svelte-icon";
-  import { twMerge } from "tailwind-merge";
-  import { theme as themeStore } from "../../stores";
+  import { Icon } from '@steeze-ui/svelte-icon';
+  import { twMerge } from 'tailwind-merge';
+  import { theme as themeStore } from '../../stores';
 
   // handlers
 
   // utilities
 
   // props (internal)
-  const defaultClasses = "";
+  const defaultClasses = '';
 
   // props (external)
   export let src = undefined;
   export let style = undefined;
-  export let tabindex = undefined;
   export let theme = undefined;
 
   // props (dynamic)
@@ -22,5 +21,5 @@
 </script>
 
 {#if src !== undefined}
-  <Icon class={classes} {src} {style} {tabindex} {theme} />
+  <Icon {...$$restProps} class={classes} {src} {style} {theme} />
 {/if}
