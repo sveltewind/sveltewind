@@ -2,11 +2,7 @@
   // imports
   import { getEvents, use as useAction } from '../../actions';
   import { current_component } from 'svelte/internal';
-<<<<<<< HEAD../icons/index.js
-  import { X } from '../../components/Icons/index.js';
-=======
   import { X } from '../icons/index.js';
->>>>>>> a7138ca1f9cc8bb51c05c3c0ba13396f3db7aefa
   import { twMerge } from 'tailwind-merge';
   import {
     Button,
@@ -34,10 +30,6 @@
   export let showTitleClose = true;
   export let show = false;
   export let style = undefined;
-<<<<<<< HEAD
-=======
-  export let tabindex = undefined;
->>>>>>> a7138ca1f9cc8bb51c05c3c0ba13396f3db7aefa
   export let title = 'Modal Title';
   export let use = [];
 
@@ -46,7 +38,7 @@
     defaultClasses,
     show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
     $theme.modal,
-    $$props.class,
+    $$props.class
   );
 </script>
 
