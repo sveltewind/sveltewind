@@ -2,7 +2,7 @@
   // imports
   import { getEvents, use as useAction } from '../../actions';
   import { current_component } from 'svelte/internal';
-  import { X } from '../icons/index.js';
+  import { XMark } from '../icons/index.js';
   import { twMerge } from 'tailwind-merge';
   import {
     Button,
@@ -71,7 +71,7 @@
                   class="bg-transparent hover:bg-black/5 focus:bg-black/5 focus:ring-black/30 text-black px-[.5rem]"
                   on:click={() => (show = !show)}
                 >
-                  <Icon src={X} />
+                  <Icon src={XMark} />
                 </Button>
               {/if}
             </div>
