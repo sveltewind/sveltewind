@@ -1,6 +1,10 @@
 {
   "Add Component": {
-    "prefix": "add component",
+    "prefix": "@add to index.js",
     "body": ["export { default as $1 } from './$1/index.js'"]
+  },
+  "Component index.js": {
+    "prefix": "@create index.js",
+    "body": ["export { default } from './index.svelte';"]
   }
 }

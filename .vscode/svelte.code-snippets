@@ -4,7 +4,6 @@
     "body": [
       "<script>",
       "\t// imports",
-      "\t// import {  } from '../../components';",
       "\timport { current_component } from 'svelte/internal';",
       "\timport { twMerge } from 'tailwind-merge';",
       "\timport { getEvents, use as useAction } from '../../actions';",
@@ -25,7 +24,7 @@
       "\t\\$: classes = twMerge('', \\$theme.${1:div}, \\$\\$props.class);",
       "</script>",
       "",
-      "<${1:div} class={classes} use:useAction={[events, ...use]}>",
+      "<${1:div} class={classes} {style} use:useAction={[events, ...use]}>",
       "\t<slot/>",
       "</${1:div}>"
     ]

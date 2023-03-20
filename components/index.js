@@ -1,8 +1,11 @@
 export { default as A } from './A/index.js';
+export { default as Badge } from './Badge/index.js';
+export { default as Breadcrumb } from './Breadcrumb/index.js'
 export { default as Button } from './Button/index.js';
 export { default as Card } from './Card/index.js';
 export { default as Checkbox } from './Checkbox/index.js';
 export { default as Container } from './Container/index.js';
+export { default as Drawer } from './Drawer/index.js'
 // TODO add Datatable component
 export { default as Fieldset } from './Fieldset/index.js';
 export { default as Form } from './Form/index.js';
