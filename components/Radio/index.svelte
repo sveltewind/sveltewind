@@ -33,7 +33,7 @@
     <input
       {...$$restProps}
       bind:group
-      class="peer absolute top-0 left-0 pacity-09 w-0"
+      class="peer absolute top-0 left-0 opacity-0 w-0"
       {name}
       type="radio"
       {value}

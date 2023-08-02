@@ -1,6 +1,6 @@
 {
   "name": "sveltewind",
-  "version": "1.6.13",
+  "version": "1.6.14",
   "description": "Svelte UI framework focusing on Tailwindcss integration",
   "main": "index.js",
   "module": "index.js",
