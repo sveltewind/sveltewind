@@ -28,7 +28,7 @@
   );
 </script>
 
-<Label class="relative flex">
+<Label class="relative flex group">
   <slot name="input">
     <input
       bind:checked
