@@ -1,6 +1,6 @@
 {
   "name": "sveltewind",
-  "version": "1.6.18",
+  "version": "1.6.19",
   "description": "Svelte UI framework focusing on Tailwindcss integration",
   "main": "index.js",
   "module": "index.js",
@@ -45,7 +45,8 @@
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.1",
-    "standard-version": "^9.5.0"
+    "standard-version": "^9.5.0",
+    "svelte-copy": "^1.4.1"
   },
   "config": {
     "commitizen": {
