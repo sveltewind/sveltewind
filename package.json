@@ -1,6 +1,6 @@
 {
   "name": "sveltewind",
-  "version": "1.6.19",
+  "version": "1.6.20",
   "description": "Svelte UI framework focusing on Tailwindcss integration",
   "main": "index.js",
   "module": "index.js",
@@ -38,6 +38,7 @@
     "mongodb": "^4.4.1",
     "socket.io-client": "^4.4.1",
     "svelte": "^3.46.4",
+    "svelte-copy": "^1.4.1",
     "tailwind-merge": "^1.2.0"
   },
   "type": "module",
@@ -45,8 +46,7 @@
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.1",
-    "standard-version": "^9.5.0",
-    "svelte-copy": "^1.4.1"
+    "standard-version": "^9.5.0"
   },
   "config": {
     "commitizen": {
