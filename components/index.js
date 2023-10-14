@@ -6,7 +6,8 @@ export { default as Card } from './Card/index.js';
 export { default as Checkbox } from './Checkbox/index.js';
 export { default as Container } from './Container/index.js';
 export { default as Drawer } from './Drawer/index.js';
-// TODO add Datatable component
+export { default as DataTable } from './DataTable/index.svelte';
+export * as DataTableComponents from './DataTable';
 export { default as Fieldset } from './Fieldset/index.js';
 export { default as Form } from './Form/index.js';
 export { default as H1 } from './H1/index.js';
@@ -26,6 +27,7 @@ export { default as Nav } from './Nav/index.js';
 export { default as Option } from './Option/index.js';
 export { default as Overlay } from './Overlay/index.js';
 export { default as P } from './P/index.js';
+export { default as Portal } from 'svelte-portal';
 export { default as ProgressIndicator } from './ProgressIndicator/index.js';
 export { default as Pwa } from './Pwa/index.js';
 export { default as Section } from './Section/index.js';

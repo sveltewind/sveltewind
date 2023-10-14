@@ -1,5 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 
+const card =
+  'shadow-md bg-white dark:bg-gray-800 dark:shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.3),_0_2px_4px_-2px_rgb(0_0_0_/_0.3)] ring-1 rounded flex flex-col p-[1.5rem] ring-gray-800/[.1] dark:ring-white/[.1]';
 const inputBaseClasses =
   'bg-transparent dark:bg-transparent appearance-none rounded px-[1.5rem] py-[.5rem] transition duration-200 outline-none ring ring-transparent ring-offset-1 ring-offset-gray-300 hover:ring-offset-blue-500 focus:ring-offset-blue-500 focus:ring-blue-500/[.3] dark:text-gray-50 dark:ring-offset-white/[.05]';
 
@@ -8,8 +10,8 @@ export default {
   badge: 'bg-blue-500 text-white rounded text-[.875rem] px-[.5rem]',
   breadcrumb: 'flex space-x-[.5rem]',
   button:
-    'flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 px-[1.5rem] py-[.5rem] rounded text-white transition duration-200 outline-none ring ring-transparent focus:ring-blue-500/30',
-  card: 'rounded flex flex-col bg-white p-[1.5rem] shadow dark:bg-white/[.025] dark:shadow-none dark:ring-1 dark:ring-white/[.05]',
+    'flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 disabled:bg-gray-500 disabled:cursor-default px-[1.5rem] py-[.5rem] rounded text-white transition duration-200 outline-none ring ring-transparent focus:ring-blue-500/30',
+  card,
   checkbox: `${inputBaseClasses.replace(
     'px-[1.5rem]',
     ''
@@ -35,7 +37,7 @@ export default {
   modal:
     'fixed z-[1] top-0 left-0 h-full w-full transition duration-200 flex items-center justify-center',
   nav: 'flex flex-col flex-grow overflow-y-auto',
-  option: '',
+  option: 'dark:bg-gray-800',
   overlay:
     'absolute top-0 left-0 h-full w-full bg-black/70 transition duration-200',
   p: 'text-[1rem] leading-[1.5rem]',
@@ -47,12 +49,11 @@ export default {
   radioSelected: 'bg-blue-500 dark:bg-blue-500 after:scale-100',
   section: 'flex flex-col py-[5rem]',
   select: `${inputBaseClasses} cursor-pointer`,
-  table:
-    'text-left relative bg-white shadow dark:bg-white/[.025] dark:shadow-none dark:ring-1 dark:ring-white/[.05]',
+  table: twMerge(card, 'table p-0 text-left relative rounded-none'),
   tbody: '',
   td: 'px-[1.5rem] py-[.5rem] whitespace-nowrap',
   textarea: inputBaseClasses,
-  th: 'px-[1.5rem] py-[.5rem] border-b border-black whitespace-nowrap top-0 bg-white dark:border-white dark:bg-gray-900',
+  th: 'px-[1.5rem] py-[.5rem] whitespace-nowrap top-0 bg-white dark:bg-gray-900 shadow-[inset_0_-1px_0_#000] dark:shadow-[inset_0_-1px_0_#fff] sticky',
   thead: '',
-  tr: 'border-b border-black/10 last:border-b-0 dark:border-white/10 dark:last:border-b-0',
+  tr: 'border-b border-black/10 last:border-b-0 dark:border-white/10 dark:last:border-b-0even:bg-black/[.05] dark:even:bg-white/[.025] hover:bg-blue-500/[.1] hover:even:bg-blue-500/[.1] transition duration-200',
 };
