@@ -1,9 +1,20 @@
 <script>
-  import { twMerge } from 'tailwind-merge';
-  import { Card, Icon, P, Table, Tbody, Td, Th, Thead, Tr } from '../index.js';
-  import { ChevronDown } from '../icons/index.js';
-  import Header from './Header.svelte';
-  import Pagination from './Pagination.svelte';
+  import { twMerge } from "tailwind-merge";
+  import {
+    Card,
+    Icon,
+    Input,
+    P,
+    Table,
+    Tbody,
+    Td,
+    Th,
+    Thead,
+    Tr,
+  } from "../index.js";
+  import { ChevronDown } from "../icons/index.js";
+  import Header from "./Header.svelte";
+  import Pagination from "./Pagination.svelte";
 
   // types
   /**
@@ -47,7 +58,7 @@
         return column.sortFn(a, b) * sortDirection;
       if (column?.key !== undefined)
         return (
-          (typeof a[column.key] === 'string'
+          (typeof a[column.key] === "string"
             ? a[column.key].localeCompare(b[column.key])
             : a[column.key] < b[column.key]
             ? -1
@@ -57,7 +68,7 @@
         );
       if (column?.slot?.valueFn)
         return (
-          (typeof column.slot.valueFn(a) === 'string'
+          (typeof column.slot.valueFn(a) === "string"
             ? column.slot.valueFn(a).localeCompare(column.slot.valueFn(b))
             : column.slot.valueFn(a) < column.slot.valueFn(b)
             ? -1
@@ -73,18 +84,24 @@
   /** @type {Row[]}*/
   let paginatedRows = [];
   $: if ([...columns].filter(({ type }) => type !== undefined).length > 0)
-    columns = [...columns].map(({ key, type, ...column }) => {
-      let newColumn;
-      if (type.toLowerCase() === 'string')
-        newColumn = {
-          component: P,
-          key,
-          slot: {
-            valueFn: (row) => row[key],
-          },
-          ...column,
-        };
-      return newColumn;
+    columns = [...columns].map(({ editable = false, key, type, ...column }) => {
+      column = {
+        editable,
+        key,
+        props: {},
+        slot: {
+          valueFn: (row) => row[key],
+        },
+        this: P,
+        ...column,
+      };
+      if (
+        editable &&
+        (type.toLowerCase() === "number" || type.toLowerCase() === "string")
+      )
+        column.props.contenteditable = "true";
+      delete column.type;
+      return column;
     });
   $: if (
     [...columns].filter((column) => column?.export === undefined).length > 0
@@ -101,7 +118,7 @@
 
 <Card
   class={twMerge(
-    'p-0 max-h-full max-w-full overflow-auto relative',
+    "p-0 max-h-full max-w-full overflow-auto relative",
     $$props.class
   )}
 >
@@ -121,7 +138,7 @@
               <Th
                 class={sortable && column?.sortable !== false
                   ? twMerge(
-                      'cursor-pointer transition duration-200 hover:bg-blue-500/[.1]'
+                      "cursor-pointer transition duration-200 hover:bg-blue-500/[.1]"
                     )
                   : undefined}
                 on:click={() =>
@@ -134,9 +151,9 @@
                   {#if sortable}
                     <Icon
                       class={twMerge(
-                        'transition duration-200 w-[1rem] h-[1rem]',
-                        sortColumnIndex === i ? 'scale-100' : 'scale-0',
-                        sortDirection === 1 ? undefined : 'rotate-180'
+                        "transition duration-200 w-[1rem] h-[1rem]",
+                        sortColumnIndex === i ? "scale-100" : "scale-0",
+                        sortDirection === 1 ? undefined : "rotate-180"
                       )}
                       src={ChevronDown}
                     />
@@ -151,21 +168,15 @@
         <slot name="tbody">
           {#each paginatedRows as row}
             <Tr>
-              {#each columns as { component, key, props, slot, visible }}
-                {#if visible}
+              {#each columns as column}
+                {#if column.visible}
                   <Td>
-                    <svelte:component this={component} {...props} {row}>
-                      <!-- <svelte:component
-                      this={component}
-                      {...props}
-                      bind:value={row[key]}
+                    <svelte:component
+                      this={column.this}
+                      {...column.props}
                       {row}
-                    > -->
-                      {#if slot}
-                        {#if slot.valueFn}
-                          {@html slot.valueFn(row)}
-                        {/if}
-                      {/if}
+                    >
+                      {row[column.key]}
                     </svelte:component>
                   </Td>
                 {/if}
