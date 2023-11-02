@@ -17,6 +17,7 @@
   // props (external)
   export let checked = false;
   export let name = undefined;
+  export let tabindex = undefined;
   export let use = [];
 
   // props (dynamic)
@@ -34,6 +35,7 @@
       bind:checked
       class="peer absolute top-0 left-0 opacity-0 w-0"
       {name}
+      {tabindex}
       type="checkbox"
       use:useAction={[events, ...use]}
     />
