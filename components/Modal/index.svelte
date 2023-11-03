@@ -30,7 +30,7 @@
   />
   <div
     class={twMerge(
-      'fixed top-1/2 left-1/2 -translate-x-1/2 max-w-[calc(100dvw_-_2rem)] -translate-y-1/2 z-[2] transition duration-200 max-h-[calc(100dvh_-_2rem)] overflow-auto',
+      $theme.modal,
       !isOpen
         ? 'pointer-events-none opacity-0'
         : 'pointer-events-auto opacity-100'
