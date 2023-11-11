@@ -1,6 +1,6 @@
 {
 	"name": "sveltewind",
-	"version": "0.0.1",
+	"version": "1.7.0",
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build && npm run package",
