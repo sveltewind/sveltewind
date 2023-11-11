@@ -7,8 +7,7 @@
   "svelte": "index.js",
   "scripts": {
     "commit": "git add . && cz && npm run standard-version",
-    "standard-version": "standard-version",
-    "preinstall": "npx only-allow pnpm"
+    "standard-version": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -41,7 +40,7 @@
     "luxon": "^3.4.3",
     "mongodb": "^4.4.1",
     "socket.io-client": "^4.4.1",
-    "svelte": "^3.46.4",
+    "svelte": "^4.0.0",
     "svelte-copy": "^1.4.1",
     "svelte-portal": "^2.2.0",
     "tailwind-merge": "^1.2.0"

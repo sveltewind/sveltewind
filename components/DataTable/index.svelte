@@ -1,199 +1,195 @@
 <script>
-  import { twMerge } from "tailwind-merge";
+  import { current_component } from 'svelte/internal';
+  import { twMerge } from 'tailwind-merge';
+  import { getEvents } from '../../actions';
   import {
     Card,
-    Icon,
-    Input,
-    P,
+    Checkbox,
+    DataTablePagination,
+    DataTableTh,
+    DataTableToolbar,
+    DataTableTypes,
     Table,
     Tbody,
     Td,
     Th,
     Thead,
     Tr,
-  } from "../index.js";
-  import { ChevronDown } from "../icons/index.js";
-  import Header from "./Header.svelte";
-  import Pagination from "./Pagination.svelte";
+  } from '../../components';
+  import { theme } from '../../stores';
+  import { onMount } from 'svelte';
 
-  // types
-  /**
-   * @typedef Column
-   * @property {import('svelte').SvelteComponent} [component]
-   * @property {Boolean} [export]
-   * @property {String} [key]
-   * @property {String} label
-   * @property {{}} [props]
-   * @property {Slot} [slot]
-   * @property {Boolean} [sortable]
-   * @property {Function} [sortFn]
-   * @property {Boolean} [visible]
-   *
-   * @typedef {{[key:string]: any}} Row
-   *
-   * @typedef Slot
-   * @property {Function} [valueFn]
-   */
+  // handlers
 
-  // props (external)
-  export let /** @type {Column[]} */ columns = [];
-  export let currentPage = 0;
-  export let filter = () => true;
-  export let paginate = true;
-  export let /** @type {Row[]} */ rows = [];
-  export let rowsPerPage = 10;
-  export let sortColumnIndex = 0;
-  export let sortDirection = 1;
-  export let sortable = true;
-  /**
-   * Function to sort the rows
-   * @param {Number} columnIndex
-   */
-  export let sortRows = (columnIndex) => {
-    sortDirection = sortColumnIndex === columnIndex ? sortDirection * -1 : 1;
-    sortColumnIndex = columnIndex;
-    const column = columns[sortColumnIndex];
-    rows = [...rows].sort((a, b) => {
-      if (column?.sortFn !== undefined)
-        return column.sortFn(a, b) * sortDirection;
-      if (column?.key !== undefined)
-        return (
-          (typeof a[column.key] === "string"
-            ? a[column.key].localeCompare(b[column.key])
-            : a[column.key] < b[column.key]
-            ? -1
-            : a[column.key] > b[column.key]
-            ? 1
-            : 0) * sortDirection
-        );
-      if (column?.slot?.valueFn)
-        return (
-          (typeof column.slot.valueFn(a) === "string"
-            ? column.slot.valueFn(a).localeCompare(column.slot.valueFn(b))
-            : column.slot.valueFn(a) < column.slot.valueFn(b)
-            ? -1
-            : column.slot.valueFn(a) > column.slot.valueFn(b)
-            ? 1
-            : 0) * sortDirection
-        );
-      return 0;
-    });
+  // helpers
+  const columnMapInit = (column) => {
+    column = {
+      component: DataTableTypes?.[column.type] || DataTableTypes.string,
+      isEditable,
+      isDownloadable: download?.active,
+      isSortable,
+      isVisible: true,
+      key: column?.key,
+      label: column?.key,
+      mask: (row) => row[key],
+      props: {},
+      ...column,
+      isInitiated: true,
+    };
+    return column;
+  };
+  const rowMapInit = (row) => {
+    row = {
+      isSelected: false,
+      ...row,
+    };
+    return row;
   };
 
   // props (internal)
-  /** @type {Row[]}*/
-  let paginatedRows = [];
-  $: if ([...columns].filter(({ type }) => type !== undefined).length > 0)
-    columns = [...columns].map(({ editable = false, key, type, ...column }) => {
-      column = {
-        editable,
-        key,
-        props: {},
-        slot: {
-          valueFn: (row) => row[key],
-        },
-        this: P,
-        ...column,
-      };
-      if (
-        editable &&
-        (type.toLowerCase() === "number" || type.toLowerCase() === "string")
-      )
-        column.props.contenteditable = "true";
-      delete column.type;
-      return column;
-    });
+  const events = getEvents(current_component);
+
+  // props (external)
+  export let columns = [];
+  export let columnView;
+  export let create;
+  export let download;
+  export let isEditable = true;
+  export let isSortable = true;
+  export let paginate = {};
+  export let remove;
+  export let rows = [];
+  export let selectedRows = [];
+  export let sortDirection = 1;
+  export let sortIndex = 0;
+  export let style = undefined;
+  export let use = [];
+
+  // props (dynamic)
   $: if (
-    [...columns].filter((column) => column?.export === undefined).length > 0
+    [...columns].filter((column) => column?.component === undefined).length > 0
   )
-    columns = columns.map((column) => {
-      return { ...column, export: column?.export || true };
-    });
-  $: if ([...columns].filter(({ visible }) => visible === undefined).length > 0)
-    columns = columns.map((column) => {
-      return { ...column, visible: column?.visible || true };
-    });
-  $: filteredRows = [...rows].filter((row) => filter(row));
+    columns = [...columns].map(columnMapInit);
+  $: showSelectCheckbox = remove?.active;
+  $: selectedRows = [...rows].filter(
+    ({ isSelected }, i) =>
+      isSelected && i >= paginate?.indexStart && i <= paginate?.indexEnd
+  );
+
+  onMount(() => {
+    columns = [...columns].map(columnMapInit);
+    rows = [...rows].map(rowMapInit);
+    if (!paginate?.active) paginate.indexEnd = rows.length;
+  });
 </script>
 
 <Card
   class={twMerge(
-    "p-0 max-h-full max-w-full overflow-auto relative",
+    'p-0 max-h-full max-w-full relative oveflow-auto',
+    $theme.dataTable,
     $$props.class
   )}
+  {style}
+  use={[events, ...use]}
 >
   <slot name="header">
-    <Header bind:columns bind:paginate bind:rowsPerPage {paginatedRows}>
-      <svelte:fragment slot="extraSettings">
-        <slot name="extraSettings" />
+    <DataTableToolbar
+      bind:columns
+      bind:columnView
+      bind:create
+      bind:download
+      bind:paginate
+      bind:remove
+      bind:rows
+      {selectedRows}
+    >
+      <svelte:fragment slot="extras">
+        <slot name="toolbarExtras" />
       </svelte:fragment>
-    </Header>
+    </DataTableToolbar>
   </slot>
-  <Card class="flex max-h-full overflow-auto p-0 rounded-none">
+  <Card
+    class={twMerge(
+      'flex max-h-full overflow-auto p-0 rounded-none',
+      paginate?.active ? '' : 'rounded-b'
+    )}
+  >
     <Table class="w-full">
       <Thead>
         <slot name="thead">
-          {#each columns as { label, visible, ...column }, i}
-            {#if visible}
-              <Th
-                class={sortable && column?.sortable !== false
-                  ? twMerge(
-                      "cursor-pointer transition duration-200 hover:bg-blue-500/[.1]"
-                    )
-                  : undefined}
-                on:click={() =>
-                  sortable && column?.sortable !== false ? sortRows(i) : null}
+          {#if showSelectCheckbox}
+            <Th class="p-[.5rem] z-[1]">
+              <Checkbox
+                class="mr-0"
+                on:change={(e) =>
+                  (rows = [...rows].map((row, i) => {
+                    if (i >= paginate?.indexStart && i <= paginate?.indexEnd)
+                      row.isSelected = e.target.checked;
+                    return row;
+                  }))}
+                tabindex="-1"
+              />
+            </Th>
+          {/if}
+          {#each columns as column, i}
+            {#if column.isVisible}
+              <DataTableTh
+                bind:rows
+                bind:sortDirection
+                bind:sortIndex
+                {columns}
+                {i}
+                {...column}
               >
-                <div class="flex justify-between space-x-[.5rem] items-center">
-                  <div>
-                    {label}
-                  </div>
-                  {#if sortable}
-                    <Icon
-                      class={twMerge(
-                        "transition duration-200 w-[1rem] h-[1rem]",
-                        sortColumnIndex === i ? "scale-100" : "scale-0",
-                        sortDirection === 1 ? undefined : "rotate-180"
-                      )}
-                      src={ChevronDown}
-                    />
-                  {/if}
-                </div>
-              </Th>
+                {column.label}
+              </DataTableTh>
             {/if}
           {/each}
         </slot>
       </Thead>
       <Tbody>
         <slot name="tbody">
-          {#each paginatedRows as row}
-            <Tr>
-              {#each columns as column}
-                {#if column.visible}
-                  <Td>
-                    <svelte:component
-                      this={column.this}
-                      {...column.props}
-                      {row}
-                    >
-                      {row[column.key]}
-                    </svelte:component>
+          {#each rows as row, i}
+            {#if i >= paginate?.indexStart && i <= paginate?.indexEnd}
+              <Tr>
+                {#if showSelectCheckbox}
+                  <Td class="p-[.5rem]">
+                    <Checkbox
+                      bind:checked={row.isSelected}
+                      class="mr-0"
+                      tabindex="-1"
+                    />
                   </Td>
                 {/if}
-              {/each}
-            </Tr>
+                {#each columns as column}
+                  {#if column.isVisible}
+                    <Td class="p-0">
+                      <svelte:component
+                        this={column.component}
+                        {...column.props}
+                        bind:value={row[column.key]}
+                        isEditable={column.isEditable}
+                        {row}
+                      />
+                    </Td>
+                  {/if}
+                {/each}
+              </Tr>
+            {/if}
           {/each}
         </slot>
       </Tbody>
     </Table>
   </Card>
   <slot name="pagination">
-    <Pagination
-      bind:currentPage
-      bind:paginatedRows
-      bind:rowsPerPage
-      {filteredRows}
-      {paginate}
-    />
+    {#if paginate?.active}
+      <DataTablePagination
+        bind:currentPage={paginate.currentPage}
+        bind:indexEnd={paginate.indexEnd}
+        bind:indexStart={paginate.indexStart}
+        bind:rowsPerPage={paginate.rowsPerPage}
+        bind:rows
+      />
+    {/if}
   </slot>
 </Card>
