@@ -71,6 +71,9 @@
 		"framework",
 		"tailwind",
 		"tailwindcss",
-		"sveltewind"
+		"sveltewind",
+		"library",
+		"ui library",
+		"sveltekit"
 	]
 }
