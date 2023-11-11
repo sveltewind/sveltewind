@@ -54,7 +54,7 @@ export const xlsx = async (headers, body) => {
   });
 
   // write file to buffer
-  const buffer = await workbook.xlsx.writeBuffer({ base64: true });
+  const buffer = await workbook.xlsx.writeBuffer();
 
   // create blob for saving
   const blob = new Blob([buffer], {

@@ -4,7 +4,7 @@
 
 ```bash
 # create a new project
-npm init svelte
+npm create svelte@latest
 
 # add tailwindcss
 npx svelte-add@latest tailwindcss
@@ -32,30 +32,4 @@ const config = {
 };
 
 module.exports = config;
-```
-
-```javascript
-// svelte.config.js
-import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-auto';
-
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  kit: {
-    adapter: adapter(),
-    vite: {
-      optimizeDeps: {
-        include: ['hashlru'],
-      },
-    },
-  },
-
-  preprocess: [
-    preprocess({
-      postcss: true,
-    }),
-  ],
-};
-
-export default config;
 ```
