@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/sveltewind/sveltewind/compare/v1.7.0...v1.8.0) (2023-11-16)
+
+
+### Features
+
+* **add tailwindcss:** add tailwindcss to frontend ([b4c1de0](https://github.com/sveltewind/sveltewind/commit/b4c1de0813ba5d656ae8d560eaa41db92a2c7950))
+* **frontend header:** add header section to frontend ([f5af2c6](https://github.com/sveltewind/sveltewind/commit/f5af2c609123430bb495338a2fa00dd2b02803d8))
+
+
+### Bug Fixes
+
+* **update README:** update README.md ([9063411](https://github.com/sveltewind/sveltewind/commit/9063411b48e9202c527a93217e17f441092a3bde))
+
 ## 1.7.0 (2023-11-11)
 
 
