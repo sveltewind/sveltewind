@@ -1,4 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Inter:wght@500;800&display=swap');
+
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hljs-attr {
+  @apply text-sky-300;
+}
+.hljs-name {
+  @apply text-blue-600;
+}
+.hljs-keyword {
+  @apply text-purple-500;
+}
+.hljs-string {
+  @apply text-orange-600;
+}
+.hljs-title {
+  @apply text-sky-300;
+}
+
+*::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+*::-webkit-scrollbar-thumb {
+  @apply bg-violet-500 rounded-full;
+}

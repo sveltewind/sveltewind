@@ -1,7 +1,6 @@
 // _imports
 import { writable } from 'svelte/store';
 import { twMerge } from 'tailwind-merge';
-import { dream } from '../../themes/index.js';
 
 const init = theme => {
   // destructure methods
@@ -19,4 +18,4 @@ const init = theme => {
   };
 };
 
-export default init(dream);
+export default init({});
