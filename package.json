@@ -1,6 +1,6 @@
 {
 	"name": "sveltewind",
-	"version": "1.8.2",
+	"version": "1.8.3",
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build && npm run package",
@@ -21,27 +21,27 @@
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
-		"./actions":{
+		"./actions": {
 			"types": "./dist/actions/index.d.ts",
 			"svelte": "./dist/actions/index.js"
 		},
-		"./components":{
+		"./components": {
 			"types": "./dist/components/index.d.ts",
 			"svelte": "./dist/components/index.js"
 		},
-		"./components/icons":{
+		"./components/icons": {
 			"types": "./dist/components/icons/index.d.ts",
 			"svelte": "./dist/components/icons/index.js"
 		},
-		"./stores":{
+		"./stores": {
 			"types": "./dist/stores/index.d.ts",
 			"svelte": "./dist/stores/index.js"
 		},
-		"./themes":{
+		"./themes": {
 			"types": "./dist/themes/index.d.ts",
 			"svelte": "./dist/themes/index.js"
 		},
-		"./utilities":{
+		"./utilities": {
 			"types": "./dist/utilities/index.d.ts",
 			"svelte": "./dist/utilities/index.js"
 		}

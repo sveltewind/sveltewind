@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.3](https://github.com/sveltewind/sveltewind/compare/v1.8.2...v1.8.3) (2023-11-17)
+
+
+### Bug Fixes
+
+* **export:** add additional exports ([bd77144](https://github.com/sveltewind/sveltewind/commit/bd77144ae58515ad2a9024a75bf4309105c92573))
+
 ### [1.8.2](https://github.com/sveltewind/sveltewind/compare/v1.8.1...v1.8.2) (2023-11-16)
 
 ### [1.8.1](https://github.com/sveltewind/sveltewind/compare/v1.8.0...v1.8.1) (2023-11-16)
