@@ -10,7 +10,7 @@
   const events = getEvents(current_component);
 
   // props (external)
-  export let disabled = false;
+  export let disabled = undefined;
   export let style = undefined;
   export let tabindex = undefined;
   export let type = 'button';
