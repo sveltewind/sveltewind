@@ -1,4 +1,4 @@
-export default node => {
+export default (node, userHandler = () => { }) => {
 	const clickHandler = (e) => {
 		if (node && !node.contains(e.target) && !e.defaultPrevented) {
 			userHandler(e);
