@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.5](https://github.com/sveltewind/sveltewind/compare/v1.8.4...v1.8.5) (2023-11-21)
+
+
+### Bug Fixes
+
+* **overlay:** remove conflicting classes ([9337ad4](https://github.com/sveltewind/sveltewind/commit/9337ad4bdb9c440b2c4944c602d1f12bc53c86b0))
+
 ### [1.8.4](https://github.com/sveltewind/sveltewind/compare/v1.8.3...v1.8.4) (2023-11-21)
 
 
