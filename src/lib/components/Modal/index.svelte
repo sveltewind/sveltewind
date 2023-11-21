@@ -20,27 +20,16 @@
 
 <Portal>
   <Overlay
-    class={twMerge(
-      'w-[100dvw] h-[100dvh] z-[2]',
-      isOpen
-        ? 'opacity-100 pointer-events-auto'
-        : 'opacity-0 pointer-events-none'
-    )}
+    class={twMerge(isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none')}
     on:click={close}
   />
   <div
     class={twMerge(
       $theme.modal,
-      !isOpen
-        ? 'pointer-events-none opacity-0'
-        : 'pointer-events-auto opacity-100'
+      !isOpen ? 'pointer-events-none opacity-0' : 'pointer-events-auto opacity-100'
     )}
   >
-    <Card
-      class={twMerge($theme.modal, $$props.class)}
-      {style}
-      use={[events, ...use]}
-    >
+    <Card class={twMerge($theme.modal, $$props.class)} {style} use={[events, ...use]}>
       <slot />
     </Card>
   </div>

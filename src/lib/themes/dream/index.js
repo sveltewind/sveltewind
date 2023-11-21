@@ -52,7 +52,7 @@ export default {
   nav: 'flex flex-col flex-grow overflow-y-auto',
   option: 'dark:bg-gray-800 py-[.5rem]',
   overlay:
-    'absolute top-0 left-0 h-full w-full bg-black/70 transition duration-200',
+    'absolute top-0 left-0 h-full w-[100dvw] h-[100dvh] bg-black/70 transition duration-200',
   p: 'text-[1rem] leading-[1.5rem]',
   progressIndicator: '',
   radio: twMerge(
