@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.4](https://github.com/sveltewind/sveltewind/compare/v1.8.3...v1.8.4) (2023-11-21)
+
+
+### Bug Fixes
+
+* **button:** fix disabled prop default value ([435770c](https://github.com/sveltewind/sveltewind/commit/435770cd7e510ce538018a7854bbbad574aff66b))
+* **clickOutside:** add userHandler prop to action ([d2e61df](https://github.com/sveltewind/sveltewind/commit/d2e61dfe86114b92b2de6bb421f72768598fbe89))
+
 ### [1.8.3](https://github.com/sveltewind/sveltewind/compare/v1.8.2...v1.8.3) (2023-11-17)
 
 
