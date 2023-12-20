@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.6](https://github.com/sveltewind/sveltewind/compare/v1.8.5...v1.8.6) (2023-12-20)
+
+
+### Bug Fixes
+
+* **file-saver:** add 'file-saver' to vite.build.rollupOptions.external ([d95ae41](https://github.com/sveltewind/sveltewind/commit/d95ae419b7549757efb9d6acce4c28a4e03090fa))
+
 ### [1.8.5](https://github.com/sveltewind/sveltewind/compare/v1.8.4...v1.8.5) (2023-11-21)
 
 
