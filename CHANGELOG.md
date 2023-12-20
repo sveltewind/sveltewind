@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.7](https://github.com/sveltewind/sveltewind/compare/v1.8.6...v1.8.7) (2023-12-20)
+
+
+### Bug Fixes
+
+* **dataTable:** remove DataTable components ([7eebc49](https://github.com/sveltewind/sveltewind/commit/7eebc49dc38084a89ae6eb67bcb326b39f5bada4))
+
 ### [1.8.6](https://github.com/sveltewind/sveltewind/compare/v1.8.5...v1.8.6) (2023-12-20)
 
 
