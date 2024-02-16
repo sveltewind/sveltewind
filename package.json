@@ -14,7 +14,7 @@
     "format": "prettier --plugin-search-dir . --write .",
     "test:integration": "playwright test",
     "test:unit": "vitest",
-    "release": "standard-version"
+    "release": "standard-version && git push --follow-tags origin main && npm publish"
   },
   "exports": {
     ".": {
