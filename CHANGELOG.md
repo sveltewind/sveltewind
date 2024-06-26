@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/sveltewind/sveltewind/compare/v1.8.7...v2.0.0) (2024-06-26)
+
+
+### Features
+
+* update package.json ([eebc530](https://github.com/sveltewind/sveltewind/commit/eebc5301519e982e878466c0bb2032a8151ac2b0))
+
 ### [1.8.7](https://github.com/sveltewind/sveltewind/compare/v1.8.6...v1.8.7) (2023-12-20)
 
 
