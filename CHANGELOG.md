@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/sveltewind/sveltewind/compare/v2.0.0...v2.0.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* add "MIT" license ([999fa07](https://github.com/sveltewind/sveltewind/commit/999fa07eaa59026085bd02437af2af78d9612885))
+
 ## [2.0.0](https://github.com/sveltewind/sveltewind/compare/v1.8.7...v2.0.0) (2024-06-26)
 
 
