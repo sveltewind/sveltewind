@@ -16,7 +16,7 @@
   }: {
     class?: string;
     children?: any;
-    type: string;
+    type?: string;
     transition?: [(node: HTMLElement) => void, params?: any];
     use?: any[];
   } = $props();
