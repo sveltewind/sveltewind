@@ -110,5 +110,6 @@
     "svelte-copy": "^1.4.1",
     "svelte-portal": "^2.2.0",
     "tailwind-merge": "^2.0.0"
-  }
+  },
+  "license": "MIT"
 }
