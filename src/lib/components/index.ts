@@ -3,6 +3,7 @@ export { default as Badge } from './Badge.svelte';
 export { default as Button } from './Button.svelte';
 export { default as Card } from './Card.svelte';
 export { default as Checkbox } from './Checkbox.svelte';
+export { default as Container } from './Container.svelte';
 export { default as Div } from './Div.svelte';
 export { default as Drawer } from './Drawer.svelte';
 export { default as Fieldset } from './Fieldset.svelte';

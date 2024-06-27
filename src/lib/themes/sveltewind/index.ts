@@ -22,7 +22,7 @@ export default {
     ''
   )} mr-3 peer-focus:ring-offset-violet-500 peer-focus:ring-violet-500/30 cursor-pointer px-0 py-0`,
   checkboxChecked: 'bg-violet-500 dark:bg-violet-500',
-  container: 'mx-auto w-full px-4 lg:max-w-[90rem]',
+  container: 'mx-auto w-full lg:max-w-[90rem] xl:max-w-[100rem]',
   drawer: 'fixed flex',
   fieldset: 'flex flex-col space-y-1',
   form: 'flex flex-col space-y-4',
@@ -32,7 +32,7 @@ export default {
   h4: 'font-bold text-[1.25rem] leading-5',
   h5: 'font-bold text-[1.125rem] leading-[1.125rem]',
   h6: 'font-bold text-[1rem] leading-4',
-  header: 'flex justify-end ring-1 ring-black/10 lg:flex-col lg:justify-start dark:ring-white/5',
+  header: 'flex ring-1 ring-black/10 dark:ring-white/5',
   icon: 'h-6 w-6',
   input: inputBaseClasses,
   label: '',
