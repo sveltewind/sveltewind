@@ -31,6 +31,7 @@ export { default as Pwa } from './Pwa.svelte';
 export { default as Radio } from './Radio.svelte';
 export { default as Section } from './Section.svelte';
 export { default as Select } from './Select.svelte';
+export { default as SyntaxHighlighter } from './SyntaxHighlighter.svelte';
 export { default as Table } from './Table.svelte';
 export { default as Tbody } from './Tbody.svelte';
 export { default as Td } from './Td.svelte';
