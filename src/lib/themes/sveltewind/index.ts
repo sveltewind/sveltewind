@@ -6,7 +6,7 @@ const inputBaseClasses =
   'bg-transparent dark:bg-transparent appearance-none rounded-lg leading-6 px-6 py-3 transition duration-200 outline-none ring ring-transparent ring-offset-1 ring-offset-slate-300 hover:ring-offset-violet-500 focus:ring-offset-violet-500 focus:ring-violet-500/30 dark:text-slate-50 dark:ring-offset-white/5';
 
 export default {
-  a: 'transtion duration-200 relative outline-none hover:text-white shadow-[inset_0_-1px_0_0_#bdb] hover:shadow-[inset_0_0_-10px_0_#f00]',
+  a: 'transtion duration-200 relative outline-none hover:text-white shadow-[0_1px_0px_0px_var(--tw-shadow-color)] hover:shadow-[0_2px_0px_0px_var(--tw-shadow-color)] shadow-violet-500',
   badge: 'bg-violet-500 text-white rounded-lg text-sm px-3',
   breadcrumb: 'flex space-x-3',
   button:
