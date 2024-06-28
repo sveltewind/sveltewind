@@ -22,13 +22,14 @@
   $effect(() => {
     if (options === undefined) options = { lang: 'text', theme: 'github-dark' };
   });
-
-  onMount(async () => {
+  $effect(() => {
     if (options?.lang === undefined) options.lang = 'text';
     if (options?.theme === undefined) options.theme = 'github-dark';
     if (options?.themes === undefined)
       options.themes = { dark: 'github-dark', light: 'github-light' };
+  });
 
+  onMount(async () => {
     const highlighter = await createHighlighter({
       langs: options?.langs || [options?.lang || 'text'],
       themes: Array.isArray(options?.themes)
