@@ -3,15 +3,32 @@
   import { page } from '$app/stores';
 
   // props
-  const routeMap = (route: string) => route.split('-').map(wordMap).join(' ');
-  const wordMap = (string: string) =>
-    string === '' ? 'Home' : string[0].toUpperCase() + string.slice(1);
+  let {
+    base = $bindable()
+  }: {
+    base: string;
+  } = $props();
+  let title = $state('');
 
-  // props (external)
-  export let base = '';
-
-  // props (dynamic)
-  $: title = [...$page.url.pathname.slice(1).split('/').map(routeMap).reverse(), base].join(' - ');
+  // effects
+  $effect(() => {
+    if (base === undefined) base = '';
+    title = [
+      ...$page.url.pathname
+        .slice(1)
+        .split('/')
+        .map((route: string) =>
+          route
+            .split('-')
+            .map((string: string) =>
+              string === '' ? 'Home' : string[0].toUpperCase() + string.slice(1)
+            )
+            .join(' ')
+        )
+        .reverse(),
+      base
+    ].join(' - ');
+  });
 </script>
 
 <svelte:head>

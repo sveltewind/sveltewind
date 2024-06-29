@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Card, Checkbox, Div, Drawer, Fieldset, Select } from '$lib/components/index.js';
+  import { Button, Card, Checkbox, Div, Drawer, Fieldset, Select } from '$components/index.js';
 
   // props
   let close: () => void;

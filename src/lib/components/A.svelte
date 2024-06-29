@@ -1,7 +1,7 @@
 <script lang="ts">
   // imports
+  import { theme } from '$lib/index.js';
   import { use as useAction } from '$lib/actions/index.js';
-  import { theme } from '$lib/stores/index.js';
   import { twMerge } from 'tailwind-merge';
 
   // props

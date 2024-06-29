@@ -37,13 +37,14 @@ export default {
   input: inputBaseClasses,
   label: '',
   legend: '',
-  main: 'flex flex-grow flex-col overflow-auto items-start p-4',
+  main: 'flex flex-grow flex-col overflow-auto p-4',
   modal: 'pointer-events-auto max-h-full max-w-full overflow-auto',
   nav: 'flex flex-col flex-grow overflow-y-auto',
   option: 'dark:bg-slate-800 py-3',
   overlay:
     'absolute top-0 left-0 h-full w-full bg-black/70 transition duration-200 backdrop-blur-sm',
   p: 'text-4 leading-6',
+  popover: 'text-md absolute left-1/2 -top-2 -translate-x-1/2 -translate-y-full py-0 px-2',
   progressIndicator: '',
   radio: twMerge(
     inputBaseClasses,
@@ -52,6 +53,8 @@ export default {
   radioSelected: 'bg-violet-500 dark:bg-violet-500 after:scale-100',
   section: 'flex flex-col py-20',
   select: `${inputBaseClasses} cursor-pointer`,
+  summary:
+    'transition duration-200 hover:cursor-pointer hover:text-slate-950 dark:hover:text-slate-50 py-2 marker:content-none',
   table: twMerge(card, 'table p-0 text-left relative rounded-none'),
   tbody: '',
   td: 'px-6 py-3 whitespace-nowrap',

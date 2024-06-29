@@ -2,7 +2,7 @@
   // imports
   import { use as useAction } from '$lib/actions/index.js';
   import { Card, Overlay, Portal } from '$lib/components/index.js';
-  import { theme } from '$lib/stores/index.js';
+  import { theme } from '$lib/index.js';
   import { cubicInOut } from 'svelte/easing';
   import { twMerge } from 'tailwind-merge';
 

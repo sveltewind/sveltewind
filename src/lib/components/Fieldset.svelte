@@ -2,7 +2,7 @@
   // imports
   import { use as useAction } from '$lib/actions/index.js';
   import { Legend } from '$lib/components/index.js';
-  import { theme } from '$lib/stores/index.js';
+  import { theme } from '$lib/index.js';
   import { twMerge } from 'tailwind-merge';
 
   // props

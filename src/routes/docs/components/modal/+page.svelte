@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Checkbox, Div, Modal } from '$lib/components/index.js';
+  import { Button, Checkbox, Div, Modal } from '$components/index.js';
 
   // props
   let close: () => void;

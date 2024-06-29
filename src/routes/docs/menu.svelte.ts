@@ -1,5 +1,5 @@
 import * as actions from '$lib/actions/index.js';
-import * as components from '$components/index.js';
+import * as components from '$lib/components/index.js';
 import * as themes from '$lib/themes/index.js';
 
 // utilities

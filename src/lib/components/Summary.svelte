@@ -12,7 +12,12 @@
     transition = $bindable(),
     use = [],
     ...props
-  }: { class?: string; children?: any; transition?: [(node: HTMLElement) => void, params?: any]; use?: any[] } = $props();
+  }: {
+    class?: string; 
+    children?: any; 
+    transition?: [(node: HTMLElement) => void, params?: any]; 
+    use?: any[] 
+  } = $props();
   const transitionHandler = (node: HTMLElement) => {
     if (transition === undefined) return;
     if (transition.length === 1) return transition[0](node);
@@ -21,12 +26,12 @@
 
   // effects
   $effect(() => {
-    classes = twMerge(theme.get('h3'), className);
+    classes = twMerge(theme.get('summary'), className);
   });
 </script>
 
-<h3 {...props} class={classes} transition:transitionHandler use:useAction={[...use]}>
+<summary {...props} class={classes} transition:transitionHandler use:useAction={[...use]}>
   {#if children !== undefined}
     {@render children()}
   {/if}
-</h3>
+</summary>

@@ -29,7 +29,7 @@
     <span>
       {filename}
     </span>
-    <CopyButton {code} />
+    <CopyButton text={code} />
   </div>
   <SyntaxHighlighter {code} {options} />
 </Card>

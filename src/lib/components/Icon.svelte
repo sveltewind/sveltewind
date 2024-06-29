@@ -1,7 +1,7 @@
 <script lang="ts">
   // imports
   import { Icon } from '@steeze-ui/svelte-icon';
-  import { theme } from '$lib/stores/index.js';
+  import { theme } from '$lib/index.js';
   import { twMerge } from 'tailwind-merge';
 
   // props
