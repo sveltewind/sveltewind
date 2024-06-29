@@ -20,6 +20,7 @@
 		isOpen = $bindable(),
 		open = $bindable(),
 		text = $bindable(),
+		this: elem = $bindable(),
 		toggle = $bindable()
 	}: {
 		close?: () => void;
@@ -28,6 +29,7 @@
 		isOpen?: boolean;
 		open?: () => void;
 		text: string;
+		this?: any;
 		toggle?: () => void;
 	} = $props();
 
@@ -38,7 +40,7 @@
 </script>
 
 <Popover bind:close bind:duration bind:isOpen bind:open bind:toggle text={'Copied'}>
-	<Button class="px-2 py-2" onclick={clickHandler} variants={['ghost', 'icon']}>
+	<Button bind:this={elem} class="px-2 py-2" onclick={clickHandler} variants={['ghost', 'icon']}>
 		{#if icon !== undefined}
 			{@render icon()}
 		{:else}

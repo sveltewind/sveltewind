@@ -16,6 +16,7 @@
 		open = $bindable(),
 		showOverlay = $bindable(),
 		toggle = $bindable(),
+		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
 		...props
@@ -27,7 +28,8 @@
 		open?: () => void;
 		showOverlay?: boolean;
 		toggle?: () => void;
-		transition?: [(node: HTMLElement) => void, params?: any];
+		this?: any;
+		transition?: any[];
 		use?: any[];
 	} = $props();
 	const modalTransition = (
@@ -86,6 +88,7 @@
 	{#if isOpen}
 		<div
 			{...props}
+			bind:this={elem}
 			class="max-w-screen pointer-events-none fixed left-0 top-0 flex h-full max-h-screen min-h-screen w-full min-w-[100vw] items-center justify-center overflow-auto p-4"
 			transition:transitionHandler
 			use:useAction={[...use]}

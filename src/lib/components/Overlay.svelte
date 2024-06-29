@@ -12,6 +12,7 @@
 		class: className = undefined,
 		children,
 		isOpen = $bindable(),
+		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
 		...props
@@ -19,7 +20,8 @@
 		class?: string;
 		children?: any;
 		isOpen?: boolean;
-		transition?: [(node: HTMLElement) => void, params?: any];
+		this?: any;
+		transition?: any[];
 		use?: any[];
 	} = $props();
 	const transitionHandler = (node: HTMLElement) => {
@@ -41,7 +43,13 @@
 </script>
 
 {#if isOpen}
-	<button {...props} class={classes} transition:transitionHandler use:useAction={[...use]}>
+	<button
+		{...props}
+		bind:this={elem}
+		class={classes}
+		transition:transitionHandler
+		use:useAction={[...use]}
+	>
 		{#if children !== undefined}
 			{@render children()}
 		{/if}

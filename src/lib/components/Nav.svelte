@@ -1,32 +1,39 @@
 <script lang="ts">
-  // imports
-  import { twMerge } from 'tailwind-merge';
-  import { theme } from '$lib/index.js';
-  import { use as useAction } from '$lib/actions/index.js';
+	// imports
+	import { twMerge } from 'tailwind-merge';
+	import { theme } from '$lib/index.js';
+	import { use as useAction } from '$lib/actions/index.js';
 
-  // props
-  let classes = $state('');
-  let {
-    class: className = undefined,
-    children,
-    transition = $bindable(),
-    use = [],
-    ...props
-  }: { class?: string; children?: any; transition?: [(node: HTMLElement) => void, params?: any]; use?: any[] } = $props();
-  const transitionHandler = (node: HTMLElement) => {
-    if (transition === undefined) return;
-    if (transition.length === 1) return transition[0](node);
-    return transition[0](node, transition[1]);
-  };
+	// props
+	let classes = $state('');
+	let {
+		class: className = undefined,
+		children,
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		...props
+	}: { class?: string; children?: any; this?: any; transition?: any[]; use?: any[] } = $props();
+	const transitionHandler = (node: HTMLElement) => {
+		if (transition === undefined) return;
+		if (transition.length === 1) return transition[0](node);
+		return transition[0](node, transition[1]);
+	};
 
-  // effects
-  $effect(() => {
-    classes = twMerge(theme.get('nav'), className);
-  });
+	// effects
+	$effect(() => {
+		classes = twMerge(theme.get('nav'), className);
+	});
 </script>
 
-<nav {...props} class={classes} transition:transitionHandler use:useAction={[...use]}>
-  {#if children !== undefined}
-    {@render children()}
-  {/if}
+<nav
+	{...props}
+	bind:this={elem}
+	class={classes}
+	transition:transitionHandler
+	use:useAction={[...use]}
+>
+	{#if children !== undefined}
+		{@render children()}
+	{/if}
 </nav>

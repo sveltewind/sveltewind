@@ -31,6 +31,7 @@
 		popover = $bindable(),
 		text = $bindable(),
 		toggle = $bindable(),
+		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
 		...props
@@ -44,7 +45,8 @@
 		popover?: Snippet;
 		text?: string;
 		toggle?: () => void;
-		transition?: [(node: HTMLElement) => void, params?: any];
+		this?: any;
+		transition?: any[];
 		use?: any[];
 	} = $props();
 
@@ -84,7 +86,7 @@
 			{@render popover()}
 		{/if}
 	{:else if isOpen}
-		<Card {...props} bind:transition class={classes} use={[...use]}>
+		<Card {...props} bind:this={elem} bind:transition class={classes} use={[...use]}>
 			{text}
 		</Card>
 	{/if}

@@ -17,6 +17,7 @@
 		position = $bindable(),
 		showOverlay = $bindable(),
 		toggle = $bindable(),
+		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
 		...props
@@ -29,7 +30,8 @@
 		position?: 'bottom' | 'left' | 'right' | 'top';
 		showOverlay?: boolean;
 		toggle?: () => void;
-		transition?: [(node: HTMLElement) => void, params?: any];
+		this?: any;
+		transition?: any[];
 		use?: any[];
 	} = $props();
 	let transitionHandler = $state((node: HTMLElement) => {
@@ -108,7 +110,13 @@
 		{/if}
 	{/if}
 	{#if isOpen}
-		<div {...props} class={classes} transition:transitionHandler use:useAction={[...use]}>
+		<div
+			{...props}
+			bind:this={elem}
+			class={classes}
+			transition:transitionHandler
+			use:useAction={[...use]}
+		>
 			{#if children !== undefined}
 				{@render children()}
 			{/if}

@@ -10,6 +10,7 @@
 		size = $bindable(),
 		src = $bindable(),
 		theme = $bindable(),
+		this: elem = $bindable(),
 		title = $bindable(),
 		...props
 	}: {
@@ -17,6 +18,7 @@
 		size?: string;
 		src: any;
 		theme?: string;
+		this?: any;
 		title?: string;
 	} = $props();
 
@@ -46,6 +48,7 @@
 
 <svg
 	{...props}
+	bind:this={elem}
 	class={classes}
 	{...icon?.a}
 	xmlns="http://www.w3.org/2000/svg"

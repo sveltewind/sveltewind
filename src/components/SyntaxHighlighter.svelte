@@ -1,27 +1,29 @@
 <script lang="ts">
-  import { SyntaxHighlighter } from '$lib/components/index.js';
-  import type { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki';
+	import { SyntaxHighlighter } from '$lib/components/index.js';
+	import type { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki';
 
-  // props
-  let {
-    code = $bindable(),
-    options = $bindable()
-  }: {
-    code: string;
-    options?: CodeToHastOptions<BundledLanguage, BundledTheme>;
-  } = $props();
-  $effect(() => {
-    if (options === undefined) options = {};
-    if (options?.defaultColor === undefined) options.defaultColor = false;
-    if (options?.transformers === undefined)
-      options.transformers = [
-        {
-          pre(node) {
-            this.addClassToHast(node, 'px-4 py-2 overflow-auto');
-          }
-        }
-      ];
-  });
+	// props
+	let {
+		code = $bindable(),
+		options = $bindable(),
+		this: elem = $bindable()
+	}: {
+		code: string;
+		options?: CodeToHastOptions<BundledLanguage, BundledTheme>;
+		this?: any;
+	} = $props();
+	$effect(() => {
+		if (options === undefined) options = {};
+		if (options?.defaultColor === undefined) options.defaultColor = false;
+		if (options?.transformers === undefined)
+			options.transformers = [
+				{
+					pre(node) {
+						this.addClassToHast(node, 'px-4 py-2 overflow-auto');
+					}
+				}
+			];
+	});
 </script>
 
-<SyntaxHighlighter {code} {options} />
+<SyntaxHighlighter bind:this={elem} {code} {options} />
