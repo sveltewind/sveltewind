@@ -1,28 +1,16 @@
 <script lang="ts">
   // props
-  let classes = $state('');
   let {
     appStatusBarStyle = $bindable(),
-    class: className = undefined,
     children,
     themeColor = $bindable(),
-    transition = $bindable(),
-    use = [],
     viewport = $bindable(),
-    ...props
   }: {
     appStatusBarStyle?: string;
-    class?: string;
     children?: any;
-    themeColor?: string;
-    transition?: [(node: HTMLElement) => void, params?: any]; use?: any[];
+    themeColor: string;
     viewport?: string;
   } = $props();
-  const transitionHandler = (node: HTMLElement) => {
-    if (transition === undefined) return;
-    if (transition.length === 1) return transition[0](node);
-    return transition[0](node, transition[1]);
-  };
   $effect(() => {
     if (appStatusBarStyle === undefined) appStatusBarStyle = 'black-translucent';
   });

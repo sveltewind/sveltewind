@@ -10,6 +10,7 @@
     Icon,
     Logo,
     Main,
+    Pwa,
     Title
   } from '$components/index.js';
   import { Bars2, XMark } from '$lib/icons/index.js';
@@ -40,6 +41,7 @@
   let isOpen: boolean;
 </script>
 
+<Pwa themeColor="#09090C" />
 <Title base="Sveltewind" />
 
 <div class="flex flex-col flex-grow min-h-screen max-h-screen overflow-auto">
