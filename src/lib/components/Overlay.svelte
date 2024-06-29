@@ -1,51 +1,49 @@
 <script lang="ts">
-  // imports
-  import { use as useAction } from '$lib/actions/index.js';
-  import { Portal } from '$lib/components/index.js';
-  import { theme } from '$lib/index.js';
-  import { fade } from 'svelte/transition';
-  import { twMerge } from 'tailwind-merge';
+	// imports
+	import { use as useAction } from '$lib/actions/index.js';
+	import { Portal } from '$lib/components/index.js';
+	import { theme } from '$lib/index.js';
+	import { fade } from 'svelte/transition';
+	import { twMerge } from 'tailwind-merge';
 
-  // props
-  let classes = $state('');
-  let {
-    class: className = undefined,
-    children,
-    isOpen = $bindable(),
-    transition = $bindable(),
-    use = [],
-    ...props
-  }: {
-    class?: string;
-    children?: any;
-    isOpen?: boolean;
-    transition?: [(node: HTMLElement) => void, params?: any];
-    use?: any[];
-  } = $props();
-  const transitionHandler = (node: HTMLElement) => {
-    if (transition === undefined) return;
-    if (transition.length === 1) return transition[0](node);
-    return transition[0](node, transition[1]);
-  };
+	// props
+	let classes = $state('');
+	let {
+		class: className = undefined,
+		children,
+		isOpen = $bindable(),
+		transition = $bindable(),
+		use = [],
+		...props
+	}: {
+		class?: string;
+		children?: any;
+		isOpen?: boolean;
+		transition?: [(node: HTMLElement) => void, params?: any];
+		use?: any[];
+	} = $props();
+	const transitionHandler = (node: HTMLElement) => {
+		if (transition === undefined) return;
+		if (transition.length === 1) return transition[0](node);
+		return transition[0](node, transition[1]);
+	};
 
-  // effects
-  $effect(() => {
-    classes = twMerge(theme.get('overlay'), className);
-  });
-  $effect(() => {
-    if (isOpen === undefined) isOpen = false;
-  });
-  $effect(() => {
-    if (transition === undefined) transition = [fade, { duration: 200 }];
-  });
+	// effects
+	$effect(() => {
+		classes = twMerge(theme.get('overlay'), className);
+	});
+	$effect(() => {
+		if (isOpen === undefined) isOpen = false;
+	});
+	$effect(() => {
+		if (transition === undefined) transition = [fade, { duration: 200 }];
+	});
 </script>
 
 {#if isOpen}
-  <Portal>
-    <button {...props} class={classes} transition:transitionHandler use:useAction={[...use]}>
-      {#if children !== undefined}
-        {@render children()} 
-      {/if}
-    </button>
-  </Portal>
+	<button {...props} class={classes} transition:transitionHandler use:useAction={[...use]}>
+		{#if children !== undefined}
+			{@render children()}
+		{/if}
+	</button>
 {/if}
