@@ -36,9 +36,9 @@
 </script>
 
 <svelte:head>
-  <link rel="apple-touch-icon" href="/icon-apple-touch.png" />
-  <link rel="alternate icon" href="/icon-16x16.png" />
-  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+  <link rel="apple-touch-icon" href="/icons/icon-apple-touch.png" />
+  <link rel="alternate icon" href="/icons/icon-16x16.png" />
+  <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content={appStatusBarStyle} />
