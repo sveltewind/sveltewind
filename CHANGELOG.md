@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/sveltewind/sveltewind/compare/v2.0.1...v2.1.0) (2024-06-29)
+
+
+### Features
+
+* add "Container" component ([b118250](https://github.com/sveltewind/sveltewind/commit/b11825003e1329abdadf628fd0f3d6564b18ad58))
+* add Code & CopyButton components to frontend ([ecc2e17](https://github.com/sveltewind/sveltewind/commit/ecc2e1737844b5c8f9d8bbded93520f7f7f4f024))
+* add frontend components alias ([665a169](https://github.com/sveltewind/sveltewind/commit/665a169e4bc93caf1bc24bb8ed9545af2618667b))
+* add Logo component to frontend ([5ef2c8f](https://github.com/sveltewind/sveltewind/commit/5ef2c8f2715c15fc8891c0f259c6c9f2987a1b18))
+* add Pwa components to frontend ([7b855a8](https://github.com/sveltewind/sveltewind/commit/7b855a8d289d3d3a24706c9fc52931fb0b9cc997))
+* add shadow color option to a component ([c6fc8a4](https://github.com/sveltewind/sveltewind/commit/c6fc8a43e5d81faf33f2c07889e3e55f45dd9eaa))
+* add SyntaxHighlighter component ([ac71e09](https://github.com/sveltewind/sveltewind/commit/ac71e09771bc77378be511d98152a5148ac7fb7e))
+* add this prop to all components ([38cea67](https://github.com/sveltewind/sveltewind/commit/38cea679e831bb3b4d0a2289c5ff8b7ca9a8556f))
+* change site font to "Montserrat" ([10c1236](https://github.com/sveltewind/sveltewind/commit/10c123693f4f3a0b3b45983f3eca3c46e78372d8))
+* clear main page in frontend ([b8e2187](https://github.com/sveltewind/sveltewind/commit/b8e2187b4070764329796cac6427dd5d60656a32))
+* convert doc menu to $state ([44ce945](https://github.com/sveltewind/sveltewind/commit/44ce945587dbc4ca4a7382d3bca3035e9b00a4e9))
+* miscellaneous component improvements ([0acd424](https://github.com/sveltewind/sveltewind/commit/0acd424da01805de9cf617a0d1aaf95c2981859a))
+* move theme out of stores directory into root directory ([5c4cddf](https://github.com/sveltewind/sveltewind/commit/5c4cddf155e9adadd7ec2ea49b5a3310cb583f16))
+* reinitialize package with svelte 5 ([0c2368b](https://github.com/sveltewind/sveltewind/commit/0c2368bbdcbce43858d4102ab3de1aac6072e457))
+* scaffold out docs layout ([5c6d02c](https://github.com/sveltewind/sveltewind/commit/5c6d02ce3fd5848097aeaa60e63e583089d93049))
+* update docs root styling ([62fe754](https://github.com/sveltewind/sveltewind/commit/62fe7546818b3c7a52e3f70c74174449a7bc8bdb))
+* update pwa icon hrefs ([0c3fe3c](https://github.com/sveltewind/sveltewind/commit/0c3fe3c58d398aa3fcdfc5c1c12c6ab9e10fc871))
+
+
+### Bug Fixes
+
+* make prop "type" optional ([91e46d1](https://github.com/sveltewind/sveltewind/commit/91e46d10479528fe331cb08fcbc013626a52ce37))
+* move existing components into docs directory ([b683c4d](https://github.com/sveltewind/sveltewind/commit/b683c4dd395ec22abf7dc5859ac4fab1dd9df6f6))
+* update component creation snippet with transition prop ([843cb9f](https://github.com/sveltewind/sveltewind/commit/843cb9f9ec3242dd301949a2f62bae2a7b47075b))
+* use $effect for default options guarding ([3e72100](https://github.com/sveltewind/sveltewind/commit/3e721001def28a67dcd47919eee33969004b5a53))
+
 ### [2.0.1](https://github.com/sveltewind/sveltewind/compare/v2.0.0...v2.0.1) (2024-06-27)
 
 
