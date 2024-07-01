@@ -1,7 +1,6 @@
 <script lang="ts">
 	// imports
-	import { use as useAction } from '$lib/actions/index.js';
-	import { Details, Summary } from '$lib/components/index.js';
+	import { Details, Summary } from '$components/index.js';
 	import { theme } from '$lib/index.js';
 	import type { Snippet } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
@@ -11,6 +10,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isOpen = $bindable(),
 		summary = $bindable(),
 		title = $bindable(),
 		this: elem = $bindable(),
@@ -20,32 +20,31 @@
 	}: {
 		class?: string;
 		children?: any;
+		isOpen?: boolean;
 		summary?: Snippet;
 		title?: string;
 		this?: any;
 		transition?: any[];
 		use?: any[];
 	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
 
 	// effects
 	$effect(() => {
 		classes = twMerge(theme.get('accordion'), className);
 	});
 	$effect(() => {
+		if (isOpen === undefined) isOpen = false;
+	});
+	$effect(() => {
 		if (title === undefined) title = 'Title';
 	});
 </script>
 
-<Details {...props} bind:this={elem} class={classes} use={[...use]}>
+<Details {...props} bind:open={isOpen} bind:this={elem} class={classes} use={[...use]}>
 	{#if summary}
 		{@render summary()}
 	{:else}
-		<Summary>{title}</Summary>
+		<Summary bind:isOpen>{title}</Summary>
 	{/if}
 	{#if children !== undefined}
 		{@render children()}
