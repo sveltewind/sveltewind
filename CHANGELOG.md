@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/sveltewind/sveltewind/compare/v2.1.1...v2.2.0) (2024-07-02)
+
+
+### Features
+
+* add isVisible prop to all components ([701df3c](https://github.com/sveltewind/sveltewind/commit/701df3ca3c7f1d5e2e61626ae67cbdc5abeef916))
+* add Summary component ([4588c81](https://github.com/sveltewind/sveltewind/commit/4588c812af4885bcb3bf87f72e8a51241229281d))
+* update Accordion component ([174bbb6](https://github.com/sveltewind/sveltewind/commit/174bbb675baf0d6baa4a556a55812ed0243068b1))
+
 ### [2.1.1](https://github.com/sveltewind/sveltewind/compare/v2.1.0...v2.1.1) (2024-06-29)
 
 ## [2.1.0](https://github.com/sveltewind/sveltewind/compare/v2.0.1...v2.1.0) (2024-06-29)
