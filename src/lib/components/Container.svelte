@@ -22,6 +22,11 @@
 		transition?: any[];
 		use?: any[];
 	} = $props();
+	const transitionHandler = (node: HTMLElement) => {
+		if (transition === undefined) return;
+		if (transition.length === 1) return transition[0](node);
+		return transition[0](node, transition[1]);
+	};
 
 	// effects
 	$effect(() => {
