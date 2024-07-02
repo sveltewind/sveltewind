@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.4](https://github.com/sveltewind/sveltewind/compare/v2.2.3...v2.2.4) (2024-07-02)
+
+
+### Bug Fixes
+
+* add transitionHandler ([a18e2cb](https://github.com/sveltewind/sveltewind/commit/a18e2cb183e1fea75ea7b95a7019aa24b3be5d94))
+
 ### [2.2.3](https://github.com/sveltewind/sveltewind/compare/v2.2.2...v2.2.3) (2024-07-02)
 
 
