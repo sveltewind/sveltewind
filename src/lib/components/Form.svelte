@@ -14,6 +14,7 @@
 		isVisible = $bindable(),
 		method = $bindable(),
 		this: elem = $bindable(),
+		transition = $bindable(),
 		use = [enhance],
 		...props
 	}: {
