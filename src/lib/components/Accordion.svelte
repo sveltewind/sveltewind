@@ -1,6 +1,6 @@
 <script lang="ts">
 	// imports
-	import { Details, Summary } from '$components/index.js';
+	import { Details, Summary } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
 	import type { Snippet } from 'svelte';
 	import { twMerge } from 'tailwind-merge';

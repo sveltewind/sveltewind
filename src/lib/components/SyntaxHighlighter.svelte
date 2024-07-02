@@ -1,6 +1,6 @@
 <script lang="ts">
 	// imports
-	import { ProgressIndicator } from '$components/index.js';
+	import { ProgressIndicator } from '$lib/components/index.js';
 	import { createHighlighter } from 'shiki';
 	import type { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki';
 	import { onMount } from 'svelte';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	// imports
-	import { Card } from '$components/index.js';
 	import { theme } from '$lib/index.js';
+	import { Card } from '$lib/components/index.js';
 	import type { Snippet } from 'svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { twMerge } from 'tailwind-merge';
