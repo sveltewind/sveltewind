@@ -11,6 +11,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		href = '#',
 		items = [],
 		this: elem = $bindable(),
@@ -20,6 +21,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		href: string;
 		items: string[] | undefined;
 		this?: any;
@@ -36,23 +38,28 @@
 	$effect(() => {
 		classes = twMerge(theme.get('breadbrumb'), className);
 	});
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 </script>
 
-<div
-	{...props}
-	bind:this={elem}
-	class={classes}
-	transition:transitionHandler
-	use:useAction={[...use]}
->
-	{#if children !== undefined}
-		{@render children()}
-	{:else}
-		{#each items as item, i}
-			<div>{item}</div>
-			{#if i < items.length - 1}
-				<Icon src={ChevronRight} />
-			{/if}
-		{/each}
-	{/if}
-</div>
+{#if isVisible}
+	<div
+		{...props}
+		bind:this={elem}
+		class={classes}
+		transition:transitionHandler
+		use:useAction={[...use]}
+	>
+		{#if children !== undefined}
+			{@render children()}
+		{:else}
+			{#each items as item, i}
+				<div>{item}</div>
+				{#if i < items.length - 1}
+					<Icon src={ChevronRight} />
+				{/if}
+			{/each}
+		{/if}
+	</div>
+{/if}

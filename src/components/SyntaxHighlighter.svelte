@@ -5,13 +5,20 @@
 	// props
 	let {
 		code = $bindable(),
+		isVisible = $bindable(),
 		options = $bindable(),
 		this: elem = $bindable()
 	}: {
 		code: string;
+		isVisible: boolean;
 		options?: CodeToHastOptions<BundledLanguage, BundledTheme>;
 		this?: any;
 	} = $props();
+
+	// effects
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 	$effect(() => {
 		if (options === undefined) options = {};
 		if (options?.defaultColor === undefined) options.defaultColor = false;
@@ -26,4 +33,4 @@
 	});
 </script>
 
-<SyntaxHighlighter bind:this={elem} {code} {options} />
+<SyntaxHighlighter bind:this={elem} bind:isVisible {code} {options} />

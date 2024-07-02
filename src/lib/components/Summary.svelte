@@ -9,6 +9,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -16,6 +17,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -30,16 +32,22 @@
 	$effect(() => {
 		classes = twMerge(theme.get('summary'), className);
 	});
+
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 </script>
 
-<summary
-	{...props}
-	bind:this={elem}
-	class={classes}
-	transition:transitionHandler
-	use:useAction={[...use]}
->
-	{#if children !== undefined}
-		{@render children()}
-	{/if}
-</summary>
+{#if isVisible}
+	<summary
+		{...props}
+		bind:this={elem}
+		class={classes}
+		transition:transitionHandler
+		use:useAction={[...use]}
+	>
+		{#if children !== undefined}
+			{@render children()}
+		{/if}
+	</summary>
+{/if}

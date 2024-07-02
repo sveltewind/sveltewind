@@ -12,6 +12,7 @@
 		class: className = undefined,
 		checked = $bindable(),
 		children,
+		isVisible = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -20,6 +21,7 @@
 		class?: string;
 		checked?: boolean;
 		children?: any;
+		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -37,25 +39,30 @@
 	$effect(() => {
 		if (checked === undefined) checked = false;
 	});
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 </script>
 
-<Label class="group relative flex cursor-pointer">
-	<input
-		{...props}
-		bind:this={elem}
-		bind:checked
-		class="peer absolute left-0 top-0 w-0 opacity-0"
-		type="checkbox"
-		transition:transitionHandler
-		use:useAction={[...use]}
-	/>
-	<div class={classes}>
-		<Icon
-			class="transform transition duration-200 {!checked ? 'scale-[0]' : 'scale-[1]'}"
-			src={Check}
+{#if isVisible}
+	<Label class="group relative flex cursor-pointer">
+		<input
+			{...props}
+			bind:this={elem}
+			bind:checked
+			class="peer absolute left-0 top-0 w-0 opacity-0"
+			type="checkbox"
+			transition:transitionHandler
+			use:useAction={[...use]}
 		/>
-	</div>
-	{#if children !== undefined}
-		{@render children()}
-	{/if}
-</Label>
+		<div class={classes}>
+			<Icon
+				class="transform transition duration-200 {!checked ? 'scale-[0]' : 'scale-[1]'}"
+				src={Check}
+			/>
+		</div>
+		{#if children !== undefined}
+			{@render children()}
+		{/if}
+	</Label>
+{/if}

@@ -11,6 +11,7 @@
 		action = $bindable(),
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		method = $bindable(),
 		use = [enhance],
 		...props
@@ -18,6 +19,7 @@
 		action?: string;
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		method?: 'GET' | 'POST';
 		this?: any;
 		transition?: any[];
@@ -34,20 +36,25 @@
 		classes = twMerge(theme.get('form'), className);
 	});
 	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
+	$effect(() => {
 		if (method === undefined) method = 'POST';
 	});
 </script>
 
-<form
-	{...props}
-	bind:this={elem}
-	{action}
-	class={classes}
-	{method}
-	transition:transitionHandler
-	use:useAction={[...use]}
->
-	{#if children !== undefined}
-		{@render children()}
-	{/if}
-</form>
+{#if isVisible}
+	<form
+		{...props}
+		bind:this={elem}
+		{action}
+		class={classes}
+		{method}
+		transition:transitionHandler
+		use:useAction={[...use]}
+	>
+		{#if children !== undefined}
+			{@render children()}
+		{/if}
+	</form>
+{/if}

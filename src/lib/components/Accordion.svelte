@@ -10,6 +10,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		isOpen = $bindable(),
 		summary = $bindable(),
 		title = $bindable(),
@@ -20,6 +21,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		isOpen?: boolean;
 		summary?: Snippet;
 		title?: string;
@@ -36,17 +38,22 @@
 		if (isOpen === undefined) isOpen = false;
 	});
 	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
+	$effect(() => {
 		if (title === undefined) title = 'Title';
 	});
 </script>
 
-<Details {...props} bind:open={isOpen} bind:this={elem} class={classes} use={[...use]}>
-	{#if summary}
-		{@render summary()}
-	{:else}
-		<Summary bind:isOpen>{title}</Summary>
-	{/if}
-	{#if children !== undefined}
-		{@render children()}
-	{/if}
-</Details>
+{#if isVisible}
+	<Details {...props} bind:open={isOpen} bind:this={elem} class={classes} use={[...use]}>
+		{#if summary}
+			{@render summary()}
+		{:else}
+			<Summary bind:isOpen>{title}</Summary>
+		{/if}
+		{#if children !== undefined}
+			{@render children()}
+		{/if}
+	</Details>
+{/if}

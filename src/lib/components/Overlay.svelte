@@ -11,7 +11,7 @@
 	let {
 		class: className = undefined,
 		children,
-		isOpen = $bindable(),
+		isVisible = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -19,7 +19,7 @@
 	}: {
 		class?: string;
 		children?: any;
-		isOpen?: boolean;
+		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -35,14 +35,14 @@
 		classes = twMerge(theme.get('overlay'), className);
 	});
 	$effect(() => {
-		if (isOpen === undefined) isOpen = false;
+		if (isVisible === undefined) isVisible = true;
 	});
 	$effect(() => {
 		if (transition === undefined) transition = [fade, { duration: 200 }];
 	});
 </script>
 
-{#if isOpen}
+{#if isVisible}
 	<button
 		{...props}
 		bind:this={elem}

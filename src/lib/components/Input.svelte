@@ -9,6 +9,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		type = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
@@ -18,6 +19,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		type?:
 			| 'button'
 			| 'checkbox'
@@ -56,16 +58,22 @@
 	$effect(() => {
 		classes = twMerge(theme.get('input'), className);
 	});
+
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 	$effect(() => {
 		if (type === undefined) type = 'text';
 	});
 </script>
 
-<input
-	{...props}
-	bind:this={elem}
-	bind:value
-	class={classes}
-	transition:transitionHandler
-	use:useAction={[[setType, type], ...use]}
-/>
+{#if isVisible}
+	<input
+		{...props}
+		bind:this={elem}
+		bind:value
+		class={classes}
+		transition:transitionHandler
+		use:useAction={[[setType, type], ...use]}
+	/>
+{/if}

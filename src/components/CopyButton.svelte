@@ -17,7 +17,7 @@
 		close = $bindable(),
 		duration = $bindable(),
 		icon,
-		isOpen = $bindable(),
+		isVisible = $bindable(),
 		open = $bindable(),
 		text = $bindable(),
 		this: elem = $bindable(),
@@ -26,7 +26,7 @@
 		close?: () => void;
 		duration?: number;
 		icon?: Snippet;
-		isOpen?: boolean;
+		isVisible?: boolean;
 		open?: () => void;
 		text: string;
 		this?: any;
@@ -39,7 +39,7 @@
 	});
 </script>
 
-<Popover bind:close bind:duration bind:isOpen bind:open bind:toggle text={'Copied'}>
+<Popover bind:close bind:duration bind:isVisible bind:open bind:toggle text={'Copied'}>
 	<Button bind:this={elem} class="px-2 py-2" onclick={clickHandler} variants={['ghost', 'icon']}>
 		{#if icon !== undefined}
 			{@render icon()}

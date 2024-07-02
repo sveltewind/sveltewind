@@ -3,6 +3,7 @@
 	import { use as useAction } from '$lib/actions/index.js';
 	import { Card, Overlay, Portal } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
+	import { onMount } from 'svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { twMerge } from 'tailwind-merge';
 
@@ -12,7 +13,7 @@
 		class: className = undefined,
 		close = $bindable(),
 		children,
-		isOpen = $bindable(),
+		isVisible = $bindable(),
 		open = $bindable(),
 		showOverlay = $bindable(),
 		toggle = $bindable(),
@@ -24,7 +25,7 @@
 		class?: string;
 		close?: () => void;
 		children?: any;
-		isOpen?: boolean;
+		isVisible?: boolean;
 		open?: () => void;
 		showOverlay?: boolean;
 		toggle?: () => void;
@@ -59,33 +60,38 @@
 	$effect(() => {
 		classes = twMerge(theme.get('modal'), className);
 	});
+
 	$effect(() => {
-		if (close === undefined) close = () => (isOpen = false);
+		if (isVisible === undefined) isVisible = true;
 	});
 	$effect(() => {
-		if (isOpen === undefined) isOpen = false;
+		if (close === undefined) close = () => (isVisible = false);
 	});
 	$effect(() => {
-		if (open === undefined) open = () => (isOpen = true);
+		if (isVisible === undefined) isVisible = false;
+	});
+	$effect(() => {
+		if (open === undefined) open = () => (isVisible = true);
 	});
 	$effect(() => {
 		if (showOverlay === undefined) showOverlay = true;
 	});
 	$effect(() => {
-		if (toggle === undefined) toggle = () => (isOpen = !isOpen);
+		if (toggle === undefined) toggle = () => (isVisible = !isVisible);
 	});
 	$effect(() => {
 		if (transition === undefined) transition = [modalTransition, {}];
+	});
+	onMount(() => {
+		isVisible = false;
 	});
 </script>
 
 <Portal>
 	{#if showOverlay}
-		{#if isOpen}
-			<Overlay bind:isOpen onclick={close} />
-		{/if}
+		<Overlay bind:isVisible onclick={close} />
 	{/if}
-	{#if isOpen}
+	{#if isVisible}
 		<div
 			{...props}
 			bind:this={elem}

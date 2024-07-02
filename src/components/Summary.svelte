@@ -10,6 +10,7 @@
 		class: className = undefined,
 		children,
 		isOpen = $bindable(),
+		isVisible = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -18,6 +19,7 @@
 		class?: string;
 		children?: any;
 		isOpen?: boolean;
+		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -30,9 +32,12 @@
 	$effect(() => {
 		if (isOpen === undefined) isOpen = false;
 	});
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 </script>
 
-<Summary {...props} bind:this={elem} class={classes} {transition} use={[...use]}>
+<Summary {...props} bind:this={elem} bind:isVisible class={classes} {transition} use={[...use]}>
 	{#if children !== undefined}
 		<div>{@render children()}</div>
 	{/if}

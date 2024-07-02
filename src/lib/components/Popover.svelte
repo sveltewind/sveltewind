@@ -9,15 +9,15 @@
 	// props
 	let classes = $state('');
 	const defaultTransition = (_: HTMLElement) => {
-		console.log('defaultTransition()');
 		return {
 			duration,
 			css: (t: number) => {
 				const eased = cubicInOut(t);
 
 				return `
-          opacity: ${eased};
-          transform: translateY(calc(-100% + ${(1 - t) * 0.5}rem)) translateX(-50%)`;
+					opacity: ${eased};
+					transform: translateY(calc(-100% + ${(1 - t) * 0.5}rem)) translateX(-50%);
+				`;
 			}
 		};
 	};
@@ -26,7 +26,7 @@
 		close = $bindable(),
 		children,
 		duration = $bindable(),
-		isOpen = $bindable(),
+		isVisible = $bindable(),
 		open = $bindable(),
 		popover = $bindable(),
 		text = $bindable(),
@@ -40,7 +40,7 @@
 		close?: () => void;
 		children?: any;
 		duration?: number;
-		isOpen?: boolean;
+		isVisible?: boolean;
 		open?: () => void;
 		popover?: Snippet;
 		text?: string;
@@ -55,22 +55,22 @@
 		classes = twMerge(theme.get('popover'), className);
 	});
 	$effect(() => {
-		if (close === undefined) close = () => (isOpen = false);
+		if (close === undefined) close = () => (isVisible = false);
 	});
 	$effect(() => {
 		if (duration === undefined) duration = 200;
 	});
 	$effect(() => {
-		if (isOpen === undefined) isOpen = false;
+		if (isVisible === undefined) isVisible = false;
 	});
 	$effect(() => {
-		if (open === undefined) open = () => (isOpen = true);
+		if (open === undefined) open = () => (isVisible = true);
 	});
 	$effect(() => {
 		if (text === undefined) text = 'Popover';
 	});
 	$effect(() => {
-		if (toggle === undefined) toggle = () => (isOpen = !isOpen);
+		if (toggle === undefined) toggle = () => (isVisible = !isVisible);
 	});
 	$effect(() => {
 		if (transition === undefined) transition = [defaultTransition];
@@ -82,10 +82,10 @@
 		{@render children()}
 	{/if}
 	{#if popover}
-		{#if isOpen}
+		{#if isVisible}
 			{@render popover()}
 		{/if}
-	{:else if isOpen}
+	{:else if isVisible}
 		<Card {...props} bind:this={elem} bind:transition class={classes} use={[...use]}>
 			{text}
 		</Card>

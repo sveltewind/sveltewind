@@ -3,6 +3,7 @@
 	import { use as useAction } from '$lib/actions/index.js';
 	import { Overlay, Portal } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
+	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
@@ -12,7 +13,7 @@
 		class: className = undefined,
 		close = $bindable(),
 		children,
-		isOpen = $bindable(),
+		isVisible = $bindable(),
 		open = $bindable(),
 		position = $bindable(),
 		showOverlay = $bindable(),
@@ -25,7 +26,7 @@
 		class?: string;
 		close?: () => void;
 		children?: any;
-		isOpen?: boolean;
+		isVisible?: boolean;
 		open?: () => void;
 		position?: 'bottom' | 'left' | 'right' | 'top';
 		showOverlay?: boolean;
@@ -72,13 +73,16 @@
 
 	// effects
 	$effect(() => {
-		if (close === undefined) close = () => (isOpen = false);
+		if (close === undefined) close = () => (isVisible = false);
 	});
 	$effect(() => {
-		if (isOpen === undefined) isOpen = false;
+		if (isVisible === undefined) isVisible = false;
 	});
 	$effect(() => {
-		if (open === undefined) open = () => (isOpen = true);
+		if (isVisible === undefined) isVisible = true;
+	});
+	$effect(() => {
+		if (open === undefined) open = () => (isVisible = true);
 	});
 	$effect(() => {
 		if (position === undefined) position = 'left';
@@ -93,7 +97,7 @@
 		if (showOverlay === undefined) showOverlay = true;
 	});
 	$effect(() => {
-		if (toggle === undefined) toggle = () => (isOpen = !isOpen);
+		if (toggle === undefined) toggle = () => (isVisible = !isVisible);
 	});
 	$effect(() => {
 		transition =
@@ -101,15 +105,16 @@
 				? [fly, positionDefaultSettings.get(position)?.transitionParameters]
 				: [transition[0], positionDefaultSettings.get(position)?.transitionParameters];
 	});
+	onMount(() => {
+		isVisible = false;
+	});
 </script>
 
 <Portal>
 	{#if showOverlay}
-		{#if isOpen}
-			<Overlay bind:isOpen onclick={close} />
-		{/if}
+		<Overlay bind:isVisible onclick={close} />
 	{/if}
-	{#if isOpen}
+	{#if isVisible}
 		<div
 			{...props}
 			bind:this={elem}

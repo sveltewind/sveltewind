@@ -8,6 +8,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -16,6 +17,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -39,9 +41,12 @@
 			className
 		);
 	});
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 </script>
 
-<Button {...props} bind:this={elem} class={classes} {transition} use={[...use]}>
+<Button {...props} bind:this={elem} bind:isVisible class={classes} {transition} use={[...use]}>
 	{#if children !== undefined}
 		{@render children()}
 	{/if}

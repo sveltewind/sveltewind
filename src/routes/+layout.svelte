@@ -37,7 +37,7 @@
 		['/examples', { title: 'Examples' }],
 		['/faq', { title: 'FAQ' }]
 	]);
-	let isOpen: boolean;
+	let isVisible: boolean;
 </script>
 
 <Pwa themeColor="#09090C" />
@@ -70,7 +70,7 @@
 </div>
 
 <Drawer
-	bind:isOpen
+	bind:isVisible
 	bind:toggle
 	class="w-full max-w-[calc(100vw_-_2rem)] md:hidden"
 	position="right"

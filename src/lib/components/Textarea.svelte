@@ -9,6 +9,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -17,6 +18,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -32,14 +34,20 @@
 	$effect(() => {
 		classes = twMerge(theme.get('textarea'), className);
 	});
+
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 </script>
 
-<!-- svelte-ignore element_invalid_self_closing_tag -->
-<textarea
-	{...props}
-	bind:this={elem}
-	bind:value
-	class={classes}
-	transition:transitionHandler
-	use:useAction={[...use]}
-/>
+{#if isVisible}
+	<!-- svelte-ignore element_invalid_self_closing_tag -->
+	<textarea
+		{...props}
+		bind:this={elem}
+		bind:value
+		class={classes}
+		transition:transitionHandler
+		use:useAction={[...use]}
+	/>
+{/if}

@@ -10,6 +10,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		legend = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
@@ -18,6 +19,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		legend?: string;
 		this?: any;
 		transition?: any[];
@@ -33,19 +35,24 @@
 	$effect(() => {
 		classes = twMerge(theme.get('fieldset'), className);
 	});
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 </script>
 
-<fieldset
-	{...props}
-	bind:this={elem}
-	class={classes}
-	transition:transitionHandler
-	use:useAction={[...use]}
->
-	{#if legend !== undefined}
-		<Legend>{legend}</Legend>
-	{/if}
-	{#if children !== undefined}
-		{@render children()}
-	{/if}
-</fieldset>
+{#if isVisible}
+	<fieldset
+		{...props}
+		bind:this={elem}
+		class={classes}
+		transition:transitionHandler
+		use:useAction={[...use]}
+	>
+		{#if legend !== undefined}
+			<Legend>{legend}</Legend>
+		{/if}
+		{#if children !== undefined}
+			{@render children()}
+		{/if}
+	</fieldset>
+{/if}

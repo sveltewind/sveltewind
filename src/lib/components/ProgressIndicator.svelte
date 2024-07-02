@@ -9,6 +9,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -16,6 +17,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -30,55 +32,61 @@
 	$effect(() => {
 		classes = twMerge(theme.get('progressIndicator'), className);
 	});
+
+	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
 </script>
 
-<svg
-	{...props}
-	bind:this={elem}
-	class={classes}
-	viewBox="25 25 50 50"
-	transition:transitionHandler
-	use:useAction={[...use]}
->
-	<circle
-		class="spinner-dash"
-		cx="50"
-		cy="50"
-		r="20"
-		stroke="currentColor"
-		fill="none"
-		stroke-width="2"
-		stroke-miterlimit="10"
-	/>
-</svg>
+{#if isVisible}
+	<svg
+		{...props}
+		bind:this={elem}
+		class={classes}
+		viewBox="25 25 50 50"
+		transition:transitionHandler
+		use:useAction={[...use]}
+	>
+		<circle
+			class="spinner-dash"
+			cx="50"
+			cy="50"
+			r="20"
+			stroke="currentColor"
+			fill="none"
+			stroke-width="2"
+			stroke-miterlimit="10"
+		/>
+	</svg>
 
-<style>
-	@keyframes spinner-dash {
-		0% {
-			stroke-dasharray: 1, 200;
-			stroke-dashoffset: 0;
+	<style>
+		@keyframes spinner-dash {
+			0% {
+				stroke-dasharray: 1, 200;
+				stroke-dashoffset: 0;
+			}
+			50% {
+				stroke-dasharray: 89, 200;
+				stroke-dashoffset: -35px;
+			}
+			100% {
+				stroke-dasharray: 89, 200;
+				stroke-dashoffset: -124px;
+			}
 		}
-		50% {
-			stroke-dasharray: 89, 200;
-			stroke-dashoffset: -35px;
+		@keyframes spinner-rotate {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
 		}
-		100% {
-			stroke-dasharray: 89, 200;
-			stroke-dashoffset: -124px;
+		.spinner-dash {
+			animation: spinner-dash 1.5s ease-in-out infinite;
 		}
-	}
-	@keyframes spinner-rotate {
-		0% {
-			transform: rotate(0deg);
+		.spinner-rotate {
+			animation: spinner-rotate 2s linear infinite;
 		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
-	.spinner-dash {
-		animation: spinner-dash 1.5s ease-in-out infinite;
-	}
-	.spinner-rotate {
-		animation: spinner-rotate 2s linear infinite;
-	}
-</style>
+	</style>
+{/if}

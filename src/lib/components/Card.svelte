@@ -9,6 +9,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -16,6 +17,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -29,6 +31,9 @@
 		classes = twMerge(theme.get('card'), className);
 	});
 	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
+	$effect(() => {
 		if (transition !== undefined)
 			transitionHandler = (node: HTMLElement) => {
 				if (transition === undefined) return;
@@ -38,14 +43,16 @@
 	});
 </script>
 
-<div
-	{...props}
-	bind:this={elem}
-	class={classes}
-	transition:transitionHandler
-	use:useAction={[...use]}
->
-	{#if children !== undefined}
-		{@render children()}
-	{/if}
-</div>
+{#if isVisible}
+	<div
+		{...props}
+		bind:this={elem}
+		class={classes}
+		transition:transitionHandler
+		use:useAction={[...use]}
+	>
+		{#if children !== undefined}
+			{@render children()}
+		{/if}
+	</div>
+{/if}

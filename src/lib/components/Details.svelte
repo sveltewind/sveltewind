@@ -10,6 +10,7 @@
 	let {
 		class: className = undefined,
 		children,
+		isVisible = $bindable(),
 		ontoggle = $bindable(),
 		open = $bindable(),
 		this: elem = $bindable(),
@@ -19,6 +20,7 @@
 	}: {
 		class?: string;
 		children?: any;
+		isVisible?: boolean;
 		ontoggle?: EventHandler<Event, HTMLDetailsElement> | null | undefined;
 		open?: boolean;
 		this?: any;
@@ -36,6 +38,9 @@
 		classes = twMerge(theme.get('details'), className);
 	});
 	$effect(() => {
+		if (isVisible === undefined) isVisible = true;
+	});
+	$effect(() => {
 		if (ontoggle === undefined)
 			ontoggle = (e: Event & { currentTarget: EventTarget & HTMLDetailsElement }) => {
 				open = e.newState === 'open';
@@ -46,16 +51,18 @@
 	});
 </script>
 
-<details
-	{...props}
-	bind:this={elem}
-	class={classes}
-	{ontoggle}
-	{open}
-	transition:transitionHandler
-	use:useAction={[...use]}
->
-	{#if children !== undefined}
-		{@render children()}
-	{/if}
-</details>
+{#if isVisible}
+	<details
+		{...props}
+		bind:this={elem}
+		class={classes}
+		{ontoggle}
+		{open}
+		transition:transitionHandler
+		use:useAction={[...use]}
+	>
+		{#if children !== undefined}
+			{@render children()}
+		{/if}
+	</details>
+{/if}
