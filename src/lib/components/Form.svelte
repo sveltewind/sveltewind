@@ -13,6 +13,7 @@
 		children,
 		isVisible = $bindable(),
 		method = $bindable(),
+		this: elem = $bindable(),
 		use = [enhance],
 		...props
 	}: {
