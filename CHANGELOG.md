@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/sveltewind/sveltewind/compare/v2.2.0...v2.2.1) (2024-07-02)
+
+
+### Bug Fixes
+
+* change path of components ([9a8462b](https://github.com/sveltewind/sveltewind/commit/9a8462ba8ce752a4fdd109cd8eaa08a42136e906))
+
 ## [2.2.0](https://github.com/sveltewind/sveltewind/compare/v2.1.1...v2.2.0) (2024-07-02)
 
 
