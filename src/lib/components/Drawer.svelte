@@ -79,9 +79,6 @@
 		if (isVisible === undefined) isVisible = false;
 	});
 	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
-	$effect(() => {
 		if (open === undefined) open = () => (isVisible = true);
 	});
 	$effect(() => {
