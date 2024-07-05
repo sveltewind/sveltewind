@@ -58,12 +58,12 @@
 	$effect(() => {
 		classes = twMerge(theme.get('input'), className);
 	});
-
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;
 	});
 	$effect(() => {
 		if (type === undefined) type = 'text';
+		if (elem !== undefined) elem.type = type;
 	});
 </script>
 
