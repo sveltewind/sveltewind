@@ -3,6 +3,7 @@
 	import { use as useAction } from '$lib/actions/index.js';
 	import { Label } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
+	import type { Snippet } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
 
 	// props
@@ -12,6 +13,7 @@
 		children,
 		isVisible = $bindable(),
 		group = $bindable(),
+		handle,
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
@@ -22,6 +24,7 @@
 		children?: any;
 		isVisible?: boolean;
 		group?: any;
+		handle?: Snippet;
 		this?: any;
 		transition?: any[];
 		use?: any[];
@@ -37,7 +40,6 @@
 	$effect(() => {
 		classes = twMerge(theme.get('radio'), className);
 	});
-
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;
 	});
@@ -55,8 +57,11 @@
 			transition:transitionHandler
 			use:useAction={[...use]}
 		/>
-		<!-- svelte-ignore element_invalid_self_closing_tag -->
-		<div class={classes} />
+		{#if handle}
+			{@render handle()}
+		{:else}
+			<div class={classes}></div>
+		{/if}
 		{#if children !== undefined}
 			{@render children()}
 		{/if}
