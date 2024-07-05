@@ -50,7 +50,7 @@
 		{#if summary}
 			{@render summary()}
 		{:else}
-			<Summary bind:isOpen>{title}</Summary>
+			<Summary>{title}</Summary>
 		{/if}
 		{#if children !== undefined}
 			{@render children()}
