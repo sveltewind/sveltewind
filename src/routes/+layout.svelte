@@ -21,14 +21,6 @@
 	import '../app.css';
 
 	theme.set(sveltewind);
-	theme.update({
-		h1: 'text-slate-950 dark:text-slate-50',
-		h2: 'text-slate-950 dark:text-slate-50',
-		h3: 'text-slate-950 dark:text-slate-50',
-		h4: 'text-slate-950 dark:text-slate-50',
-		h5: 'text-slate-950 dark:text-slate-50',
-		h6: 'text-slate-950 dark:text-slate-50'
-	});
 
 	// props
 	let toggle: () => void;
