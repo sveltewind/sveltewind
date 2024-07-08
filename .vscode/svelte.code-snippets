@@ -1,4 +1,8 @@
 {
+	"Bindable Prop": {
+		"prefix": "@bindable",
+		"body": ["$1 = \\$bindable(),"]
+	},
 	"Initiate Component": {
 		"prefix": "@component",
 		"body": [
