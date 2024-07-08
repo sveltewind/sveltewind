@@ -60,5 +60,23 @@
 			"\t</$1$2>",
 			"{/if}"
 		]
+	},
+	"Example - Daily": {
+		"prefix": "@example-daily",
+		"body": [
+			"<script lang=\"ts\">",
+			"\timport {  } from '\\$lib/components/index.js';",
+			"\timport code from '../code.svelte.js';",
+			"\timport inspiration from '../inspiration.svelte.js';",
+			"",
+			"\t// props",
+			"",
+			"\tcode.set(``);",
+			"\tinspiration.set({",
+			"\t\thref: '$1',",
+			"\t\tsrc: '$2'",
+			"\t});",
+			"</script>"
+		]
 	}
 }
