@@ -18,6 +18,7 @@ export { default as H5 } from './H5.svelte';
 export { default as H6 } from './H6.svelte';
 export { default as Header } from './Header.svelte';
 export { default as Icon } from './Icon.svelte';
+export { default as Img } from './Img.svelte';
 export { default as Input } from './Input.svelte';
 export { default as Label } from './Label.svelte';
 export { default as Legend } from './Legend.svelte';
