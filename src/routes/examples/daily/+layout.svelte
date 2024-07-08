@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { A, Button, Code } from '$components/index.js';
+	import { A, Button, Code, Img } from '$components/index.js';
 	import { Card, Div } from '$lib/components/index.js';
 	import { twMerge } from 'tailwind-merge';
 	import code from './code.svelte.js';
@@ -56,7 +56,7 @@
 					href={inspiration.href()}
 					target="_blank"
 				>
-					<img
+					<Img
 						alt={inspiration.href()}
 						class="mx-auto object-contain object-center"
 						src={inspiration.src()}
