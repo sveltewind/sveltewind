@@ -51,6 +51,8 @@ export default {
 		'after:scale-0 bg-transparent dark:bg-transparent group-hover:ring-offset-violet-500 px-0 py-0 w-6 h-6 rounded-full mr-3 relative after:content-[""] after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-white after:w-3 after:h-3'
 	),
 	radioSelected: 'bg-violet-500 dark:bg-violet-500 after:scale-100',
+	range:
+		'appearance-none rounded-full outline-none ring ring-transparent focus:ring-violet-500/30 bg-transparent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:aspect-square [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-slate-50 p-[1px] [&::-webkit-slider-runnable-track]:bg-violet-500 [&::-webkit-slider-runnable-track]:appearance-none [&::-webkit-slider-runnable-track]:h-8 [&::-webkit-slider-runnable-track]:p-1 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:bg-violet-500',
 	section: 'flex flex-col py-20',
 	select: `${inputBaseClasses} cursor-pointer`,
 	summary:

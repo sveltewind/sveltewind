@@ -33,6 +33,7 @@ export { default as Portal } from 'svelte-portal';
 export { default as ProgressIndicator } from './ProgressIndicator.svelte';
 export { default as Pwa } from './Pwa.svelte';
 export { default as Radio } from './Radio.svelte';
+export { default as Range } from './Range.svelte';
 export { default as Section } from './Section.svelte';
 export { default as Select } from './Select.svelte';
 export { default as Summary } from './Summary.svelte';
