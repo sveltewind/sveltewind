@@ -15,7 +15,7 @@
 		method = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable(),
-		use = [enhance],
+		use = $bindable(),
 		...props
 	}: {
 		action?: string;
@@ -42,6 +42,9 @@
 	});
 	$effect(() => {
 		if (method === undefined) method = 'POST';
+	});
+	$effect(() => {
+		if (use === undefined) use = [enhance];
 	});
 </script>
 
