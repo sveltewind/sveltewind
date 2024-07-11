@@ -1,12 +1,22 @@
 <script lang="ts">
 	// imports
-	import { Card } from '$lib/components/index.js';
+	import { Card, Div, Header } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
+	import { BatteryFull, Send, Signal, Wifi } from 'lucide-svelte';
+	import { DateTime } from 'luxon';
 	import { twMerge } from 'tailwind-merge';
+
+	// handlers
+	const updateDate = () => {
+		date = DateTime.now();
+		requestAnimationFrame(updateDate);
+	};
 
 	// props
 	let classes = $state('');
+	let date = $state(DateTime.now());
 	let {
+		appStatusBarIsVisible = $bindable(),
 		class: className = undefined,
 		children,
 		isVisible = $bindable(),
@@ -16,6 +26,7 @@
 		use = [],
 		...props
 	}: {
+		appStatusBarIsVisible?: boolean;
 		class?: string;
 		children?: any;
 		isVisible?: boolean;
@@ -26,6 +37,9 @@
 	} = $props();
 
 	// effects
+	$effect(() => {
+		if (appStatusBarIsVisible === undefined) appStatusBarIsVisible = true;
+	});
 	$effect(() => {
 		if (orientation === undefined) orientation = 'vertical';
 		classes = twMerge(
@@ -43,6 +57,19 @@
 	<Card {...props} bind:this={elem} class={classes} {transition} {use}>
 		{#if children !== undefined}
 			{@render children()}
+		{/if}
+		{#if appStatusBarIsVisible}
+			<Header class="absolute left-0 top-0 flex w-full justify-between p-4 ring-0">
+				<Div class="flex items-center space-x-1 text-xs">
+					<Div>{date.toFormat('h:mm')}</Div>
+					<Send class="h-[.75rem] w-[.75rem]" />
+				</Div>
+				<Div class="flex items-center space-x-1">
+					<Signal class="h-[.75rem] w-[.75rem]" />
+					<Wifi class="h-[.75rem] w-[.75rem]" />
+					<BatteryFull class="h-[.75rem] w-[.75rem] text-green-500" />
+				</Div>
+			</Header>
 		{/if}
 	</Card>
 {/if}
