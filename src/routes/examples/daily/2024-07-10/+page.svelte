@@ -16,6 +16,7 @@
 	import code from '../code.svelte.js';
 	import inspiration from '../inspiration.svelte.js';
 	import { fly } from 'svelte/transition';
+	import { cubicInOut } from 'svelte/easing';
 
 	// props
 	let { data } = $props();
@@ -467,7 +468,7 @@
 	<Div
 		bind:isVisible={movieInfoIsVisible}
 		class="absolute left-0 top-0 flex h-full w-full flex-col bg-slate-50 dark:bg-[#1E1F24]"
-		transition={[fly, { duration: 1000, x: '100%' }]}
+		transition={[fly, { duration: 700, easing: cubicInOut, x: '100%' }]}
 	>
 		<Div class="flex flex-grow flex-col">
 			<Img
