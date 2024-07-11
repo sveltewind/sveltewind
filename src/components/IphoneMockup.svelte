@@ -4,6 +4,7 @@
 	import { theme } from '$lib/index.js';
 	import { BatteryFull, Send, Signal, Wifi } from 'lucide-svelte';
 	import { DateTime } from 'luxon';
+	import { onMount } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
 
 	// handlers
@@ -50,6 +51,10 @@
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;
+	});
+
+	onMount(() => {
+		updateDate();
 	});
 </script>
 
