@@ -1,6 +1,55 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [3.0.0](https://github.com/sveltewind/sveltewind/compare/v2.2.4...v3.0.0) (2024-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* add variants
+
+### Features
+
+* add 2024-07-04 daily example ([8ed138e](https://github.com/sveltewind/sveltewind/commit/8ed138e22740f8cc23f3c639cdee3ef11994f10b))
+* add 2024-07-05 daily example ([6bcd7e1](https://github.com/sveltewind/sveltewind/commit/6bcd7e1b4c7592e9306af1662c78e96214d10ff1))
+* add 2024-07-06 daily example ([d72ab12](https://github.com/sveltewind/sveltewind/commit/d72ab12d84698d34d4cd49629e130e80dec96e61))
+* add 2024-07-07 daily example ([a3d4106](https://github.com/sveltewind/sveltewind/commit/a3d41062ff3bbf0e8ab66b274f65120e707cbad4))
+* add 2024-07-08 daily example ([c65c43f](https://github.com/sveltewind/sveltewind/commit/c65c43fc45f8440ba5f2be63cde9e4612f2e5d2a))
+* add 2024-07-09 daily example ([d594325](https://github.com/sveltewind/sveltewind/commit/d59432505dd2f4dab659ab6ffa4bd99d57e47094))
+* add 2024-07-10 daily example ([daf5083](https://github.com/sveltewind/sveltewind/commit/daf508347380cbbc44f028d785a862cdcf19fb56))
+* add 2024-07-10 daily example ([cee5ae2](https://github.com/sveltewind/sveltewind/commit/cee5ae2d18deb08ce9f765493649f191f3fd82b0))
+* add 2024-07-12 daily example ([155be64](https://github.com/sveltewind/sveltewind/commit/155be647885e2c557318d551d910a2153206c1f2))
+* add 2024-07-13 daily example ([2e6d113](https://github.com/sveltewind/sveltewind/commit/2e6d113ee5ddc3eef616d7256f29cee5e9157571))
+* add appStatusBar & dynamicIsland snippets ([e7bb5bf](https://github.com/sveltewind/sveltewind/commit/e7bb5bf8d3d589a64b3d0e4863c515cfb14f9253))
+* add appStatusBar components to IphoneMockup component ([b578c6b](https://github.com/sveltewind/sveltewind/commit/b578c6bc1cb1fe33e16e6846d05dd6dd2329b1f3))
+* add better import snippet ([e7de303](https://github.com/sveltewind/sveltewind/commit/e7de30329f29b4deccd493f256a9f2608ebe7d99))
+* add cubicInOut easing ([8dfc250](https://github.com/sveltewind/sveltewind/commit/8dfc250167edd3f5a545634a420144ff8c2eeb43))
+* add daily example snippet ([630830c](https://github.com/sveltewind/sveltewind/commit/630830c51e0f5bde467ba0698310fa1a4eaa65fd))
+* add handle snippet ([f9b7793](https://github.com/sveltewind/sveltewind/commit/f9b779343e8af67f383dc134b3c7275a90b18c0a))
+* add Img component ([1755c82](https://github.com/sveltewind/sveltewind/commit/1755c82aa9f5557642756e90834645a817d603df))
+* add IphoneMockup component to frontend ([6cffd68](https://github.com/sveltewind/sveltewind/commit/6cffd68451cd7fc3696729cab9670fc5c820721a))
+* add Range component ([42c8f3e](https://github.com/sveltewind/sveltewind/commit/42c8f3e4b1e74274c7f91136731a5dbc60311e82))
+* add transition prop ([8d18013](https://github.com/sveltewind/sveltewind/commit/8d180137045846ff747890f2b8540014a43274a2))
+* add variants ([e600ebb](https://github.com/sveltewind/sveltewind/commit/e600ebb374fee61a2f7f30de56764e24d661296c))
+* change release package ([667ad0e](https://github.com/sveltewind/sveltewind/commit/667ad0ed5c2d827ac84a6f29aa90e8d3dc1fd9cc))
+* scaffold frontent docs/components route ([74841a8](https://github.com/sveltewind/sveltewind/commit/74841a8546446aba673ca2d7ac4d25492d95e69d))
+* scaffold out daily example files ([02cc3dc](https://github.com/sveltewind/sveltewind/commit/02cc3dc9b779fc2306dce0d90bbaff670116e69c))
+* update 2024-07-10 daily example ([3494d40](https://github.com/sveltewind/sveltewind/commit/3494d4059c21f44b85bec19363d494938eb67f41))
+* update code snippet ([482c623](https://github.com/sveltewind/sveltewind/commit/482c6238b1aad1338dff14cfc6bcfd7804931f70))
+* update svelte snippets ([16a2210](https://github.com/sveltewind/sveltewind/commit/16a2210423a1d8033956a846c9b9744192f88147))
+* use Img component ([d88888e](https://github.com/sveltewind/sveltewind/commit/d88888ee6b2c4faea8366aedcf571e6e03f679be))
+
+
+### Bug Fixes
+
+* duplicate isVisible default guard ([05c79de](https://github.com/sveltewind/sveltewind/commit/05c79de168d5b6b942f86b56c6ecf9f75e3bdebf))
+* initialize examples & faq routes ([45b0be7](https://github.com/sveltewind/sveltewind/commit/45b0be7b5eec150e8a90060e10c0d086ccb04002))
+* make use bindable ([5134fd4](https://github.com/sveltewind/sveltewind/commit/5134fd493a0e40f55e39e0f2ebe4ecc094827501))
+* remove heading classes from frontend theme ([92fd4e2](https://github.com/sveltewind/sveltewind/commit/92fd4e292c0a019c484c9cf854063d18f91cb061))
+* remove isOpen prop ([a367942](https://github.com/sveltewind/sveltewind/commit/a367942686b7d96102719545a2f020102fdc72b1))
+* start the clock update function on mount ([7b2193c](https://github.com/sveltewind/sveltewind/commit/7b2193cd305f225fde4edf692515849eeddd19c0))
+* update type with $effect ([fab3a90](https://github.com/sveltewind/sveltewind/commit/fab3a9095b8ff952111860be0a97696864dbdece))
 
 ### [2.2.4](https://github.com/sveltewind/sveltewind/compare/v2.2.3...v2.2.4) (2024-07-02)
 
