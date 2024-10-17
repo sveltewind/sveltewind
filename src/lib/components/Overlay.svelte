@@ -32,7 +32,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('overlay'), className);
+		classes = twMerge(theme.getComponentVariant('overlay', 'default'), className);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

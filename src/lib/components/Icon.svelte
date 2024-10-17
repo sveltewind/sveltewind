@@ -26,7 +26,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(themeState.get('icon'), className);
+		classes = twMerge(themeState.getComponentVariant('icon', 'default'), className);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

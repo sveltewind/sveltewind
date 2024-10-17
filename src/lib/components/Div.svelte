@@ -30,7 +30,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('div'), className);
+		classes = twMerge(theme.getComponentVariant('div', 'default'), className);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

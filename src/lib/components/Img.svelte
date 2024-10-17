@@ -56,7 +56,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('img'), className);
+		classes = twMerge(theme.getComponentVariant('img', 'default'), className);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

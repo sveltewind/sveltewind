@@ -85,7 +85,7 @@
 		if (position === undefined) position = 'left';
 		if (position !== undefined)
 			classes = twMerge(
-				theme.get('drawer'),
+				theme.getComponentVariant('drawer', 'default'),
 				positionDefaultSettings.get(position).classes,
 				className
 			);

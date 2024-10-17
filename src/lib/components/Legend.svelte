@@ -30,7 +30,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('legend'), className);
+		classes = twMerge(theme.getComponentVariant('legend', 'default'), className);
 	});
 
 	$effect(() => {

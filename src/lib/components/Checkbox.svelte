@@ -34,7 +34,11 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('checkbox'), className);
+		classes = twMerge(
+			theme.getComponentVariant('checkbox', 'default'),
+			checked === true ? theme.getComponentVariant('checkbox', 'checked') : undefined,
+			className
+		);
 	});
 	$effect(() => {
 		if (checked === undefined) checked = false;

@@ -28,7 +28,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('card'), className);
+		classes = twMerge(theme.getComponentVariant('card', 'default'), className);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

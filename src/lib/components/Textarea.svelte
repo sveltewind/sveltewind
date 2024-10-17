@@ -32,7 +32,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('textarea'), className);
+		classes = twMerge(theme.getComponentVariant('textarea', 'default'), className);
 	});
 
 	$effect(() => {

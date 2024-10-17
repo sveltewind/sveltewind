@@ -30,7 +30,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('progressIndicator'), className);
+		classes = twMerge(theme.getComponentVariant('progressIndicator', 'default'), className);
 	});
 
 	$effect(() => {

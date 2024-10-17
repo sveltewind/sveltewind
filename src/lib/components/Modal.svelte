@@ -58,7 +58,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('modal'), className);
+		classes = twMerge(theme.getComponentVariant('modal', 'default'), className);
 	});
 
 	$effect(() => {

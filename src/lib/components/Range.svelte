@@ -38,7 +38,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('range'), className);
+		classes = twMerge(theme.getComponentVariant('range', 'default'), className);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

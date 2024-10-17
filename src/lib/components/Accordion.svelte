@@ -32,7 +32,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('accordion'), className);
+		classes = twMerge(theme.getComponentVariant('accordion', 'default'), className);
 	});
 	$effect(() => {
 		if (isOpen === undefined) isOpen = false;

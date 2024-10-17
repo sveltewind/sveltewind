@@ -38,7 +38,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('radio'), className);
+		classes = twMerge(theme.getComponentVariant('radio', 'default'), className);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

@@ -36,7 +36,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('breadbrumb'), className);
+		classes = twMerge(theme.getComponentVariant('breadcrumb', 'default'), className);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

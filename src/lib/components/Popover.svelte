@@ -52,7 +52,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('popover'), className);
+		classes = twMerge(theme.getComponentVariant('popover', 'default'), className);
 	});
 	$effect(() => {
 		if (close === undefined) close = () => (isVisible = false);

@@ -30,7 +30,7 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.get('h2'), className);
+		classes = twMerge(theme.getComponentVariant('h2', 'default'), className);
 	});
 
 	$effect(() => {
