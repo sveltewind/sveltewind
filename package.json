@@ -12,7 +12,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"npm-publish": "git push --follow-tags origin main && npm publish",
-		"release": "standard-version && npm run npm-publish"
+		"release": "commit-and-tag-version && npm run npm-publish"
 	},
 	"exports": {
 		".": {
@@ -55,6 +55,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/eslint": "^8.56.7",
 		"autoprefixer": "^10.4.19",
+		"commit-and-tag-version": "^12.5.0",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
