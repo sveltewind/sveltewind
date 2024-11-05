@@ -23,6 +23,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 	} = $props();
 
 	// effects

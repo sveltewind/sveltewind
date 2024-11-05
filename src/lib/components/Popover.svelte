@@ -34,6 +34,7 @@
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -48,11 +49,15 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 	} = $props();
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.getComponentVariant('popover', 'default'), className);
+		classes = twMerge(
+			...variants.map((variant) => theme.getComponentVariant('popover', variant)),
+			className
+		);
 	});
 	$effect(() => {
 		if (close === undefined) close = () => (isVisible = false);

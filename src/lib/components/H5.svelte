@@ -13,6 +13,7 @@
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -21,6 +22,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 	} = $props();
 	const transitionHandler = (node: HTMLElement) => {
 		if (transition === undefined) return;
@@ -30,7 +32,10 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.getComponentVariant('h5', 'default'), className);
+		classes = twMerge(
+			...variants.map((variant) => theme.getComponentVariant('h5', variant)),
+			className
+		);
 	});
 
 	$effect(() => {

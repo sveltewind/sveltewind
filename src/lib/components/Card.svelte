@@ -13,6 +13,7 @@
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -21,6 +22,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 	} = $props();
 	let transitionHandler = $state(() => {
 		return;
@@ -28,7 +30,10 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.getComponentVariant('card', 'default'), className);
+		classes = twMerge(
+			...variants.map((variant) => theme.getComponentVariant('card', variant)),
+			className
+		);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

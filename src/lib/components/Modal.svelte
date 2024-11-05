@@ -20,6 +20,7 @@
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -32,6 +33,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 	} = $props();
 	const modalTransition = (
 		_: HTMLElement,
@@ -58,7 +60,10 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.getComponentVariant('modal', 'default'), className);
+		classes = twMerge(
+			...variants.map((variant) => theme.getComponentVariant('modal', variant)),
+			className
+		);
 	});
 
 	$effect(() => {

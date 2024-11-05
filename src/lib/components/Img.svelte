@@ -25,6 +25,7 @@
 		transition = $bindable(),
 		use = [],
 		usemap = $bindable(),
+		variants = ['default'],
 		width = $bindable(),
 		...props
 	}: {
@@ -45,6 +46,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 		usemap?: string;
 		width?: string;
 	} = $props();
@@ -56,7 +58,10 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.getComponentVariant('img', 'default'), className);
+		classes = twMerge(
+			...variants.map((variant) => theme.getComponentVariant('img', variant)),
+			className
+		);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

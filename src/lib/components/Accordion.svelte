@@ -17,6 +17,7 @@
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -28,11 +29,15 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 	} = $props();
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.getComponentVariant('accordion', 'default'), className);
+		classes = twMerge(
+			...variants.map((variant) => theme.getComponentVariant('accordion', variant)),
+			className
+		);
 	});
 	$effect(() => {
 		if (isOpen === undefined) isOpen = false;

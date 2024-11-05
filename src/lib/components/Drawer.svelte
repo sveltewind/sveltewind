@@ -21,6 +21,7 @@
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -34,6 +35,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 	} = $props();
 	let transitionHandler = $state((node: HTMLElement) => {
 		if (transition === undefined) return;

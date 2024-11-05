@@ -18,6 +18,7 @@
 		transition = $bindable(),
 		use = [],
 		value,
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -28,6 +29,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 		value?: any;
 	} = $props();
 	const transitionHandler = (node: HTMLElement) => {
@@ -38,7 +40,10 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.getComponentVariant('radio', 'default'), className);
+		classes = twMerge(
+			...variants.map((variant) => theme.getComponentVariant('radio', variant)),
+			className
+		);
 	});
 	$effect(() => {
 		if (isVisible === undefined) isVisible = true;

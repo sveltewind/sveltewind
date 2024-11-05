@@ -12,7 +12,7 @@
 		this: elem = $bindable(),
 		transition = $bindable(),
 		use = [],
-		variants = $bindable(),
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -21,6 +21,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 		variants?: string[];
 	} = $props();
 	const variantClasses = new Map([

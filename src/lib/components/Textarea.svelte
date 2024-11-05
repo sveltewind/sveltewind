@@ -14,6 +14,7 @@
 		transition = $bindable(),
 		use = [],
 		value = $bindable(),
+		variants = ['default'],
 		...props
 	}: {
 		class?: string;
@@ -22,6 +23,7 @@
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		variants?: string[];
 		value?: any;
 	} = $props();
 	const transitionHandler = (node: HTMLElement) => {
@@ -32,7 +34,10 @@
 
 	// effects
 	$effect(() => {
-		classes = twMerge(theme.getComponentVariant('textarea', 'default'), className);
+		classes = twMerge(
+			...variants.map((variant) => theme.getComponentVariant('textarea', variant)),
+			className
+		);
 	});
 
 	$effect(() => {
