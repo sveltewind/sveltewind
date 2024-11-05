@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.0.1](https://github.com/sveltewind/sveltewind/compare/v3.0.0...v3.0.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* add variants props to components ([ba095a1](https://github.com/sveltewind/sveltewind/commit/ba095a1e424611411974398bab6346e676a3ebcf))
+
 ## [3.0.0](https://github.com/sveltewind/sveltewind/compare/v2.2.4...v3.0.0) (2024-10-17)
 
 
