@@ -42,6 +42,7 @@
 	$effect(() => {
 		classes = twMerge(
 			...variants.map((variant) => theme.getComponentVariant('radio', variant)),
+			group === value ? theme.getComponentVariant('radio', 'selected') : undefined,
 			className
 		);
 	});
