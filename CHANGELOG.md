@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.0.2](https://github.com/sveltewind/sveltewind/compare/v3.0.1...v3.0.2) (2024-11-07)
+
+
+### Bug Fixes
+
+* add class for selected radio variant ([7de043d](https://github.com/sveltewind/sveltewind/commit/7de043d335c160e12708ca5d0741cb3b269a52f6))
+
 ## [3.0.1](https://github.com/sveltewind/sveltewind/compare/v3.0.0...v3.0.1) (2024-11-05)
 
 
