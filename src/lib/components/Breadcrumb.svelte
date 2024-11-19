@@ -4,24 +4,14 @@
 	import { Icon } from '$lib/components/index.js';
 	import { ChevronRight } from '$lib/icons/index.js';
 	import { theme } from '$lib/index.js';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		href = '#',
-		items = [],
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
-		children?: any;
+		children?: Snippet;
 		isVisible?: boolean;
 		href: string;
 		items: string[] | undefined;
@@ -29,22 +19,35 @@
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	} & HTMLAttributes<HTMLElement>;
+
+	// props
+	let {
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		href = '#',
+		items = [],
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
 
 	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('breadcrumb', variant)),
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('breadcrumb', variant)),
 			className
-		);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 
@@ -56,7 +59,7 @@
 		transition:transitionHandler
 		use:useAction={[...use]}
 	>
-		{#if children !== undefined}
+		{#if children}
 			{@render children()}
 		{:else}
 			{#each items as item, i}

@@ -5,24 +5,11 @@
 	import { theme } from '$lib/index.js';
 	import { onMount } from 'svelte';
 	import { cubicInOut } from 'svelte/easing';
+	import type { HTMLAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		close = $bindable(),
-		children,
-		isVisible = $bindable(),
-		open = $bindable(),
-		showOverlay = $bindable(),
-		toggle = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
 		close?: () => void;
 		children?: any;
@@ -34,8 +21,10 @@
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
-	const modalTransition = (
+	} & HTMLAttributes<HTMLElement>;
+
+	// props
+	const defaultTransition = (
 		_: HTMLElement,
 		params?: { delay?: number; duration?: number; easing?: (t: number) => number }
 	) => {
@@ -52,43 +41,34 @@
 			}
 		};
 	};
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	let {
+		class: className = undefined,
+		close = $bindable(() => (isVisible = false)),
+		children,
+		isVisible = $bindable(false),
+		open = $bindable(() => (isVisible = true)),
+		showOverlay = $bindable(true),
+		toggle = $bindable(() => (isVisible = !isVisible)),
+		this: elem = $bindable(),
+		transition = $bindable([defaultTransition, {}]),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('modal', variant)),
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('modal', variant)),
 			className
-		);
-	});
-
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
-	$effect(() => {
-		if (close === undefined) close = () => (isVisible = false);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = false;
-	});
-	$effect(() => {
-		if (open === undefined) open = () => (isVisible = true);
-	});
-	$effect(() => {
-		if (showOverlay === undefined) showOverlay = true;
-	});
-	$effect(() => {
-		if (toggle === undefined) toggle = () => (isVisible = !isVisible);
-	});
-	$effect(() => {
-		if (transition === undefined) transition = [modalTransition, {}];
-	});
-	onMount(() => {
-		isVisible = false;
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 

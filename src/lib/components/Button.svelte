@@ -1,46 +1,48 @@
 <script lang="ts">
-	// imports
 	import { setType, use as useAction } from '$lib/actions/index.js';
 	import { theme } from '$lib/index.js';
+	import type { Snippet } from 'svelte';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		type = 'button',
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
-		children?: any;
+		children?: Snippet;
 		isVisible?: boolean;
 		type?: string;
 		this?: any;
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	} & HTMLButtonAttributes;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('button', variant)),
+	// props
+	let {
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		this: elem = $bindable(),
+		transition = $bindable(),
+		type = $bindable('button'),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('button', variant)),
 			className
-		);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLButtonElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 
@@ -52,7 +54,7 @@
 		transition:transitionHandler
 		use:useAction={[[setType, type], ...use]}
 	>
-		{#if children !== undefined}
+		{#if children}
 			{@render children()}
 		{/if}
 	</button>

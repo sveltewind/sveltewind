@@ -3,30 +3,16 @@
 	import { use as useAction } from '$lib/actions/index.js';
 	import { Overlay, Portal } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
-	import { onMount } from 'svelte';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 	import { fly } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		close = $bindable(),
-		children,
-		isVisible = $bindable(),
-		open = $bindable(),
-		position = $bindable(),
-		showOverlay = $bindable(),
-		toggle = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
 		close?: () => void;
-		children?: any;
+		children?: Snippet;
 		isVisible?: boolean;
 		open?: () => void;
 		position?: 'bottom' | 'left' | 'right' | 'top';
@@ -36,12 +22,9 @@
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
-	let transitionHandler = $state((node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	});
+	} & HTMLAttributes<HTMLElement>;
+
+	// props
 	let positionDefaultSettings = new Map([
 		[
 			'bottom',
@@ -72,40 +55,42 @@
 			}
 		]
 	]);
+	let {
+		class: className = undefined,
+		close = $bindable(() => (isVisible = false)),
+		children,
+		isVisible = $bindable(false),
+		open = $bindable(() => (isVisible = true)),
+		position = $bindable('left'),
+		showOverlay = $bindable(true),
+		toggle = $bindable(() => (isVisible = !isVisible)),
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
 
-	// effects
-	$effect(() => {
-		if (close === undefined) close = () => (isVisible = false);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = false;
-	});
-	$effect(() => {
-		if (open === undefined) open = () => (isVisible = true);
-	});
-	$effect(() => {
-		if (position === undefined) position = 'left';
-		if (position !== undefined)
-			classes = twMerge(
-				theme.getComponentVariant('drawer', 'default'),
-				positionDefaultSettings.get(position).classes,
-				className
-			);
-	});
-	$effect(() => {
-		if (showOverlay === undefined) showOverlay = true;
-	});
-	$effect(() => {
-		if (toggle === undefined) toggle = () => (isVisible = !isVisible);
-	});
-	$effect(() => {
-		transition =
-			transition === undefined
-				? [fly, positionDefaultSettings.get(position)?.transitionParameters]
-				: [transition[0], positionDefaultSettings.get(position)?.transitionParameters];
-	});
-	onMount(() => {
-		isVisible = false;
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('drawer', variant)),
+			positionDefaultSettings.get(position)?.classes,
+			className
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLElement) => {
+			if (transition === undefined) {
+				const positionDefaultSetting = positionDefaultSettings.get(position);
+				if (positionDefaultSetting !== undefined) {
+					return fly(node, positionDefaultSetting.transitionParameters);
+				}
+				return;
+			}
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 

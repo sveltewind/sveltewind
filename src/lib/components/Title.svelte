@@ -4,16 +4,14 @@
 
 	// props
 	let {
-		base = $bindable()
+		base = $bindable('')
 	}: {
 		base: string;
 	} = $props();
-	let title = $state('');
 
-	// effects
-	$effect(() => {
-		if (base === undefined) base = '';
-		title = [
+	// derives
+	const title = $derived.by(() => {
+		return [
 			...$page.url.pathname
 				.slice(1)
 				.split('/')

@@ -7,9 +7,6 @@
 	import { onMount } from 'svelte';
 	import { menu } from './menu.svelte.js';
 
-	// props
-	let toggle: () => boolean;
-
 	onMount(() => {
 		menu.forEach(({ items }, i) => {
 			if ([...items].map(([_, { href }]) => href).includes($page.url.pathname))
@@ -62,7 +59,7 @@
 	</div>
 </div>
 
-<Drawer bind:toggle class="w-full max-w-[calc(100vw_-_2rem)]">
+<Drawer class="w-full max-w-[calc(100vw_-_2rem)]">
 	<Card class="flex-grow overflow-auto rounded-none text-lg">
 		{#each menu as { title, items }, i}
 			<div class="flex flex-col py-2 first:pt-0">

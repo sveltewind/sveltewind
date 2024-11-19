@@ -4,49 +4,49 @@
 	import { Icon, Label } from '$lib/components/index.js';
 	import { Check } from '$lib/icons/index.js';
 	import { theme } from '$lib/index.js';
+	import type { Snippet } from 'svelte';
+	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		checked = $bindable(),
-		children,
-		isVisible = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
 		checked?: boolean;
-		children?: any;
+		children?: Snippet;
 		isVisible?: boolean;
 		this?: any;
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	} & HTMLInputAttributes;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			theme.getComponentVariant('checkbox', 'default'),
+	// props
+	let {
+		class: className = undefined,
+		checked = $bindable(false),
+		children,
+		isVisible = $bindable(true),
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('checkbox', variant)),
 			checked === true ? theme.getComponentVariant('checkbox', 'checked') : undefined,
 			className
-		);
-	});
-	$effect(() => {
-		if (checked === undefined) checked = false;
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLInputElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 

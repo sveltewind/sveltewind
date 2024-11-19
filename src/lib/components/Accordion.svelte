@@ -3,25 +3,13 @@
 	import { Details, Summary } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
 	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		isOpen = $bindable(),
-		summary = $bindable(),
-		title = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
-		children?: any;
+		children?: Snippet;
 		isVisible?: boolean;
 		isOpen?: boolean;
 		summary?: Snippet;
@@ -30,35 +18,47 @@
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
+	} & HTMLAttributes<HTMLElement>;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('accordion', variant)),
+	// props
+	let {
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		isOpen = $bindable(false),
+		summary = $bindable(),
+		title = $bindable('Title'),
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('accordion', variant)),
 			className
-		);
-	});
-	$effect(() => {
-		if (isOpen === undefined) isOpen = false;
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
-	$effect(() => {
-		if (title === undefined) title = 'Title';
-	});
+		)
+	);
 </script>
 
-{#if isVisible}
-	<Details {...props} bind:open={isOpen} bind:this={elem} class={classes} use={[...use]}>
-		{#if summary}
-			{@render summary()}
-		{:else}
-			<Summary>{title}</Summary>
-		{/if}
-		{#if children !== undefined}
-			{@render children()}
-		{/if}
-	</Details>
-{/if}
+<Details
+	{...props}
+	bind:isVisible
+	bind:open={isOpen}
+	bind:this={elem}
+	class={classes}
+	{transition}
+	use={[...use]}
+>
+	{#if summary}
+		{@render summary()}
+	{:else}
+		<Summary>{title}</Summary>
+	{/if}
+	{#if children}
+		{@render children()}
+	{/if}
+</Details>

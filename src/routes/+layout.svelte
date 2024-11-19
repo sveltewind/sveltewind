@@ -19,17 +19,24 @@
 	import { twMerge } from 'tailwind-merge';
 	import { menu } from './docs/menu.svelte.js';
 	import '../app.css';
+	import type { Snippet } from 'svelte';
 
 	theme.set(sveltewind);
 
+	// types
+	type Props = {
+		children?: Snippet;
+	};
+
 	// props
-	let toggle: () => void;
 	const headerItems = new Map([
 		['/docs', { title: 'Docs', menu }],
 		['/examples', { title: 'Examples' }],
 		['/faq', { title: 'FAQ' }]
 	]);
-	let isVisible: boolean;
+	let isVisible = $state(false);
+	let { children }: Props = $props();
+	let toggle = $state(() => (isVisible = !isVisible));
 </script>
 
 <Pwa themeColor="#09090C" />
@@ -57,7 +64,9 @@
 		</div>
 	</Header>
 	<Main class="p-0">
-		<slot />
+		{#if children}
+			{@render children()}
+		{/if}
 	</Main>
 </div>
 

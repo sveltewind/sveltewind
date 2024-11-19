@@ -5,28 +5,22 @@
 	import type { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki';
 	import { onMount } from 'svelte';
 
-	// props
-	let {
-		code = $bindable(),
-		isVisible = $bindable(),
-		options = $bindable()
-	}: {
+	// types
+	type Props = {
 		code: string;
 		isVisible?: boolean;
 		options?: CodeToHastOptions<BundledLanguage, BundledTheme>;
-	} = $props();
+	};
+
+	// props
+	let {
+		code = $bindable('let banana = 🍌'),
+		isVisible = $bindable(true),
+		options = $bindable({ lang: 'text', theme: 'github-dark' })
+	}: Props = $props();
 	let html = $state('');
 
 	// effects
-	$effect(() => {
-		if (code === undefined) code = 'let banana = 🍌';
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
-	$effect(() => {
-		if (options === undefined) options = { lang: 'text', theme: 'github-dark' };
-	});
 	$effect(() => {
 		if (options?.lang === undefined) options.lang = 'text';
 		if (options?.theme === undefined) options.theme = 'github-dark';

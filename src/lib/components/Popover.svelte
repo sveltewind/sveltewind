@@ -5,9 +5,26 @@
 	import type { Snippet } from 'svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { twMerge } from 'tailwind-merge';
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	// types
+	type Props = {
+		class?: string;
+		close?: () => void;
+		children?: any;
+		duration?: number;
+		isVisible?: boolean;
+		open?: () => void;
+		popover?: Snippet;
+		text?: string;
+		toggle?: () => void;
+		this?: any;
+		transition?: any[];
+		use?: any[];
+		variants?: string[];
+	} & HTMLAttributes<HTMLElement>;
 
 	// props
-	let classes = $state('');
 	const defaultTransition = (_: HTMLElement) => {
 		return {
 			duration,
@@ -23,63 +40,28 @@
 	};
 	let {
 		class: className = undefined,
-		close = $bindable(),
+		close = $bindable(() => (isVisible = false)),
 		children,
-		duration = $bindable(),
-		isVisible = $bindable(),
-		open = $bindable(),
+		duration = $bindable(200),
+		isVisible = $bindable(false),
+		open = $bindable(() => (isVisible = true)),
 		popover = $bindable(),
-		text = $bindable(),
-		toggle = $bindable(),
+		text = $bindable('Popover'),
+		toggle = $bindable(() => (isVisible = !isVisible)),
 		this: elem = $bindable(),
-		transition = $bindable(),
+		transition = $bindable([defaultTransition]),
 		use = [],
 		variants = ['default'],
 		...props
-	}: {
-		class?: string;
-		close?: () => void;
-		children?: any;
-		duration?: number;
-		isVisible?: boolean;
-		open?: () => void;
-		popover?: Snippet;
-		text?: string;
-		toggle?: () => void;
-		this?: any;
-		transition?: any[];
-		use?: any[];
-		variants?: string[];
-	} = $props();
+	}: Props = $props();
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('popover', variant)),
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('popover', variant)),
 			className
-		);
-	});
-	$effect(() => {
-		if (close === undefined) close = () => (isVisible = false);
-	});
-	$effect(() => {
-		if (duration === undefined) duration = 200;
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = false;
-	});
-	$effect(() => {
-		if (open === undefined) open = () => (isVisible = true);
-	});
-	$effect(() => {
-		if (text === undefined) text = 'Popover';
-	});
-	$effect(() => {
-		if (toggle === undefined) toggle = () => (isVisible = !isVisible);
-	});
-	$effect(() => {
-		if (transition === undefined) transition = [defaultTransition];
-	});
+		)
+	);
 </script>
 
 <div class="relative">

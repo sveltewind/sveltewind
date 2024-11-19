@@ -1,23 +1,13 @@
 <script lang="ts">
 	// imports
 	import { use as useAction } from '$lib/actions/index.js';
-	import { Portal } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import { fade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
 		children?: any;
 		isVisible?: boolean;
@@ -25,25 +15,33 @@
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	} & HTMLButtonAttributes;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('overlay', variant)),
+	// props
+	let {
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		this: elem = $bindable(),
+		transition = $bindable([fade, { duration: 200 }]),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('overlay', variant)),
 			className
-		);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
-	$effect(() => {
-		if (transition === undefined) transition = [fade, { duration: 200 }];
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLButtonElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 

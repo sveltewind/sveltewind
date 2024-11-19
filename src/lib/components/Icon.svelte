@@ -1,20 +1,10 @@
 <script lang="ts">
 	import { theme as themeState } from '$lib/index.js';
+	import type { SVGAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let icon = $state('');
-	let {
-		class: className = undefined,
-		isVisible = $bindable(),
-		size = $bindable(),
-		src = $bindable(),
-		theme = $bindable(),
-		this: elem = $bindable(),
-		title = $bindable(),
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
 		isVisible?: boolean;
 		size?: string;
@@ -22,44 +12,44 @@
 		theme?: string;
 		this?: any;
 		title?: string;
-	} = $props();
+		transition?: any[];
+	} & SVGAttributes<SVGSVGElement>;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(themeState.getComponentVariant('icon', 'default'), className);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
-	$effect(() => {
-		if (size === undefined) size = '100%';
-		if (size !== '100%') {
-			if (size.slice(-1) != 'x' && size.slice(-1) != 'm' && size.slice(-1) != '%') {
-				try {
-					size = parseInt(size) + 'px';
-				} catch (error) {
-					size = '100%';
-				}
-			}
-		}
-	});
-	$effect(() => {
-		if (theme === undefined) theme = 'default';
-	});
-	$effect(() => {
-		icon = src?.[theme] ?? src?.['default'];
+	// props
+	let {
+		class: className = undefined,
+		isVisible = $bindable(true),
+		size = $bindable('100%'),
+		src = $bindable(),
+		theme = $bindable('default'),
+		this: elem = $bindable(),
+		title = $bindable(),
+		transition = $bindable(),
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(twMerge(themeState.getComponentVariant('icon', 'default'), className));
+	const icon = $derived(src?.[theme] ?? src?.['default']);
+	const transitionHandler = $derived.by(() => {
+		return (node: SVGSVGElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 
 {#if isVisible}
 	<svg
 		{...props}
+		{...icon?.a}
 		bind:this={elem}
 		class={classes}
-		{...icon?.a}
-		xmlns="http://www.w3.org/2000/svg"
-		width={size}
 		height={size}
+		transition:transitionHandler
+		width={size}
+		xmlns="http://www.w3.org/2000/svg"
 	>
 		{#if title}
 			<title>{title}</title>

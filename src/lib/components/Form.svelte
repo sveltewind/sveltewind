@@ -3,53 +3,50 @@
 	import { enhance } from '$app/forms';
 	import { use as useAction } from '$lib/actions/index.js';
 	import { theme } from '$lib/index.js';
+	import type { Snippet } from 'svelte';
+	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		action = $bindable(),
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		method = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = $bindable(),
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		action?: string;
 		class?: string;
-		children?: any;
+		children?: Snippet;
 		isVisible?: boolean;
 		method?: 'GET' | 'POST';
 		this?: any;
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	} & HTMLFormAttributes;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('form', variant)),
+	// props
+	let {
+		action = $bindable(),
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		method = $bindable('POST'),
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = $bindable([enhance]),
+		variants = ['default'],
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('form', variant)),
 			className
-		);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
-	$effect(() => {
-		if (method === undefined) method = 'POST';
-	});
-	$effect(() => {
-		if (use === undefined) use = [enhance];
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLFormElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 

@@ -3,23 +3,13 @@
 	import { setType, use as useAction } from '../actions/index.js';
 	import { theme } from '$lib/index.js';
 	import { twMerge } from 'tailwind-merge';
+	import type { Snippet } from 'svelte';
+	import type { HTMLInputAttributes } from 'svelte/elements';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		type = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		value = $bindable(),
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
-		children?: any;
+		children?: Snippet;
 		isVisible?: boolean;
 		type?:
 			| 'button'
@@ -49,25 +39,37 @@
 		use?: any[];
 		variants?: string[];
 		value?: string;
-	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	} & HTMLInputAttributes;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('input', variant)),
+	// props
+	let {
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		type = $bindable('text'),
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		value = $bindable(),
+		variants = ['default'],
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('input', variant)),
 			className
-		);
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLInputElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
-	$effect(() => {
-		if (type === undefined) type = 'text';
 		if (elem !== undefined) elem.type = type;
 	});
 </script>

@@ -3,18 +3,8 @@
 	import { Button } from '$lib/components/index.js';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
 		children?: any;
 		isVisible?: boolean;
@@ -22,8 +12,20 @@
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-		variants?: string[];
-	} = $props();
+	} & HTMLButtonElement &
+		any;
+
+	// props
+	let {
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
 	const variantClasses = new Map([
 		['icon', 'px-3 py-3'],
 		[
@@ -31,23 +33,17 @@
 			'bg-transparent text-current shadow-none hover:bg-slate-950/10 focus:bg-slate-950/10 focus:ring-slate-950/30 dark:hover:bg-slate-50/10 dark:focus:bg-slate-50/10 dark:focus:ring-slate-50/30'
 		]
 	]);
-
-	// effects
-	$effect(() => {
-		if (variants === undefined) variants = [];
-	});
-	$effect(() => {
-		classes = twMerge(
-			...variants?.map((variant: string) => variantClasses.get(variant)),
-			className
-		);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
-	});
 </script>
 
-<Button {...props} bind:this={elem} bind:isVisible class={classes} {transition} use={[...use]}>
+<Button
+	{...props}
+	bind:this={elem}
+	bind:isVisible
+	class={className}
+	{transition}
+	{variants}
+	use={[...use]}
+>
 	{#if children !== undefined}
 		{@render children()}
 	{/if}

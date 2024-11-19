@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-/* Write your global styles here, in PostCSS syntax */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 *::-webkit-scrollbar {
 	@apply h-2 w-2;

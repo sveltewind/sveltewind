@@ -3,19 +3,10 @@
 	import { twMerge } from 'tailwind-merge';
 	import { theme } from '$lib/index.js';
 	import { use as useAction } from '$lib/actions/index.js';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
 		children?: any;
 		isVisible?: boolean;
@@ -23,23 +14,33 @@
 		transition?: any[];
 		use?: any[];
 		variants?: string[];
-	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	} & HTMLAttributes<HTMLElement>;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('nav', variant)),
+	// props
+	let {
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		variants = ['default'],
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('nav', variant)),
 			className
-		);
-	});
-
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 

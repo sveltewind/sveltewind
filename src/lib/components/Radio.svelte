@@ -4,23 +4,11 @@
 	import { Label } from '$lib/components/index.js';
 	import { theme } from '$lib/index.js';
 	import type { Snippet } from 'svelte';
+	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	// props
-	let classes = $state('');
-	let {
-		class: className = undefined,
-		children,
-		isVisible = $bindable(),
-		group = $bindable(),
-		handle,
-		this: elem = $bindable(),
-		transition = $bindable(),
-		use = [],
-		value,
-		variants = ['default'],
-		...props
-	}: {
+	// types
+	type Props = {
 		class?: string;
 		children?: any;
 		isVisible?: boolean;
@@ -31,23 +19,36 @@
 		use?: any[];
 		variants?: string[];
 		value?: any;
-	} = $props();
-	const transitionHandler = (node: HTMLElement) => {
-		if (transition === undefined) return;
-		if (transition.length === 1) return transition[0](node);
-		return transition[0](node, transition[1]);
-	};
+	} & HTMLInputAttributes;
 
-	// effects
-	$effect(() => {
-		classes = twMerge(
-			...variants.map((variant) => theme.getComponentVariant('radio', variant)),
-			group === value ? theme.getComponentVariant('radio', 'selected') : undefined,
+	// props
+	let {
+		class: className = undefined,
+		children,
+		isVisible = $bindable(true),
+		group = $bindable(),
+		handle,
+		this: elem = $bindable(),
+		transition = $bindable(),
+		use = [],
+		value,
+		variants = ['default'],
+		...props
+	}: Props = $props();
+
+	// derives
+	const classes = $derived(
+		twMerge(
+			...variants.map((variant: string) => theme.getComponentVariant('radio', variant)),
 			className
-		);
-	});
-	$effect(() => {
-		if (isVisible === undefined) isVisible = true;
+		)
+	);
+	const transitionHandler = $derived.by(() => {
+		return (node: HTMLInputElement) => {
+			if (transition === undefined) return;
+			if (transition.length === 1) return transition[0](node);
+			return transition[0](node, transition[1]);
+		};
 	});
 </script>
 
