@@ -9,7 +9,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint ."
+		"lint": "prettier --check . && eslint .",
+		"npm-publish": "git push --follow-tags origin main && npm publish",
+		"release": "commit-and-tag-version && npm run npm-publish"
 	},
 	"exports": {
 		".": {
@@ -50,6 +52,7 @@
 		"@types/luxon": "^3.4.2",
 		"@types/node": "^22.9.0",
 		"autoprefixer": "^10.4.20",
+		"commit-and-tag-version": "^12.5.0",
 		"eslint": "^9.7.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
