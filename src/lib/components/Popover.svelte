@@ -40,14 +40,14 @@
 	};
 	let {
 		class: className = undefined,
-		close = $bindable(() => (isVisible = false)),
+		close = $bindable(),
 		children,
 		duration = $bindable(200),
 		isVisible = $bindable(false),
-		open = $bindable(() => (isVisible = true)),
+		open = $bindable(),
 		popover = $bindable(),
 		text = $bindable('Popover'),
-		toggle = $bindable(() => (isVisible = !isVisible)),
+		toggle = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable([defaultTransition]),
 		use = [],
@@ -62,6 +62,13 @@
 			className
 		)
 	);
+
+	// effects
+	$effect(() => {
+		if (close === undefined) close = () => (isVisible = false);
+		if (open === undefined) open = () => (isVisible = true);
+		if (toggle === undefined) toggle = () => (isVisible = !isVisible);
+	});
 </script>
 
 <div class="relative">

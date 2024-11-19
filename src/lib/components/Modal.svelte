@@ -43,12 +43,12 @@
 	};
 	let {
 		class: className = undefined,
-		close = $bindable(() => (isVisible = false)),
+		close = $bindable(),
 		children,
 		isVisible = $bindable(false),
-		open = $bindable(() => (isVisible = true)),
+		open = $bindable(),
 		showOverlay = $bindable(true),
-		toggle = $bindable(() => (isVisible = !isVisible)),
+		toggle = $bindable(),
 		this: elem = $bindable(),
 		transition = $bindable([defaultTransition, {}]),
 		use = [],
@@ -69,6 +69,13 @@
 			if (transition.length === 1) return transition[0](node);
 			return transition[0](node, transition[1]);
 		};
+	});
+
+	// effects
+	$effect(() => {
+		if (close === undefined) close = () => (isVisible = false);
+		if (open === undefined) open = () => (isVisible = true);
+		if (toggle === undefined) toggle = () => (isVisible = !isVisible);
 	});
 </script>
 
