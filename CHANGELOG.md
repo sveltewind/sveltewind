@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.1.4](https://github.com/sveltewind/sveltewind/compare/v3.1.3...v3.1.4) (2024-11-20)
+
+
+### Bug Fixes
+
+* add selected variant to Radio component ([4e1074a](https://github.com/sveltewind/sveltewind/commit/4e1074afbf4a6c48b4efff53186b0a72ca8d94d3))
+
 ## [3.1.3](https://github.com/sveltewind/sveltewind/compare/v3.1.2...v3.1.3) (2024-11-20)
 
 
