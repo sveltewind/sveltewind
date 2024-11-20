@@ -40,6 +40,7 @@
 	const classes = $derived(
 		twMerge(
 			...variants.map((variant: string) => theme.getComponentVariant('radio', variant)),
+			group === value ? theme.getComponentVariant('radio', 'selected') : undefined,
 			className
 		)
 	);
