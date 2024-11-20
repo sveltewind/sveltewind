@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.1.3](https://github.com/sveltewind/sveltewind/compare/v3.1.2...v3.1.3) (2024-11-20)
+
+
+### Bug Fixes
+
+* wrong theme key used for Tr component ([d987c1e](https://github.com/sveltewind/sveltewind/commit/d987c1e38f33fb3651e0a940bf0a200dd21d156f))
+
 ## [3.1.2](https://github.com/sveltewind/sveltewind/compare/v3.1.1...v3.1.2) (2024-11-19)
 
 
