@@ -31,7 +31,7 @@
 	// derives
 	const classes = $derived(
 		twMerge(
-			...variants.map((variant: string) => theme.getComponentVariant('main', variant)),
+			...variants.map((variant: string) => theme.getComponentVariant('tr', variant)),
 			className
 		)
 	);
