@@ -15,6 +15,7 @@
 		children?: Snippet;
 		isVisible?: boolean;
 		open?: () => void;
+		OverlaySnippet?: Snippet;
 		position?: 'bottom' | 'left' | 'right' | 'top';
 		showOverlay?: boolean;
 		toggle?: () => void;
@@ -61,6 +62,7 @@
 		children,
 		isVisible = $bindable(false),
 		open = $bindable(),
+		OverlaySnippet,
 		position = $bindable('left'),
 		showOverlay = $bindable(true),
 		toggle = $bindable(),
@@ -102,7 +104,9 @@
 </script>
 
 <Portal>
-	{#if showOverlay}
+	{#if OverlaySnippet}
+		{@render OverlaySnippet()}
+	{:else if showOverlay}
 		<Overlay bind:isVisible onclick={close} />
 	{/if}
 	{#if isVisible}
