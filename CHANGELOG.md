@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.1.5](https://github.com/sveltewind/sveltewind/compare/v3.1.4...v3.1.5) (2025-01-04)
+
+
+### Bug Fixes
+
+* make value optional ([d3b8ac9](https://github.com/sveltewind/sveltewind/commit/d3b8ac9f9b0c7f9236f15832b6dc5069cd7f44d5))
+
 ## [3.1.4](https://github.com/sveltewind/sveltewind/compare/v3.1.3...v3.1.4) (2024-11-20)
 
 
