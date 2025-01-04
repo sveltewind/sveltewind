@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.2.0](https://github.com/sveltewind/sveltewind/compare/v3.1.6...v3.2.0) (2025-01-04)
+
+
+### Features
+
+* add OverlaySnippet prop ([cba842e](https://github.com/sveltewind/sveltewind/commit/cba842ed98911e29cbce638241f6d48386d757f2))
+
 ## [3.1.6](https://github.com/sveltewind/sveltewind/compare/v3.1.5...v3.1.6) (2025-01-04)
 
 ## [3.1.5](https://github.com/sveltewind/sveltewind/compare/v3.1.4...v3.1.5) (2025-01-04)
