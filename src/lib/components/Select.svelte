@@ -12,10 +12,10 @@
 		children?: any;
 		isVisible?: boolean;
 		options?: { label: string; value: any }[];
-		value: any;
 		this?: any;
 		transition?: any[];
 		use?: any[];
+		value?: any;
 		variants?: string[];
 	} & HTMLSelectAttributes;
 
