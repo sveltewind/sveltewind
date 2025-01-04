@@ -42,7 +42,10 @@ const theme: Theme = {
 	label: { default: '' },
 	legend: { default: '' },
 	main: { default: 'flex flex-grow flex-col overflow-auto p-4' },
-	modal: { default: 'pointer-events-auto max-h-full max-w-full overflow-auto' },
+	modal: {
+		default:
+			'max-w-[calc(100dvw_-_2rem)] max-h-[calc(100dvh_-_2rem)] overflow-auto fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+	},
 	nav: { default: 'flex flex-col flex-grow overflow-y-auto' },
 	option: { default: 'dark:bg-slate-800 py-3' },
 	overlay: {
