@@ -1,58 +1,41 @@
-# Svelte library
+<p align="center">
+  <a href="https://sveltewind.com" target="_blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sveltewind/sveltewind/main/.github/logo-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/sveltewind/sveltewind/main/.github/logo-light.svg">
+      <img alt="Tailwind CSS" src="https://raw.githubusercontent.com/sveltewind/sveltewind/main/.github/logo-light.svg" width="350" height="70" style="max-width: 100%;">
+    </picture>
+  </a>
+</p>
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+<p align="center">
+  An opinionated Sveltekit framework with batteries included.
+</p>
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+<p align="center">
+    <a href="https://www.npmjs.com/package/sveltewind"><img src="https://img.shields.io/npm/dt/sveltewind.svg" alt="Total Downloads"></a>
+    <a href="https://github.com/sveltewind/sveltewind/releases"><img src="https://img.shields.io/npm/v/sveltewind.svg" alt="Latest Release"></a>
+    <a href="https://github.com/sveltewind/sveltewind/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/sveltewind.svg" alt="License"></a>
+</p>
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Installation
 
-```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
+```bash
+# create a project
 npx sv create my-app
+cd my-app
+
+# install sveltewind
+npm i -D sveltewind
 ```
 
-## Developing
+```css
+/* app.css */
+@import 'tailwindcss';
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+@source "../node_modules/sveltewind";
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
-
-```sh
-npm pack
-```
-
-To create a production version of your showcase app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```sh
-npm publish
-```
+---
