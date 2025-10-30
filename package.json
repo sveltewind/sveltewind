@@ -12,7 +12,10 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"test": "npm run test:unit -- --run",
+		"prepublishOnly": "npm run package",
+		"npm-publish": "git push --follow-tags origin main && npm publish",
+		"release": "commit-and-tag-version && npm run npm-publish"
 	},
 	"files": [
 		"dist",
@@ -44,6 +47,7 @@
 		"@tailwindcss/vite": "^4.1.13",
 		"@types/node": "^22",
 		"@vitest/browser": "^3.2.4",
+		"commit-and-tag-version": "^12.6.0",
 		"eslint": "^9.36.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.12.4",
