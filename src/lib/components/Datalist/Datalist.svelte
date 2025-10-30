@@ -3,7 +3,7 @@
 	import { type HTMLAttributes } from 'svelte/elements';
 	import { type TransitionConfig } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
-	import { theme, type ThemeVariant } from '$lib/theme';
+	import { theme, type ThemeComponentVariant } from '$lib/theme';
 
 	// Types
 	type Props = HTMLAttributes<HTMLDataListElement> & {
@@ -47,7 +47,7 @@
 		bind:this={element}
 		class={twMerge(
 			theme.getComponentVariant('Datalist', 'default'),
-			...variants.map((variant: ThemeVariant) =>
+			...variants.map((variant: ThemeComponentVariant) =>
 				theme.getComponentVariant('Datalist', variant)
 			),
 			className
@@ -64,7 +64,7 @@
 		bind:this={element}
 		class={twMerge(
 			theme.getComponentVariant('Datalist', 'default'),
-			...variants.map((variant: ThemeVariant) =>
+			...variants.map((variant: ThemeComponentVariant) =>
 				theme.getComponentVariant('Datalist', variant)
 			),
 			className

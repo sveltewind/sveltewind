@@ -15,7 +15,8 @@
 		"test": "npm run test:unit -- --run",
 		"prepublishOnly": "npm run package",
 		"npm-publish": "git push --follow-tags origin main && npm publish",
-		"release": "commit-and-tag-version && npm run npm-publish"
+		"release": "commit-and-tag-version && npm run npm-publish",
+		"init-components": "node scripts/initComponents"
 	},
 	"files": [
 		"dist",
