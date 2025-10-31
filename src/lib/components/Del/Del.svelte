@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import { type HTMLAttributes } from 'svelte/elements';
+	import { type HTMLModAttributes } from 'svelte/elements';
 	import { type TransitionConfig } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 	import { theme, type ThemeComponentVariant } from '$lib/theme';
 
 	// Types
-	type Props = HTMLAttributes<HTMLModElement> & {
+	type Props = HTMLModAttributes & {
 		children?: Snippet;
 		class?: string;
 		element?: HTMLModElement | null;
-		inTransition?: (node: Node) => TransitionConfig;
-		outTransition?: (node: Node) => TransitionConfig;
-		transitionTransition?: (node: Node) => TransitionConfig;
+		inTransition?: ((node: Element) => TransitionConfig) | null;
+		isVisible?: boolean;
+		outTransition?: ((node: Element) => TransitionConfig) | null;
+		transitionTransition?: ((node: Element) => TransitionConfig) | null;
 		variants?: string[];
 	};
 
@@ -20,16 +21,11 @@
 	let {
 		children,
 		class: className,
-		element,
-		inTransition = (_: Node) => {
-			return {};
-		},
-		outTransition = (_: Node) => {
-			return {};
-		},
-		transitionTransition = (_: Node) => {
-			return {};
-		},
+		element = $bindable(null),
+		inTransition = null,
+		isVisible = $bindable(true),
+		outTransition = null,
+		transitionTransition = null,
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -41,7 +37,46 @@
 	// $effects
 </script>
 
-{#if transitionTransition}
+{#if transitionTransition !== null}
+	{#if isVisible}
+		<del
+			{...restProps}
+			bind:this={element}
+			class={twMerge(
+				theme.getComponentVariant('Del', 'default'),
+				...variants.map((variant: ThemeComponentVariant) =>
+					theme.getComponentVariant('Del', variant)
+				),
+				className
+			)}
+			transition:transitionTransition
+		>
+			{#if children}
+				{@render children()}
+			{/if}
+		</del>
+	{/if}
+{:else if inTransition !== null && outTransition !== null}
+	{#if isVisible}
+		<del
+			{...restProps}
+			bind:this={element}
+			class={twMerge(
+				theme.getComponentVariant('Del', 'default'),
+				...variants.map((variant: ThemeComponentVariant) =>
+					theme.getComponentVariant('Del', variant)
+				),
+				className
+			)}
+			in:inTransition
+			out:outTransition
+		>
+			{#if children}
+				{@render children()}
+			{/if}
+		</del>
+	{/if}
+{:else if isVisible}
 	<del
 		{...restProps}
 		bind:this={element}
@@ -52,25 +87,6 @@
 			),
 			className
 		)}
-		transition:transitionTransition
-	>
-		{#if children}
-			{@render children()}
-		{/if}
-	</del>
-{:else}
-	<del
-		{...restProps}
-		bind:this={element}
-		class={twMerge(
-			theme.getComponentVariant('Del', 'default'),
-			...variants.map((variant: ThemeComponentVariant) =>
-				theme.getComponentVariant('Del', variant)
-			),
-			className
-		)}
-		in:inTransition
-		out:outTransition
 	>
 		{#if children}
 			{@render children()}

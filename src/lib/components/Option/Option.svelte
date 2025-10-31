@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import { type HTMLAttributes } from 'svelte/elements';
+	import { type HTMLOptionAttributes } from 'svelte/elements';
 	import { type TransitionConfig } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 	import { theme, type ThemeComponentVariant } from '$lib/theme';
 
 	// Types
-	type Props = HTMLAttributes<HTMLOptionElement> & {
+	type Props = HTMLOptionAttributes & {
 		children?: Snippet;
 		class?: string;
 		element?: HTMLOptionElement | null;
-		inTransition?: (node: Node) => TransitionConfig;
-		outTransition?: (node: Node) => TransitionConfig;
-		transitionTransition?: (node: Node) => TransitionConfig;
+		inTransition?: ((node: Element) => TransitionConfig) | null;
+		isVisible?: boolean;
+		outTransition?: ((node: Element) => TransitionConfig) | null;
+		transitionTransition?: ((node: Element) => TransitionConfig) | null;
 		variants?: string[];
 	};
 
@@ -20,16 +21,11 @@
 	let {
 		children,
 		class: className,
-		element,
-		inTransition = (_: Node) => {
-			return {};
-		},
-		outTransition = (_: Node) => {
-			return {};
-		},
-		transitionTransition = (_: Node) => {
-			return {};
-		},
+		element = $bindable(null),
+		inTransition = null,
+		isVisible = $bindable(true),
+		outTransition = null,
+		transitionTransition = null,
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -41,7 +37,46 @@
 	// $effects
 </script>
 
-{#if transitionTransition}
+{#if transitionTransition !== null}
+	{#if isVisible}
+		<option
+			{...restProps}
+			bind:this={element}
+			class={twMerge(
+				theme.getComponentVariant('Option', 'default'),
+				...variants.map((variant: ThemeComponentVariant) =>
+					theme.getComponentVariant('Option', variant)
+				),
+				className
+			)}
+			transition:transitionTransition
+		>
+			{#if children}
+				{@render children()}
+			{/if}
+		</option>
+	{/if}
+{:else if inTransition !== null && outTransition !== null}
+	{#if isVisible}
+		<option
+			{...restProps}
+			bind:this={element}
+			class={twMerge(
+				theme.getComponentVariant('Option', 'default'),
+				...variants.map((variant: ThemeComponentVariant) =>
+					theme.getComponentVariant('Option', variant)
+				),
+				className
+			)}
+			in:inTransition
+			out:outTransition
+		>
+			{#if children}
+				{@render children()}
+			{/if}
+		</option>
+	{/if}
+{:else if isVisible}
 	<option
 		{...restProps}
 		bind:this={element}
@@ -52,25 +87,6 @@
 			),
 			className
 		)}
-		transition:transitionTransition
-	>
-		{#if children}
-			{@render children()}
-		{/if}
-	</option>
-{:else}
-	<option
-		{...restProps}
-		bind:this={element}
-		class={twMerge(
-			theme.getComponentVariant('Option', 'default'),
-			...variants.map((variant: ThemeComponentVariant) =>
-				theme.getComponentVariant('Option', variant)
-			),
-			className
-		)}
-		in:inTransition
-		out:outTransition
 	>
 		{#if children}
 			{@render children()}
