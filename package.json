@@ -31,28 +31,28 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"svelte": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
 		},
 		"./attachments": {
-			"svelte": "./dist/attachments/index.js",
-			"types": "./dist/attachments/index.d.ts"
+			"types": "./dist/attachments/index.d.ts",
+			"svelte": "./dist/attachments/index.js"
 		},
 		"./components": {
-			"svelte": "./dist/components/index.js",
-			"types": "./dist/components/index.d.ts"
+			"types": "./dist/components/index.d.ts",
+			"svelte": "./dist/components/index.js"
 		},
 		"./icons": {
-			"svelte": "./dist/icons/index.js",
-			"types": "./dist/icons/index.d.ts"
+			"types": "./dist/icons/index.d.ts",
+			"svelte": "./dist/icons/index.js"
 		},
 		"./theme": {
-			"svelte": "./dist/theme/index.js",
-			"types": "./dist/theme/index.d.ts"
+			"types": "./dist/theme/index.d.ts",
+			"svelte": "./dist/theme/index.js"
 		},
 		"./themes": {
-			"svelte": "./dist/themes/index.js",
-			"types": "./dist/themes/index.d.ts"
+			"types": "./dist/themes/index.d.ts",
+			"svelte": "./dist/themes/index.js"
 		}
 	},
 	"peerDependencies": {
