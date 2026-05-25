@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.2.0](https://github.com/sveltewind/sveltewind/compare/v4.1.4...v4.2.0) (2026-05-25)
+
+
+### Features
+
+* add additional exports ([4e7d395](https://github.com/sveltewind/sveltewind/commit/4e7d39511d1f40435a99b38dca3a510004e09531))
+
 ## [4.1.4](https://github.com/sveltewind/sveltewind/compare/v4.1.3...v4.1.4) (2026-05-25)
 
 
