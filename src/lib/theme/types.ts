@@ -1,3 +1,7 @@
-export type Theme = Record<string, ThemeComponent>;
-export type ThemeComponent = Record<string, ThemeComponentVariant> & { default: string };
-export type ThemeComponentVariant = string;
+import { Theme } from './theme.svelte';
+export type ThemeObject = Record<string, ThemeComponent>;
+export type { Theme };
+export type ThemeComponent = {
+	base: string;
+	variants?: Record<string, string>;
+};

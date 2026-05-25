@@ -1,15 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			const localStorageDarkMode = localStorage.getItem('darkMode') || 'false';
+			document.documentElement.setAttribute(
+				'data-theme',
+				localStorageDarkMode === 'true' ? 'dark' : 'light'
+			);
+		</script>
 		%sveltekit.head%
 	</head>
 	<body
-		class="selection:bg-primary-500 bg-gray-50 text-gray-950 selection:text-white dark:bg-gray-950 dark:text-gray-50"
+		class="bg-gray-50 text-gray-950 selection:bg-primary-500 selection:text-white dark:bg-gray-950 dark:text-gray-50"
 		data-sveltekit-preload-data="hover"
 	>
-		<div>%sveltekit.body%</div>
+		<div class="relative flex min-h-lvh grow flex-col">%sveltekit.body%</div>
 	</body>
 </html>

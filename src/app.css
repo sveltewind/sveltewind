@@ -1,18 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
 @import 'tailwindcss';
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-	--color-primary-50: #f8f5fe;
-	--color-primary-100: #eee7fe;
-	--color-primary-200: #dccffc;
-	--color-primary-300: #c1a8fa;
-	--color-primary-400: #8b5cf6;
-	--color-primary-500: #4b0cdf;
-	--color-primary-600: #3608a0;
-	--color-primary-700: #270674;
-	--color-primary-800: #170444;
-	--color-primary-900: #0b0222;
-	--color-primary-950: #070113;
+	--color-primary-50: oklch(96.9% 0.016 293.756);
+	--color-primary-100: oklch(94.3% 0.029 294.588);
+	--color-primary-200: oklch(89.4% 0.057 293.283);
+	--color-primary-300: oklch(81.1% 0.111 293.571);
+	--color-primary-400: oklch(70.2% 0.183 293.541);
+	--color-primary-500: oklch(60.6% 0.25 292.717);
+	--color-primary-600: oklch(54.1% 0.281 293.009);
+	--color-primary-700: oklch(49.1% 0.27 292.581);
+	--color-primary-800: oklch(43.2% 0.232 292.759);
+	--color-primary-900: oklch(38% 0.189 293.745);
+	--color-primary-950: oklch(28.3% 0.141 291.089);
 
 	--color-gray-50: #faf9fa;
 	--color-gray-100: #f2f1f4;
@@ -26,5 +28,20 @@
 	--color-gray-900: #111014;
 	--color-gray-950: #0a090b;
 
-	--font-sans: 'Inter', sans-serif;
+	--font-sans: 'Figtree', sans-serif;
+}
+
+@layer base {
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: theme(colors.primary.500) transparent;
+	}
+
+	*::-webkit-scrollbar {
+		@apply h-2 w-2;
+	}
+
+	*::-webkit-scrollbar-track {
+		@apply bg-transparent;
+	}
 }

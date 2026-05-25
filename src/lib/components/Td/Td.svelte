@@ -1,31 +1,29 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import { type HTMLTableCellAttributes } from 'svelte/elements';
-	import { type TransitionConfig } from 'svelte/transition';
-	import { twMerge } from 'tailwind-merge';
-	import { theme, type ThemeComponentVariant } from '$lib/theme';
+	import { type HTMLAttributes } from 'svelte/elements';
+	import { noopTransition } from '$lib/components';
+	import type { TransitionProps } from '$lib/components/types';
+	import { theme as globalTheme, type Theme } from '$lib/theme';
 
 	// Types
-	type Props = HTMLTableCellAttributes & {
+	type Props = HTMLAttributes<HTMLTableCellElement> & {
 		children?: Snippet;
 		class?: string;
 		element?: HTMLTableCellElement | null;
-		inTransition?: ((node: Element) => TransitionConfig) | null;
 		isVisible?: boolean;
-		outTransition?: ((node: Element) => TransitionConfig) | null;
-		transitionTransition?: ((node: Element) => TransitionConfig) | null;
+		theme?: Theme;
+		transition?: TransitionProps;
 		variants?: string[];
 	};
 
 	// $props
 	let {
 		children,
-		class: className,
+		class: className = '',
 		element = $bindable(null),
-		inTransition = null,
 		isVisible = $bindable(true),
-		outTransition = null,
-		transitionTransition = null,
+		theme = globalTheme,
+		transition = [noopTransition, {}],
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -33,60 +31,19 @@
 	// $state
 
 	// $derived
+	const classes = $derived(theme.resolve('td', variants, className));
+	const transitionFn = $derived(transition[0]);
+	const transitionOptions = $derived(transition[1] ?? {});
 
 	// $effects
 </script>
 
-{#if transitionTransition !== null}
-	{#if isVisible}
-		<td
-			{...restProps}
-			bind:this={element}
-			class={twMerge(
-				theme.getComponentVariant('Td', 'default'),
-				...variants.map((variant: ThemeComponentVariant) =>
-					theme.getComponentVariant('Td', variant)
-				),
-				className
-			)}
-			transition:transitionTransition
-		>
-			{#if children}
-				{@render children()}
-			{/if}
-		</td>
-	{/if}
-{:else if inTransition !== null && outTransition !== null}
-	{#if isVisible}
-		<td
-			{...restProps}
-			bind:this={element}
-			class={twMerge(
-				theme.getComponentVariant('Td', 'default'),
-				...variants.map((variant: ThemeComponentVariant) =>
-					theme.getComponentVariant('Td', variant)
-				),
-				className
-			)}
-			in:inTransition
-			out:outTransition
-		>
-			{#if children}
-				{@render children()}
-			{/if}
-		</td>
-	{/if}
-{:else if isVisible}
+{#if isVisible}
 	<td
 		{...restProps}
 		bind:this={element}
-		class={twMerge(
-			theme.getComponentVariant('Td', 'default'),
-			...variants.map((variant: ThemeComponentVariant) =>
-				theme.getComponentVariant('Td', variant)
-			),
-			className
-		)}
+		class={classes}
+		transition:transitionFn={transitionOptions}
 	>
 		{#if children}
 			{@render children()}

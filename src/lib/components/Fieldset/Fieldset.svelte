@@ -1,31 +1,29 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import { type HTMLFieldSetAttributes } from 'svelte/elements';
-	import { type TransitionConfig } from 'svelte/transition';
-	import { twMerge } from 'tailwind-merge';
-	import { theme, type ThemeComponentVariant } from '$lib/theme';
+	import { type HTMLFieldsetAttributes } from 'svelte/elements';
+	import { noopTransition } from '$lib/components';
+	import type { TransitionProps } from '$lib/components/types';
+	import { theme as globalTheme, type Theme } from '$lib/theme';
 
 	// Types
-	type Props = HTMLFieldSetAttributes & {
+	type Props = HTMLFieldsetAttributes & {
 		children?: Snippet;
 		class?: string;
 		element?: HTMLFieldSetElement | null;
-		inTransition?: ((node: Element) => TransitionConfig) | null;
 		isVisible?: boolean;
-		outTransition?: ((node: Element) => TransitionConfig) | null;
-		transitionTransition?: ((node: Element) => TransitionConfig) | null;
+		theme?: Theme;
+		transition?: TransitionProps;
 		variants?: string[];
 	};
 
 	// $props
 	let {
 		children,
-		class: className,
+		class: className = '',
 		element = $bindable(null),
-		inTransition = null,
 		isVisible = $bindable(true),
-		outTransition = null,
-		transitionTransition = null,
+		theme = globalTheme,
+		transition = [noopTransition, {}],
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -33,60 +31,19 @@
 	// $state
 
 	// $derived
+	const classes = $derived(theme.resolve('fieldset', variants, className));
+	const transitionFn = $derived(transition[0]);
+	const transitionOptions = $derived(transition[1] ?? {});
 
 	// $effects
 </script>
 
-{#if transitionTransition !== null}
-	{#if isVisible}
-		<fieldset
-			{...restProps}
-			bind:this={element}
-			class={twMerge(
-				theme.getComponentVariant('Fieldset', 'default'),
-				...variants.map((variant: ThemeComponentVariant) =>
-					theme.getComponentVariant('Fieldset', variant)
-				),
-				className
-			)}
-			transition:transitionTransition
-		>
-			{#if children}
-				{@render children()}
-			{/if}
-		</fieldset>
-	{/if}
-{:else if inTransition !== null && outTransition !== null}
-	{#if isVisible}
-		<fieldset
-			{...restProps}
-			bind:this={element}
-			class={twMerge(
-				theme.getComponentVariant('Fieldset', 'default'),
-				...variants.map((variant: ThemeComponentVariant) =>
-					theme.getComponentVariant('Fieldset', variant)
-				),
-				className
-			)}
-			in:inTransition
-			out:outTransition
-		>
-			{#if children}
-				{@render children()}
-			{/if}
-		</fieldset>
-	{/if}
-{:else if isVisible}
+{#if isVisible}
 	<fieldset
 		{...restProps}
 		bind:this={element}
-		class={twMerge(
-			theme.getComponentVariant('Fieldset', 'default'),
-			...variants.map((variant: ThemeComponentVariant) =>
-				theme.getComponentVariant('Fieldset', variant)
-			),
-			className
-		)}
+		class={classes}
+		transition:transitionFn={transitionOptions}
 	>
 		{#if children}
 			{@render children()}

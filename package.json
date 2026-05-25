@@ -15,8 +15,7 @@
 		"test": "npm run test:unit -- --run",
 		"prepublishOnly": "npm run package",
 		"npm-publish": "git push --follow-tags origin main && npm publish",
-		"release": "commit-and-tag-version && npm run npm-publish",
-		"init-components": "node scripts/initComponents"
+		"release": "commit-and-tag-version && npm run npm-publish"
 	},
 	"files": [
 		"dist",
@@ -55,13 +54,16 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.12.4",
 		"globals": "^16.4.0",
+		"mdsvex": "^0.12.6",
 		"playwright": "^1.55.1",
 		"prettier": "^3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.6.14",
 		"publint": "^0.3.13",
+		"rehype-add-classes": "^1.0.0",
 		"svelte": "^5.39.5",
 		"svelte-check": "^4.3.2",
+		"tailwind-scrollbar": "^4.0.2",
 		"tailwindcss": "^4.1.13",
 		"typescript": "^5.9.2",
 		"typescript-eslint": "^8.44.1",
@@ -73,6 +75,9 @@
 		"svelte"
 	],
 	"dependencies": {
+		"hast-util-to-html": "^9.0.5",
+		"motion": "^12.23.24",
+		"shiki": "^4.0.2",
 		"tailwind-merge": "^3.3.1"
 	}
 }
