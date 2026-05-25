@@ -1,9 +1,10 @@
 {
 	"name": "sveltewind",
-	"version": "4.1.0",
+	"version": "4.1.1",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
+		"package": "svelte-package",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"prepack": "svelte-kit sync && svelte-package && publint",
