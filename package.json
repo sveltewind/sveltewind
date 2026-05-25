@@ -1,6 +1,6 @@
 {
-	"name": "sveltewind",
-	"version": "4.1.1",
+	"name": "@sveltewind/sveltewind",
+	"version": "4.1.2",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
