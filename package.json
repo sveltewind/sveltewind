@@ -1,5 +1,5 @@
 {
-	"name": "@sveltewind/sveltewind",
+	"name": "sveltewind",
 	"version": "4.1.2",
 	"scripts": {
 		"dev": "vite dev",
@@ -31,8 +31,28 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+			"svelte": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./attachments": {
+			"svelte": "./dist/attachments/index.js",
+			"types": "./dist/attachments/index.d.ts"
+		},
+		"./components": {
+			"svelte": "./dist/components/index.js",
+			"types": "./dist/components/index.d.ts"
+		},
+		"./icons": {
+			"svelte": "./dist/icons/index.js",
+			"types": "./dist/icons/index.d.ts"
+		},
+		"./theme": {
+			"svelte": "./dist/theme/index.js",
+			"types": "./dist/theme/index.d.ts"
+		},
+		"./themes": {
+			"svelte": "./dist/themes/index.js",
+			"types": "./dist/themes/index.d.ts"
 		}
 	},
 	"peerDependencies": {
@@ -80,5 +100,8 @@
 		"motion": "^12.23.24",
 		"shiki": "^4.0.2",
 		"tailwind-merge": "^3.3.1"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }
