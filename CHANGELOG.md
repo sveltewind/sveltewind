@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.2.1](https://github.com/sveltewind/sveltewind/compare/v4.2.0...v4.2.1) (2026-05-28)
+
+
+### Bug Fixes
+
+* make value of Input bindable ([6b3cf7f](https://github.com/sveltewind/sveltewind/commit/6b3cf7f76b394b180779828be2b41ad7c1507925))
+
 ## [4.2.0](https://github.com/sveltewind/sveltewind/compare/v4.1.4...v4.2.0) (2026-05-25)
 
 
