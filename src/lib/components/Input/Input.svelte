@@ -13,6 +13,7 @@
 		isVisible?: boolean;
 		theme?: Theme;
 		transition?: TransitionProps;
+		value?: string;
 		variants?: string[];
 	};
 
@@ -24,6 +25,7 @@
 		isVisible = $bindable(true),
 		theme = globalTheme,
 		transition = [noopTransition, {}],
+		value = $bindable(''),
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -42,6 +44,7 @@
 	<input
 		{...restProps}
 		bind:this={element}
+		bind:value
 		class={classes}
 		transition:transitionFn={transitionOptions}
 	/>
