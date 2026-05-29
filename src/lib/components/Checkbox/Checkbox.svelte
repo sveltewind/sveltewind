@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import { type HTMLLabelAttributes } from 'svelte/elements';
+	import { type HTMLInputAttributes } from 'svelte/elements';
 	import { noopTransition, Label, Div, Span } from '$lib/components';
 	import type { TransitionProps } from '$lib/components/types';
 	import { theme as globalTheme, type Theme } from '$lib/theme';
@@ -9,11 +9,11 @@
 	import { scale } from 'svelte/transition';
 
 	// Types
-	type Props = HTMLLabelAttributes & {
+	type Props = HTMLInputAttributes & {
 		checked?: boolean;
 		children?: Snippet;
 		class?: string;
-		element?: HTMLLabelElement | null;
+		element?: HTMLInputElement | null;
 		isVisible?: boolean;
 		snippet?: Snippet;
 		theme?: Theme;
@@ -43,7 +43,7 @@
 	// $effects
 </script>
 
-<Label {...restProps} bind:element bind:isVisible class={classes} {transition}>
+<Label bind:isVisible class={classes} {transition}>
 	{#if snippet}
 		{@render snippet()}
 	{:else}
@@ -65,5 +65,5 @@
 		<Span>{@render children()}</Span>
 	{/if}
 
-	<input bind:checked class="sr-only" type="checkbox" />
+	<input {...restProps} bind:checked bind:this={element} class="sr-only" type="checkbox" />
 </Label>
