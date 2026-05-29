@@ -67,6 +67,9 @@ const theme: ThemeObject = {
 			defaults.padding.y
 		)
 	},
+	checkbox: {
+		base: twMerge('flex items-center gap-2 cursor-pointer')
+	},
 	code: {
 		base: 'bg-primary-500 text-primary-200 rounded-sm px-1'
 	},
@@ -100,6 +103,15 @@ const theme: ThemeObject = {
 			defaults.backdropBlur,
 			defaults.borderColor.neutral,
 			'bg-gray-50/75 dark:bg-gray-950/90 border-b sticky top-0 z-10'
+		)
+	},
+	input: {
+		base: twMerge(
+			defaults.borderRadius.md,
+			defaults.insetRing.neutral,
+			defaults.padding.input.x,
+			defaults.padding.input.y,
+			defaults.transiton
 		)
 	},
 	nav: {
