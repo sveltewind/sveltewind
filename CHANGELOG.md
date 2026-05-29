@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.3.1](https://github.com/sveltewind/sveltewind/compare/v4.3.0...v4.3.1) (2026-05-29)
+
+
+### Bug Fixes
+
+* put props on input not label ([674a2d5](https://github.com/sveltewind/sveltewind/commit/674a2d5bf08bd4ee86250758cf07645b2d2b9080))
+
 ## [4.3.0](https://github.com/sveltewind/sveltewind/compare/v4.2.2...v4.3.0) (2026-05-29)
 
 
