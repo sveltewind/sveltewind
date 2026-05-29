@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.3.0](https://github.com/sveltewind/sveltewind/compare/v4.2.2...v4.3.0) (2026-05-29)
+
+
+### Features
+
+* add Checkbox component ([3c79668](https://github.com/sveltewind/sveltewind/commit/3c79668ae3f5936ef1a811d17c7502ed566084f6))
+
 ## [4.2.2](https://github.com/sveltewind/sveltewind/compare/v4.2.1...v4.2.2) (2026-05-28)
 
 
