@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.4.0](https://github.com/sveltewind/sveltewind/compare/v4.3.1...v4.4.0) (2026-06-04)
+
+
+### Features
+
+* add Pile component ([933a6a7](https://github.com/sveltewind/sveltewind/commit/933a6a7567726ba29d3b6b22a6a4c832f36310e0))
+
+
+### Bug Fixes
+
+* code snippet ([0731d5a](https://github.com/sveltewind/sveltewind/commit/0731d5a856adc066013635e189b45ab9c72c5fb5))
+
 ## [4.3.1](https://github.com/sveltewind/sveltewind/compare/v4.3.0...v4.3.1) (2026-05-29)
 
 
