@@ -118,6 +118,7 @@ const theme: ThemeObject = {
 		base: ''
 	},
 	p: { base: 'text-gray-600 dark:text-gray-400' },
+	pile: { base: 'grid [&>*]:[grid-area:1/1]' },
 	pre: { base: 'flex' },
 	radio: {
 		base: twMerge(
