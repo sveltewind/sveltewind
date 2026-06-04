@@ -93,13 +93,11 @@
 			"\t// \\$effects",
 			"</script>",
 			"",
-			"{#if isVisible}",
-			"\t<${5:Div} {...restProps} bind:element class={classes} {transition}>",
-			"\t\t{#if children}",
-			"\t\t\t{@render children()}",
-			"\t\t{/if}",
-			"\t</${5:Div}>",
-			"{/if}"
+			"<${5:Div} {...restProps} bind:element class={classes} {transition}>",
+			"\t{#if children}",
+			"\t\t{@render children()}",
+			"\t{/if}",
+			"</${5:Div}>"
 		],
 		"description": "Boilerplate for creating a component"
 	}
