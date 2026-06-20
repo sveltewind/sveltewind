@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.4.1](https://github.com/sveltewind/sveltewind/compare/v4.4.0...v4.4.1) (2026-06-20)
+
+
+### Bug Fixes
+
+* correct transition prop on Card component ([468bf7b](https://github.com/sveltewind/sveltewind/commit/468bf7bf97b23fb2b56da672c97d3e1fd66266b1))
+
 ## [4.4.0](https://github.com/sveltewind/sveltewind/compare/v4.3.1...v4.4.0) (2026-06-04)
 
 
