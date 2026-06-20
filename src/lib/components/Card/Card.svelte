@@ -38,13 +38,7 @@
 	// $effects
 </script>
 
-<Div
-	{...restProps}
-	bind:element
-	bind:isVisible
-	class={classes}
-	transition={[transitionFn, transitionOptions]}
->
+<Div {...restProps} bind:element bind:isVisible class={classes} {transition}>
 	{#if children}
 		{@render children()}
 	{/if}
