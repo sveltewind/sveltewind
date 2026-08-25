@@ -137,7 +137,8 @@ const theme: ThemeObject = {
 	},
 	ul: {
 		base: 'flex list-disc flex-col gap-3 pl-6 text-gray-600 marker:text-primary-500 dark:text-gray-400'
-	}
+	},
+	video: { base: '' }
 };
 
 export default theme;

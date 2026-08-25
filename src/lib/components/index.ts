@@ -43,5 +43,6 @@ export { default as Th } from './Th/Th.svelte';
 export { default as Thead } from './Thead/Thead.svelte';
 export { default as Tr } from './Tr/Tr.svelte';
 export { default as Ul } from './Ul/Ul.svelte';
+export { default as Video } from './Video/Video.svelte';
 
 export const noopTransition = (_node: Element) => ({ duration: 0 });
