@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.5.0](https://github.com/sveltewind/sveltewind/compare/v4.4.1...v4.5.0) (2026-08-25)
+
+
+### Features
+
+* add Source component ([41c9d84](https://github.com/sveltewind/sveltewind/commit/41c9d84500c035ff5c4d39a0b28910fda5fb893d))
+* add Video component ([69a22d4](https://github.com/sveltewind/sveltewind/commit/69a22d44c854c24348fd2ec3e8eea90da0ab623c))
+
 ## [4.4.1](https://github.com/sveltewind/sveltewind/compare/v4.4.0...v4.4.1) (2026-06-20)
 
 
