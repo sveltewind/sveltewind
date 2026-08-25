@@ -33,6 +33,7 @@ export { default as Radio } from './Radio/Radio.svelte';
 export { default as Section } from './Section/Section.svelte';
 export { default as Select } from './Select/Select.svelte';
 export { default as Shiki } from './Shiki/Shiki.svelte';
+export { default as Source } from './Source/Source.svelte';
 export { default as Span } from './Span/Span.svelte';
 export { default as Table } from './Table/Table.svelte';
 export { default as Tabs } from './Tabs/Tabs.svelte';

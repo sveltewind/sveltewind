@@ -132,6 +132,7 @@ const theme: ThemeObject = {
 		base: ''
 	},
 	shiki: { base: '' },
+	source: { base: '' },
 	tabs: {
 		base: twMerge(defaults.insetRing.neutral, defaults.borderRadius.md, 'flex p-1')
 	},
