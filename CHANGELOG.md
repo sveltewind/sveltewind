@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.6.0](https://github.com/sveltewind/sveltewind/compare/v4.5.0...v4.6.0) (2026-08-26)
+
+
+### Features
+
+* add Circle component ([6803c39](https://github.com/sveltewind/sveltewind/commit/6803c3906d11a60b0a8b551c317ed13d57fe3b51))
+* add Spinner.svelte component ([43889ac](https://github.com/sveltewind/sveltewind/commit/43889ac072a2b7285f3db21d43205efe754f13ff))
+
+
+### Bug Fixes
+
+* Circle component props attributes ([1886653](https://github.com/sveltewind/sveltewind/commit/1886653437754a601d5cad8fc4cb1610c6520658))
+
 ## [4.5.0](https://github.com/sveltewind/sveltewind/compare/v4.4.1...v4.5.0) (2026-08-25)
 
 
