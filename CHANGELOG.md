@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.7.0](https://github.com/sveltewind/sveltewind/compare/v4.6.0...v4.7.0) (2026-08-26)
+
+
+### Features
+
+* convert Spinner animation from CSS to element animation ([4b41bd6](https://github.com/sveltewind/sveltewind/commit/4b41bd64ca7379c9ea6e9e4a050b4cfec99f92f0))
+
 ## [4.6.0](https://github.com/sveltewind/sveltewind/compare/v4.5.0...v4.6.0) (2026-08-26)
 
 
