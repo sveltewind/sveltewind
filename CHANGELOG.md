@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.7.1](https://github.com/sveltewind/sveltewind/compare/v4.7.0...v4.7.1) (2026-08-26)
+
+
+### Bug Fixes
+
+* bind circle element ([5bee25f](https://github.com/sveltewind/sveltewind/commit/5bee25f221cecb6cad40bd2a74c172398f6df515))
+
 ## [4.7.0](https://github.com/sveltewind/sveltewind/compare/v4.6.0...v4.7.0) (2026-08-26)
 
 
