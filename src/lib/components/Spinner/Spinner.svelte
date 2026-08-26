@@ -97,7 +97,14 @@
 		{#if children}
 			{@render children()}
 		{:else}
-			<Circle cx="12" cy="12" fill="none" r="9.5" stroke-width={strokeWidth} />
+			<Circle
+				bind:element={circleElement}
+				cx="12"
+				cy="12"
+				fill="none"
+				r="9.5"
+				stroke-width={strokeWidth}
+			/>
 		{/if}
 	</svg>
 {/if}
