@@ -3,6 +3,7 @@ export { default as Aside } from './Aside/Aside.svelte';
 export { default as Button } from './Button/Button.svelte';
 export { default as Card } from './Card/Card.svelte';
 export { default as Checkbox } from './Checkbox/Checkbox.svelte';
+export { default as Circle } from './Circle/Circle.svelte';
 export { default as Code } from './Code/Code.svelte';
 export { default as CodeBlock } from './CodeBlock/CodeBlock.svelte';
 export { default as Container } from './Container/Container.svelte';
