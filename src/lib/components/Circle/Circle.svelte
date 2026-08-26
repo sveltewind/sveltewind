@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import { type HTMLAttributes } from 'svelte/elements';
+	import { type SVGAttributes } from 'svelte/elements';
 	import { noopTransition } from '$lib/components';
 	import type { TransitionProps } from '$lib/components/types';
 	import { theme as globalTheme, type Theme } from '$lib/theme';
 
 	// Types
-	type Props = HTMLAttributes<SVGCircleElement> & {
+	type Props = SVGAttributes<SVGCircleElement> & {
 		children?: Snippet;
 		class?: string;
 		element?: SVGCircleElement | null;
