@@ -28,9 +28,59 @@
 		...restProps
 	}: Props = $props();
 
+	// $state
+	let circleElement = $state<SVGCircleElement | null>(null);
+
+	// $derives
 	const classes = $derived(theme.resolve('spinner', variants, className));
 	const transitionFn = $derived(transition[0]);
 	const transitionOptions = $derived(transition[1] ?? {});
+
+	$effect(() => {
+		if (!element || !circleElement) return;
+
+		const rotation = element.animate(
+			[{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }],
+			{
+				duration: 2000,
+				iterations: Infinity,
+				easing: 'linear'
+			}
+		);
+
+		const dash = circleElement.animate(
+			[
+				{
+					strokeDasharray: '0 150',
+					strokeDashoffset: '0'
+				},
+				{
+					strokeDasharray: '42 150',
+					strokeDashoffset: '-16',
+					offset: 0.475
+				},
+				{
+					strokeDasharray: '42 150',
+					strokeDashoffset: '-59',
+					offset: 0.95
+				},
+				{
+					strokeDasharray: '42 150',
+					strokeDashoffset: '-59'
+				}
+			],
+			{
+				duration: 1500,
+				iterations: Infinity,
+				easing: 'ease-in-out'
+			}
+		);
+
+		return () => {
+			rotation.cancel();
+			dash.cancel();
+		};
+	});
 </script>
 
 {#if isVisible}
@@ -47,50 +97,7 @@
 		{#if children}
 			{@render children()}
 		{:else}
-			<Circle
-				class="spinner-circle"
-				cx="12"
-				cy="12"
-				r="9.5"
-				fill="none"
-				stroke-width={strokeWidth}
-			/>
+			<Circle cx="12" cy="12" fill="none" r="9.5" stroke-width={strokeWidth} />
 		{/if}
 	</svg>
 {/if}
-
-<style>
-	svg {
-		transform-origin: center;
-		animation: spinner-rotate 2s linear infinite;
-	}
-
-	.spinner-circle {
-		stroke-linecap: round;
-		animation: spinner-dash 1.5s ease-in-out infinite;
-	}
-
-	@keyframes spinner-rotate {
-		100% {
-			transform: rotate(360deg);
-		}
-	}
-
-	@keyframes spinner-dash {
-		0% {
-			stroke-dasharray: 0 150;
-			stroke-dashoffset: 0;
-		}
-
-		47.5% {
-			stroke-dasharray: 42 150;
-			stroke-dashoffset: -16;
-		}
-
-		95%,
-		100% {
-			stroke-dasharray: 42 150;
-			stroke-dashoffset: -59;
-		}
-	}
-</style>
