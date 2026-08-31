@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.8.0](https://github.com/sveltewind/sveltewind/compare/v4.7.1...v4.8.0) (2026-08-31)
+
+
+### Features
+
+* add portal attachment ([b16bcfe](https://github.com/sveltewind/sveltewind/commit/b16bcfe326b4603c126d94997648c28feb429590))
+* add tooltip attachment ([769327c](https://github.com/sveltewind/sveltewind/commit/769327c40a0cbb0338301bfdb36de9e948eb854f))
+* add Tooltip component ([20eccaf](https://github.com/sveltewind/sveltewind/commit/20eccaf63d452df01bc1e3c62971cddcf51ed4cd))
+
 ## [4.7.1](https://github.com/sveltewind/sveltewind/compare/v4.7.0...v4.7.1) (2026-08-26)
 
 
