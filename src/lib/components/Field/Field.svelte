@@ -13,6 +13,8 @@
 		isVisible?: boolean;
 		theme?: Theme;
 		transition?: TransitionProps;
+		inTransition?: TransitionProps;
+		outTransition?: TransitionProps;
 		variants?: string[];
 	};
 
@@ -24,6 +26,8 @@
 		isVisible = $bindable(true),
 		theme = globalTheme,
 		transition = [noopTransition, {}],
+		inTransition,
+		outTransition,
 		variants = [],
 		...restProps
 	}: Props = $props();

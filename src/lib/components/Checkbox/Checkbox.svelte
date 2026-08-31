@@ -18,6 +18,8 @@
 		snippet?: Snippet;
 		theme?: Theme;
 		transition?: TransitionProps;
+		inTransition?: TransitionProps;
+		outTransition?: TransitionProps;
 		variants?: string[];
 	};
 
@@ -31,6 +33,8 @@
 		snippet,
 		theme = globalTheme,
 		transition = [noopTransition, {}],
+		inTransition,
+		outTransition,
 		variants = [],
 		...restProps
 	}: Props = $props();

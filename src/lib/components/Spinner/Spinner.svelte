@@ -13,6 +13,8 @@
 		strokeWidth?: string;
 		theme?: Theme;
 		transition?: TransitionProps;
+		inTransition?: TransitionProps;
+		outTransition?: TransitionProps;
 		variants?: string[];
 	};
 
@@ -24,6 +26,8 @@
 		strokeWidth = '3',
 		theme = globalTheme,
 		transition = [noopTransition, {}],
+		inTransition,
+		outTransition,
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -33,8 +37,11 @@
 
 	// $derives
 	const classes = $derived(theme.resolve('spinner', variants, className));
-	const transitionFn = $derived(transition[0]);
-	const transitionOptions = $derived(transition[1] ?? {});
+	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
+	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
+
+	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
+	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 
 	$effect(() => {
 		if (!element || !circleElement) return;
@@ -91,7 +98,8 @@
 		height="24"
 		width="24"
 		stroke="currentColor"
-		transition:transitionFn={transitionOptions}
+		in:inTransitionFn={inTransitionOptions}
+		out:outTransitionFn={outTransitionOptions}
 		viewBox="0 0 24 24"
 	>
 		{#if children}

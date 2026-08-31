@@ -13,6 +13,8 @@
 		isVisible?: boolean;
 		theme?: Theme;
 		transition?: TransitionProps;
+		inTransition?: TransitionProps;
+		outTransition?: TransitionProps;
 		variants?: string[];
 	};
 
@@ -24,6 +26,8 @@
 		isVisible = $bindable(true),
 		theme = globalTheme,
 		transition = [noopTransition, {}],
+		inTransition,
+		outTransition,
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -32,14 +36,23 @@
 
 	// $derived
 	const classes = $derived(theme.resolve('a', variants, className));
-	const transitionFn = $derived(transition[0]);
-	const transitionOptions = $derived(transition[1] ?? {});
+	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
+	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
+
+	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
+	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 
 	// $effects
 </script>
 
 {#if isVisible}
-	<a {...restProps} bind:this={element} class={classes} transition:transitionFn={transitionOptions}>
+	<a
+		{...restProps}
+		bind:this={element}
+		class={classes}
+		in:inTransitionFn={inTransitionOptions}
+		out:outTransitionFn={outTransitionOptions}
+	>
 		{#if children}
 			{@render children()}
 		{/if}
