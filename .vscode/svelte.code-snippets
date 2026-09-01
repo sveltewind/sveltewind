@@ -103,7 +103,7 @@
 			"\t// \\$effects",
 			"</script>",
 			"",
-			"<${5:Div} {...restProps} bind:element class={classes} {inTransition} {outTransition} {transition}>",
+			"<${5:Div} {...restProps} bind:element class={classes} {inTransition} {isVisible} {outTransition} {transition}>",
 			"\t{#if children}",
 			"\t\t{@render children()}",
 			"\t{/if}",
