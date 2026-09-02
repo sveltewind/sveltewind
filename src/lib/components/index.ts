@@ -31,6 +31,7 @@ export { default as P } from './P/P.svelte';
 export { default as Pile } from './Pile/Pile.svelte';
 export { default as Pre } from './Pre/Pre.svelte';
 export { default as Radio } from './Radio/Radio.svelte';
+export { default as Range } from './Range/Range.svelte';
 export { default as Section } from './Section/Section.svelte';
 export { default as Select } from './Select/Select.svelte';
 export { default as Shiki } from './Shiki/Shiki.svelte';

@@ -128,6 +128,7 @@ const theme: ThemeObject = {
 			'checked:bg-primary-500 checked:inset-ring-5 checked:inset-ring-gray-950 dark:checked:inset-ring-gray-50'
 		)
 	},
+	range: { base: 'relative h-4' },
 	section: {
 		base: ''
 	},
