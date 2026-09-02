@@ -45,11 +45,6 @@
 
 	// $derived
 	const classes = $derived(theme.resolve('tabs', variants, className));
-	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
-	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
-
-	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
-	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 
 	// $effects
 </script>
@@ -59,7 +54,9 @@
 	bind:element
 	bind:isVisible
 	class={classes}
-	transition={[transitionFn, transitionOptions]}
+	{inTransition}
+	{outTransition}
+	{transition}
 >
 	{#if children}
 		{@render children()}

@@ -36,16 +36,19 @@
 
 	// $derived
 	const classes = $derived(theme.resolve('card', variants, className));
-	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
-	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
-
-	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
-	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 
 	// $effects
 </script>
 
-<Div {...restProps} bind:element bind:isVisible class={classes} {transition}>
+<Div
+	{...restProps}
+	bind:element
+	bind:isVisible
+	class={classes}
+	{inTransition}
+	{outTransition}
+	{transition}
+>
 	{#if children}
 		{@render children()}
 	{/if}

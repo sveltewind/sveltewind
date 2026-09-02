@@ -47,7 +47,7 @@
 	// $effects
 </script>
 
-<Label bind:isVisible class={classes} {transition}>
+<Label bind:isVisible class={classes} {inTransition} {outTransition} {transition}>
 	{#if snippet}
 		{@render snippet()}
 	{:else}

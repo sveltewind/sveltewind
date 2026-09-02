@@ -57,11 +57,6 @@
 
 	// $derived
 	const classes = $derived(theme.resolve('shiki', variants, className));
-	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
-	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
-
-	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
-	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 
 	// $effects
 	$effect(() => {
@@ -174,7 +169,15 @@
 	});
 </script>
 
-<Pre {...restProps} bind:element class={classes} transition={[transitionFn, transitionOptions]}>
+<Pre
+	{...restProps}
+	bind:element
+	bind:isVisible
+	class={classes}
+	{inTransition}
+	{outTransition}
+	{transition}
+>
 	{#if children}
 		{@render children()}
 	{:else}
