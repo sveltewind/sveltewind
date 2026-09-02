@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.9.0](https://github.com/sveltewind/sveltewind/compare/v4.8.0...v4.9.0) (2026-09-02)
+
+
+### Features
+
+* add inTransition and outTransition props to all components ([34052c5](https://github.com/sveltewind/sveltewind/commit/34052c5173b60be42c0598b324e4eecfd038fe5e))
+* add Range component ([4c7ebf3](https://github.com/sveltewind/sveltewind/commit/4c7ebf3616084adf2215f79a3bbc01d7959cb5ce))
+* update page ([22a34b1](https://github.com/sveltewind/sveltewind/commit/22a34b19d812167ef141fa709aad5cd77703bf7a))
+
+
+### Bug Fixes
+
+* add isVisible prop to code snippet ([09e7b8b](https://github.com/sveltewind/sveltewind/commit/09e7b8b57981d681cbf4dde53a32b068d5861030))
+* component transition props ([06b4d90](https://github.com/sveltewind/sveltewind/commit/06b4d90db3dd6f2e2cd50f8cc2e0373d297452e9))
+
 ## [4.8.0](https://github.com/sveltewind/sveltewind/compare/v4.7.1...v4.8.0) (2026-08-31)
 
 
