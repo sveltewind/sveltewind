@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.10.1](https://github.com/sveltewind/sveltewind/compare/v4.10.0...v4.10.1) (2026-09-08)
+
 ## [4.10.0](https://github.com/sveltewind/sveltewind/compare/v4.9.0...v4.10.0) (2026-09-08)
 
 
