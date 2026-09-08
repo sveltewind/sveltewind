@@ -77,6 +77,16 @@ const theme: ThemeObject = {
 	container: {
 		base: 'mx-auto px-6'
 	},
+	dialog: {
+		base: twMerge(
+			defaults.borderRadius.md,
+			defaults.insetRing.neutral,
+			defaults.padding.x,
+			defaults.padding.y,
+			'm-auto',
+			'backdrop:backdrop-blur-none backdrop:opacity-0 backdrop:transition-[backdrop-filter] backdrop:duration-200 open:backdrop:backdrop-blur open:backdrop:opacity-100 starting:open:backdrop:opacity-0 starting:open:backdrop:backdrop-blur-none'
+		)
+	},
 	div: {
 		base: ''
 	},

@@ -7,6 +7,7 @@ export { default as Circle } from './Circle/Circle.svelte';
 export { default as Code } from './Code/Code.svelte';
 export { default as CodeBlock } from './CodeBlock/CodeBlock.svelte';
 export { default as Container } from './Container/Container.svelte';
+export { default as Dialog } from './Dialog/Dialog.svelte';
 export { default as Div } from './Div/Div.svelte';
 export { default as Field } from './Field/Field.svelte';
 export { default as Fieldset } from './Fieldset/Fieldset.svelte';
