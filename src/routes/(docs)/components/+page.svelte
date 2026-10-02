@@ -162,13 +162,7 @@
 		Icon={SwatchBook}
 		title="Theming"
 	/>
-	<BlockLink
-		class="items-end text-right"
-		description="Getting started is simple — install the package and you’re ready to go."
-		href="/getting-started/theming"
-		Icon={SwatchBook}
-		title="Theming"
-	/>
+	<Div />
 </DocsSection>
 
 {#snippet circlePreview()}
