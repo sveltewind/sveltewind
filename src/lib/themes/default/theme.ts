@@ -165,6 +165,9 @@ const theme: ThemeObject = {
 	tabs: {
 		base: twMerge(defaults.insetRing.neutral, defaults.borderRadius.md, 'flex p-1')
 	},
+	td: { base: twMerge(defaults.padding.input.x, defaults.padding.input.y) },
+	th: { base: twMerge(defaults.padding.input.x, defaults.padding.input.y) },
+	tr: { base: twMerge(defaults.borderColor.neutral, 'border-t') },
 	tooltip: { base: 'pointer-events-none fixed z-20' },
 	ul: {
 		base: 'flex list-disc flex-col gap-3 pl-6 text-gray-600 marker:text-primary-500 dark:text-gray-400'
