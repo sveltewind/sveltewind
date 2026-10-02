@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.11.0](https://github.com/sveltewind/sveltewind/compare/v4.10.1...v4.11.0) (2026-10-02)
+
+
+### Features
+
+* add A component documentation ([8df18e2](https://github.com/sveltewind/sveltewind/commit/8df18e2c80adaee5eafa67a57ee58a15e1058fec))
+* add docs for each component ([86204d8](https://github.com/sveltewind/sveltewind/commit/86204d82c71cfcf83b3e9f63c4ea490ca1f6064b))
+* add multiple components ([fbc0183](https://github.com/sveltewind/sveltewind/commit/fbc0183412f509b5e13a414cf96fd779bdb61669))
+* add Popover component ([921a593](https://github.com/sveltewind/sveltewind/commit/921a59314f1233a568571f66df49130dc9e3a25c))
+* update Popover component ([f6bb36c](https://github.com/sveltewind/sveltewind/commit/f6bb36c2bf0288d94489ae02110a9b421abe0816))
+
+
+### Bug Fixes
+
+* links at bottom ([ee3e23e](https://github.com/sveltewind/sveltewind/commit/ee3e23e70b73b6b4b23b440d25a9d68bab83423b))
+
 ## [4.10.1](https://github.com/sveltewind/sveltewind/compare/v4.10.0...v4.10.1) (2026-09-08)
 
 ## [4.10.0](https://github.com/sveltewind/sveltewind/compare/v4.9.0...v4.10.0) (2026-09-08)
