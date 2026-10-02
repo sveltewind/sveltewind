@@ -1,13 +1,7 @@
 <script lang="ts">
-	import type { Element, RootContent } from 'hast';
+	import type { Element } from 'hast';
 	import { toHtml } from 'hast-util-to-html';
-	import type {
-		BundledLanguage,
-		BundledTheme,
-		CodeToHastOptions,
-		StringLiteralUnion,
-		ThemeRegistrationAny
-	} from 'shiki';
+	import type { BundledLanguage, BundledTheme, CodeToHastOptions } from 'shiki';
 	import { type Snippet } from 'svelte';
 	import { type HTMLAttributes } from 'svelte/elements';
 	import { Code, noopTransition, Pre, Span } from '$lib/components';
@@ -74,28 +68,45 @@
 			try {
 				const highlighter = await getShikiHighlighter();
 
-				if (options && 'themes' in options && options.themes !== undefined) {
-					options.defaultColor = false;
-					if ('light' in options.themes)
-						await highlighter.loadTheme(options.themes.light as BundledTheme);
-					if ('dark' in options.themes)
-						await highlighter.loadTheme(options.themes.dark as BundledTheme);
-				} else if (options && !('theme' in options)) {
-					options.defaultColor = false;
-					options.themes = {
-						light: 'github-light',
-						dark: 'github-dark'
-					};
+				const themeOptions =
+					options && 'theme' in options && options.theme
+						? { theme: options.theme }
+						: {
+								themes:
+									options && 'themes' in options && options.themes
+										? options.themes
+										: { light: 'github-light' as const, dark: 'github-dark' as const }
+							};
+				const highlightOptions: CodeToHastOptions<BundledLanguage, BundledTheme> = {
+					lang: 'ts',
+					...options,
+					...themeOptions
+				};
+
+				if ('themes' in highlightOptions) {
+					highlightOptions.defaultColor = false;
+					await Promise.all(
+						Object.values(highlightOptions.themes).map((theme) =>
+							theme
+								? highlighter.loadTheme(typeof theme === 'string' ? (theme as BundledTheme) : theme)
+								: Promise.resolve()
+						)
+					);
+				} else if ('theme' in highlightOptions) {
+					await highlighter.loadTheme(
+						typeof highlightOptions.theme === 'string'
+							? (highlightOptions.theme as BundledTheme)
+							: highlightOptions.theme
+					);
 				}
 
 				const resolvedOptions: CodeToHastOptions<BundledLanguage, BundledTheme> = {
-					lang: 'ts',
-					...options,
+					...highlightOptions,
 
 					transformers: [
 						...(options?.transformers ?? []),
 
-						...(options && 'themes' in options
+						...('themes' in highlightOptions
 							? [
 									{
 										span(node: Element) {
