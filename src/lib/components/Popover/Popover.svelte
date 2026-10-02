@@ -1,7 +1,9 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { onMount } from 'svelte';
 	import type { HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
+	import { noopTransition } from '$lib/components';
+	import type { TransitionProps } from '$lib/components/types';
+	import Button from '../Button/Button.svelte';
 	import { theme as globalTheme, type Theme } from '$lib/theme';
 
 	// Types
@@ -11,10 +13,14 @@
 		class?: string;
 		element?: HTMLDivElement | null;
 		gap?: number;
+		inTransition?: TransitionProps;
 		isVisible?: boolean;
+		outTransition?: TransitionProps;
 		placement?: Placement;
+		popover?: Exclude<HTMLAttributes<HTMLDivElement>['popover'], '' | null | undefined>;
 		theme?: Theme;
-		trigger: Snippet<[TriggerProps]>;
+		transition?: TransitionProps;
+		trigger?: Snippet<[TriggerProps]>;
 		variants?: string[];
 	};
 	type Rect = Pick<DOMRect, 'bottom' | 'height' | 'left' | 'right' | 'top' | 'width'>;
@@ -25,6 +31,7 @@
 		| 'aria-expanded'
 		| 'aria-haspopup'
 		| 'id'
+		| 'onclick'
 		| 'popovertarget'
 		| 'popovertargetaction'
 		| 'style'
@@ -45,12 +52,17 @@
 		element = $bindable(null),
 		gap = 8,
 		id = `${uid}-popover`,
+		inTransition,
 		isVisible = $bindable(false),
 		onbeforetoggle,
+		onoutroend,
 		ontoggle,
+		outTransition,
 		placement = 'bottom',
+		popover = 'auto',
 		theme = globalTheme,
-		trigger,
+		transition = [noopTransition, {}],
+		trigger = defaultTrigger,
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -62,11 +74,20 @@
 
 	// $derived
 	const classes = $derived(theme.resolve('popover', variants, className));
+	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
+	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
+	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
+	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 	const triggerProps: TriggerProps = $derived({
 		'aria-controls': id,
 		'aria-expanded': isVisible,
 		'aria-haspopup': restProps.role === 'dialog' ? 'dialog' : undefined,
 		id: triggerId,
+		onclick: (event) => {
+			// Svelte must mount the native target before opening it and finish the outro before hiding it.
+			event.preventDefault();
+			isVisible = !isVisible;
+		},
 		popovertarget: id,
 		popovertargetaction: 'toggle',
 		style: `anchor-name: ${anchorName}`,
@@ -114,48 +135,91 @@
 		// including canceled opens, before a reactive effect can reopen a dismissed popover.
 		queueMicrotask(() => syncVisibility(node));
 	};
+	const handleOutroEnd: NonNullable<Props['onoutroend']> = (event) => {
+		if (!isVisible && event.currentTarget.matches(':popover-open')) {
+			event.currentTarget.hidePopover();
+		}
+		onoutroend?.(event);
+	};
 	const handleToggle: NonNullable<Props['ontoggle']> = (event) => {
 		// Toggle events are queued/coalesced; newState can already be stale after a rapid toggle.
 		syncVisibility(event.currentTarget);
 		ontoggle?.(event);
 	};
+	const initialize = (node: HTMLDivElement) => {
+		const anchor = document.getElementById(triggerId);
+		(node.showPopover as (options?: { source: HTMLElement }) => void).call(
+			node,
+			anchor ? { source: anchor } : undefined
+		);
+		if (anchor && node.matches(':popover-open')) {
+			// Position synchronously before Svelte starts measuring and animating the intro.
+			const position = getPosition(
+				anchor.getBoundingClientRect(),
+				{ height: node.offsetHeight, width: node.offsetWidth },
+				{ height: window.innerHeight, width: document.documentElement.clientWidth },
+				placement,
+				gap
+			);
+			hasAnchors =
+				CSS.supports('anchor-name', '--popover') &&
+				CSS.supports('position-area', 'bottom') &&
+				CSS.supports('position-try-fallbacks', 'flip-block');
+			node.toggleAttribute('data-anchored', hasAnchors);
+			if (hasAnchors) {
+				const rect = node.getBoundingClientRect();
+				if (Math.abs(rect.left - position.left) < 2 && Math.abs(rect.top - position.top) < 2) {
+					return;
+				}
+			}
+			node.removeAttribute('data-anchored');
+			node.style.setProperty('--popover-left', `${position.left}px`);
+			node.style.setProperty('--popover-top', `${position.top}px`);
+			left = position.left;
+			top = position.top;
+			hasAnchors = false;
+		}
+	};
 	const syncVisibility = (node: HTMLDivElement) => {
-		if (node.isConnected && node === element) isVisible = node.matches(':popover-open');
+		if (node.isConnected && node === element && !node.matches(':popover-open')) isVisible = false;
 	};
 
 	// $effects
-	onMount(() => {
-		hasAnchors =
-			CSS.supports('anchor-name', '--popover') &&
-			CSS.supports('position-area', 'bottom') &&
-			CSS.supports('position-try-fallbacks', 'flip-block');
+	$effect(() => {
+		if (!isVisible || popover !== 'manual' || !element) return;
+		const panel = element;
+		const anchor = document.getElementById(triggerId);
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== 'Escape' || event.defaultPrevented) return;
+			event.preventDefault();
+			isVisible = false;
+		};
+		const handlePointerDown = (event: PointerEvent) => {
+			const path = event.composedPath();
+			if (path.includes(panel) || (anchor && path.includes(anchor))) return;
+			isVisible = false;
+		};
+		document.addEventListener('keydown', handleKeyDown);
+		document.addEventListener('pointerdown', handlePointerDown);
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+			document.removeEventListener('pointerdown', handlePointerDown);
+		};
 	});
 	$effect(() => {
-		if (!element?.isConnected) return;
-		if (isVisible === element.matches(':popover-open')) return;
-		if (isVisible) {
-			const source = document.getElementById(triggerId);
-			(element.showPopover as (options?: { source: HTMLElement }) => void).call(
-				element,
-				source ? { source } : undefined
-			);
-		} else {
-			element.hidePopover();
-		}
-	});
-	$effect(() => {
-		if (!isVisible || hasAnchors || !element) return;
+		if (!isVisible || !element) return;
 		const panel = element;
 		const anchor = document.getElementById(triggerId);
 		if (!anchor) return;
+		if (hasAnchors) return;
 		const currentPlacement = placement;
 		const currentGap = gap;
 		let frame: number;
 		const updatePosition = () => {
 			const position = getPosition(
 				anchor.getBoundingClientRect(),
-				panel.getBoundingClientRect(),
-				{ width: document.documentElement.clientWidth, height: window.innerHeight },
+				{ height: panel.offsetHeight, width: panel.offsetWidth },
+				{ height: window.innerHeight, width: document.documentElement.clientWidth },
 				currentPlacement,
 				currentGap
 			);
@@ -169,48 +233,34 @@
 	});
 </script>
 
+{#snippet defaultTrigger(props: TriggerProps)}
+	<Button {...props}>Toggle popover</Button>
+{/snippet}
+
 {@render trigger(triggerProps)}
 
-<div
-	{...restProps}
-	{id}
-	bind:this={element}
-	class={classes}
-	popover="auto"
-	data-anchored={hasAnchors || undefined}
-	style:--popover-anchor={anchorName}
-	style:--popover-gap={`${Math.max(0, gap)}px`}
-	style:--popover-placement={placement}
-	style:left={hasAnchors ? undefined : `${left}px`}
-	style:top={hasAnchors ? undefined : `${top}px`}
-	onbeforetoggle={handleBeforeToggle}
-	ontoggle={handleToggle}
->
-	{#if children}
-		{@render children()}
-	{/if}
-</div>
-
-<style>
-	div {
-		inset: auto;
-		margin: 0;
-		max-height: calc(100dvh - 16px);
-		max-width: calc(100vw - 16px);
-		overflow: auto;
-		position: fixed;
-		width: max-content;
-	}
-
-	div[data-anchored] {
-		align-self: safe center;
-		justify-self: safe center;
-		margin: var(--popover-gap);
-		position-anchor: var(--popover-anchor);
-		position-area: var(--popover-placement);
-		position-try-fallbacks:
-			flip-block,
-			flip-inline,
-			flip-block flip-inline;
-	}
-</style>
+{#if isVisible}
+	<div
+		{...restProps}
+		bind:this={element}
+		class={classes}
+		data-anchored={hasAnchors || undefined}
+		{id}
+		onbeforetoggle={handleBeforeToggle}
+		onoutroend={handleOutroEnd}
+		ontoggle={handleToggle}
+		{popover}
+		style:--popover-anchor={anchorName}
+		style:--popover-gap={`${Math.max(0, gap)}px`}
+		style:--popover-left={`${left}px`}
+		style:--popover-placement={placement}
+		style:--popover-top={`${top}px`}
+		use:initialize
+		in:inTransitionFn={inTransitionOptions}
+		out:outTransitionFn={outTransitionOptions}
+	>
+		{#if children}
+			{@render children()}
+		{/if}
+	</div>
+{/if}

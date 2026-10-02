@@ -90,6 +90,10 @@ const theme: ThemeObject = {
 	div: {
 		base: ''
 	},
+	field: {
+		base: 'flex flex-col'
+	},
+	form: { base: 'flex flex-col space-y-6' },
 	h1: {
 		base: 'text-5xl font-bold'
 	},
@@ -135,7 +139,12 @@ const theme: ThemeObject = {
 			defaults.insetRing.neutral,
 			defaults.padding.x,
 			defaults.padding.y,
-			'border-0 bg-gray-50 text-gray-950 shadow-lg dark:bg-gray-950 dark:text-gray-50'
+			'border-0 bg-gray-50 text-gray-950 shadow-lg dark:bg-gray-950 dark:text-gray-50',
+			'fixed inset-auto m-0 w-max max-h-[calc(100dvh-16px)] max-w-[calc(100vw-16px)] overflow-auto',
+			'left-(--popover-left) top-(--popover-top) data-anchored:left-auto data-anchored:top-auto',
+			'data-anchored:[align-self:safe_center] data-anchored:[justify-self:safe_center]',
+			'data-anchored:[margin:var(--popover-gap)] data-anchored:[position-anchor:var(--popover-anchor)]',
+			'data-anchored:[position-area:var(--popover-placement)] data-anchored:[position-try-fallbacks:flip-block,flip-inline,flip-block_flip-inline]'
 		)
 	},
 	pre: { base: 'flex' },
@@ -162,6 +171,9 @@ const theme: ThemeObject = {
 	},
 	video: { base: '' }
 };
+
+theme.select = theme.input;
+theme.textarea = theme.input;
 
 export default theme;
 export { theme };
