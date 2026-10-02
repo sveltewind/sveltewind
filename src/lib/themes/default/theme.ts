@@ -129,6 +129,15 @@ const theme: ThemeObject = {
 	},
 	p: { base: 'text-gray-600 dark:text-gray-400' },
 	pile: { base: 'grid [&>*]:[grid-area:1/1]' },
+	popover: {
+		base: twMerge(
+			defaults.borderRadius.md,
+			defaults.insetRing.neutral,
+			defaults.padding.x,
+			defaults.padding.y,
+			'border-0 bg-gray-50 text-gray-950 shadow-lg dark:bg-gray-950 dark:text-gray-50'
+		)
+	},
 	pre: { base: 'flex' },
 	radio: {
 		base: twMerge(

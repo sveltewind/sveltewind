@@ -30,6 +30,7 @@ export { default as Ol } from './Ol/Ol.svelte';
 export { default as Option } from './Option/Option.svelte';
 export { default as P } from './P/P.svelte';
 export { default as Pile } from './Pile/Pile.svelte';
+export { default as Popover } from './Popover/Popover.svelte';
 export { default as Pre } from './Pre/Pre.svelte';
 export { default as Radio } from './Radio/Radio.svelte';
 export { default as Range } from './Range/Range.svelte';
