@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
 	import { type HTMLInputAttributes } from 'svelte/elements';
-	import { noopTransition, Label, Div, Span } from '$lib/components';
+	import { Div, Input, Label, noopTransition, Span } from '$lib/components';
 	import type { TransitionProps } from '$lib/components/types';
 	import { theme as globalTheme, type Theme } from '$lib/theme';
 	import { twMerge } from 'tailwind-merge';
@@ -14,12 +14,12 @@
 		children?: Snippet;
 		class?: string;
 		element?: HTMLInputElement | null;
+		inTransition?: TransitionProps;
 		isVisible?: boolean;
+		outTransition?: TransitionProps;
 		snippet?: Snippet;
 		theme?: Theme;
 		transition?: TransitionProps;
-		inTransition?: TransitionProps;
-		outTransition?: TransitionProps;
 		variants?: string[];
 	};
 
@@ -29,12 +29,12 @@
 		children,
 		class: className = '',
 		element = $bindable(null),
+		inTransition,
 		isVisible = $bindable(true),
+		outTransition,
 		snippet,
 		theme = globalTheme,
 		transition = [noopTransition, {}],
-		inTransition,
-		outTransition,
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -47,11 +47,12 @@
 	// $effects
 </script>
 
-<Label bind:isVisible class={classes} {inTransition} {outTransition} {transition}>
+<Label bind:isVisible class={classes} {theme} {inTransition} {outTransition} {transition}>
 	{#if snippet}
 		{@render snippet()}
 	{:else}
 		<Div
+			{theme}
 			class={twMerge(
 				'flex size-6 items-center justify-center bg-transparent p-0',
 				checked
@@ -60,14 +61,14 @@
 			)}
 			variants={['button.base', 'button.variant.ghost', 'input.base']}
 		>
-			<Div isVisible={checked} transition={[scale, { duration: 200 }]}>
+			<Div {theme} isVisible={checked} transition={[scale, { duration: 200 }]}>
 				<Check class="size-4" />
 			</Div>
 		</Div>
 	{/if}
 	{#if children}
-		<Span>{@render children()}</Span>
+		<Span {theme}>{@render children()}</Span>
 	{/if}
 
-	<input {...restProps} bind:checked bind:this={element} class="sr-only" type="checkbox" />
+	<Input {...restProps} bind:checked bind:element class="sr-only p-0" {theme} type="checkbox" />
 </Label>

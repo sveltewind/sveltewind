@@ -26,6 +26,12 @@
 	// Previews
 	const previews: Partial<Record<ComponentName, Preview>> = {
 		A: { children: 'Explore Sveltewind', props: { href: '/getting-started/usage' } },
+		Accordion: {
+			children: 'Use native keyboard controls to expand this section.',
+			props: { summary: 'Learn more' }
+		},
+		Alert: { children: 'Your changes have been saved.', props: { variants: ['success'] } },
+		Badge: { children: 'New', props: { variants: ['info'] } },
 		Button: { children: 'Button' },
 		Checkbox: { children: 'Remember me' },
 		Circle: { preview: circlePreview },
@@ -37,6 +43,7 @@
 				title: 'hello.ts'
 			}
 		},
+		Details: { preview: detailsPreview },
 		Dialog: { preview: dialogPreview },
 		Field: { children: fieldChildren },
 		Fieldset: { children: fieldsetChildren },
@@ -73,6 +80,9 @@
 		Shiki: { props: { code: "const hello = 'world';", options: { theme: 'github-light' } } },
 		Source: { preview: sourcePreview },
 		Spinner: { props: { 'aria-label': 'Loading', role: 'img' } },
+		Summary: { preview: detailsPreview },
+		Svg: { preview: circlePreview },
+		Switch: { children: 'Notifications' },
 		Table: { preview: tablePreview },
 		Tabs: {
 			props: {
@@ -166,9 +176,9 @@
 </DocsSection>
 
 {#snippet circlePreview()}
-	<svg aria-label="Circle" height="64" role="img" viewBox="0 0 64 64" width="64">
+	<Components.Svg aria-label="Circle" height="64" role="img" viewBox="0 0 64 64" width="64">
 		<Components.Circle cx="32" cy="32" fill="currentColor" r="24" />
-	</svg>
+	</Components.Svg>
 {/snippet}
 
 {#snippet dialogPreview()}
@@ -274,4 +284,11 @@
 		>Hover or focus</Components.Button
 	>
 	<Components.Tooltip />
+{/snippet}
+
+{#snippet detailsPreview()}
+	<Components.Details>
+		<Components.Summary>Learn more</Components.Summary>
+		<Components.P>Native disclosure content.</Components.P>
+	</Components.Details>
 {/snippet}

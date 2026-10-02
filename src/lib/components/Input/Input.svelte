@@ -7,29 +7,35 @@
 
 	// Types
 	type Props = HTMLInputAttributes & {
+		checked?: HTMLInputAttributes['checked'];
 		children?: Snippet;
 		class?: string;
 		element?: HTMLInputElement | null;
+		group?: HTMLInputAttributes['value'];
+		inTransition?: TransitionProps;
 		isVisible?: boolean;
+		outTransition?: TransitionProps;
 		theme?: Theme;
 		transition?: TransitionProps;
-		inTransition?: TransitionProps;
-		outTransition?: TransitionProps;
-		value?: string;
+		type?: HTMLInputAttributes['type'];
+		value?: HTMLInputAttributes['value'];
 		variants?: string[];
 	};
 
 	// $props
 	let {
+		checked = $bindable(),
 		children,
 		class: className = '',
 		element = $bindable(null),
+		group = $bindable(),
+		inTransition,
 		isVisible = $bindable(true),
+		outTransition,
 		theme = globalTheme,
 		transition = [noopTransition, {}],
-		inTransition,
-		outTransition,
-		value = $bindable(''),
+		type = 'text',
+		value = $bindable(type === 'checkbox' || type === 'radio' ? 'on' : ''),
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -48,12 +54,48 @@
 </script>
 
 {#if isVisible}
-	<input
-		{...restProps}
-		bind:this={element}
-		bind:value
-		class={classes}
-		in:inTransitionFn={inTransitionOptions}
-		out:outTransitionFn={outTransitionOptions}
-	/>
+	{#if type === 'checkbox'}
+		<input
+			{...restProps}
+			bind:this={element}
+			class={classes}
+			in:inTransitionFn={inTransitionOptions}
+			out:outTransitionFn={outTransitionOptions}
+			bind:checked
+			type="checkbox"
+			{value}
+		/>
+	{:else if type === 'radio'}
+		<input
+			{...restProps}
+			bind:this={element}
+			class={classes}
+			in:inTransitionFn={inTransitionOptions}
+			out:outTransitionFn={outTransitionOptions}
+			bind:group
+			type="radio"
+			{value}
+		/>
+	{:else if type === 'file'}
+		<input
+			{...restProps}
+			bind:this={element}
+			class={classes}
+			in:inTransitionFn={inTransitionOptions}
+			out:outTransitionFn={outTransitionOptions}
+			{checked}
+			{type}
+			{value}
+		/>
+	{:else}
+		<input
+			{...restProps}
+			bind:this={element}
+			class={classes}
+			in:inTransitionFn={inTransitionOptions}
+			out:outTransitionFn={outTransitionOptions}
+			bind:value
+			{type}
+		/>
+	{/if}
 {/if}

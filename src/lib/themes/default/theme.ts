@@ -35,6 +35,37 @@ const theme: ThemeObject = {
 			ghost: 'no-underline'
 		}
 	},
+	accordion: {
+		base: 'w-full rounded-md inset-ring-1 inset-ring-gray-200 dark:inset-ring-gray-700'
+	},
+	accordionContent: { base: 'px-6 pb-6' },
+	accordionSummary: {
+		base: 'cursor-pointer rounded-md px-6 py-4 font-medium focus-visible:outline-2 focus-visible:outline-primary-500'
+	},
+	alert: {
+		base: 'rounded-md p-4 inset-ring-1 inset-ring-gray-200 bg-gray-50 text-gray-950 dark:inset-ring-gray-700 dark:bg-gray-900 dark:text-gray-50',
+		variants: {
+			error:
+				'bg-red-50 text-red-800 inset-ring-red-200 dark:bg-red-950 dark:text-red-200 dark:inset-ring-red-800',
+			info: 'bg-blue-50 text-blue-800 inset-ring-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:inset-ring-blue-800',
+			success:
+				'bg-green-50 text-green-800 inset-ring-green-200 dark:bg-green-950 dark:text-green-200 dark:inset-ring-green-800',
+			warning:
+				'bg-amber-50 text-amber-800 inset-ring-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:inset-ring-amber-800'
+		}
+	},
+	badge: {
+		base: 'inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium inset-ring-1 inset-ring-gray-200 bg-gray-100 text-gray-950 dark:inset-ring-gray-700 dark:bg-gray-800 dark:text-gray-50',
+		variants: {
+			error:
+				'bg-red-50 text-red-800 inset-ring-red-200 dark:bg-red-950 dark:text-red-200 dark:inset-ring-red-800',
+			info: 'bg-blue-50 text-blue-800 inset-ring-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:inset-ring-blue-800',
+			success:
+				'bg-green-50 text-green-800 inset-ring-green-200 dark:bg-green-950 dark:text-green-200 dark:inset-ring-green-800',
+			warning:
+				'bg-amber-50 text-amber-800 inset-ring-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:inset-ring-amber-800'
+		}
+	},
 	button: {
 		base: twMerge(
 			defaults.borderRadius.md,
@@ -77,6 +108,7 @@ const theme: ThemeObject = {
 	container: {
 		base: 'mx-auto px-6'
 	},
+	details: { base: '' },
 	dialog: {
 		base: twMerge(
 			defaults.borderRadius.md,
@@ -152,7 +184,7 @@ const theme: ThemeObject = {
 		base: twMerge(
 			defaults.insetRing.neutral,
 			defaults.transiton,
-			'appearance-none w-6 aspect-square rounded-full',
+			'appearance-none w-6 aspect-square rounded-full p-0',
 			'checked:bg-primary-500 checked:inset-ring-5 checked:inset-ring-gray-950 dark:checked:inset-ring-gray-50'
 		)
 	},
@@ -162,6 +194,14 @@ const theme: ThemeObject = {
 	},
 	shiki: { base: '' },
 	source: { base: '' },
+	summary: { base: '' },
+	svg: { base: '' },
+	switch: {
+		base: 'inline-flex items-center gap-3 cursor-pointer has-disabled:cursor-not-allowed has-disabled:opacity-50'
+	},
+	switchControl: {
+		base: "relative h-6 w-11 shrink-0 p-0 inset-ring-0 appearance-none rounded-full bg-gray-300 transition-colors checked:bg-primary-500 dark:bg-gray-700 dark:checked:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:cursor-not-allowed after:absolute after:top-0.5 after:left-0.5 after:size-5 after:rounded-full after:bg-white after:content-[''] after:transition-transform checked:after:translate-x-5"
+	},
 	tabs: {
 		base: twMerge(defaults.insetRing.neutral, defaults.borderRadius.md, 'flex p-1')
 	},

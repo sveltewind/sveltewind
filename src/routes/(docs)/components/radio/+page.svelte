@@ -21,6 +21,12 @@
 
 	const props = [
 		{
+			name: 'children',
+			type: 'Snippet',
+			defaultValue: 'undefined',
+			description: 'Accepted for API consistency; use handle to replace the native input.'
+		},
+		{
 			name: 'class',
 			type: 'string',
 			defaultValue: "''",
@@ -54,8 +60,7 @@
 			name: 'isVisible',
 			type: 'boolean',
 			defaultValue: 'true',
-			description:
-				'Accepted for API consistency; the native radio is rendered regardless of this value.'
+			description: 'Bindable visibility state for the native input or custom handle.'
 		},
 		{
 			name: 'outTransition',
@@ -125,10 +130,7 @@
 			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>The handle snippet replaces the native input. The current implementation accepts isVisible but
-		does not use it to hide the input.</P
-	>
+	<P>The handle snippet replaces the native input. Use isVisible to hide the control.</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>

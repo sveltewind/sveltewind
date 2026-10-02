@@ -20,6 +20,12 @@
 
 	const props = [
 		{
+			name: 'checked',
+			type: 'boolean | null',
+			defaultValue: 'undefined',
+			description: 'Bindable checked state for checkbox inputs.'
+		},
+		{
 			name: 'children',
 			type: 'Snippet',
 			defaultValue: 'undefined',
@@ -36,6 +42,12 @@
 			type: 'HTMLInputElement | null',
 			defaultValue: 'null',
 			description: 'Bindable reference to the underlying DOM element.'
+		},
+		{
+			name: 'group',
+			type: 'any',
+			defaultValue: 'undefined',
+			description: 'Bindable selected value for radio inputs.'
 		},
 		{
 			name: 'inTransition',
@@ -68,10 +80,17 @@
 			description: 'A Svelte transition function and its options.'
 		},
 		{
+			name: 'type',
+			type: 'HTMLInputAttributes["type"]',
+			defaultValue: "'text'",
+			description: 'Native input type; checkbox and radio inputs use their appropriate bindings.'
+		},
+		{
 			name: 'value',
-			type: 'string',
-			defaultValue: "''",
-			description: 'Bindable current value of the control.'
+			type: 'HTMLInputAttributes["value"]',
+			defaultValue: "'on' for checkbox/radio; '' otherwise",
+			description:
+				'Bindable current text or numeric value; submission value for checkbox/radio. File inputs remain native and are read through element.files.'
 		},
 		{
 			name: 'variants',

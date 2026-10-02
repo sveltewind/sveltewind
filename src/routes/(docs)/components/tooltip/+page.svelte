@@ -53,7 +53,7 @@
 			name: 'isVisible',
 			type: 'boolean',
 			defaultValue: 'true',
-			description: 'Accepted for API consistency; rendering is controlled by the tooltip store.'
+			description: 'Controls visibility while the tooltip store has an active tooltip.'
 		},
 		{
 			name: 'outTransition',

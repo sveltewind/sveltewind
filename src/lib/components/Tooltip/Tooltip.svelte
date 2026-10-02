@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
 	import { type HTMLAttributes } from 'svelte/elements';
-	import { noopTransition } from '$lib/components';
+	import { Div, noopTransition } from '$lib/components';
 	import type { TransitionProps } from '$lib/components/types';
 	import { theme as globalTheme, type Theme } from '$lib/theme';
 	import { tooltipStore } from '$lib/attachments/tooltip';
-	import { twMerge } from 'tailwind-merge';
 	import Card from '../Card/Card.svelte';
 	import { portal } from '$lib/attachments';
 
@@ -70,19 +69,19 @@
 
 	// $state
 	let left = $state(0);
+	let renderedTooltipState = $state<typeof tooltipStore.state>(null);
 	let top = $state(0);
 
 	// $derived
 	const classes = $derived(theme.resolve('tooltip', variants, className));
-	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
-	const inTransitioOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
-	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
-	const outTransitioOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 	const tooltipState = $derived(tooltipStore.state);
-	const transitionFn = $derived(transition[0]);
-	const transitionOptions = $derived(transition[1] ?? {});
 
 	// $effects
+	$effect(() => {
+		// Keep the last content mounted while the primitive runs its exit transition.
+		if (tooltipState) renderedTooltipState = tooltipState;
+	});
+
 	$effect(() => {
 		if (!tooltipState) return;
 
@@ -98,27 +97,27 @@
 	});
 </script>
 
-{#if tooltipState}
-	<div
-		{...restProps}
-		{@attach portal()}
-		bind:this={element}
-		class={twMerge(classes)}
-		in:inTransitionFn={inTransitioOptions}
-		out:outTransitionFn={outTransitioOptions}
-		style:left={`${left}px`}
-		style:top={`${top}px`}
-	>
-		{#if typeof tooltipState.content === 'string'}
+<Div
+	{...restProps}
+	{@attach portal()}
+	bind:element
+	class={classes}
+	{inTransition}
+	isVisible={isVisible && !!tooltipState}
+	{outTransition}
+	style={`${restProps.style ?? ''}; left: ${left}px; top: ${top}px;`}
+	{theme}
+	{transition}
+>
+	{#if renderedTooltipState}
+		{#if typeof renderedTooltipState.content === 'string'}
 			{#if children}
-				{@render children(tooltipState.content)}
+				{@render children(renderedTooltipState.content)}
 			{:else}
-				<Card>
-					{tooltipState.content}
-				</Card>
+				<Card {theme}>{renderedTooltipState.content}</Card>
 			{/if}
 		{:else}
-			{@render tooltipState.content()}
+			{@render renderedTooltipState.content()}
 		{/if}
-	</div>
-{/if}
+	{/if}
+</Div>

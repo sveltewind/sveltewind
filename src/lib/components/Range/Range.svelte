@@ -11,13 +11,13 @@
 		class?: string;
 		element?: HTMLInputElement | null;
 		fill?: Snippet<[RangeData]>;
-		isLabelVisible?: boolean;
 		inTransition?: TransitionProps;
+		isLabelVisible?: boolean;
 		isVisible?: boolean;
 		label?: Snippet<[RangeData]>;
-		outTransition?: TransitionProps;
 		max?: number;
 		min?: number;
+		outTransition?: TransitionProps;
 		step?: number;
 		theme?: Theme;
 		thumb?: Snippet<[RangeData]>;
@@ -40,8 +40,8 @@
 		class: className = '',
 		element = $bindable(null),
 		fill,
-		isLabelVisible = true,
 		inTransition,
+		isLabelVisible = true,
 		isVisible = $bindable(true),
 		label,
 		max = 100,
@@ -61,70 +61,65 @@
 
 	// $derived
 	const classes = $derived(theme.resolve('range', variants, className));
-	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
-	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
-	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
-	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 	const percent = $derived(Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100)));
 	const rangeData = $derived({ max, min, percent, step, value });
 
 	// $effects
 </script>
 
-{#if isVisible}
-	<div
-		class={classes}
-		in:inTransitionFn={inTransitionOptions}
-		out:outTransitionFn={outTransitionOptions}
+<Div bind:isVisible class={classes} {inTransition} {outTransition} {theme} {transition}>
+	<Div {theme} class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2">
+		{#if track}
+			{@render track(rangeData)}
+		{:else}
+			<Div {theme} class="h-1 w-full rounded-full bg-gray-200 dark:bg-gray-700" />
+		{/if}
+	</Div>
+	<Div
+		{theme}
+		class="pointer-events-none absolute top-1/2 left-0 -translate-y-1/2"
+		style="width:{percent}%;"
 	>
-		<Div class="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2">
-			{#if track}
-				{@render track(rangeData)}
-			{:else}
-				<Div class="h-1 w-full rounded-full bg-gray-200 dark:bg-gray-700" />
-			{/if}
-		</Div>
+		{#if fill}
+			{@render fill(rangeData)}
+		{:else}
+			<Div {theme} class="h-1 w-full rounded-full bg-primary-500" />
+		{/if}
+	</Div>
+	<Div
+		{theme}
+		class="pointer-events-none absolute top-1/2 h-full -translate-x-1/2 -translate-y-1/2"
+		style="left:{percent}%;"
+	>
+		{#if thumb}
+			{@render thumb(rangeData)}
+		{:else}
+			<Div
+				{theme}
+				class="aspect-square h-full rounded-full bg-gray-50 outline outline-gray-200 dark:bg-gray-950 dark:outline-gray-700"
+			/>
+		{/if}
+	</Div>
+	{#if label && isLabelVisible}
+		{@render label(rangeData)}
+	{:else if isLabelVisible}
 		<Div
-			class="pointer-events-none absolute top-1/2 left-0 -translate-y-1/2"
-			style="width:{percent}%;"
-		>
-			{#if fill}
-				{@render fill(rangeData)}
-			{:else}
-				<Div class="h-1 w-full rounded-full bg-primary-500" />
-			{/if}
-		</Div>
-		<Div
-			class="pointer-events-none absolute top-1/2 h-full -translate-x-1/2 -translate-y-1/2"
+			{theme}
+			class="pointer-events-none absolute top-0 -translate-x-1/2 -translate-y-full"
 			style="left:{percent}%;"
 		>
-			{#if thumb}
-				{@render thumb(rangeData)}
-			{:else}
-				<Div
-					class="aspect-square h-full rounded-full bg-gray-50 outline outline-gray-200 dark:bg-gray-950 dark:outline-gray-700"
-				/>
-			{/if}
+			{value}
 		</Div>
-		{#if label && isLabelVisible}
-			{@render label(rangeData)}
-		{:else if isLabelVisible}
-			<Div
-				class="pointer-events-none absolute top-0 -translate-x-1/2 -translate-y-full"
-				style="left:{percent}%;"
-			>
-				{value}
-			</Div>
-		{/if}
-		<Input
-			{...restProps}
-			bind:element
-			bind:value
-			class="absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none p-0 opacity-0"
-			{min}
-			{max}
-			{step}
-			type="range"
-		/>
-	</div>
-{/if}
+	{/if}
+	<Input
+		{...restProps}
+		bind:element
+		bind:value
+		class="absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none p-0 opacity-0"
+		{min}
+		{max}
+		{step}
+		{theme}
+		type="range"
+	/>
+</Div>

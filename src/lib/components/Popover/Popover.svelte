@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { fromAction } from 'svelte/attachments';
 	import type { HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
-	import { noopTransition } from '$lib/components';
+	import { Div, noopTransition } from '$lib/components';
 	import type { TransitionProps } from '$lib/components/types';
 	import Button from '../Button/Button.svelte';
 	import { theme as globalTheme, type Theme } from '$lib/theme';
@@ -74,10 +75,6 @@
 
 	// $derived
 	const classes = $derived(theme.resolve('popover', variants, className));
-	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
-	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
-	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
-	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
 	const triggerProps: TriggerProps = $derived({
 		'aria-controls': id,
 		'aria-expanded': isVisible,
@@ -184,6 +181,8 @@
 		if (node.isConnected && node === element && !node.matches(':popover-open')) isVisible = false;
 	};
 
+	const initializeAttachment = fromAction(initialize);
+
 	// $effects
 	$effect(() => {
 		if (!isVisible || popover !== 'manual' || !element) return;
@@ -234,33 +233,28 @@
 </script>
 
 {#snippet defaultTrigger(props: TriggerProps)}
-	<Button {...props}>Toggle popover</Button>
+	<Button {...props} {theme}>Toggle popover</Button>
 {/snippet}
 
 {@render trigger(triggerProps)}
 
-{#if isVisible}
-	<div
-		{...restProps}
-		bind:this={element}
-		class={classes}
-		data-anchored={hasAnchors || undefined}
-		{id}
-		onbeforetoggle={handleBeforeToggle}
-		onoutroend={handleOutroEnd}
-		ontoggle={handleToggle}
-		{popover}
-		style:--popover-anchor={anchorName}
-		style:--popover-gap={`${Math.max(0, gap)}px`}
-		style:--popover-left={`${left}px`}
-		style:--popover-placement={placement}
-		style:--popover-top={`${top}px`}
-		use:initialize
-		in:inTransitionFn={inTransitionOptions}
-		out:outTransitionFn={outTransitionOptions}
-	>
-		{#if children}
-			{@render children()}
-		{/if}
-	</div>
-{/if}
+<Div
+	{...restProps}
+	{@attach initializeAttachment}
+	bind:element
+	bind:isVisible
+	class={classes}
+	data-anchored={hasAnchors || undefined}
+	{id}
+	{inTransition}
+	onbeforetoggle={handleBeforeToggle}
+	onoutroend={handleOutroEnd}
+	ontoggle={handleToggle}
+	{outTransition}
+	{popover}
+	style={`${restProps.style ?? ''}; --popover-anchor: ${anchorName}; --popover-gap: ${Math.max(0, gap)}px; --popover-left: ${left}px; --popover-placement: ${placement}; --popover-top: ${top}px;`}
+	{theme}
+	{transition}
+>
+	{#if children}{@render children()}{/if}
+</Div>

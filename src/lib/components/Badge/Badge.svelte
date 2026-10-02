@@ -1,38 +1,33 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import { type HTMLInputAttributes } from 'svelte/elements';
-	import { Input, noopTransition } from '$lib/components';
+	import { type HTMLAttributes } from 'svelte/elements';
+	import { Span, noopTransition } from '$lib/components';
 	import type { TransitionProps } from '$lib/components/types';
 	import { theme as globalTheme, type Theme } from '$lib/theme';
 
 	// Types
-	type Props = HTMLInputAttributes & {
+	type Props = HTMLAttributes<HTMLSpanElement> & {
 		children?: Snippet;
 		class?: string;
-		element?: HTMLInputElement | null;
-		group?: any;
-		handle?: Snippet;
+		element?: HTMLSpanElement | null;
 		inTransition?: TransitionProps;
 		isVisible?: boolean;
 		outTransition?: TransitionProps;
 		theme?: Theme;
 		transition?: TransitionProps;
-		value?: any;
 		variants?: string[];
 	};
 
 	// $props
 	let {
+		children,
 		class: className = '',
 		element = $bindable(null),
-		group = $bindable(''),
-		handle,
 		inTransition,
 		isVisible = $bindable(true),
 		outTransition,
 		theme = globalTheme,
 		transition = [noopTransition, {}],
-		value = '',
 		variants = [],
 		...restProps
 	}: Props = $props();
@@ -40,25 +35,20 @@
 	// $state
 
 	// $derived
-	const classes = $derived(theme.resolve('radio', variants, className));
+	const classes = $derived(theme.resolve('badge', variants, className));
 
 	// $effects
 </script>
 
-{#if handle}
-	{#if isVisible}{@render handle()}{/if}
-{:else}
-	<Input
-		{...restProps}
-		bind:element
-		bind:group
-		bind:isVisible
-		class={classes}
-		{inTransition}
-		{outTransition}
-		{theme}
-		{transition}
-		type="radio"
-		{value}
-	/>
-{/if}
+<Span
+	{...restProps}
+	bind:element
+	bind:isVisible
+	class={classes}
+	{inTransition}
+	{outTransition}
+	{theme}
+	{transition}
+>
+	{#if children}{@render children()}{/if}
+</Span>
