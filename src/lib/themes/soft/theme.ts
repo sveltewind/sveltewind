@@ -16,15 +16,16 @@ const theme = createPreset({
 	card: {
 		base: 'rounded-2xl shadow-sm'
 	},
-	details: {
-		base: 'rounded-2xl'
-	},
+	comboboxOption: { base: 'rounded-lg' },
 	dialog: {
 		base: 'rounded-2xl'
 	},
+	dropdownMenuItem: { base: 'rounded-lg' },
 	fieldset: {
 		base: 'rounded-xl'
 	},
+	fileUploadDropzone: { base: 'rounded-2xl' },
+	fileUploadItem: { base: 'rounded-xl' },
 	input: {
 		base: 'rounded-xl'
 	},
@@ -34,6 +35,7 @@ const theme = createPreset({
 	select: {
 		base: 'rounded-xl'
 	},
+	skeleton: { base: 'rounded-xl' },
 	tabs: {
 		base: 'rounded-full'
 	},

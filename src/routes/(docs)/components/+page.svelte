@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { A, BlockLink, Card, Div, DocsSection, H1, H2, P } from '$components';
+	import { A, BlockLink, Card, ComposedPreview, Div, DocsSection, H1, H2, P } from '$components';
 	import * as Components from '$lib/components';
 	import { tooltip } from '$lib/attachments';
 	import type { Component, ComponentProps, Snippet } from 'svelte';
@@ -31,9 +31,13 @@
 			props: { summary: 'Learn more' }
 		},
 		Alert: { children: 'Your changes have been saved.', props: { variants: ['success'] } },
+		Avatar: { preview: avatarPreview },
+		AvatarGroup: { preview: avatarGroupPreview },
 		Badge: { children: 'New', props: { variants: ['info'] } },
 		Br: { preview: brPreview },
+		Breadcrumbs: { preview: breadcrumbsPreview },
 		Button: { children: 'Button' },
+		Carousel: { preview: carouselPreview },
 		Checkbox: { children: 'Remember me' },
 		Circle: { preview: circlePreview },
 		ClipPath: { preview: clipPathPreview },
@@ -45,12 +49,16 @@
 				title: 'hello.ts'
 			}
 		},
+		Combobox: { preview: comboboxPreview },
 		Defs: { preview: defsPreview },
 		Details: { preview: detailsPreview },
 		Dialog: { preview: dialogPreview },
+		Drawer: { preview: drawerPreview },
+		DropdownMenu: { preview: dropdownMenuPreview },
 		Ellipse: { preview: ellipsePreview },
 		Field: { children: fieldChildren },
 		Fieldset: { children: fieldsetChildren },
+		FileUpload: { preview: fileUploadPreview },
 		Footer: { preview: footerPreview },
 		ForeignObject: { preview: foreignObjectPreview },
 		Form: {
@@ -69,6 +77,7 @@
 		LinearGradient: { preview: linearGradientPreview },
 		Marker: { preview: markerPreview },
 		Mask: { preview: maskPreview },
+		MultiSelect: { preview: multiSelectPreview },
 		Nav: { children: navChildren, props: { class: 'flex gap-4' } },
 		Ol: { children: listChildren },
 		Option: { preview: optionPreview },
@@ -95,10 +104,13 @@
 			props: { 'aria-label': 'Example range', class: 'w-full max-w-48', value: 40 }
 		},
 		Rect: { preview: rectPreview },
+		SearchField: { preview: searchFieldPreview },
 		Select: { children: selectChildren, props: { 'aria-label': 'Example select' } },
 		Shiki: { props: { code: "const hello = 'world';", options: { theme: 'github-light' } } },
+		Skeleton: { preview: skeletonPreview },
 		Source: { preview: sourcePreview },
 		Spinner: { props: { 'aria-label': 'Loading', role: 'img' } },
+		Stepper: { preview: stepperPreview },
 		Stop: { preview: stopPreview },
 		Summary: { preview: detailsPreview },
 		Svg: { preview: circlePreview },
@@ -126,6 +138,8 @@
 		},
 		Th: { preview: tablePreview },
 		Thead: { preview: tablePreview },
+		Toast: { preview: toastPreview },
+		Toaster: { preview: toasterPreview },
 		Tooltip: { preview: tooltipPreview },
 		Tr: { preview: tablePreview },
 		Tspan: { preview: tspanPreview },
@@ -708,4 +722,60 @@
 
 {#snippet brPreview()}
 	<Components.P>First line<Components.Br />Second line</Components.P>
+{/snippet}
+
+{#snippet avatarPreview()}
+	<ComposedPreview name="Avatar" />
+{/snippet}
+
+{#snippet avatarGroupPreview()}
+	<ComposedPreview name="AvatarGroup" />
+{/snippet}
+
+{#snippet breadcrumbsPreview()}
+	<ComposedPreview name="Breadcrumbs" />
+{/snippet}
+
+{#snippet skeletonPreview()}
+	<ComposedPreview name="Skeleton" />
+{/snippet}
+
+{#snippet drawerPreview()}
+	<ComposedPreview name="Drawer" />
+{/snippet}
+
+{#snippet searchFieldPreview()}
+	<ComposedPreview name="SearchField" />
+{/snippet}
+
+{#snippet stepperPreview()}
+	<ComposedPreview name="Stepper" />
+{/snippet}
+
+{#snippet dropdownMenuPreview()}
+	<ComposedPreview name="DropdownMenu" />
+{/snippet}
+
+{#snippet comboboxPreview()}
+	<ComposedPreview name="Combobox" />
+{/snippet}
+
+{#snippet multiSelectPreview()}
+	<ComposedPreview name="MultiSelect" />
+{/snippet}
+
+{#snippet toastPreview()}
+	<ComposedPreview name="Toast" />
+{/snippet}
+
+{#snippet toasterPreview()}
+	<ComposedPreview name="Toaster" />
+{/snippet}
+
+{#snippet fileUploadPreview()}
+	<ComposedPreview name="FileUpload" />
+{/snippet}
+
+{#snippet carouselPreview()}
+	<ComposedPreview name="Carousel" />
 {/snippet}

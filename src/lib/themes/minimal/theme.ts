@@ -4,6 +4,8 @@ const theme = createPreset({
 	accordion: {
 		base: 'rounded-none inset-ring-0 border-b border-gray-200 dark:border-gray-700'
 	},
+	avatar: { base: 'rounded-sm' },
+	avatarOverflow: { base: 'rounded-sm' },
 	badge: {
 		base: 'rounded-sm bg-transparent dark:bg-transparent'
 	},
@@ -23,12 +25,15 @@ const theme = createPreset({
 	h3: {
 		base: 'font-medium'
 	},
+	fileUploadDropzone: { base: 'rounded-none bg-transparent dark:bg-transparent' },
+	fileUploadItem: { base: 'rounded-none' },
 	input: {
 		base: 'rounded-none inset-ring-0 border-b border-gray-300 dark:border-gray-600'
 	},
 	select: {
 		base: 'rounded-none inset-ring-0 border-b border-gray-300 dark:border-gray-600'
 	},
+	skeleton: { base: 'rounded-sm' },
 	tabs: {
 		base: 'rounded-none inset-ring-0 border-b border-gray-200 dark:border-gray-700'
 	},

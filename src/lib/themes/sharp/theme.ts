@@ -10,6 +10,8 @@ const theme = createPreset({
 	alert: {
 		base: 'rounded-none'
 	},
+	avatar: { base: 'rounded-none' },
+	avatarOverflow: { base: 'rounded-none' },
 	badge: {
 		base: 'rounded-none'
 	},
@@ -19,15 +21,16 @@ const theme = createPreset({
 	card: {
 		base: 'rounded-none'
 	},
-	details: {
-		base: 'rounded-none'
-	},
+	comboboxOption: { base: 'rounded-none' },
 	dialog: {
 		base: 'rounded-none'
 	},
+	dropdownMenuItem: { base: 'rounded-none' },
 	fieldset: {
 		base: 'rounded-none'
 	},
+	fileUploadDropzone: { base: 'rounded-none' },
+	fileUploadItem: { base: 'rounded-none' },
 	input: {
 		base: 'rounded-none'
 	},
@@ -37,6 +40,8 @@ const theme = createPreset({
 	select: {
 		base: 'rounded-none'
 	},
+	skeleton: { base: 'rounded-none' },
+	stepperIndicator: { base: 'rounded-none' },
 	tabs: {
 		base: 'rounded-none'
 	},

@@ -703,5 +703,367 @@ Object.assign(theme, {
 // Line breaks retain native inline flow.
 theme.br = { base: '', variants: { hidden: 'hidden' } };
 
+// Composed components and their independently themeable parts.
+Object.assign(theme, {
+	avatar: {
+		base: 'relative inline-flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-500/10 text-primary-600 dark:text-primary-300',
+		variants: {
+			lg: 'size-14 text-lg',
+			sm: 'size-8 text-xs',
+			square: 'rounded-md'
+		}
+	},
+	avatarFallback: {
+		base: 'font-medium',
+		variants: {
+			bold: 'font-bold'
+		}
+	},
+	avatarGroup: {
+		base: 'flex items-center -space-x-3 [&>*]:ring-2 [&>*]:ring-gray-50 dark:[&>*]:ring-gray-950',
+		variants: {
+			spaced: 'space-x-2'
+		}
+	},
+	avatarImage: {
+		base: 'size-full object-cover',
+		variants: {
+			muted: 'opacity-70'
+		}
+	},
+	avatarOverflow: {
+		base: 'inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-gray-200 text-xs font-medium dark:bg-gray-800',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	breadcrumbs: {
+		base: 'min-w-0',
+		variants: {
+			compact: 'text-xs'
+		}
+	},
+	breadcrumbsItem: {
+		base: 'flex items-center gap-2',
+		variants: {
+			spacious: 'gap-4'
+		}
+	},
+	breadcrumbsList: {
+		base: 'flex list-none flex-wrap items-center gap-2 pl-0 text-sm',
+		variants: {
+			spacious: 'gap-4'
+		}
+	},
+	breadcrumbsSeparator: {
+		base: 'text-gray-400',
+		variants: {
+			primary: 'text-primary-500'
+		}
+	},
+	carousel: {
+		base: 'min-w-0',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	carouselControls: {
+		base: 'mb-4 flex justify-end gap-2',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	carouselIndicator: {
+		base: 'size-2 rounded-full bg-gray-300 p-0 dark:bg-gray-700',
+		variants: {
+			active: 'bg-primary-500 dark:bg-primary-500'
+		}
+	},
+	carouselIndicators: {
+		base: 'mt-3 flex justify-center gap-2',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	carouselSlide: {
+		base: 'min-w-0 snap-start',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	carouselTrack: {
+		base: 'relative grid snap-x snap-mandatory auto-cols-[100%] grid-flow-col gap-6 overflow-x-auto overscroll-x-contain pb-4 focus-visible:outline-2 focus-visible:outline-primary-500 sm:auto-cols-[calc((100%-(var(--carousel-tablet-columns)-1)*1.5rem)/var(--carousel-tablet-columns))] lg:auto-cols-[calc((100%-(var(--carousel-columns)-1)*1.5rem)/var(--carousel-columns))]',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	combobox: {
+		base: 'relative min-w-0',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	comboboxEmpty: {
+		base: 'px-3 py-2 text-sm text-gray-500',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	comboboxInput: {
+		base: 'w-full',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	comboboxLabel: {
+		base: 'mb-2 block text-sm font-medium',
+		variants: {
+			hidden: 'sr-only'
+		}
+	},
+	comboboxList: {
+		base: 'flex max-h-64 list-none flex-col gap-0 overflow-y-auto pl-0',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	comboboxOption: {
+		base: 'cursor-pointer rounded-sm px-3 py-2 text-sm',
+		variants: {
+			active: 'bg-primary-500/10 text-primary-600 dark:text-primary-300',
+			disabled: 'cursor-not-allowed opacity-50'
+		}
+	},
+	comboboxPanel: {
+		base: 'min-w-64 max-w-[calc(100vw-2rem)] p-1',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	drawer: {
+		base: 'fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-[min(24rem,100vw)] max-w-none overflow-y-auto rounded-none border-0 bg-gray-50 p-0 text-gray-950 shadow-xl dark:bg-gray-950 dark:text-gray-50',
+		variants: {
+			left: 'right-auto left-0',
+			right: 'right-0 left-auto',
+			wide: 'w-[min(36rem,100vw)]'
+		}
+	},
+	drawerClose: {
+		base: 'size-10 p-0 text-xl',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	drawerContent: {
+		base: 'p-6',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	drawerHeader: {
+		base: 'flex items-center justify-between gap-4 border-b border-gray-200 px-6 py-4 dark:border-gray-700',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	drawerTitle: {
+		base: 'text-xl font-semibold',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	dropdownMenu: {
+		base: 'inline-block',
+		variants: {
+			full: 'block w-full'
+		}
+	},
+	dropdownMenuItem: {
+		base: 'block w-full rounded-sm px-3 py-2 text-left text-sm no-underline hover:bg-primary-500/10 focus:bg-primary-500/10 focus:outline-none dark:hover:bg-primary-500/10 dark:focus:bg-primary-500/10',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	dropdownMenuList: {
+		base: 'flex list-none flex-col gap-0 pl-0',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	dropdownMenuPanel: {
+		base: 'min-w-48 p-1',
+		variants: {
+			wide: 'min-w-64'
+		}
+	},
+	fileUpload: {
+		base: 'min-w-0',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	fileUploadDropzone: {
+		base: 'flex flex-col items-center gap-3 rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-6 text-center focus-within:outline-2 focus-within:outline-primary-500 dark:border-gray-700 dark:bg-gray-900',
+		variants: {
+			active: 'border-primary-500 bg-primary-500/5 dark:border-primary-500 dark:bg-primary-500/5',
+			disabled: 'opacity-50'
+		}
+	},
+	fileUploadError: {
+		base: 'mt-3 text-sm text-red-600 dark:text-red-400',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	fileUploadHint: {
+		base: 'text-sm',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	fileUploadItem: {
+		base: 'flex items-center justify-between gap-3 rounded-md bg-gray-100 px-3 py-2 text-sm dark:bg-gray-800',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	fileUploadList: {
+		base: 'mt-3 flex list-none flex-col gap-2 pl-0',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	fileUploadRemove: {
+		base: 'size-6 p-0 text-lg',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	multiSelect: {
+		base: 'min-w-0',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	multiSelectChip: {
+		base: 'inline-flex items-center gap-1 pr-1',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	multiSelectRemove: {
+		base: 'size-5 rounded-full p-0 text-sm',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	multiSelectValues: {
+		base: 'mt-3 flex flex-wrap gap-2',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	searchField: {
+		base: 'relative flex flex-row items-center gap-2 space-y-0',
+		variants: {
+			compact: 'text-sm',
+			stacked: 'flex-col items-stretch'
+		}
+	},
+	searchFieldClear: {
+		base: 'absolute right-28 size-8 p-0 text-lg',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	searchFieldInput: {
+		base: 'min-w-0 grow pr-10',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	searchFieldSubmit: {
+		base: 'shrink-0',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	skeleton: {
+		base: 'h-4 w-full animate-pulse rounded-md bg-gray-200 motion-reduce:animate-none dark:bg-gray-800',
+		variants: {
+			circle: 'size-10 rounded-full',
+			rectangular: 'h-24',
+			static: 'animate-none',
+			text: 'h-4'
+		}
+	},
+	stepper: {
+		base: 'flex list-none flex-wrap gap-6 pl-0',
+		variants: {
+			compact: 'gap-3',
+			vertical: 'flex-col'
+		}
+	},
+	stepperDescription: {
+		base: 'mt-1 block text-xs text-gray-500 dark:text-gray-400',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	stepperIndicator: {
+		base: 'inline-flex size-9 shrink-0 items-center justify-center rounded-full p-0 text-sm font-medium',
+		variants: {
+			complete: 'bg-primary-500/10 text-primary-600 dark:text-primary-300',
+			current: 'bg-primary-500 text-white',
+			upcoming: 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
+		}
+	},
+	stepperItem: {
+		base: 'flex items-start gap-3',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	stepperLabel: {
+		base: 'block text-sm font-medium',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	toast: {
+		base: 'pointer-events-auto flex items-start gap-3 p-4 shadow-lg',
+		variants: {
+			compact: 'p-3 text-sm'
+		}
+	},
+	toastClose: {
+		base: '-mt-1 -mr-1 size-7 shrink-0 p-0 text-lg',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	toastContent: {
+		base: 'min-w-0 grow text-sm',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	toastTitle: {
+		base: 'mb-1 block font-semibold',
+		variants: {
+			compact: 'text-sm'
+		}
+	},
+	toaster: {
+		base: 'pointer-events-none fixed z-50 flex w-[min(24rem,calc(100vw-2rem))] flex-col gap-3',
+		variants: {
+			'bottom-left': 'bottom-4 left-4',
+			'bottom-right': 'right-4 bottom-4',
+			'top-left': 'top-4 left-4',
+			'top-right': 'top-4 right-4'
+		}
+	}
+});
+
 export default theme;
 export { theme };

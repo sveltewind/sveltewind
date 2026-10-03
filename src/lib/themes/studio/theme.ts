@@ -16,12 +16,11 @@ const theme = createPreset({
 	card: {
 		base: 'rounded-xl shadow-lg'
 	},
-	dialog: {
-		base: 'rounded-xl shadow-xl'
-	},
 	fieldset: {
 		base: 'rounded-xl'
 	},
+	fileUploadDropzone: { base: 'rounded-xl' },
+	fileUploadItem: { base: 'rounded-lg' },
 	input: {
 		base: 'rounded-lg'
 	},
@@ -31,6 +30,7 @@ const theme = createPreset({
 	select: {
 		base: 'rounded-lg'
 	},
+	skeleton: { base: 'rounded-lg' },
 	tabs: {
 		base: 'rounded-xl'
 	},
