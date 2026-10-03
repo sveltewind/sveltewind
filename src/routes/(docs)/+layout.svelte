@@ -42,7 +42,9 @@
 		const rebuild = () => {
 			intersectionObserver?.disconnect();
 
-			const headings = Array.from(element.querySelectorAll<HTMLElement>('h1, h2, h3'));
+			const headings = Array.from(element.querySelectorAll<HTMLElement>('h1, h2, h3')).filter(
+				(heading) => !heading.closest('[data-example-preview]')
+			);
 
 			const nextItems = headings.map((heading) => {
 				const tag = heading.tagName.toLowerCase();

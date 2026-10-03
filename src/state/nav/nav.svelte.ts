@@ -1,4 +1,5 @@
 import * as Components from '$lib/components';
+import { categories } from '../../examples/catalog';
 
 export type NavItem = NavLink | NavSection;
 export type NavLink = {
@@ -48,7 +49,13 @@ export const nav: NavItem[] = $state([
 		title: 'Components'
 	},
 	{
-		children: [],
+		children: [
+			{ href: '/examples', title: 'All examples' },
+			...categories.map((category) => ({
+				href: `/examples?category=${category.id}`,
+				title: category.title
+			}))
+		],
 		isOpen: true,
 		title: 'Examples'
 	}

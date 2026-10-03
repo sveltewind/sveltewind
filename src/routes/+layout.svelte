@@ -56,7 +56,7 @@
 		{
 			links: [
 				{ href: '/components', title: 'Components' },
-				{ href: '/examples/sass-landing-page', title: 'Examples' },
+				{ href: '/examples', title: 'Examples' },
 				{ href: 'https://github.com/sveltewind/sveltewind', title: 'GitHub' }
 			],
 			title: 'Explore'
@@ -84,7 +84,7 @@
 				title: 'Docs'
 			},
 			{ href: '/components', startsWith: '/components', title: 'Components' },
-			{ href: '/examples/sass-landing-page', startsWith: '/examples', title: 'Examples' }
+			{ href: '/examples', startsWith: '/examples', title: 'Examples' }
 		]
 	});
 
