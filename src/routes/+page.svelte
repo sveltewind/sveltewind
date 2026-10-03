@@ -298,8 +298,8 @@ theme.set.theme(brand.get.theme());`;
 								href="/getting-started/usage"
 								theme={demoTheme}
 								variants={['button.base']}
-								class="min-w-44 no-underline"
-								>Get Started <ArrowRight class="ml-2 size-4" aria-hidden="true" /></A
+								class="inline-flex min-w-44 items-center justify-center gap-2 no-underline"
+								>Get Started <ArrowRight class="size-4 shrink-0" aria-hidden="true" /></A
 							>
 						{:else}
 							<Button
@@ -571,8 +571,12 @@ theme.set.theme(brand.get.theme());`;
 				<Div class="border-t border-gray-200 p-5 sm:p-6 dark:border-gray-700/50">
 					<Card theme={customTheme} class="bg-white dark:bg-gray-950">
 						<P class="mb-4 text-xs font-medium tracking-wide uppercase">Your custom cta variant</P>
-						<Button theme={customTheme} type="button" variants={['cta']}
-							>Make it yours <ArrowRight aria-hidden="true" class="ml-2 size-4" /></Button
+						<Button
+							theme={customTheme}
+							type="button"
+							variants={['cta']}
+							class="inline-flex items-center justify-center gap-2"
+							>Make it yours <ArrowRight aria-hidden="true" class="size-4 shrink-0" /></Button
 						>
 					</Card>
 				</Div>

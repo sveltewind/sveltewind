@@ -152,8 +152,12 @@
 {/snippet}
 {#snippet buttonPreview()}
 	<Div class="flex flex-col items-center gap-3"
-		><Button type="button" onclick={() => (saved = !saved)}
-			>{saved ? 'Saved!' : 'Save changes'} <Check aria-hidden="true" class="ml-2 size-4" /></Button
+		><Button
+			type="button"
+			class="inline-flex items-center justify-center gap-2"
+			onclick={() => (saved = !saved)}
+			>{saved ? 'Saved!' : 'Save changes'}
+			<Check aria-hidden="true" class="size-4 shrink-0" /></Button
 		><Button type="button" variants={['outline']}>Another possibility</Button></Div
 	>
 {/snippet}
