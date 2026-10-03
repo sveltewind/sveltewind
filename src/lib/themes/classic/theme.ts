@@ -183,7 +183,7 @@ const theme: ThemeObject = {
 			'checked:bg-primary-500 checked:inset-ring-5 checked:inset-ring-gray-950 dark:checked:inset-ring-gray-50'
 		)
 	},
-	range: { base: 'relative h-4' },
+	range: { base: 'relative h-4 w-full' },
 	section: {
 		base: ''
 	},
@@ -527,6 +527,176 @@ Object.assign(theme, {
 	track: {
 		base: '',
 		variants: { hidden: 'hidden' }
+	}
+});
+
+// SVG primitives preserve native paint unless a variant is requested.
+Object.assign(theme, {
+	circle: {
+		base: theme.circle.base,
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	clipPath: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	defs: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	ellipse: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	foreignObject: {
+		base: '',
+		variants: { clip: 'overflow-hidden', visible: 'overflow-visible' }
+	},
+	g: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	line: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	linearGradient: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	marker: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	mask: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	path: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	pattern: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	polygon: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	polyline: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	radialGradient: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	rect: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	stop: {
+		base: '',
+		variants: {
+			current: '[stop-color:currentColor]',
+			primary: '[stop-color:var(--color-primary-500)]',
+			transparent: '[stop-opacity:0]'
+		}
+	},
+	svgDesc: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	svgImage: {
+		base: '',
+		variants: { grayscale: 'grayscale', muted: 'opacity-50' }
+	},
+	svgTitle: {
+		base: '',
+		variants: { unstyled: '' }
+	},
+	symbol: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
+	},
+	text: {
+		base: 'fill-current',
+		variants: {
+			bold: 'font-semibold',
+			muted: 'text-gray-500 dark:text-gray-400',
+			primary: 'text-primary-500'
+		}
+	},
+	textPath: {
+		base: 'fill-current',
+		variants: {
+			bold: 'font-semibold',
+			muted: 'text-gray-500 dark:text-gray-400',
+			primary: 'text-primary-500'
+		}
+	},
+	tspan: {
+		base: 'fill-current',
+		variants: {
+			bold: 'font-semibold',
+			muted: 'text-gray-500 dark:text-gray-400',
+			primary: 'text-primary-500'
+		}
+	},
+	use: {
+		base: '',
+		variants: {
+			fill: 'fill-current',
+			outline: 'fill-none stroke-current',
+			primary: 'text-primary-500',
+			rounded: '[stroke-linecap:round] [stroke-linejoin:round]'
+		}
 	}
 });
 

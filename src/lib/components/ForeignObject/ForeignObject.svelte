@@ -1,3 +1,5 @@
+<svelte:options namespace="svg" />
+
 <script lang="ts">
 	import { type Snippet } from 'svelte';
 	import { type SVGAttributes } from 'svelte/elements';
@@ -6,10 +8,10 @@
 	import { theme as globalTheme, type Theme } from '$lib/theme';
 
 	// Types
-	type Props = SVGAttributes<SVGCircleElement> & {
+	type Props = SVGAttributes<SVGForeignObjectElement> & {
 		children?: Snippet;
 		class?: string;
-		element?: SVGCircleElement | null;
+		element?: SVGForeignObjectElement | null;
 		inTransition?: TransitionProps;
 		isVisible?: boolean;
 		outTransition?: TransitionProps;
@@ -32,21 +34,17 @@
 		...restProps
 	}: Props = $props();
 
-	// $state
-
 	// $derived
-	const classes = $derived(theme.resolve('circle', variants, className));
+	const classes = $derived(theme.resolve('foreignObject', variants, className));
 	const inTransitionFn = $derived(inTransition?.[0] ?? transition[0]);
 	const inTransitionOptions = $derived(inTransition?.[1] ?? transition[1] ?? {});
 
 	const outTransitionFn = $derived(outTransition?.[0] ?? transition[0]);
 	const outTransitionOptions = $derived(outTransition?.[1] ?? transition[1] ?? {});
-
-	// $effects
 </script>
 
 {#if isVisible}
-	<circle
+	<foreignObject
 		{...restProps}
 		bind:this={element}
 		class={classes}
@@ -56,5 +54,5 @@
 		{#if children}
 			{@render children()}
 		{/if}
-	</circle>
+	</foreignObject>
 {/if}

@@ -23,7 +23,7 @@
 @layer base {
 	* {
 		scrollbar-width: thin;
-		scrollbar-color: theme(colors.primary.500) transparent;
+		scrollbar-color: var(--color-primary-500) transparent;
 	}
 
 	*::-webkit-scrollbar {
@@ -32,5 +32,9 @@
 
 	*::-webkit-scrollbar-track {
 		@apply bg-transparent;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: var(--color-primary-500);
 	}
 }
