@@ -1,6 +1,8 @@
 import { createPreset } from '../createPreset.js';
 
 const theme = createPreset({
+	datatableScroll: { base: 'rounded-none shadow-none' },
+	datatableDialog: { base: 'rounded-none shadow-none' },
 	accordion: {
 		base: 'rounded-none inset-ring-0 border-b border-gray-200 dark:border-gray-700'
 	},

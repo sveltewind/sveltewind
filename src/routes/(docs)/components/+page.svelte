@@ -50,6 +50,7 @@
 			}
 		},
 		Combobox: { preview: comboboxPreview },
+		Datatable: { preview: datatablePreview },
 		Defs: { preview: defsPreview },
 		Details: { preview: detailsPreview },
 		Dialog: { preview: dialogPreview },
@@ -778,4 +779,8 @@
 
 {#snippet carouselPreview()}
 	<ComposedPreview name="Carousel" />
+{/snippet}
+
+{#snippet datatablePreview()}
+	<ComposedPreview name="Datatable" />
 {/snippet}

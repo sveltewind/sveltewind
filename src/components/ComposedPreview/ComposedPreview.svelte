@@ -9,6 +9,7 @@
 		Card,
 		Carousel,
 		Combobox,
+		Datatable,
 		Div,
 		Drawer,
 		DropdownMenu,
@@ -31,6 +32,7 @@
 			| 'AvatarGroup'
 			| 'Breadcrumbs'
 			| 'Skeleton'
+			| 'Datatable'
 			| 'Drawer'
 			| 'SearchField'
 			| 'Stepper'
@@ -53,6 +55,12 @@
 	// $props
 	let { name }: Props = $props();
 	// $state
+	let datatableRows = $state([
+		{ id: 1, name: 'Alex', role: 'Designer' },
+		{ id: 2, name: 'Sam', role: 'Developer' },
+		{ id: 3, name: 'Casey', role: 'Editor' }
+	]);
+	let datatableSequence = $state(3);
 	let drawerVisible = $state(false);
 	let message = $state('');
 	let selected = $state('');
@@ -96,6 +104,36 @@
 			class="mt-3 text-xs"
 			>{selected ? `Selected: ${selected}` : 'Type to search, or use the arrow keys.'}</P
 		>
+	{:else if name === 'Datatable'}<Datatable
+			columns={[
+				'name',
+				{
+					key: 'role',
+					options: [
+						{ label: 'Designer', value: 'Designer' },
+						{ label: 'Developer', value: 'Developer' },
+						{ label: 'Editor', value: 'Editor' }
+					]
+				}
+			]}
+			rows={datatableRows}
+			pagination={{ currentPage: 1, rowsPerPage: 2 }}
+			oncreate={(row) => {
+				datatableRows = [
+					...datatableRows,
+					{ id: ++datatableSequence, name: String(row.name ?? ''), role: String(row.role ?? '') }
+				];
+			}}
+			ondelete={(deleted) => {
+				const ids = new Set(deleted.map((row) => row.id));
+				datatableRows = datatableRows.filter((row) => !ids.has(row.id));
+			}}
+			onupdate={({ key, row, value }) => {
+				datatableRows = datatableRows.map((entry) =>
+					entry.id === row.id ? { ...entry, [key]: value } : entry
+				);
+			}}
+		/>
 	{:else if name === 'Drawer'}<Button type="button" onclick={() => (drawerVisible = true)}
 			>Open drawer</Button
 		><Drawer title="Your workspace" bind:isVisible={drawerVisible}

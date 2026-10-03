@@ -28,6 +28,7 @@ export { default as Colgroup } from './Colgroup/Colgroup.svelte';
 export { default as Combobox } from './Combobox/Combobox.svelte';
 export { default as Container } from './Container/Container.svelte';
 export { default as Datalist } from './Datalist/Datalist.svelte';
+export { default as Datatable } from './Datatable/Datatable.svelte';
 export { default as Dd } from './Dd/Dd.svelte';
 export { default as Defs } from './Defs/Defs.svelte';
 export { default as Details } from './Details/Details.svelte';
@@ -144,3 +145,13 @@ export type {
 } from './composed.js';
 
 export const noopTransition = (_node: Element) => ({ duration: 0 });
+
+export type {
+	CellSnippetProps as DatatableCellSnippetProps,
+	Column as DatatableColumn,
+	ColumnInput as DatatableColumnInput,
+	Filter as DatatableFilter,
+	Pagination as DatatablePagination,
+	Row as DatatableRow,
+	Sort as DatatableSort
+} from './Datatable/types.js';

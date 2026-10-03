@@ -111,6 +111,7 @@ const theme: ThemeObject = {
 			defaults.padding.x,
 			defaults.padding.y,
 			'm-auto',
+			'bg-gray-50 text-gray-950 dark:bg-gray-950 dark:text-gray-50',
 			'backdrop:backdrop-blur-none backdrop:opacity-0 backdrop:transition-[backdrop-filter] backdrop:duration-200 open:backdrop:backdrop-blur open:backdrop:opacity-100 starting:open:backdrop:opacity-0 starting:open:backdrop:backdrop-blur-none'
 		)
 	},
@@ -1063,6 +1064,55 @@ Object.assign(theme, {
 			'top-right': 'top-4 right-4'
 		}
 	}
+});
+
+Object.assign(theme, {
+	datatable: { base: 'flex min-w-0 flex-col gap-4', variants: { compact: 'text-sm' } },
+	datatableActions: { base: 'flex justify-end gap-2', variants: { compact: 'text-sm' } },
+	datatableApply: { base: 'flex justify-end', variants: { compact: 'text-sm' } },
+	datatableCell: { base: 'p-0', variants: { compact: 'text-sm' } },
+	datatableClose: { base: 'ml-auto', variants: { compact: 'text-sm' } },
+	datatableDeleteActions: {
+		base: 'flex w-full justify-end gap-2',
+		variants: { compact: 'text-sm' }
+	},
+	datatableDeleteDialog: {
+		base: 'flex flex-col items-center gap-4',
+		variants: { compact: 'text-sm' }
+	},
+	datatableDialog: { base: 'flex flex-col gap-4', variants: { compact: 'text-sm' } },
+	datatableFilterAnchor: { base: 'relative', variants: { compact: 'text-sm' } },
+	datatableFilterCount: {
+		base: 'pointer-events-none absolute -top-1.5 -right-1.5 flex aspect-square w-4 items-center justify-center rounded-full bg-primary-500 text-[.625rem] text-white',
+		variants: { compact: 'text-sm' }
+	},
+	datatableFilters: {
+		base: 'grid grid-cols-[repeat(4,minmax(0,1fr))] gap-2',
+		variants: { compact: 'text-sm' }
+	},
+	datatableHeading: { base: 'whitespace-nowrap', variants: { compact: 'text-sm' } },
+	datatableIcon: { base: 'size-6', variants: { compact: 'text-sm' } },
+	datatableNumericInput: { base: 'text-right', variants: { compact: 'text-sm' } },
+	datatablePageControls: {
+		base: 'flex flex-wrap items-center gap-2',
+		variants: { compact: 'text-sm' }
+	},
+	datatablePagination: {
+		base: 'flex flex-wrap items-center justify-between gap-4',
+		variants: { compact: 'text-sm' }
+	},
+	datatableScroll: { base: 'max-w-full overflow-auto p-0', variants: { compact: 'text-sm' } },
+	datatableSort: {
+		base: 'flex w-full items-center justify-between',
+		variants: { compact: 'text-sm' }
+	},
+	datatableSortIcon: { base: 'size-4', variants: { compact: 'text-sm' } },
+	datatableToolbar: {
+		base: 'flex flex-wrap items-center justify-end gap-2',
+		variants: { compact: 'text-sm' }
+	},
+	datatableUnsortedIcon: { base: 'size-4 opacity-50', variants: { compact: 'text-sm' } },
+	datatableWarningIcon: { base: 'size-24', variants: { compact: 'text-sm' } }
 });
 
 export default theme;
