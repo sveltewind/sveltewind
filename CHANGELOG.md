@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.13.0](https://github.com/sveltewind/sveltewind/compare/v4.12.0...v4.13.0) (2026-10-03)
+
+
+### Features
+
+* update landing page and favicon ([fc78876](https://github.com/sveltewind/sveltewind/commit/fc78876c241dccb7ee96e2b0eec6c149d131b677))
+
 ## [4.12.0](https://github.com/sveltewind/sveltewind/compare/v4.11.0...v4.12.0) (2026-10-03)
 
 
