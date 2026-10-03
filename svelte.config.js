@@ -22,6 +22,7 @@ const config = {
 				const browserAnchors = {
 					'/getting-started/theming': ['create-your-own-theme', 'set'],
 					'/getting-started/usage': [
+						'variants',
 						'composing-styles-across-components',
 						'visibility',
 						'transitions'
