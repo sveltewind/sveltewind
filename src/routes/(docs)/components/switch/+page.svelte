@@ -109,8 +109,8 @@
 <DocsSection>
 	<H2>Default Implementation</H2>
 	<CodePreview
-		code={'<script lang="ts">\n import { Switch } from \'sveltewind/components\';\n let checked = $state(false);\n</scr' +
-			'ipt>\n\n<Switch bind:checked>Notifications</Switch>'}
+		code={'<script lang="ts">\n import { Switch, P } from \'sveltewind/components\';\n let checked = $state(false);\n</scr' +
+			"ipt>\n\n<Switch bind:checked>Notifications</Switch>\n<P>Notifications: {checked ? 'on' : 'off'}</P>"}
 		title="+page.svelte"
 	>
 		<Switch bind:checked>Notifications</Switch>

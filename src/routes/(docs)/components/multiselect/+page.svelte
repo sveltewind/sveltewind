@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { MultiSelect } from \'sveltewind/components\';\n  let value = $state<string[]>([]);\n</scr' +
-		"ipt>\n\n<MultiSelect label=\"Your tools\" name=\"tools\" options={[{ label: 'Svelte', value: 'svelte' }, { label: 'TypeScript', value: 'typescript' }]} bind:value />";
+	const code = composedExample('MultiSelect');
 	const props = [
 		{
 			defaultValue: 'undefined',

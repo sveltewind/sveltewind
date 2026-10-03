@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { Skeleton } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Skeleton variants={['circle']} />\n<Skeleton variants={['text']} class=\"mt-3 w-2/3\" />";
+	const code = composedExample('Skeleton');
 	const props = [
 		{
 			defaultValue: 'undefined',

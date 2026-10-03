@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { Stepper } from \'sveltewind/components\';\n  let current = $state(1);\n</scr' +
-		"ipt>\n\n<Stepper steps={[{ label: 'Account' }, { label: 'Profile' }, { label: 'Finish' }]} allowNavigation bind:current />";
+	const code = composedExample('Stepper');
 	const props = [
 		{
 			defaultValue: 'false',

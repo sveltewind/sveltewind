@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { Avatar } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Avatar name="Alex Morgan" />';
+	const code = composedExample('Avatar');
 	const props = [
 		{
 			defaultValue: 'undefined',

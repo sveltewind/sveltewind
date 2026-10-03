@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { SearchField } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<SearchField label="Search components" placeholder="Find a component..." onSearch={(value) => console.log(value)} />';
+	const code = composedExample('SearchField');
 	const props = [
 		{
 			defaultValue: 'undefined',

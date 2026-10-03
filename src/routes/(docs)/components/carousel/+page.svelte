@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { Card, Carousel } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Carousel label=\"Example cards\" slides={[{ id: 'one', content: first }, { id: 'two', content: second }]} />\n\n{#snippet first()}<Card>First slide</Card>{/snippet}\n{#snippet second()}<Card>Second slide</Card>{/snippet}";
+	const code = composedExample('Carousel');
 	const props = [
 		{
 			defaultValue: 'undefined',

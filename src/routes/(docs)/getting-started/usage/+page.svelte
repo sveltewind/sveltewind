@@ -49,8 +49,8 @@ ${body}`;
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { Button } from 'sveltewind/components';`,
-			`<Button>Click me</Button>`
+			"\timport { Button } from 'sveltewind/components';",
+			'<Button>Click Me</Button>'
 		)}
 		title="+page.svelte"
 	>
@@ -65,9 +65,8 @@ ${body}`;
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { Button } from 'sveltewind/components';`,
-			`<Button>Primary Button</Button>
-<Button variants={['ghost']}>Ghost Button</Button>`
+			"\timport { Div, Button } from 'sveltewind/components';",
+			'<Div class="flex gap-4">\r\n\t\t\t<Button>Primary Button</Button>\r\n\t\t\t<Button variants={[\'ghost\']}>Ghost Button</Button>\r\n\t\t</Div>'
 		)}
 		title="+page.svelte"
 	>
@@ -85,9 +84,8 @@ ${body}`;
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { A } from 'sveltewind/components';`,
-			`<A href="#composing-styles-across-components">Standard Link</A>
-<A href="#composing-styles-across-components" variants={['button.base']}>Button Link</A>`
+			"\timport { Div, A } from 'sveltewind/components';",
+			'<Div class="flex items-center gap-4">\r\n\t\t\t<A href="#composing-styles-across-components">Standard Link</A>\r\n\t\t\t<A href="#composing-styles-across-components" variants={[\'button.base\']}>Button Link</A>\r\n\t\t</Div>'
 		)}
 		title="+page.svelte"
 	>
@@ -112,8 +110,8 @@ ${body}`;
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { Button } from 'sveltewind/components';`,
-			`<Button class="w-full">Full Width Button</Button>`
+			"\timport { Button } from 'sveltewind/components';",
+			'<Button class="w-full">Full Width Button</Button>'
 		)}
 		title="+page.svelte"
 	>
@@ -133,12 +131,8 @@ ${body}`;
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { A, Button } from 'sveltewind/components';
-	
-	// $state
-	let isVisible = $state(true);`,
-			`<Button onclick={() => isVisible = !isVisible}>Toggle Visibility</Button>
-<A hfef="#visibility" {isVisible}>Visible Link</A>`
+			"\timport { Div, Button, A } from 'sveltewind/components';\n\t\n\t// $state\n\tlet isVisibilityExampleVisible = $state(true);",
+			'<Div class="flex items-center gap-4">\r\n\t\t\t<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}\r\n\t\t\t\t>Toggle Visibility</Button\r\n\t\t\t>\r\n\t\t\t<A href="#visibility" isVisible={isVisibilityExampleVisible}>Visible Link</A>\r\n\t\t</Div>'
 		)}
 		title="+page.svelte"
 	>
@@ -158,19 +152,8 @@ ${body}`;
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { fade } from 'svelte/transition';
-	import { A, Button } from 'sveltewind/components';
-	
-	// $state
-	let isVisible = $state(true);`,
-			`<Button onclick={() => isVisible = !isVisible}>Toggle Visibility</Button>
-<A
-	href="#transitions"
-	{isVisible}
-	transition={[fade, { duration:1000}]}
->
-	Visible Link
-</A>`
+			"\timport { fade } from 'svelte/transition';\n\timport { Div, Button, A } from 'sveltewind/components';\n\t\n\t// $state\n\tlet isVisibilityExampleVisible = $state(true);",
+			'<Div class="flex items-center gap-4">\r\n\t\t\t<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}\r\n\t\t\t\t>Toggle Visibility</Button\r\n\t\t\t>\r\n\t\t\t<A\r\n\t\t\t\thref="#transitions"\r\n\t\t\t\tisVisible={isVisibilityExampleVisible}\r\n\t\t\t\ttransition={[fade, { duration: 1000 }]}\r\n\t\t\t>\r\n\t\t\t\tVisible Link\r\n\t\t\t</A>\r\n\t\t</Div>'
 		)}
 		title="+page.svelte"
 	>

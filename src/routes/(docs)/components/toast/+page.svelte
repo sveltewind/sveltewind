@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { Toast } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Toast title="Changes saved" message="You are ready to keep building." status="success" duration={0} />';
+	const code = composedExample('Toast');
 	const props = [
 		{
 			defaultValue: 'undefined',

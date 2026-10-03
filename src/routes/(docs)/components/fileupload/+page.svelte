@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { FileUpload } from \'sveltewind/components\';\n  let files = $state<File[]>([]);\n</scr' +
-		'ipt>\n\n<FileUpload label="Images or PDFs" accept="image/*,.pdf" multiple maxSize={5 * 1024 * 1024} bind:files />';
+	const code = composedExample('FileUpload');
 	const props = [
 		{
 			defaultValue: "''",

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { DropdownMenu } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<DropdownMenu\n  label=\"Actions\"\n  items={[{ label: 'Edit', value: 'edit' }, { label: 'Duplicate', value: 'duplicate' }]}\n  onSelect={(item) => console.log(item.value)}\n/>";
+	const code = composedExample('DropdownMenu');
 	const props = [
 		{
 			defaultValue: 'undefined',

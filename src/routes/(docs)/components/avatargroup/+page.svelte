@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { AvatarGroup } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<AvatarGroup avatars={[{ name: 'Alex Morgan' }, { name: 'Sam Rivera' }, { name: 'Casey Lee' }]} max={2} />";
+	const code = composedExample('AvatarGroup');
 	const props = [
 		{
 			defaultValue: '[]',

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { Button, Toaster, type ToastItem } from \'sveltewind/components\';\n  let sequence = $state(0);\n  let toasts = $state<ToastItem[]>([]);\n</scr' +
-		"ipt>\n\n<Button onclick={() => { sequence++; toasts = [...toasts, { id: String(sequence), message: 'Changes saved.', status: 'success' }]; }}>Show notification</Button>\n<Toaster bind:toasts />";
+	const code = composedExample('Toaster');
 	const props = [
 		{
 			defaultValue: 'undefined',

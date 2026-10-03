@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { Button, Drawer, P } from \'sveltewind/components\';\n  let visible = $state(false);\n</scr' +
-		'ipt>\n\n<Button onclick={() => (visible = true)}>Open drawer</Button>\n<Drawer title="Your workspace" bind:isVisible={visible}>\n  <P>Your panel content goes here.</P>\n</Drawer>';
+	const code = composedExample('Drawer');
 	const props = [
 		{
 			defaultValue: 'undefined',

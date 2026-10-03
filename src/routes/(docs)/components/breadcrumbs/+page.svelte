@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n  import { Breadcrumbs } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Breadcrumbs items={[{ href: '/', label: 'Home' }, { href: '/components', label: 'Components' }, { label: 'Preview' }]} />";
+	const code = composedExample('Breadcrumbs');
 	const props = [
 		{
 			defaultValue: 'undefined',

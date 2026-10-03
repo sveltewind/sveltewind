@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -17,9 +18,7 @@
 	} from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		"<script lang=\"ts\">\n  import { Combobox } from 'sveltewind/components';\n  let value = $state('');\n</scr" +
-		"ipt>\n\n<Combobox label=\"Favorite tool\" options={[{ label: 'Svelte', value: 'svelte' }, { label: 'TypeScript', value: 'typescript' }]} bind:value />";
+	const code = composedExample('Combobox');
 	const props = [
 		{
 			defaultValue: 'undefined',

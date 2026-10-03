@@ -89,9 +89,6 @@ ${body}`;
 		'ghost',
 		'bg-transparent text-primary-500 hover:bg-primary-500/10'
 	);
-
-	// $state
-	let isGhost = $state(false);
 </script>
 
 <DocsSection>
@@ -167,7 +164,14 @@ ${body}`;
 	>
 	<CodePreview
 		title="+page.svelte"
-		code={`<Button variants={['soft', 'sm', 'pill']}>Soft button</Button>\n<Button variants={['danger']}>Delete</Button>\n<Card variants={['elevated', 'compact']}>Elevated card</Card>\n<Input variants={['filled', 'sm']} placeholder="Email" />\n<Badge variants={['success']}>Active</Badge>`}
+		code={codeSanitizer(
+			"import { Badge, Button, Div } from 'sveltewind/components';",
+			`<Div class="flex flex-wrap items-center gap-3">
+  <Button type="button" variants={['soft', 'sm', 'pill']}>Soft button</Button>
+  <Button type="button" variants={['danger']}>Delete</Button>
+  <Badge variants={['success']}>Active</Badge>
+</Div>`
+		)}
 	>
 		<Div class="flex flex-wrap items-center gap-3">
 			<Button type="button" variants={['soft', 'sm', 'pill']}>Soft button</Button>
@@ -268,7 +272,8 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { theme } from 'sveltewind/theme';
+			`	import { A, Button, Div, Input } from 'sveltewind/components';
+	import { theme } from 'sveltewind/theme';
 
 	// Set the entire theme object
 	theme.set.theme({
@@ -286,11 +291,13 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 	theme.set.base('input', 'rounded-md px-6 py-3 inset-ring inset-ring-primary-500 placeholder:text-primary-500/50');
 	
 	// Set a component's variant style
-	theme.set.variant('button', 'ghost', 'bg-transparent text-primary-500 hover:bg-primary-500/50');`,
-			`<Button>Updated Button</Button>
+	theme.set.variant('button', 'ghost', 'bg-transparent text-primary-500 hover:bg-primary-500/10');`,
+			`<Div class="flex flex-col items-center gap-4 lg:flex-row">
+<Button>New Button</Button>
 <A href="#set">New Link</A>
 <Input placeholder="New Input" />
-<Button variants={['ghost']}>Ghost Button</Button>`
+<Button variants={['ghost']}>Ghost Button</Button>
+</Div>`
 		)}
 		title="+page.svelte"
 	>
@@ -309,7 +316,7 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 		useful for adding new styles without replacing the entire value.
 	</P>
 
-	<CodePreview
+	<CodeBlock
 		code={codeSanitizer(
 			`	import { theme } from 'sveltewind/theme';
 	
@@ -319,30 +326,37 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 	})		`,
 			``
 		)}
-	></CodePreview>
+		options={{ lang: 'svelte' }}
+	/>
 </DocsSection>
 
 <DocsSection>
 	<H2>Create Your Own Theme</H2>
 
 	<P>
-		Create a new theme by passing a theme object into <Code>ThemeClass</Code>.
+		Create a new theme by passing a theme object into <Code>Theme</Code>.
 	</P>
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { ThemeClass } from 'sveltewind/theme';`,
-			`const customTheme = new ThemeClass({
-	button: {
-		base: 'rounded-full bg-primary-500 px-6 py-3 text-white',
-		variants: {
-			ghost: 'bg-transparent text-primary-500'
-		}
-	},
+			`	import { A, Button, Div } from 'sveltewind/components';
+	import { Theme } from 'sveltewind/theme';
+	const customTheme = new Theme({
 	a: {
-		base: 'text-primary-500 underline'
+		base: 'text-primary-500 underline underline-offset-4'
+	},
+	button: {
+		base: 'rounded-full bg-primary-500 px-6 py-3 text-white hover:bg-primary-600',
+		variants: {
+			ghost: 'bg-transparent text-primary-500 hover:bg-primary-50',
+			square: 'rounded-none'
+		}
 	}
-});`
+});`,
+			`<Div class="flex gap-4">
+<Button theme={customTheme}>Custom Button</Button>
+<A href="#create-your-own-theme" theme={customTheme}>Custom Link</A>
+</Div>`
 		)}
 	>
 		<Div class="flex gap-4">
@@ -362,19 +376,22 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { Button } from 'sveltewind';
+			`	import { Button, Div } from 'sveltewind/components';
+	import { Theme } from 'sveltewind/theme';
 
-	const exampleTheme = new ThemeClass({
+	const exampleTheme = new Theme({
 		button: {
-			base: 'rounded-md bg-primary-500 px-6 py-3 text-white',
+			base: 'rounded-md bg-primary-500 px-6 py-3 text-white hover:bg-primary-600',
 			variants: {
-				ghost: 'bg-transparent text-primary-500'
+				ghost: 'bg-transparent text-primary-500 hover:bg-primary-500/10'
 			}
 		}
 	});`,
-			`<Button>Default</Button>
+			`<Div class="flex gap-4">
+<Button>Default</Button>
 <Button theme={exampleTheme}>Custom</Button>
-<Button theme={exampleTheme} variants={['ghost']}>Ghost</Button>`
+<Button theme={exampleTheme} variants={['ghost']}>Ghost</Button>
+</Div>`
 		)}
 	>
 		<Div class="flex gap-4">
@@ -394,9 +411,11 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 
 	<CodePreview
 		code={codeSanitizer(
-			`	import { A } from 'sveltewind';`,
-			`<A href="#">Default Link</A>
-<A href="#" variants={['button.base']}>Button Link</A>`
+			`	import { A, Div } from 'sveltewind/components';`,
+			`<Div class="flex gap-4">
+<A href="#">Default Link</A>
+<A href="#" variants={['button.base']}>Button Link</A>
+</Div>`
 		)}
 	>
 		<Div class="flex gap-4">

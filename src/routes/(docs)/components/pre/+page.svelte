@@ -114,7 +114,7 @@
 	<P>Import Pre from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Pre, Code } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Pre>\n\t<Code class="bg-transparent text-current">{"const hello = \'world\';"}</Code>\n</Pre>\n'}
+			'ipt>\n\n<Pre><Code class="bg-transparent text-current">const hello = \'world\';</Code></Pre>\n'}
 		title="+page.svelte"
 	>
 		<Pre><Code class="bg-transparent text-current">const hello = 'world';</Code></Pre>
@@ -126,7 +126,7 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Pre, Code } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Pre class="text-primary-500 dark:text-primary-400">\n\t<Code class="bg-transparent text-current">{"const hello = \'world\';"}</Code>\n</Pre>\n'}
+			'ipt>\n\n<Pre class="text-primary-500 dark:text-primary-400"><Code class="bg-transparent text-current">const hello = \'world\';</Code></Pre>\n'}
 		title="+page.svelte"
 	>
 		<Pre class="text-primary-500 dark:text-primary-400"

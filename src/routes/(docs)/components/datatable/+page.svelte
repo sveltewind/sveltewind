@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { composedExample } from '$components/ComposedPreview/examples';
 	import {
 		Card,
 		Code,
@@ -15,15 +16,18 @@
 		Thead,
 		Tr
 	} from '$components';
-	const code =
-		"<script lang=\"ts\">\n  import { Datatable, type DatatableRow } from 'sveltewind/components';\n  let rows = $state<DatatableRow[]>([{ id: 1, name: 'Alex', role: 'Designer' }]);\n<\/script>\n\n<Datatable\n  columns={['name', 'role']}\n  {rows}\n  isCreatable={false}\n  isDeletable={false}\n  onupdate={({ key, row, value }) => {\n    rows = rows.map((entry) => entry.id === row.id ? { ...entry, [key]: value } : entry);\n  }}\n/>";
+	const code = composedExample('Datatable');
 	const props = [
 		{
 			description: 'Replaces the built-in toolbar, table, and pagination content.',
 			name: 'children',
 			type: 'Snippet'
 		},
-		{ description: 'Local root class override.', name: 'class', type: 'string' },
+		{
+			description: 'Local root class override.',
+			name: 'class',
+			type: 'string'
+		},
 		{
 			description:
 				'Explicit column list and order. Omit to infer columns from the first row. Supports dotted property paths.',
@@ -51,19 +55,47 @@
 			name: 'inTransition',
 			type: 'TransitionProps'
 		},
-		{ description: 'Enables the creatable feature.', name: 'isCreatable', type: 'boolean' },
-		{ description: 'Enables the customizable feature.', name: 'isCustomizable', type: 'boolean' },
+		{
+			description: 'Enables the creatable feature.',
+			name: 'isCreatable',
+			type: 'boolean'
+		},
+		{
+			description: 'Enables the customizable feature.',
+			name: 'isCustomizable',
+			type: 'boolean'
+		},
 		{
 			description:
 				'Skips local filtering, sorting, and slicing when the application supplies a page of rows.',
 			name: 'isDataControlled',
 			type: 'boolean'
 		},
-		{ description: 'Enables the deletable feature.', name: 'isDeletable', type: 'boolean' },
-		{ description: 'Enables the editable feature.', name: 'isEditable', type: 'boolean' },
-		{ description: 'Enables the filterable feature.', name: 'isFilterable', type: 'boolean' },
-		{ description: 'Enables the paginatable feature.', name: 'isPaginatable', type: 'boolean' },
-		{ description: 'Enables the sortable feature.', name: 'isSortable', type: 'boolean' },
+		{
+			description: 'Enables the deletable feature.',
+			name: 'isDeletable',
+			type: 'boolean'
+		},
+		{
+			description: 'Enables the editable feature.',
+			name: 'isEditable',
+			type: 'boolean'
+		},
+		{
+			description: 'Enables the filterable feature.',
+			name: 'isFilterable',
+			type: 'boolean'
+		},
+		{
+			description: 'Enables the paginatable feature.',
+			name: 'isPaginatable',
+			type: 'boolean'
+		},
+		{
+			description: 'Enables the sortable feature.',
+			name: 'isSortable',
+			type: 'boolean'
+		},
 		{
 			description: 'Bindable root visibility; hiding the component closes its dialogs.',
 			name: 'isVisible',
@@ -110,8 +142,16 @@
 			name: 'pagination',
 			type: 'Pagination'
 		},
-		{ description: 'Input records; defaults to an empty array.', name: 'rows', type: 'Row[]' },
-		{ description: 'Bindable sort state; direction is asc or desc.', name: 'sort', type: 'Sort' },
+		{
+			description: 'Input records; defaults to an empty array.',
+			name: 'rows',
+			type: 'Row[]'
+		},
+		{
+			description: 'Bindable sort state; direction is asc or desc.',
+			name: 'sort',
+			type: 'Sort'
+		},
 		{
 			description: 'Overrides the built-in table content with a snippet.',
 			name: 'table',
