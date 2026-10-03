@@ -70,7 +70,7 @@
 		Img: {
 			props: { alt: 'Illustrated mountain landscape', height: '120', src: image, width: '240' }
 		},
-		Input: { props: { 'aria-label': 'Example input', placeholder: 'Type somethingâ€¦' } },
+		Input: { props: { 'aria-label': 'Example input', placeholder: 'Type something...' } },
 		Label: { children: labelChildren, props: { for: 'preview-label' } },
 		Legend: { preview: legendPreview },
 		Li: { preview: liPreview },
@@ -135,7 +135,7 @@
 		Text: { preview: textPreview },
 		TextPath: { preview: textPathPreview },
 		Textarea: {
-			props: { 'aria-label': 'Example textarea', placeholder: 'Write a messageâ€¦', rows: 2 }
+			props: { 'aria-label': 'Example textarea', placeholder: 'Write a message...', rows: 2 }
 		},
 		Th: { preview: tablePreview },
 		Thead: { preview: tablePreview },
@@ -210,7 +210,7 @@
 <DocsSection>
 	<BlockLink
 		class="items-start text-left"
-		description="Getting started is simple â€” install the package and youâ€™re ready to go."
+		description="Getting started is simple: install the package and you're ready to go."
 		href="/getting-started/theming"
 		Icon={SwatchBook}
 		title="Theming"
