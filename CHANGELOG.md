@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.12.0](https://github.com/sveltewind/sveltewind/compare/v4.11.0...v4.12.0) (2026-10-03)
+
+
+### Features
+
+* add additional components ([d65869c](https://github.com/sveltewind/sveltewind/commit/d65869cfef9c6dfa7cc5ad9b395c7fc6419a719b))
+* add additional primitive components ([ff95c5b](https://github.com/sveltewind/sveltewind/commit/ff95c5bc1cf06b70e2a1aec7f1b58a10c9a38036))
+* add additional themes and fix some existing components ([56fa607](https://github.com/sveltewind/sveltewind/commit/56fa60731d237795721b9d8e42e450e5dcd2e660))
+* add cloudflare front end deployment ([4217786](https://github.com/sveltewind/sveltewind/commit/421778699c273e9273c5dee861e5a9ad95683480))
+* add Datatable component ([9960d8f](https://github.com/sveltewind/sveltewind/commit/9960d8fb2a6e9bfd5ffe90a0b2d84f76b7ead2ff))
+* update components ([ad179c4](https://github.com/sveltewind/sveltewind/commit/ad179c40c927bc60780a61ac3c918a51694d1905))
+* update landing page ([0064157](https://github.com/sveltewind/sveltewind/commit/006415789e968ef961041d5155c18b3ad979404c))
+* update landing page ([91bfadf](https://github.com/sveltewind/sveltewind/commit/91bfadfa9dbe120ed0a71d5b74037a4c34bfbac6))
+* update landing page and README ([682e2f9](https://github.com/sveltewind/sveltewind/commit/682e2f9436a076885d69f9e13a395cef3130da83))
+* update README ([5278447](https://github.com/sveltewind/sveltewind/commit/52784476e360fd636562da1b3a8ec43dbed4d3d8))
+* update themes ([fb7591d](https://github.com/sveltewind/sveltewind/commit/fb7591db1009f0cdaf8c7006d82e1b5ecc0d22fc))
+
+
+### Bug Fixes
+
+* allow existing variants anchor during prerender ([01c0d5a](https://github.com/sveltewind/sveltewind/commit/01c0d5a38f6890dd34006cbe6adaa1e2cd568424))
+
 ## [4.11.0](https://github.com/sveltewind/sveltewind/compare/v4.10.1...v4.11.0) (2026-10-02)
 
 
