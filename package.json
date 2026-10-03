@@ -106,5 +106,11 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"description": "A Svelte 5 component library styled with Tailwind CSS 4.",
+	"homepage": "https://sveltewind.com",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sveltewind/sveltewind.git"
 	}
 }
