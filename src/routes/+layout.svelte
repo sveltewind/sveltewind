@@ -33,7 +33,7 @@
 				startsWith: '/getting-started',
 				title: 'Docs'
 			},
-			{ href: '/components/a', startsWith: '/components', title: 'Components' },
+			{ href: '/components', startsWith: '/components', title: 'Components' },
 			{ href: '/examples/sass-landing-page', startsWith: '/examples', title: 'Examples' }
 		]
 	});
@@ -94,7 +94,12 @@
 				: ''
 		)}
 	>
-		<Container class="flex items-center justify-between">
+		<Container
+			class={twMerge(
+				'flex items-center justify-between',
+				page.url.pathname === '/' ? 'mx-auto w-full max-w-7xl px-6 sm:px-10' : ''
+			)}
+		>
 			<A
 				class="-mx-6"
 				href="/"
@@ -135,6 +140,7 @@
 
 {#snippet darkModeButtonSnippet()}
 	<Button
+		aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
 		class="relative flex items-center justify-center overflow-hidden"
 		onclick={() => (isDarkMode = !isDarkMode)}
 		variants={['icon', 'ghost']}
@@ -155,6 +161,8 @@
 {/snippet}
 {#snippet githubButtonSnippet()}
 	<A
+		aria-label="Sveltewind on GitHub"
+		class={page.url.pathname === '/' ? 'hidden sm:inline-flex' : ''}
 		href="https://github.com/sveltewind/sveltewind"
 		target="_blank"
 		variants={['button.base', 'button.variant.icon', 'button.variant.ghost']}
@@ -180,6 +188,8 @@
 {/snippet}
 {#snippet navButtonSnippet()}
 	<Button
+		aria-label={nav.isOpen ? 'Close navigation' : 'Open navigation'}
+		aria-expanded={nav.isOpen}
 		class="relative lg:hidden"
 		onclick={() => (nav.isOpen = !nav.isOpen)}
 		variants={['icon', 'ghost']}
