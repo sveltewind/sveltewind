@@ -16,7 +16,8 @@
 		"test": "npm run test:unit -- --run",
 		"prepublishOnly": "npm run package",
 		"npm-publish": "git push --follow-tags origin main && npm publish",
-		"release": "commit-and-tag-version && npm run npm-publish"
+		"release": "commit-and-tag-version && npm run npm-publish",
+		"build:site": "vite build"
 	},
 	"files": [
 		"dist",
@@ -64,6 +65,7 @@
 		"@eslint/js": "^9.36.0",
 		"@lucide/svelte": "^0.548.0",
 		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/adapter-vercel": "^5.10.2",
 		"@sveltejs/kit": "^2.43.2",
 		"@sveltejs/package": "^2.5.4",

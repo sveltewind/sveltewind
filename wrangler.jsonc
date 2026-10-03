@@ -1,0 +1,9 @@
+{
+	"name": "sveltewind",
+	"compatibility_date": "2026-10-03",
+	"assets": {
+		"directory": "./build",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "none"
+	}
+}
