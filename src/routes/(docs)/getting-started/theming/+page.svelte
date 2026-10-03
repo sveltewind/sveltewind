@@ -22,23 +22,23 @@
 	const presetPreviews = [
 		{
 			name: 'Classic',
-			description: 'Balanced rounded controls with a violet accent.',
+			description: 'Balanced rounded controls and comfortable spacing.',
 			theme: new Theme(classic)
 		},
 		{
 			name: 'Soft',
-			description: 'Gentle surfaces and generous curves with a rose accent.',
+			description: 'Generous curves and subtle shadows.',
 			theme: new Theme(soft)
 		},
-		{ name: 'Sharp', description: 'Square edges with a sky accent.', theme: new Theme(sharp) },
+		{ name: 'Sharp', description: 'Square edges and crisp geometry.', theme: new Theme(sharp) },
 		{
 			name: 'Minimal',
-			description: 'Quiet monochrome surfaces and understated borders.',
+			description: 'Compact controls and understated borders.',
 			theme: new Theme(minimal)
 		},
 		{
 			name: 'Studio',
-			description: 'Elevated surfaces with an emerald accent.',
+			description: 'Elevated surfaces and larger rounded corners.',
 			theme: new Theme(studio)
 		}
 	];
@@ -56,38 +56,38 @@ ${body}`;
 	// example themes
 	const customTheme = new Theme({
 		a: {
-			base: 'text-emerald-500 underline underline-offset-4'
+			base: 'text-primary-500 underline underline-offset-4'
 		},
 		button: {
-			base: 'rounded-full bg-emerald-500 px-6 py-3 text-white hover:bg-emerald-600',
+			base: 'rounded-full bg-primary-500 px-6 py-3 text-white hover:bg-primary-600',
 			variants: {
-				ghost: 'bg-transparent text-emerald-500 hover:bg-emerald-50',
+				ghost: 'bg-transparent text-primary-500 hover:bg-primary-50',
 				square: 'rounded-none'
 			}
 		}
 	});
 
-	const sunsetTheme = new Theme();
+	const exampleTheme = new Theme();
 
-	sunsetTheme.set.theme({
+	exampleTheme.set.theme({
 		button: {
-			base: 'rounded-md bg-orange-500 px-6 py-3 text-white hover:bg-orange-600'
+			base: 'rounded-md bg-primary-500 px-6 py-3 text-white hover:bg-primary-600'
 		}
 	});
 
-	sunsetTheme.set.component('a', {
-		base: 'text-orange-500 underline'
+	exampleTheme.set.component('a', {
+		base: 'text-primary-500 underline'
 	});
 
-	sunsetTheme.set.base(
+	exampleTheme.set.base(
 		'input',
-		'rounded-md px-6 py-3 inset-ring inset-ring-orange-500 placeholder:text-orange-500/50'
+		'rounded-md px-6 py-3 inset-ring inset-ring-primary-500 placeholder:text-primary-500/50'
 	);
 
-	sunsetTheme.set.variant(
+	exampleTheme.set.variant(
 		'button',
 		'ghost',
-		'bg-transparent text-orange-500 hover:bg-orange-500/10'
+		'bg-transparent text-primary-500 hover:bg-primary-500/10'
 	);
 
 	// $state
@@ -109,8 +109,9 @@ ${body}`;
 <DocsSection>
 	<H2>Bundled styles</H2>
 	<P
-		>Use the Site style selector in the header to change the global preset throughout the site.
-		Light and dark mode work independently. Explicit classes and local themes still take precedence.</P
+		>Use the Style selector in the Settings popup in the header to change the global preset
+		throughout the site. Light and dark mode work independently. Explicit classes and local themes
+		still take precedence.</P
 	>
 	<P
 		>Classic is the renamed original theme. The former default export remains a compatibility alias.
@@ -122,9 +123,15 @@ ${body}`;
 		code={"import { theme } from 'sveltewind/theme';\nimport { classic, soft, sharp, minimal, studio } from 'sveltewind/themes';\n\n// Copy before making site-specific updates.\ntheme.set.theme(structuredClone(soft));"}
 	/>
 	<P
-		>Import the optional Tailwind 4 palette stylesheet and set data-style on the root element to
-		classic, soft, sharp, minimal, or studio to use each preset's accent colors. These previews use
-		the site's current accent so you can compare their shapes independently.</P
+		>Styles change geometry, spacing, and surface treatment without selecting a color. Use the Color
+		selector in Settings to choose violet, rose, sky, emerald, amber, or slate independently. These
+		previews use the currently selected primary palette for accents. Status variants keep their
+		semantic colors: success is green, error and danger are red, warning is amber, and info is blue.</P
+	>
+	<P
+		>Import the palette stylesheet to register the primary Tailwind colors. Set data-color on the
+		root element to apply a palette. Changing data-color updates components using primary utilities
+		without replacing the style theme.</P
 	>
 	<CodeBlock
 		title="app.css"
@@ -134,7 +141,7 @@ ${body}`;
 	<CodeBlock
 		title="JavaScript"
 		options={{ lang: 'ts' }}
-		code={"document.documentElement.dataset.style = 'soft';"}
+		code={"// Independent of the chosen style preset.\n document.documentElement.dataset.color = 'rose';"}
 	/>
 	<Div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 		{#each presetPreviews as preset}
@@ -204,12 +211,12 @@ ${body}`;
 
 export const customTheme = new Theme({
 	a: {
-		base: 'text-emerald-500 underline underline-offset-4'
+		base: 'text-primary-500 underline underline-offset-4'
 	},
 	button: {
-		base: 'rounded-full bg-emerald-500 px-6 py-3 text-white hover:bg-emerald-600',
+		base: 'rounded-full bg-primary-500 px-6 py-3 text-white hover:bg-primary-600',
 		variants: {
-			ghost: 'bg-transparent text-emerald-500 hover:bg-emerald-50',
+			ghost: 'bg-transparent text-primary-500 hover:bg-primary-50',
 			square: 'rounded-none'
 		}
 	},
@@ -266,20 +273,20 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 	// Set the entire theme object
 	theme.set.theme({
 		button: {
-			base: 'rounded-md bg-orange-500 px-6 py-3 text-white hover:bg-orange-600'
+			base: 'rounded-md bg-primary-500 px-6 py-3 text-white hover:bg-primary-600'
 		}
 	});
 	
 	// Set a specific component's object
 	theme.set.component('a', {
-		base: 'text-orange-500 underline'
+		base: 'text-primary-500 underline'
 	});
 	
 	// Set a component's base styles
-	theme.set.base('input', 'rounded-md px-6 py-3 inset-ring inset-ring-orange-500 placeholder:text-orange-500/50');
+	theme.set.base('input', 'rounded-md px-6 py-3 inset-ring inset-ring-primary-500 placeholder:text-primary-500/50');
 	
 	// Set a component's variant style
-	theme.set.variant('button', 'ghost', 'bg-transparent text-orange-500 hover:bg-orange-500/50');`,
+	theme.set.variant('button', 'ghost', 'bg-transparent text-primary-500 hover:bg-primary-500/50');`,
 			`<Button>Updated Button</Button>
 <A href="#set">New Link</A>
 <Input placeholder="New Input" />
@@ -288,10 +295,10 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 		title="+page.svelte"
 	>
 		<Div class="flex flex-col items-center gap-4 lg:flex-row">
-			<Button theme={sunsetTheme}>New Button</Button>
-			<A href="#set" theme={sunsetTheme}>New Link</A>
-			<Input theme={sunsetTheme} placeholder="New Input" />
-			<Button theme={sunsetTheme} variants={['ghost']}>Ghost Button</Button>
+			<Button theme={exampleTheme}>New Button</Button>
+			<A href="#set" theme={exampleTheme}>New Link</A>
+			<Input theme={exampleTheme} placeholder="New Input" />
+			<Button theme={exampleTheme} variants={['ghost']}>Ghost Button</Button>
 		</Div>
 	</CodePreview>
 
@@ -327,13 +334,13 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 			`	import { ThemeClass } from 'sveltewind/theme';`,
 			`const customTheme = new ThemeClass({
 	button: {
-		base: 'rounded-full bg-emerald-500 px-6 py-3 text-white',
+		base: 'rounded-full bg-primary-500 px-6 py-3 text-white',
 		variants: {
-			ghost: 'bg-transparent text-emerald-500'
+			ghost: 'bg-transparent text-primary-500'
 		}
 	},
 	a: {
-		base: 'text-emerald-500 underline'
+		base: 'text-primary-500 underline'
 	}
 });`
 		)}
@@ -357,23 +364,23 @@ const buttonGhostString = theme.get.variant('button', 'ghost')`}
 		code={codeSanitizer(
 			`	import { Button } from 'sveltewind';
 
-	const sunsetTheme = new ThemeClass({
+	const exampleTheme = new ThemeClass({
 		button: {
-			base: 'rounded-md bg-orange-500 px-6 py-3 text-white',
+			base: 'rounded-md bg-primary-500 px-6 py-3 text-white',
 			variants: {
-				ghost: 'bg-transparent text-orange-500'
+				ghost: 'bg-transparent text-primary-500'
 			}
 		}
 	});`,
 			`<Button>Default</Button>
-<Button theme={sunsetTheme}>Custom</Button>
-<Button theme={sunsetTheme} variants={['ghost']}>Ghost</Button>`
+<Button theme={exampleTheme}>Custom</Button>
+<Button theme={exampleTheme} variants={['ghost']}>Ghost</Button>`
 		)}
 	>
 		<Div class="flex gap-4">
 			<Button>Default</Button>
-			<Button theme={sunsetTheme}>Custom</Button>
-			<Button theme={sunsetTheme} variants={['ghost']}>Ghost</Button>
+			<Button theme={exampleTheme}>Custom</Button>
+			<Button theme={exampleTheme} variants={['ghost']}>Ghost</Button>
 		</Div>
 	</CodePreview>
 </DocsSection>

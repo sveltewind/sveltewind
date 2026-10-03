@@ -14,31 +14,31 @@ const theme = createPreset({
 		base: 'rounded-full shadow-sm'
 	},
 	card: {
-		base: 'rounded-2xl bg-primary-500/5 inset-ring-primary-500/15'
+		base: 'rounded-2xl shadow-sm'
 	},
 	details: {
 		base: 'rounded-2xl'
 	},
 	dialog: {
-		base: 'rounded-2xl bg-gray-50 dark:bg-gray-900'
+		base: 'rounded-2xl'
 	},
 	fieldset: {
 		base: 'rounded-xl'
 	},
 	input: {
-		base: 'rounded-xl bg-gray-100/70 dark:bg-gray-900'
+		base: 'rounded-xl'
 	},
 	popover: {
 		base: 'rounded-2xl'
 	},
 	select: {
-		base: 'rounded-xl bg-gray-100/70 dark:bg-gray-900'
+		base: 'rounded-xl'
 	},
 	tabs: {
-		base: 'rounded-full bg-primary-500/5'
+		base: 'rounded-full'
 	},
 	textarea: {
-		base: 'rounded-xl bg-gray-100/70 dark:bg-gray-900'
+		base: 'rounded-xl'
 	}
 });
 

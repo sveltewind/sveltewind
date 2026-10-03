@@ -7,15 +7,20 @@
 		<script>
 			let localStorageDarkMode = 'false';
 			let siteStyle = 'classic';
+			let siteColor = 'violet';
 			try {
 				localStorageDarkMode = localStorage.getItem('darkMode') || 'false';
 				const savedStyle = localStorage.getItem('sveltewindStyle');
 				if (['classic', 'minimal', 'sharp', 'soft', 'studio'].includes(savedStyle))
 					siteStyle = savedStyle;
+				const savedColor = localStorage.getItem('sveltewindColor');
+				if (['violet', 'rose', 'sky', 'emerald', 'amber', 'slate'].includes(savedColor))
+					siteColor = savedColor;
 			} catch {
 				/* Storage is optional. */
 			}
 			document.documentElement.setAttribute('data-style', siteStyle);
+			document.documentElement.setAttribute('data-color', siteColor);
 			document.documentElement.setAttribute(
 				'data-theme',
 				localStorageDarkMode === 'true' ? 'dark' : 'light'

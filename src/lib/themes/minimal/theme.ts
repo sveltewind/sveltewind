@@ -7,9 +7,7 @@ const theme = createPreset({
 	badge: {
 		base: 'rounded-sm bg-transparent dark:bg-transparent'
 	},
-	button: {
-		base: 'rounded-md bg-gray-950 hover:bg-gray-800 focus:bg-gray-800 dark:bg-gray-50 dark:text-gray-950 dark:hover:bg-gray-200 dark:hover:text-gray-950 dark:focus:bg-gray-200 dark:focus:text-gray-950'
-	},
+	button: { base: 'rounded-sm px-4 py-2 shadow-none' },
 	card: {
 		base: 'rounded-none inset-ring-0 border-b border-gray-200 dark:border-gray-700'
 	},
@@ -26,7 +24,7 @@ const theme = createPreset({
 		base: 'font-medium'
 	},
 	input: {
-		base: 'rounded-none inset-ring-0 border-b border-gray-300 focus-visible:border-primary-500 dark:border-gray-600'
+		base: 'rounded-none inset-ring-0 border-b border-gray-300 dark:border-gray-600'
 	},
 	select: {
 		base: 'rounded-none inset-ring-0 border-b border-gray-300 dark:border-gray-600'

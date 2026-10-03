@@ -23,6 +23,17 @@ const defaults = {
 	transition: 'transition duration-200'
 };
 
+// Status colors communicate meaning independently of the selected primary palette.
+const statuses = {
+	error:
+		'bg-red-50 text-red-800 inset-ring-red-200 dark:bg-red-950 dark:text-red-200 dark:inset-ring-red-800',
+	info: 'bg-blue-50 text-blue-800 inset-ring-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:inset-ring-blue-800',
+	success:
+		'bg-green-50 text-green-800 inset-ring-green-200 dark:bg-green-950 dark:text-green-200 dark:inset-ring-green-800',
+	warning:
+		'bg-amber-50 text-amber-800 inset-ring-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:inset-ring-amber-800'
+};
+
 const theme: ThemeObject = {
 	a: {
 		base: twMerge(
@@ -44,27 +55,11 @@ const theme: ThemeObject = {
 	},
 	alert: {
 		base: 'rounded-md p-4 inset-ring-1 inset-ring-gray-200 bg-gray-50 text-gray-950 dark:inset-ring-gray-700 dark:bg-gray-900 dark:text-gray-50',
-		variants: {
-			error:
-				'bg-red-50 text-red-800 inset-ring-red-200 dark:bg-red-950 dark:text-red-200 dark:inset-ring-red-800',
-			info: 'bg-blue-50 text-blue-800 inset-ring-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:inset-ring-blue-800',
-			success:
-				'bg-green-50 text-green-800 inset-ring-green-200 dark:bg-green-950 dark:text-green-200 dark:inset-ring-green-800',
-			warning:
-				'bg-amber-50 text-amber-800 inset-ring-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:inset-ring-amber-800'
-		}
+		variants: { ...statuses }
 	},
 	badge: {
 		base: 'inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium inset-ring-1 inset-ring-gray-200 bg-gray-100 text-gray-950 dark:inset-ring-gray-700 dark:bg-gray-800 dark:text-gray-50',
-		variants: {
-			error:
-				'bg-red-50 text-red-800 inset-ring-red-200 dark:bg-red-950 dark:text-red-200 dark:inset-ring-red-800',
-			info: 'bg-blue-50 text-blue-800 inset-ring-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:inset-ring-blue-800',
-			success:
-				'bg-green-50 text-green-800 inset-ring-green-200 dark:bg-green-950 dark:text-green-200 dark:inset-ring-green-800',
-			warning:
-				'bg-amber-50 text-amber-800 inset-ring-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:inset-ring-amber-800'
-		}
+		variants: { ...statuses }
 	},
 	button: {
 		base: twMerge(
@@ -257,15 +252,6 @@ const sizes = {
 	sm: 'px-4 py-2 text-sm',
 	xs: 'px-3 py-1.5 text-xs'
 };
-const statuses = {
-	error:
-		'bg-red-50 text-red-800 inset-ring-red-200 dark:bg-red-950 dark:text-red-200 dark:inset-ring-red-800',
-	info: 'bg-blue-50 text-blue-800 inset-ring-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:inset-ring-blue-800',
-	success:
-		'bg-green-50 text-green-800 inset-ring-green-200 dark:bg-green-950 dark:text-green-200 dark:inset-ring-green-800',
-	warning:
-		'bg-amber-50 text-amber-800 inset-ring-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:inset-ring-amber-800'
-};
 const surfaces = {
 	compact: 'p-4',
 	elevated: 'bg-white shadow-lg dark:bg-gray-900',
@@ -309,9 +295,10 @@ theme.input.base = twMerge(
 );
 theme.input.variants = {
 	...sizes,
-	error: 'inset-ring-red-500 focus-visible:inset-ring-red-500',
+	error: 'border-red-500 inset-ring-red-500 focus-visible:inset-ring-red-500 dark:border-red-500',
 	filled: 'bg-gray-100 dark:bg-gray-800',
-	success: 'inset-ring-green-500 focus-visible:inset-ring-green-500',
+	success:
+		'border-green-500 inset-ring-green-500 focus-visible:inset-ring-green-500 dark:border-green-500',
 	unstyled:
 		'rounded-none border-0 bg-transparent p-0 inset-ring-0 focus-visible:inset-ring-0 dark:bg-transparent'
 };

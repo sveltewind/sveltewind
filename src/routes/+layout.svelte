@@ -1,12 +1,29 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
-	import { A, Button, Container, Div, Header, Logo, Nav, Option, Select } from '$components';
-	import { Github, Moon, Palette, Sun } from '$lib/icons';
+	import {
+		A,
+		Button,
+		Container,
+		Div,
+		Field,
+		H2,
+		Header,
+		Label,
+		Logo,
+		Nav,
+		Option,
+		Popover,
+		Select,
+		Span,
+		Switch
+	} from '$components';
+	import { Github, Settings } from '$lib/icons';
 	import { theme } from '$lib/theme';
-	import { classic, minimal, sharp, soft, studio } from '$lib/themes';
+	import { classic, colors, minimal, sharp, soft, studio, type ColorName } from '$lib/themes';
+	import { subtleReveal } from '$lib/transitions';
 	import { nav as navLinks, type NavLink, type NavSection } from '$state/nav/nav.svelte';
-	import { untrack, type Snippet } from 'svelte';
+	import { untrack, type ComponentProps, type Snippet } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
@@ -21,13 +38,18 @@
 	// $props
 	let { children }: Props = $props();
 
+	// Instance ID
+	const settingsId = $props.id();
+
 	// Presets
 	const presets = { classic, minimal, sharp, soft, studio };
 	const presetNames = Object.keys(presets) as PresetName[];
 
 	// $state
 	let selectedPreset = $state<PresetName>('classic');
+	let selectedColor = $state<ColorName>('violet');
 	let isDarkMode = $state(false);
+	let isSettingsOpen = $state(false);
 	const nav: {
 		isOpen: boolean;
 		main: { href: string; startsWith: string; title: string }[];
@@ -54,6 +76,8 @@
 				isDarkMode = localStorage.getItem('darkMode') === 'true';
 				const saved = localStorage.getItem('sveltewindStyle');
 				if (saved && Object.hasOwn(presets, saved)) selectedPreset = saved as PresetName;
+				const savedColor = localStorage.getItem('sveltewindColor');
+				if (colors.includes(savedColor as ColorName)) selectedColor = savedColor as ColorName;
 			} catch {
 				// Storage can be disabled; theme controls still work for this visit.
 			}
@@ -110,6 +134,16 @@
 	});
 
 	$effect(() => {
+		if (!browser) return;
+		document.documentElement.setAttribute('data-color', selectedColor);
+		try {
+			localStorage.setItem('sveltewindColor', selectedColor);
+		} catch {
+			/* Optional persistence. */
+		}
+	});
+
+	$effect(() => {
 		document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
 		if (browser) {
 			try {
@@ -148,8 +182,7 @@
 			</A>
 			<Div class="-mr-3 flex items-center">
 				{@render linksSnippet()}
-				{@render themeSelectorSnippet()}
-				{@render darkModeButtonSnippet()}
+				{@render settingsSnippet()}
 				{@render githubButtonSnippet()}
 				{@render navButtonSnippet()}
 			</Div>
@@ -177,27 +210,6 @@
 	{@render children()}
 {/if}
 
-{#snippet darkModeButtonSnippet()}
-	<Button
-		aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-		class="relative flex size-9 items-center justify-center overflow-hidden sm:size-12"
-		onclick={() => (isDarkMode = !isDarkMode)}
-		variants={['icon', 'ghost']}
-	>
-		<Moon
-			class={twMerge(
-				'absolute top-1/2 left-1/2 transition duration-200',
-				isDarkMode ? '-translate-x-1/2 -translate-y-1/2' : 'translate-x-[-400%] translate-y-[-400%]'
-			)}
-		/>
-		<Sun
-			class={twMerge(
-				'absolute top-1/2 left-1/2 -translate-x-1/2 transition duration-200',
-				!isDarkMode ? '-translate-x-1/2 -translate-y-1/2' : 'translate-x-[400%] translate-y-[-400%]'
-			)}
-		/>
-	</Button>
-{/snippet}
 {#snippet githubButtonSnippet()}
 	<A
 		aria-label="Sveltewind on GitHub"
@@ -230,7 +242,10 @@
 		aria-label={nav.isOpen ? 'Close navigation' : 'Open navigation'}
 		aria-expanded={nav.isOpen}
 		class="relative size-9 sm:size-12 lg:hidden"
-		onclick={() => (nav.isOpen = !nav.isOpen)}
+		onclick={() => {
+			isSettingsOpen = false;
+			nav.isOpen = !nav.isOpen;
+		}}
 		variants={['icon', 'ghost']}
 	>
 		<Div
@@ -290,21 +305,61 @@
 	</Div>
 {/snippet}
 
-{#snippet themeSelectorSnippet()}
-	<Div class="relative ml-1 flex items-center">
-		<Palette
-			aria-hidden="true"
-			class="pointer-events-none absolute left-2.5 size-4 text-primary-500 sm:left-2"
-		/>
-		<Select
-			aria-label={`Site style: ${selectedPreset}`}
-			title={`Site style: ${selectedPreset}. Change the style across the whole site.`}
-			bind:value={selectedPreset}
-			class="size-9 cursor-pointer appearance-none p-0 text-transparent sm:h-auto sm:w-27 sm:appearance-auto sm:py-2 sm:pr-1 sm:pl-7 sm:text-xs sm:text-gray-950 sm:capitalize sm:dark:text-gray-50"
-		>
-			{#each presetNames as name}<Option value={name}
-					>{name[0].toUpperCase() + name.slice(1)}</Option
-				>{/each}
-		</Select>
-	</Div>
+{#snippet settingsTriggerSnippet(props: ComponentProps<typeof Button>)}
+	<Button
+		{...props}
+		aria-label="Settings"
+		title="Settings"
+		onclick={(event) => {
+			nav.isOpen = false;
+			props.onclick?.(event);
+		}}
+		variants={['ghost', 'icon']}
+	>
+		<Settings aria-hidden="true" class="size-5" />
+	</Button>
+{/snippet}
+
+{#snippet settingsSnippet()}
+	<Popover
+		aria-label="Settings"
+		bind:isVisible={isSettingsOpen}
+		class="w-72 max-w-[calc(100vw-1rem)] p-5"
+		gap={8}
+		placement="bottom"
+		role="dialog"
+		transition={[subtleReveal]}
+		trigger={settingsTriggerSnippet}
+	>
+		<Div class="flex flex-col gap-5">
+			<H2 class="text-lg font-semibold">Settings</H2>
+			<Switch bind:checked={isDarkMode} class="flex w-full flex-row-reverse justify-between gap-6">
+				Dark mode
+			</Switch>
+			<Field class="gap-2">
+				<Label for={`${settingsId}-theme`}>Style</Label>
+				<Select
+					id={`${settingsId}-theme`}
+					bind:value={selectedPreset}
+					class="w-full px-3 py-2 text-sm"
+				>
+					{#each presetNames as name}
+						<Option value={name}>{name[0].toUpperCase() + name.slice(1)}</Option>
+					{/each}
+				</Select>
+			</Field>
+			<Field class="gap-2">
+				<Label for={`${settingsId}-color`}>Color</Label>
+				<Select
+					id={`${settingsId}-color`}
+					bind:value={selectedColor}
+					class="w-full px-3 py-2 text-sm"
+				>
+					{#each colors as color}<Option value={color}
+							>{color[0].toUpperCase() + color.slice(1)}</Option
+						>{/each}
+				</Select>
+			</Field>
+		</Div>
+	</Popover>
 {/snippet}

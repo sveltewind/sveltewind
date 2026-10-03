@@ -41,7 +41,7 @@
 			label: 'Theme it',
 			title: 'Make it yours',
 			description: 'Change the theme. Every component follows.',
-			code: "theme.update.component('button', {\n  base: 'bg-teal-500 hover:bg-teal-600'\n});"
+			code: "theme.update.component('button', {\n  base: 'rounded-full px-8 py-4 text-lg shadow-lg'\n});"
 		},
 		{
 			label: 'Add a variant',
@@ -97,13 +97,9 @@
 			button: {
 				base:
 					(theme.get.base('button') || '') +
-					(selectedStep === 1
-						? ' bg-teal-500 hover:bg-teal-600 focus-visible:outline-teal-500'
-						: ''),
+					(selectedStep === 1 ? ' rounded-full px-8 py-4 text-lg shadow-lg' : ''),
 				variants: {
-					...theme.get.component('button')?.variants,
-					outline:
-						'bg-transparent text-primary-600 inset-ring-1 inset-ring-primary-500 hover:bg-primary-500/10 dark:text-primary-300'
+					...theme.get.component('button')?.variants
 				}
 			}
 		})
