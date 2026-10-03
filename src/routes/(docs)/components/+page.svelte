@@ -32,6 +32,7 @@
 		},
 		Alert: { children: 'Your changes have been saved.', props: { variants: ['success'] } },
 		Badge: { children: 'New', props: { variants: ['info'] } },
+		Br: { preview: brPreview },
 		Button: { children: 'Button' },
 		Checkbox: { children: 'Remember me' },
 		Circle: { preview: circlePreview },
@@ -50,6 +51,7 @@
 		Ellipse: { preview: ellipsePreview },
 		Field: { children: fieldChildren },
 		Fieldset: { children: fieldsetChildren },
+		Footer: { preview: footerPreview },
 		ForeignObject: { preview: foreignObjectPreview },
 		Form: {
 			children: formChildren,
@@ -59,7 +61,7 @@
 		Img: {
 			props: { alt: 'Illustrated mountain landscape', height: '120', src: image, width: '240' }
 		},
-		Input: { props: { 'aria-label': 'Example input', placeholder: 'Type something…' } },
+		Input: { props: { 'aria-label': 'Example input', placeholder: 'Type somethingâ€¦' } },
 		Label: { children: labelChildren, props: { for: 'preview-label' } },
 		Legend: { preview: legendPreview },
 		Li: { preview: liPreview },
@@ -120,7 +122,7 @@
 		Text: { preview: textPreview },
 		TextPath: { preview: textPathPreview },
 		Textarea: {
-			props: { 'aria-label': 'Example textarea', placeholder: 'Write a message…', rows: 2 }
+			props: { 'aria-label': 'Example textarea', placeholder: 'Write a messageâ€¦', rows: 2 }
 		},
 		Th: { preview: tablePreview },
 		Thead: { preview: tablePreview },
@@ -193,7 +195,7 @@
 <DocsSection>
 	<BlockLink
 		class="items-start text-left"
-		description="Getting started is simple — install the package and you’re ready to go."
+		description="Getting started is simple â€” install the package and youâ€™re ready to go."
 		href="/getting-started/theming"
 		Icon={SwatchBook}
 		title="Theming"
@@ -231,6 +233,18 @@
 		<Components.Input id="preview-form" placeholder="Ada" />
 	</Components.Field>
 	<Components.Button>Submit</Components.Button>
+{/snippet}
+
+{#snippet footerPreview()}
+	<Components.Footer variants={['bordered']} class="w-full">
+		<Components.P class="text-sm font-semibold text-gray-950 dark:text-gray-50"
+			>Sveltewind</Components.P
+		>
+		<Components.Nav aria-label="Example footer links" class="mt-3 flex flex-wrap gap-4">
+			<Components.A href="/getting-started/usage" class="text-xs">Docs</Components.A>
+			<Components.A href="/components" class="text-xs">Components</Components.A>
+		</Components.Nav>
+	</Components.Footer>
 {/snippet}
 
 {#snippet labelChildren()}
@@ -690,4 +704,8 @@
 			variants={['fill', 'primary']}
 		/></Components.Svg
 	>
+{/snippet}
+
+{#snippet brPreview()}
+	<Components.P>First line<Components.Br />Second line</Components.P>
 {/snippet}

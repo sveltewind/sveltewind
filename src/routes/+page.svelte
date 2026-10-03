@@ -2,8 +2,10 @@
 	import {
 		A,
 		Badge,
+		Br,
 		Button,
 		Card,
+		ComponentCarousel,
 		Container,
 		Div,
 		H1,
@@ -17,17 +19,7 @@
 		Shiki,
 		Span
 	} from '$components';
-	import {
-		ArrowRight,
-		Box,
-		Check,
-		ChevronDown,
-		CodeXml,
-		Copy,
-		Layers,
-		Link,
-		Palette
-	} from '$lib/icons';
+	import { ArrowRight, Box, Check, CodeXml, Copy, Layers, Link, Palette } from '$lib/icons';
 	import { theme, Theme } from '$lib/theme';
 
 	// Types
@@ -205,14 +197,16 @@ theme.set.theme(brand.get.theme());`;
 </svelte:head>
 
 <Main class="relative isolate flex grow flex-col overflow-hidden">
-	<Div
-		aria-hidden="true"
-		class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_75%_35%,rgba(139,92,246,0.06),transparent_55%)]"
-	/>
-	<Container class="mx-auto flex w-full max-w-7xl grow flex-col px-6 sm:px-10">
-		<Section
-			aria-labelledby="landing-title"
-			class="grid items-center gap-10 pt-16 pb-14 sm:pt-24 lg:grid-cols-[1.25fr_1fr] lg:gap-12 lg:pt-28 lg:pb-20 xl:gap-16 xl:pt-32"
+	<Section
+		aria-labelledby="landing-title"
+		class="relative isolate w-full bg-gray-50 dark:bg-gray-950  "
+	>
+		<Div
+			aria-hidden="true"
+			class="pointer-events-none absolute top-12 -right-24 -z-10 size-80 rounded-full bg-primary-500/10 blur-3xl sm:size-112"
+		/>
+		<Container
+			class="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 pt-16 pb-14 sm:px-10 sm:pt-24 lg:grid-cols-[1.25fr_1fr] lg:gap-12 lg:pt-28 lg:pb-20 xl:gap-16 xl:pt-32"
 		>
 			<Div>
 				<P
@@ -223,7 +217,7 @@ theme.set.theme(brand.get.theme());`;
 					id="landing-title"
 					class="text-[2.5rem] leading-[1.08] font-bold tracking-[-0.035em] sm:text-5xl xl:text-[3.5rem]"
 				>
-					Everything included.<br />
+					Everything included.<Br />
 					<Span class="text-primary-500 dark:text-primary-400">Nothing locked down.</Span>
 				</H1>
 				<P
@@ -258,7 +252,7 @@ theme.set.theme(brand.get.theme());`;
 			</Div>
 
 			<Card
-				class="min-w-0 overflow-hidden rounded-xl border border-gray-200 bg-white/60 p-0 shadow-lg inset-ring-0 shadow-primary-950/5 dark:border-gray-700/70 dark:bg-gray-900/30 dark:shadow-black/10"
+				class="min-w-0 overflow-hidden rounded-xl border border-gray-200 bg-white/60 p-0 shadow-lg inset-ring-0 shadow-primary-950/5 dark:border-gray-700/70 dark:bg-gray-950/70 dark:shadow-black/10 dark:shadow-primary-500/5"
 			>
 				<Div
 					role="tablist"
@@ -355,12 +349,16 @@ theme.set.theme(brand.get.theme());`;
 					>
 				</Div>
 			</Card>
-		</Section>
+		</Container>
+	</Section>
 
-		<Section
-			id="features"
-			aria-label="Why Sveltewind"
-			class="grid scroll-mt-24 grid-cols-1 gap-8 border-t border-gray-200 py-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-5 lg:gap-7 lg:pt-14 dark:border-gray-700/50"
+	<Section
+		id="features"
+		aria-label="Why Sveltewind"
+		class="relative isolate w-full border-y border-gray-200 bg-gray-100 dark:border-gray-800  dark:bg-gray-900 "
+	>
+		<Container
+			class="relative mx-auto grid w-full max-w-7xl scroll-mt-24 grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-2 sm:gap-10 sm:px-10 lg:grid-cols-5 lg:gap-7 lg:pt-14"
 		>
 			{#each features as feature}
 				<Div class="flex items-start gap-4 sm:block">
@@ -377,18 +375,45 @@ theme.set.theme(brand.get.theme());`;
 					</Div>
 				</Div>
 			{/each}
-		</Section>
-		<A
-			href="#global-theming"
-			variants={['ghost']}
-			class="mx-auto mb-8 hidden flex-col items-center gap-3 text-[10px] tracking-[0.2em] text-gray-600 uppercase no-underline lg:flex dark:text-gray-400"
-		>
-			<ChevronDown class="size-6" aria-hidden="true" /> Explore the system
-		</A>
-		<Section
-			id="global-theming"
-			aria-labelledby="global-theming-title"
-			class="grid scroll-mt-24 gap-10 border-t border-gray-200 py-16 sm:py-24 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 dark:border-gray-700/50"
+		</Container>
+	</Section>
+	<Section
+		aria-labelledby="featured-components-title"
+		class="relative isolate w-full bg-gray-50 dark:bg-gray-950  "
+	>
+		<Div
+			aria-hidden="true"
+			class="pointer-events-none absolute top-0 right-0 -z-10 size-96 rounded-full bg-primary-500/10 blur-3xl"
+		/>
+		<Container class="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 sm:py-20">
+			<Div class="mb-8 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+				<Div
+					><P
+						class="mb-4 text-xs font-semibold tracking-widest text-primary-600 uppercase dark:text-primary-400"
+						>Meet your building blocks</P
+					><H2 id="featured-components-title" class="text-3xl tracking-tight sm:text-4xl"
+						>Everyday components.<Br />Anything but ordinary.</H2
+					></Div
+				>
+				<A href="/components" class="inline-flex shrink-0 items-center gap-2 text-sm font-medium"
+					>Browse all components <ArrowRight aria-hidden="true" class="size-4" /></A
+				>
+			</Div>
+			<ComponentCarousel />
+		</Container>
+	</Section>
+
+	<Section
+		id="global-theming"
+		aria-labelledby="global-theming-title"
+		class="relative isolate w-full bg-gray-100 dark:bg-gray-900  "
+	>
+		<Div
+			aria-hidden="true"
+			class="pointer-events-none absolute top-12 -right-24 -z-10 size-80 rounded-full bg-primary-500/10 blur-3xl sm:size-112"
+		/>
+		<Container
+			class="relative mx-auto grid w-full max-w-7xl scroll-mt-24 gap-10 px-6 py-16 sm:px-10 sm:py-24 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16"
 		>
 			<Div class="lg:pt-6">
 				<P
@@ -396,7 +421,7 @@ theme.set.theme(brand.get.theme());`;
 					>01 / Global theming</P
 				>
 				<H2 id="global-theming-title" class="text-3xl leading-tight tracking-tight sm:text-4xl"
-					>One change.<br />Every component follows.</H2
+					>One change.<Br />Every component follows.</H2
 				>
 				<P class="mt-6 text-base leading-7"
 					>Your theme is a shared, reactive source of styles. Update a base style or variant once,
@@ -419,7 +444,7 @@ theme.set.theme(brand.get.theme());`;
 				>
 			</Div>
 			<Card
-				class="min-w-0 overflow-hidden border border-gray-200 bg-gray-50/50 p-0 inset-ring-0 dark:border-gray-700/70 dark:bg-gray-900/30"
+				class="min-w-0 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl inset-ring-0 shadow-primary-950/5 dark:border-gray-700/70 dark:bg-gray-950/70 dark:shadow-primary-500/5"
 			>
 				<Div
 					class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200 px-5 py-4 dark:border-gray-700/50"
@@ -476,11 +501,19 @@ theme.set.theme(brand.get.theme());`;
 					/>
 				</Div>
 			</Card>
-		</Section>
+		</Container>
+	</Section>
 
-		<Section
-			aria-labelledby="create-theme-title"
-			class="grid gap-10 border-t border-gray-200 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16 dark:border-gray-700/50"
+	<Section
+		aria-labelledby="create-theme-title"
+		class="relative isolate w-full border-y border-gray-200 bg-gray-50 dark:border-gray-800  dark:bg-gray-950 "
+	>
+		<Div
+			aria-hidden="true"
+			class="pointer-events-none absolute bottom-12 -left-24 -z-10 size-80 rounded-full bg-primary-500/10 blur-3xl sm:size-112"
+		/>
+		<Container
+			class="relative mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-10 sm:py-24 lg:grid-cols-2 lg:gap-16"
 		>
 			<Div class="lg:order-2 lg:pt-6">
 				<P
@@ -488,7 +521,7 @@ theme.set.theme(brand.get.theme());`;
 					>02 / Make it yours</P
 				>
 				<H2 id="create-theme-title" class="text-3xl leading-tight tracking-tight sm:text-4xl"
-					>Your theme.<br />A few lines of JavaScript.</H2
+					>Your theme.<Br />A few lines of JavaScript.</H2
 				>
 				<P class="mt-6 text-base leading-7"
 					>Start with a preset, change what matters, and give it a name. A theme is a plain object
@@ -523,7 +556,7 @@ theme.set.theme(brand.get.theme());`;
 				>
 			</Div>
 			<Card
-				class="min-w-0 overflow-hidden border border-gray-200 bg-gray-50/50 p-0 inset-ring-0 lg:order-1 dark:border-gray-700/70 dark:bg-gray-900/30"
+				class="min-w-0 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl inset-ring-0 shadow-primary-950/5 lg:order-1 dark:border-gray-700/70 dark:bg-gray-950/70 dark:shadow-primary-500/5"
 			>
 				<Div
 					class="flex items-center justify-between border-b border-gray-200 px-5 py-4 dark:border-gray-700/50"
@@ -544,19 +577,25 @@ theme.set.theme(brand.get.theme());`;
 					</Card>
 				</Div>
 			</Card>
-		</Section>
+		</Container>
+	</Section>
 
-		<Section
-			aria-labelledby="reuse-styles-title"
-			class="border-t border-gray-200 py-16 sm:py-24 dark:border-gray-700/50"
-		>
+	<Section
+		aria-labelledby="reuse-styles-title"
+		class="relative isolate w-full bg-gray-100 dark:bg-gray-900  "
+	>
+		<Div
+			aria-hidden="true"
+			class="pointer-events-none absolute top-12 -right-24 -z-10 size-80 rounded-full bg-primary-500/10 blur-3xl sm:size-112"
+		/>
+		<Container class="relative mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 sm:py-24">
 			<Div class="mx-auto max-w-2xl text-center">
 				<P
 					class="mb-4 text-xs font-semibold tracking-widest text-primary-600 uppercase dark:text-primary-400"
 					>03 / Styles without boundaries</P
 				>
 				<H2 id="reuse-styles-title" class="text-3xl leading-tight tracking-tight sm:text-4xl"
-					>A button's style doesn't<br class="hidden sm:block" /> have to stay on a button.</H2
+					>A button's style doesn't<Br class="hidden sm:block" /> have to stay on a button.</H2
 				>
 				<P class="mt-6 text-base leading-7"
 					>Reference another component's base classes or a named variant. A link can look like a
@@ -566,7 +605,7 @@ theme.set.theme(brand.get.theme());`;
 			</Div>
 			<Div class="mt-10 grid gap-6 lg:grid-cols-2">
 				<Card
-					class="min-w-0 overflow-hidden border border-gray-200 bg-gray-50/50 p-0 inset-ring-0 dark:border-gray-700/70 dark:bg-gray-900/30"
+					class="min-w-0 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl inset-ring-0 shadow-primary-950/5 dark:border-gray-700/70 dark:bg-gray-950/70 dark:shadow-primary-500/5"
 				>
 					<Div class="border-b border-gray-200 px-5 py-4 dark:border-gray-700/50"
 						><Span class="font-mono text-xs">Same source. Different elements.</Span></Div
@@ -578,7 +617,9 @@ theme.set.theme(brand.get.theme());`;
 						class="overflow-x-auto p-5 text-xs sm:p-6 [&_code]:bg-transparent [&_code]:p-0"
 					/>
 				</Card>
-				<Card class="min-w-0 space-y-6 bg-gray-50/50 p-6 sm:p-8 dark:bg-gray-900/30">
+				<Card
+					class="min-w-0 space-y-6 bg-gray-50/50 p-6 sm:p-8 dark:bg-gray-950/70 dark:shadow-primary-500/5"
+				>
 					<Div class="grid items-center gap-3 sm:grid-cols-[5rem_1fr]"
 						><Span class="font-mono text-xs text-gray-500">button</Span><Div
 							><Button type="button" variants={['outline']}>Continue</Button></Div
@@ -606,18 +647,24 @@ theme.set.theme(brand.get.theme());`;
 					>
 				</Card>
 			</Div>
-		</Section>
+		</Container>
+	</Section>
 
-		<Section
-			aria-labelledby="start-building-title"
-			class="mb-12 rounded-2xl bg-primary-500/5 px-6 py-12 text-center sm:mb-20 sm:px-10 sm:py-16"
-		>
+	<Section
+		aria-labelledby="start-building-title"
+		class="relative isolate w-full border-t border-primary-500/15 bg-primary-500/10 "
+	>
+		<Div
+			aria-hidden="true"
+			class="pointer-events-none absolute bottom-12 -left-24 -z-10 size-80 rounded-full bg-primary-500/10 blur-3xl sm:size-112"
+		/>
+		<Container class="relative mx-auto w-full max-w-7xl px-6 py-12 text-center sm:px-10 sm:py-16">
 			<P
 				class="mb-4 text-xs font-semibold tracking-widest text-primary-600 uppercase dark:text-primary-400"
 				>Your system, your rules</P
 			>
 			<H2 id="start-building-title" class="text-3xl tracking-tight sm:text-4xl"
-				>Start with components.<br />Build a design system that feels like yours.</H2
+				>Start with components.<Br />Build a design system that feels like yours.</H2
 			>
 			<P class="mx-auto mt-5 max-w-xl text-base leading-7"
 				>One theme to guide your app. Simple tools to shape it. Shared styles that work wherever you
@@ -635,6 +682,6 @@ theme.set.theme(brand.get.theme());`;
 					class="inline-flex items-center justify-center">Read the theming guide</A
 				></Div
 			>
-		</Section>
-	</Container>
+		</Container>
+	</Section>
 </Main>

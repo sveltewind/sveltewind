@@ -8,6 +8,7 @@ export { default as Aside } from './Aside/Aside.svelte';
 export { default as Audio } from './Audio/Audio.svelte';
 export { default as Badge } from './Badge/Badge.svelte';
 export { default as Blockquote } from './Blockquote/Blockquote.svelte';
+export { default as Br } from './Br/Br.svelte';
 export { default as Button } from './Button/Button.svelte';
 export { default as Canvas } from './Canvas/Canvas.svelte';
 export { default as Caption } from './Caption/Caption.svelte';

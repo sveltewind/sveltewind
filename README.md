@@ -1,4 +1,4 @@
-[![Sveltewind - build your interface, make it yours](.github/hero.svg)](https://sveltewind.com)
+[![Sveltewind - Everything included. Nothing locked down.](.github/hero.svg)](https://sveltewind.com)
 
 # Sveltewind
 

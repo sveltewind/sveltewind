@@ -700,5 +700,8 @@ Object.assign(theme, {
 	}
 });
 
+// Line breaks retain native inline flow.
+theme.br = { base: '', variants: { hidden: 'hidden' } };
+
 export default theme;
 export { theme };

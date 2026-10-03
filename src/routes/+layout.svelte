@@ -7,12 +7,14 @@
 		Container,
 		Div,
 		Field,
+		Footer,
 		H2,
 		Header,
 		Label,
 		Logo,
 		Nav,
 		Option,
+		P,
 		Popover,
 		Select,
 		Span,
@@ -40,6 +42,26 @@
 
 	// Instance ID
 	const settingsId = $props.id();
+
+	// Constants
+	const footerGroups = [
+		{
+			links: [
+				{ href: '/getting-started/installation', title: 'Installation' },
+				{ href: '/getting-started/usage', title: 'Usage' },
+				{ href: '/getting-started/theming', title: 'Theming' }
+			],
+			title: 'Get started'
+		},
+		{
+			links: [
+				{ href: '/components', title: 'Components' },
+				{ href: '/examples/sass-landing-page', title: 'Examples' },
+				{ href: 'https://github.com/sveltewind/sveltewind', title: 'GitHub' }
+			],
+			title: 'Explore'
+		}
+	];
 
 	// Presets
 	const presets = { classic, minimal, sharp, soft, studio };
@@ -209,6 +231,45 @@
 {#if children}
 	{@render children()}
 {/if}
+
+<Footer variants={['bordered']} class="mt-auto bg-gray-50/50 py-10 sm:py-14 dark:bg-gray-950/50">
+	<Container class="mx-auto w-full max-w-7xl px-6 sm:px-10">
+		<Div class="grid gap-10 sm:grid-cols-[2fr_1fr_1fr] sm:gap-8">
+			<Div>
+				<A href="/" aria-label="Sveltewind home" variants={['ghost']} class="inline-flex">
+					<Logo />
+				</A>
+				<P class="mt-4 max-w-sm text-sm leading-6"
+					>One theme. Every component. Build your interface with Svelte, then make it yours.</P
+				>
+			</Div>
+			{#each footerGroups as group (group.title)}
+				<Nav aria-label={`Footer: ${group.title}`} class="flex flex-col items-start gap-3">
+					<H2 class="mb-1 text-sm font-semibold">{group.title}</H2>
+					{#each group.links as link (link.href)}
+						<A
+							href={link.href}
+							variants={['ghost']}
+							class="text-sm text-gray-600 hover:text-primary-600 focus:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 dark:focus:text-primary-400"
+							>{link.title}</A
+						>
+					{/each}
+				</Nav>
+			{/each}
+		</Div>
+		<Div
+			class="mt-10 flex flex-col gap-3 border-t border-gray-200 pt-6 sm:flex-row sm:items-center sm:justify-between dark:border-gray-700"
+		>
+			<P class="text-xs">Built with Svelte 5 and Tailwind CSS.</P>
+			<A
+				href="https://www.npmjs.com/package/sveltewind"
+				variants={['ghost']}
+				class="text-xs text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
+				>Available on npm</A
+			>
+		</Div>
+	</Container>
+</Footer>
 
 {#snippet githubButtonSnippet()}
 	<A
