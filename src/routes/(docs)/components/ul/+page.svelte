@@ -83,10 +83,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>ul</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>ul</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -115,7 +115,7 @@
 	<P>Import Ul from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Ul, Li } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Ul>\n\t<Li>Themed components</Li>\n\t<Li>Native HTML attributes</Li>\n</Ul>\n'}
+			'ipt>\n\n<Ul>\n\t<Li>Themed components</Li>\n\n\t<Li>Native HTML attributes</Li>\n</Ul>\n'}
 		title="+page.svelte"
 	>
 		<Ul><Li>Themed components</Li><Li>Native HTML attributes</Li></Ul>
@@ -127,11 +127,11 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Ul, Li } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Ul class="text-primary-500 dark:text-primary-400">\n\t<Li>Themed components</Li>\n\t<Li>Native HTML attributes</Li>\n</Ul>\n'}
+			'ipt>\n\n<Ul class="text-primary-500 dark:text-primary-400">\n\t<Li>Themed components</Li>\n\n\t<Li>Native HTML attributes</Li>\n</Ul>\n'}
 		title="+page.svelte"
 	>
-		<Ul class="text-primary-500 dark:text-primary-400"
-			><Li>Themed components</Li><Li>Native HTML attributes</Li></Ul
-		>
+		<Ul class="text-primary-500 dark:text-primary-400">
+			<Li>Themed components</Li><Li>Native HTML attributes</Li>
+		</Ul>
 	</CodePreview>
 </DocsSection>

@@ -21,6 +21,10 @@
 }
 
 @layer base {
+	pre {
+		tab-size: 2;
+	}
+
 	* {
 		scrollbar-width: thin;
 		scrollbar-color: var(--color-primary-500) transparent;

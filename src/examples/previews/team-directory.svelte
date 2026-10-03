@@ -51,44 +51,59 @@
 	}
 </script>
 
-<Card class="mx-auto w-full max-w-2xl space-y-5"
-	><H2 class="text-2xl font-semibold">Team directory</H2><Input
+<Card class="mx-auto w-full max-w-2xl space-y-5">
+	<H2 class="text-2xl font-semibold">Team directory</H2>
+	<Input
 		aria-label="Search rows"
 		placeholder="Search by name or status..."
 		bind:value={query}
 		class="w-full"
 	/>
-	<Div class="overflow-x-auto"
-		><Table
-			><Caption class="sr-only">Team directory</Caption><Thead
-				><Tr
-					><Th>Select</Th><Th
-						><Button
+
+	<Div class="overflow-x-auto">
+		<Table>
+			<Caption class="sr-only">Team directory</Caption>
+			<Thead>
+				<Tr>
+					<Th>Select</Th>
+					<Th>
+						<Button
 							type="button"
 							variants={['ghost']}
 							class="p-0"
-							onclick={() => (ascending = !ascending)}>Name {ascending ? '↑' : '↓'}</Button
-						></Th
-					><Th>Status</Th></Tr
-				></Thead
-			><Tbody>
-				{#each visible as row}<Tr
-						><Td
-							><Checkbox
+							onclick={() => (ascending = !ascending)}
+						>
+							Name {ascending ? '↑' : '↓'}
+						</Button>
+					</Th>
+					<Th>Status</Th>
+				</Tr>
+			</Thead>
+			<Tbody>
+				{#each visible as row}
+					<Tr>
+						<Td>
+							<Checkbox
 								aria-label={'Select ' + row.name}
 								checked={selected.includes(row.name)}
 								onchange={() => toggle(row.name)}
-							/></Td
-						><Td>{row.name}</Td><Td><Badge>{row.status}</Badge></Td></Tr
-					>{/each}
-			</Tbody></Table
-		></Div
-	>{#if !visible.length}<P role="status">No matching rows. Try another search.</P>{/if}
-	<Div class="flex flex-wrap items-center justify-between gap-3"
-		><P aria-live="polite">{selected.length} selected</P><Button
-			type="button"
-			disabled={!selected.length}
-			onclick={download}>Export selection</Button
-		></Div
-	></Card
->
+							/>
+						</Td>
+						<Td>{row.name}</Td>
+						<Td>
+							<Badge>{row.status}</Badge>
+						</Td>
+					</Tr>
+				{/each}
+			</Tbody>
+		</Table>
+	</Div>
+	{#if !visible.length}
+		<P role="status">No matching rows. Try another search.</P>
+	{/if}
+
+	<Div class="flex flex-wrap items-center justify-between gap-3">
+		<P aria-live="polite">{selected.length} selected</P>
+		<Button type="button" disabled={!selected.length} onclick={download}>Export selection</Button>
+	</Div>
+</Card>

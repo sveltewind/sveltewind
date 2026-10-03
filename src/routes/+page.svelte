@@ -28,17 +28,8 @@
 
 	// Constants
 
-	const customThemeCode = `import { Theme, theme } from 'sveltewind/theme';
-import { classic } from 'sveltewind/themes';
-
-const brand = new Theme(structuredClone(classic));
-
-brand.update.base('button', 'rounded-full px-8');
-brand.update.base('card', 'rounded-2xl');
-brand.set.variant('button', 'cta', 'py-4 text-lg');
-
-// Use it across your entire app.
-theme.set.theme(brand.get.theme());`;
+	const customThemeCode =
+		"import { Theme, theme } from 'sveltewind/theme';\nimport { classic } from 'sveltewind/themes';\n\nconst brand = new Theme(structuredClone(classic));\n\nbrand.update.base('button', 'rounded-full px-8');\nbrand.update.base('card', 'rounded-2xl');\nbrand.set.variant('button', 'cta', 'py-4 text-lg');\n\n// Use it across your entire app.\ntheme.set.theme(brand.get.theme());\n";
 	const playgroundStyles = {
 		compact: {
 			button: { base: 'rounded-md px-4 py-2 text-sm' },
@@ -56,40 +47,41 @@ theme.set.theme(brand.get.theme());`;
 			input: { base: 'rounded-none px-4 py-3' }
 		}
 	};
-	const reuseCode = `<Button variants={['outline']}>Continue</Button>
+	const globalThemeCodes = {
+		compact:
+			"import { theme } from 'sveltewind/theme';\n\ntheme.update.theme({\n\tbutton: {\n\t\tbase: 'rounded-md px-4 py-2 text-sm'\n\t},\n\tcard: {\n\t\tbase: 'rounded-md p-4'\n\t},\n\tinput: {\n\t\tbase: 'rounded-md px-3 py-2 text-sm'\n\t}\n});\n",
+		rounded:
+			"import { theme } from 'sveltewind/theme';\n\ntheme.update.theme({\n\tbutton: {\n\t\tbase: 'rounded-full px-6 py-3'\n\t},\n\tcard: {\n\t\tbase: 'rounded-2xl p-6'\n\t},\n\tinput: {\n\t\tbase: 'rounded-xl px-4 py-3'\n\t}\n});\n",
+		square:
+			"import { theme } from 'sveltewind/theme';\n\ntheme.update.theme({\n\tbutton: {\n\t\tbase: 'rounded-none px-6 py-3'\n\t},\n\tcard: {\n\t\tbase: 'rounded-none p-6'\n\t},\n\tinput: {\n\t\tbase: 'rounded-none px-4 py-3'\n\t}\n});\n"
+	};
 
-<!-- A link, with the button's styling. -->
-<A href="/components"
-  variants={['button.base', 'button.variant.outline']}>
-  Explore components
-</A>
-
-<!-- A div, with the card's styling. -->
-<Div variants={['card.base']}>Same surface. Your markup.</Div>`;
+	const reuseCode =
+		"<Button variants={['outline']}>Continue</Button>\n\n<!-- A link, with the button's styling. -->\n<A href=\"/components\" variants={['button.base', 'button.variant.outline']}>Explore components</A>\n\n<!-- A div, with the card's styling. -->\n<Div variants={['card.base']}>Same surface. Your markup.</Div>\n";
 	const steps: Step[] = [
 		{
 			label: 'Included',
 			title: 'Button',
 			description: 'Start with a ready-to-use component.',
-			code: '<Button>Get Started</Button>'
+			code: '<Button>Get Started</Button>\n'
 		},
 		{
 			label: 'Theme it',
 			title: 'Make it yours',
 			description: 'Change the theme. Every component follows.',
-			code: "theme.update.component('button', {\n  base: 'rounded-full px-8 py-4 text-lg shadow-lg'\n});"
+			code: "theme.update.component('button', {\n\tbase: 'rounded-full px-8 py-4 text-lg shadow-lg'\n});\n"
 		},
 		{
 			label: 'Add a variant',
 			title: 'One button. More possibilities.',
 			description: 'Define a variant once, then use it anywhere.',
-			code: "<Button variants={['outline']}>\n  Get Started\n</Button>"
+			code: "<Button variants={['outline']}>Get Started</Button>\n"
 		},
 		{
 			label: 'Reuse it',
 			title: 'Same styles. Different element.',
 			description: 'Use button styles on a link or any component.',
-			code: `<A href="/getting-started/usage" variants={['button.base']}>\n  Get Started\n</A>`
+			code: '<A href="/getting-started/usage" variants={[\'button.base\']}>Get Started</A>\n'
 		}
 	];
 	const features = [
@@ -135,9 +127,7 @@ theme.set.theme(brand.get.theme());`;
 		next.set.variant('button', 'cta', 'py-4 text-lg');
 		return next;
 	});
-	const globalThemeCode = $derived(
-		`import { theme } from 'sveltewind/theme';\n\ntheme.update.theme(${JSON.stringify(playgroundStyles[selectedStyle], null, 2)});`
-	);
+	const globalThemeCode = $derived(globalThemeCodes[selectedStyle]);
 	const sharedTheme = $derived.by(() => {
 		const next = new Theme($state.snapshot(theme.get.theme()));
 		next.update.theme(playgroundStyles[selectedStyle]);
@@ -211,8 +201,9 @@ theme.set.theme(brand.get.theme());`;
 			<Div>
 				<P
 					class="mb-6 text-[11px] font-medium tracking-[0.25em] text-gray-600 uppercase sm:text-xs dark:text-gray-400"
-					>Svelte 5 component system</P
 				>
+					Svelte 5 component system
+				</P>
 				<H1
 					id="landing-title"
 					class="text-[2.5rem] leading-[1.08] font-bold tracking-[-0.035em] sm:text-5xl xl:text-[3.5rem]"
@@ -244,11 +235,14 @@ theme.set.theme(brand.get.theme());`;
 				</Div>
 				<P
 					class="mt-8 hidden text-[10px] leading-6 tracking-[0.2em] text-gray-600 uppercase sm:block dark:text-gray-400"
-					>Open source <Span class="mx-2" aria-hidden="true">&bull;</Span> Built for Svelte 5 <Span
-						class="mx-2"
-						aria-hidden="true">&bull;</Span
-					> Ready to make yours</P
 				>
+					Open source <Span class="mx-2" aria-hidden="true">&bull;</Span> Built for Svelte 5 <Span
+						class="mx-2"
+						aria-hidden="true"
+					>
+						&bull;
+					</Span> Ready to make yours
+				</P>
 			</Div>
 
 			<Card
@@ -274,8 +268,9 @@ theme.set.theme(brand.get.theme());`;
 						>
 							<Span
 								class={`flex size-7 shrink-0 items-center justify-center rounded-full text-xs ${selectedStep === index ? 'bg-primary-500 text-white' : 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-300'}`}
-								>{index + 1}</Span
 							>
+								{index + 1}
+							</Span>
 							<Span class="hidden sm:inline">{item.label}</Span>
 							<Span class="sr-only sm:hidden">{item.label}</Span>
 						</Button>
@@ -289,9 +284,9 @@ theme.set.theme(brand.get.theme());`;
 					class="p-5 focus-visible:outline-2 focus-visible:outline-primary-500 sm:p-6"
 				>
 					<H2 class="text-xl font-semibold tracking-tight sm:text-2xl">{step.title}</H2>
-					<P class="mt-2 min-h-12 text-sm leading-6 text-gray-600 dark:text-gray-400"
-						>{step.description}</P
-					>
+					<P class="mt-2 min-h-12 text-sm leading-6 text-gray-600 dark:text-gray-400">
+						{step.description}
+					</P>
 					<Div class="flex min-h-28 items-center justify-center py-6 sm:min-h-32">
 						{#if selectedStep === 3}
 							<A
@@ -299,16 +294,19 @@ theme.set.theme(brand.get.theme());`;
 								theme={demoTheme}
 								variants={['button.base']}
 								class="inline-flex min-w-44 items-center justify-center gap-2 no-underline"
-								>Get Started <ArrowRight class="size-4 shrink-0" aria-hidden="true" /></A
 							>
+								Get Started <ArrowRight class="size-4 shrink-0" aria-hidden="true" />
+							</A>
 						{:else}
 							<Button
 								type="button"
 								theme={demoTheme}
 								variants={selectedStep === 2 ? ['outline'] : []}
 								class="min-w-44"
-								onclick={() => clicks++}>Get Started</Button
+								onclick={() => clicks++}
 							>
+								Get Started
+							</Button>
 						{/if}
 					</Div>
 					<Card
@@ -317,9 +315,9 @@ theme.set.theme(brand.get.theme());`;
 						<Div
 							class="flex items-center justify-between border-b border-gray-200 bg-white/50 px-4 py-2 dark:border-gray-700/30 dark:bg-gray-950/40"
 						>
-							<Span class="text-xs text-gray-600 dark:text-gray-300"
-								>{selectedStep === 1 ? 'JavaScript' : 'svelte'}</Span
-							>
+							<Span class="text-xs text-gray-600 dark:text-gray-300">
+								{selectedStep === 1 ? 'JavaScript' : 'svelte'}
+							</Span>
 							<Button
 								type="button"
 								aria-label="Copy example code"
@@ -341,12 +339,12 @@ theme.set.theme(brand.get.theme());`;
 							class="min-h-21 overflow-x-auto p-4 text-[11px] sm:text-xs [&_code]:bg-transparent [&_code]:p-0"
 						/>
 					</Card>
-					<P aria-live="polite" class="mt-3 min-h-5 text-xs text-gray-600 dark:text-gray-400"
-						>{copyStatus ||
+					<P aria-live="polite" class="mt-3 min-h-5 text-xs text-gray-600 dark:text-gray-400">
+						{copyStatus ||
 							(clicks
 								? `Button clicked ${clicks} ${clicks === 1 ? 'time' : 'times'}. Try another step.`
-								: '')}</P
-					>
+								: '')}
+					</P>
 				</Div>
 			</Card>
 		</Container>
@@ -369,9 +367,9 @@ theme.set.theme(brand.get.theme());`;
 					/>
 					<Div>
 						<H2 class="mb-2 text-base font-semibold tracking-tight">{feature.title}</H2>
-						<P class="text-sm leading-relaxed text-gray-600 dark:text-gray-400"
-							>{feature.description}</P
-						>
+						<P class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+							{feature.description}
+						</P>
 					</Div>
 				</Div>
 			{/each}
@@ -387,17 +385,18 @@ theme.set.theme(brand.get.theme());`;
 		/>
 		<Container class="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 sm:py-20">
 			<Div class="mb-8 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-				<Div
-					><P
+				<Div>
+					<P
 						class="mb-4 text-xs font-semibold tracking-widest text-primary-600 uppercase dark:text-primary-400"
-						>Meet your building blocks</P
-					><H2 id="featured-components-title" class="text-3xl tracking-tight sm:text-4xl"
-						>Everyday components.<Br />Anything but ordinary.</H2
-					></Div
-				>
-				<A href="/components" class="inline-flex shrink-0 items-center gap-2 text-sm font-medium"
-					>Browse all components <ArrowRight aria-hidden="true" class="size-4" /></A
-				>
+					>
+						Meet your building blocks
+					</P><H2 id="featured-components-title" class="text-3xl tracking-tight sm:text-4xl">
+						Everyday components.<Br />Anything but ordinary.
+					</H2>
+				</Div>
+				<A href="/components" class="inline-flex shrink-0 items-center gap-2 text-sm font-medium">
+					Browse all components <ArrowRight aria-hidden="true" class="size-4" />
+				</A>
 			</Div>
 			<ComponentCarousel />
 		</Container>
@@ -418,30 +417,34 @@ theme.set.theme(brand.get.theme());`;
 			<Div class="lg:pt-6">
 				<P
 					class="mb-4 text-xs font-semibold tracking-widest text-primary-600 uppercase dark:text-primary-400"
-					>01 / Global theming</P
 				>
-				<H2 id="global-theming-title" class="text-3xl leading-tight tracking-tight sm:text-4xl"
-					>One change.<Br />Every component follows.</H2
-				>
-				<P class="mt-6 text-base leading-7"
-					>Your theme is a shared, reactive source of styles. Update a base style or variant once,
+					01 / Global theming
+				</P>
+				<H2 id="global-theming-title" class="text-3xl leading-tight tracking-tight sm:text-4xl">
+					One change.<Br />Every component follows.
+				</H2>
+				<P class="mt-6 text-base leading-7">
+					Your theme is a shared, reactive source of styles. Update a base style or variant once,
 					and every component using it picks up the change. Across forms, pages, and your entire
-					app.</P
-				>
+					app.
+				</P>
 				<Div class="mt-7 space-y-4">
 					{#each ['Roll out a new design without editing every instance.', 'Keep repeated components consistent as your app grows.', 'Change geometry and spacing independently of your color palette.'] as benefit}
-						<Div class="flex items-start gap-3"
-							><Check aria-hidden="true" class="mt-1 size-4 shrink-0 text-primary-500" /><P
-								class="text-sm leading-6">{benefit}</P
-							></Div
-						>
+						<Div class="flex items-start gap-3">
+							<Check aria-hidden="true" class="mt-1 size-4 shrink-0 text-primary-500" /><P
+								class="text-sm leading-6"
+							>
+								{benefit}
+							</P>
+						</Div>
 					{/each}
 				</Div>
 				<A
 					href="/getting-started/theming"
 					class="mt-8 inline-flex items-center gap-2 text-sm font-medium"
-					>Explore the theme API <ArrowRight aria-hidden="true" class="size-4" /></A
 				>
+					Explore the theme API <ArrowRight aria-hidden="true" class="size-4" />
+				</A>
 			</Div>
 			<Card
 				class="min-w-0 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl inset-ring-0 shadow-primary-950/5 dark:border-gray-700/70 dark:bg-gray-950/70 dark:shadow-primary-500/5"
@@ -458,16 +461,17 @@ theme.set.theme(brand.get.theme());`;
 								onclick={() => (selectedStyle = style as PlaygroundStyle)}
 								variants={['ghost']}
 								class={`rounded-md px-3 py-2 text-xs capitalize ${selectedStyle === style ? 'bg-primary-500/10 text-primary-600 dark:bg-primary-500/10 dark:text-primary-300' : ''}`}
-								>{style}</Button
 							>
+								{style}
+							</Button>
 						{/each}
 					</Div>
 				</Div>
 				<Div class="flex min-h-80 items-center justify-center px-5 py-8 sm:px-8">
 					<Card theme={sharedTheme} class="w-full max-w-sm bg-white dark:bg-gray-950">
-						<Div class="mb-5 flex items-center justify-between gap-3"
-							><H3 class="text-lg font-semibold">Your workspace</H3><Badge>Preview</Badge></Div
-						>
+						<Div class="mb-5 flex items-center justify-between gap-3">
+							<H3 class="text-lg font-semibold">Your workspace</H3><Badge>Preview</Badge>
+						</Div>
 						<Label for="landing-theme-email" class="mb-2 block">Email address</Label>
 						<Input
 							id="landing-theme-email"
@@ -476,23 +480,27 @@ theme.set.theme(brand.get.theme());`;
 							placeholder="you@example.com"
 							class="w-full"
 						/>
-						<Div class="mt-5 flex flex-wrap gap-3"
-							><Button theme={sharedTheme} type="button">Continue</Button><Button
+						<Div class="mt-5 flex flex-wrap gap-3">
+							<Button theme={sharedTheme} type="button">Continue</Button><Button
 								theme={sharedTheme}
 								type="button"
-								variants={['outline']}>Invite a teammate</Button
-							></Div
-						>
+								variants={['outline']}
+							>
+								Invite a teammate
+							</Button>
+						</Div>
 					</Card>
 				</Div>
 				<Div
 					class="border-t border-gray-200 bg-gray-50 dark:border-gray-700/50 dark:bg-gray-950/50"
 				>
-					<Div class="flex items-center justify-between px-5 pt-4"
-						><Span class="font-mono text-xs text-gray-500">Apply globally</Span><Span
-							class="text-xs text-gray-500">JavaScript</Span
-						></Div
-					>
+					<Div class="flex items-center justify-between px-5 pt-4">
+						<Span class="font-mono text-xs text-gray-500">Apply globally</Span><Span
+							class="text-xs text-gray-500"
+						>
+							JavaScript
+						</Span>
+					</Div>
 					<Shiki
 						code={globalThemeCode}
 						options={{ lang: 'javascript' }}
@@ -518,50 +526,53 @@ theme.set.theme(brand.get.theme());`;
 			<Div class="lg:order-2 lg:pt-6">
 				<P
 					class="mb-4 text-xs font-semibold tracking-widest text-primary-600 uppercase dark:text-primary-400"
-					>02 / Make it yours</P
 				>
-				<H2 id="create-theme-title" class="text-3xl leading-tight tracking-tight sm:text-4xl"
-					>Your theme.<Br />A few lines of JavaScript.</H2
-				>
-				<P class="mt-6 text-base leading-7"
-					>Start with a preset, change what matters, and give it a name. A theme is a plain object
-					of component names, base classes, and variants. The Theme API makes extending it just as
-					straightforward.</P
-				>
+					02 / Make it yours
+				</P>
+				<H2 id="create-theme-title" class="text-3xl leading-tight tracking-tight sm:text-4xl">
+					Your theme.<Br />A few lines of JavaScript.
+				</H2>
+				<P class="mt-6 text-base leading-7">
+					Start with a preset, change what matters, and give it a name. A theme is a plain object of
+					component names, base classes, and variants. The Theme API makes extending it just as
+					straightforward.
+				</P>
 				<Div class="mt-7 grid gap-5 sm:grid-cols-3">
-					<Div
-						><Span class="text-sm font-semibold">1. Start</Span><P class="mt-1 text-sm leading-6"
-							>Clone any of the five included presets.</P
-						></Div
-					>
-					<Div
-						><Span class="text-sm font-semibold">2. Shape</Span><P class="mt-1 text-sm leading-6"
-							>Merge base classes and define your variants.</P
-						></Div
-					>
-					<Div
-						><Span class="text-sm font-semibold">3. Share</Span><P class="mt-1 text-sm leading-6"
-							>Apply it globally or pass it to one component.</P
-						></Div
-					>
+					<Div>
+						<Span class="text-sm font-semibold">1. Start</Span><P class="mt-1 text-sm leading-6">
+							Clone any of the five included presets.
+						</P>
+					</Div>
+					<Div>
+						<Span class="text-sm font-semibold">2. Shape</Span><P class="mt-1 text-sm leading-6">
+							Merge base classes and define your variants.
+						</P>
+					</Div>
+					<Div>
+						<Span class="text-sm font-semibold">3. Share</Span><P class="mt-1 text-sm leading-6">
+							Apply it globally or pass it to one component.
+						</P>
+					</Div>
 				</Div>
-				<P class="mt-7 text-sm leading-6"
-					>Keep your theme in its own file and reuse it across projects. Your components keep the
-					same API as your design evolves.</P
-				>
+				<P class="mt-7 text-sm leading-6">
+					Keep your theme in its own file and reuse it across projects. Your components keep the
+					same API as your design evolves.
+				</P>
 				<A
 					href="/getting-started/theming"
 					class="mt-8 inline-flex items-center gap-2 text-sm font-medium"
-					>Build your first theme <ArrowRight aria-hidden="true" class="size-4" /></A
 				>
+					Build your first theme <ArrowRight aria-hidden="true" class="size-4" />
+				</A>
 			</Div>
 			<Card
 				class="min-w-0 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl inset-ring-0 shadow-primary-950/5 lg:order-1 dark:border-gray-700/70 dark:bg-gray-950/70 dark:shadow-primary-500/5"
 			>
 				<Div
 					class="flex items-center justify-between border-b border-gray-200 px-5 py-4 dark:border-gray-700/50"
-					><Span class="font-mono text-xs">brand.ts</Span><Badge>Ready to customize</Badge></Div
 				>
+					<Span class="font-mono text-xs">brand.ts</Span><Badge>Ready to customize</Badge>
+				</Div>
 				<Shiki
 					code={customThemeCode}
 					options={{ lang: 'typescript' }}
@@ -576,8 +587,9 @@ theme.set.theme(brand.get.theme());`;
 							type="button"
 							variants={['cta']}
 							class="inline-flex items-center justify-center gap-2"
-							>Make it yours <ArrowRight aria-hidden="true" class="size-4 shrink-0" /></Button
 						>
+							Make it yours <ArrowRight aria-hidden="true" class="size-4 shrink-0" />
+						</Button>
 					</Card>
 				</Div>
 			</Card>
@@ -596,24 +608,25 @@ theme.set.theme(brand.get.theme());`;
 			<Div class="mx-auto max-w-2xl text-center">
 				<P
 					class="mb-4 text-xs font-semibold tracking-widest text-primary-600 uppercase dark:text-primary-400"
-					>03 / Styles without boundaries</P
 				>
-				<H2 id="reuse-styles-title" class="text-3xl leading-tight tracking-tight sm:text-4xl"
-					>A button's style doesn't<Br class="hidden sm:block" /> have to stay on a button.</H2
-				>
-				<P class="mt-6 text-base leading-7"
-					>Reference another component's base classes or a named variant. A link can look like a
+					03 / Styles without boundaries
+				</P>
+				<H2 id="reuse-styles-title" class="text-3xl leading-tight tracking-tight sm:text-4xl">
+					A button's style doesn't<Br class="hidden sm:block" /> have to stay on a button.
+				</H2>
+				<P class="mt-6 text-base leading-7">
+					Reference another component's base classes or a named variant. A link can look like a
 					button. A div can use your card surface. Keep the right HTML element and share the same
-					design decisions.</P
-				>
+					design decisions.
+				</P>
 			</Div>
 			<Div class="mt-10 grid gap-6 lg:grid-cols-2">
 				<Card
 					class="min-w-0 overflow-hidden border border-gray-200 bg-white p-0 shadow-xl inset-ring-0 shadow-primary-950/5 dark:border-gray-700/70 dark:bg-gray-950/70 dark:shadow-primary-500/5"
 				>
-					<Div class="border-b border-gray-200 px-5 py-4 dark:border-gray-700/50"
-						><Span class="font-mono text-xs">Same source. Different elements.</Span></Div
-					>
+					<Div class="border-b border-gray-200 px-5 py-4 dark:border-gray-700/50">
+						<Span class="font-mono text-xs">Same source. Different elements.</Span>
+					</Div>
 					<Shiki
 						code={reuseCode}
 						options={{ lang: 'svelte' }}
@@ -624,31 +637,34 @@ theme.set.theme(brand.get.theme());`;
 				<Card
 					class="min-w-0 space-y-6 bg-gray-50/50 p-6 sm:p-8 dark:bg-gray-950/70 dark:shadow-primary-500/5"
 				>
-					<Div class="grid items-center gap-3 sm:grid-cols-[5rem_1fr]"
-						><Span class="font-mono text-xs text-gray-500">button</Span><Div
-							><Button type="button" variants={['outline']}>Continue</Button></Div
-						></Div
-					>
-					<Div class="grid items-center gap-3 sm:grid-cols-[5rem_1fr]"
-						><Span class="font-mono text-xs text-gray-500">a</Span><Div
-							><A
+					<Div class="grid items-center gap-3 sm:grid-cols-[5rem_1fr]">
+						<Span class="font-mono text-xs text-gray-500">button</Span><Div>
+							<Button type="button" variants={['outline']}>Continue</Button>
+						</Div>
+					</Div>
+					<Div class="grid items-center gap-3 sm:grid-cols-[5rem_1fr]">
+						<Span class="font-mono text-xs text-gray-500">a</Span><Div>
+							<A
 								href="/components"
 								variants={['button.base', 'button.variant.outline']}
 								class="inline-flex items-center gap-2"
-								>Explore components <ArrowRight aria-hidden="true" class="size-4" /></A
-							></Div
-						></Div
-					>
-					<Div class="grid items-center gap-3 sm:grid-cols-[5rem_1fr]"
-						><Span class="font-mono text-xs text-gray-500">div</Span><Div
+							>
+								Explore components <ArrowRight aria-hidden="true" class="size-4" />
+							</A>
+						</Div>
+					</Div>
+					<Div class="grid items-center gap-3 sm:grid-cols-[5rem_1fr]">
+						<Span class="font-mono text-xs text-gray-500">div</Span><Div
 							variants={['card.base']}
-							class="bg-white text-sm dark:bg-gray-950">Same surface. Your markup.</Div
-						></Div
-					>
-					<P class="border-t border-gray-200 pt-5 text-sm leading-6 dark:border-gray-700/50"
-						>Update the source styles and these references follow automatically. Use Settings to
-						change the site's style or color and see them stay in sync.</P
-					>
+							class="bg-white text-sm dark:bg-gray-950"
+						>
+							Same surface. Your markup.
+						</Div>
+					</Div>
+					<P class="border-t border-gray-200 pt-5 text-sm leading-6 dark:border-gray-700/50">
+						Update the source styles and these references follow automatically. Use Settings to
+						change the site's style or color and see them stay in sync.
+					</P>
 				</Card>
 			</Div>
 		</Container>
@@ -665,27 +681,31 @@ theme.set.theme(brand.get.theme());`;
 		<Container class="relative mx-auto w-full max-w-7xl px-6 py-12 text-center sm:px-10 sm:py-16">
 			<P
 				class="mb-4 text-xs font-semibold tracking-widest text-primary-600 uppercase dark:text-primary-400"
-				>Your system, your rules</P
 			>
-			<H2 id="start-building-title" class="text-3xl tracking-tight sm:text-4xl"
-				>Start with components.<Br />Build a design system that feels like yours.</H2
-			>
-			<P class="mx-auto mt-5 max-w-xl text-base leading-7"
-				>One theme to guide your app. Simple tools to shape it. Shared styles that work wherever you
-				need them.</P
-			>
-			<Div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row"
-				><A
+				Your system, your rules
+			</P>
+			<H2 id="start-building-title" class="text-3xl tracking-tight sm:text-4xl">
+				Start with components.<Br />Build a design system that feels like yours.
+			</H2>
+			<P class="mx-auto mt-5 max-w-xl text-base leading-7">
+				One theme to guide your app. Simple tools to shape it. Shared styles that work wherever you
+				need them.
+			</P>
+			<Div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+				<A
 					href="/getting-started/installation"
 					variants={['button.base']}
 					class="inline-flex items-center justify-center gap-2"
-					>Start building <ArrowRight aria-hidden="true" class="size-4" /></A
-				><A
+				>
+					Start building <ArrowRight aria-hidden="true" class="size-4" />
+				</A><A
 					href="/getting-started/theming"
 					variants={['button.base', 'button.variant.outline']}
-					class="inline-flex items-center justify-center">Read the theming guide</A
-				></Div
-			>
+					class="inline-flex items-center justify-center"
+				>
+					Read the theming guide
+				</A>
+			</Div>
 		</Container>
 	</Section>
 </Main>

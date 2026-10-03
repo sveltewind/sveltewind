@@ -78,8 +78,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Datalist, Input, Label, Option } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Label for="primitive-city">City</Label><Input id="primitive-city" list="primitive-cities" /><Datalist id="primitive-cities"><Option value="London" /><Option value="Tokyo" /></Datalist>';
+		'<script lang="ts">\n\timport { Datalist, Input, Label, Option } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Label for="primitive-city">City</Label>\n<Input id="primitive-city" list="primitive-cities" />\n<Datalist id="primitive-cities">\n\t<Option value="London" />\n\t<Option value="Tokyo" />\n</Datalist>\n';
 	const variants = Object.keys(classic.datalist.variants ?? {});
 </script>
 
@@ -96,17 +96,17 @@
 			list="primitive-cities"
 		/><Datalist id="primitive-cities"><Option value="London" /><Option value="Tokyo" /></Datalist>
 	</CodePreview>
-	<P
-		>Datalist provides native suggestions for an Input using the matching list and id attributes.
-		Browser UI controls its presentation.</P
-	>
+	<P>
+		Datalist provides native suggestions for an Input using the matching list and id attributes.
+		Browser UI controls its presentation.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>datalist</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>datalist</Code> element
+		unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -132,13 +132,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

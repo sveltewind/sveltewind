@@ -98,10 +98,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>select</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>select</Code> element
+		unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -148,13 +148,13 @@
 	<P>Provide Option children and bind the selected value.</P>
 	<CodePreview
 		code={"<script lang=\"ts\">\n\timport { Div, Select, Option, P } from 'sveltewind/components';\n\n\tlet plan = $state('starter');\n</scr" +
-			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Select aria-label="Plan" bind:value={plan}>\n\t\t<Option value="starter">Starter</Option>\n\t\t<Option value="team">Team</Option>\n\t</Select>\n\t<P>Selected: {plan}</P>\n</Div>\n'}
+			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Select aria-label="Plan" bind:value={plan}>\n\t\t<Option value="starter">Starter</Option>\n\n\t\t<Option value="team">Team</Option>\n\t</Select>\n\n\t<P>Selected: {plan}</P>\n</Div>\n'}
 		title="+page.svelte"
 	>
-		<Div class="flex flex-col gap-3"
-			><Select aria-label="Plan" bind:value={plan}
-				><Option value="starter">Starter</Option><Option value="team">Team</Option></Select
-			><P>Selected: {plan}</P></Div
-		>
+		<Div class="flex flex-col gap-3">
+			<Select aria-label="Plan" bind:value={plan}>
+				<Option value="starter">Starter</Option><Option value="team">Team</Option>
+			</Select><P>Selected: {plan}</P>
+		</Div>
 	</CodePreview>
 </DocsSection>

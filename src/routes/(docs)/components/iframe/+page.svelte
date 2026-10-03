@@ -75,8 +75,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Iframe } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Iframe title="Embedded example" srcdoc="<p>Hello from an embedded document.</p>" variants={[\'responsive\']} />';
+		'<script lang="ts">\n\timport { Iframe } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Iframe\n\ttitle="Embedded example"\n\tsrcdoc="<p>Hello from an embedded document.</p>"\n\tvariants={[\'responsive\']}\n/>\n';
 	const variants = Object.keys(classic.iframe.variants ?? {});
 </script>
 
@@ -94,17 +94,17 @@
 			variants={['responsive']}
 		/>
 	</CodePreview>
-	<P
-		>Provide an accessible title. Set src or srcdoc and use sandbox permissions appropriate for the
-		embedded content.</P
-	>
+	<P>
+		Provide an accessible title. Set src or srcdoc and use sandbox permissions appropriate for the
+		embedded content.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>iframe</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>iframe</Code> element
+		unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -130,13 +130,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

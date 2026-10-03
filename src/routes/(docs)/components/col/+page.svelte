@@ -70,8 +70,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Col, Colgroup, Table, Tbody, Td, Tr } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Table><Colgroup><Col variants={['narrow']} /><Col /></Colgroup><Tbody><Tr><Td>Plan</Td><Td>Starter</Td></Tr></Tbody></Table>";
+		'<script lang="ts">\n\timport { Col, Colgroup, Table, Tbody, Td, Tr } from \'sveltewind/components\';\n</scr' +
+		"ipt>\n\n<Table>\n\t<Colgroup>\n\t\t<Col variants={['narrow']} />\n\t\t<Col />\n\t</Colgroup>\n\t<Tbody>\n\t\t<Tr>\n\t\t\t<Td>Plan</Td>\n\t\t\t<Td>Starter</Td>\n\t\t</Tr>\n\t</Tbody>\n</Table>\n";
 	const variants = Object.keys(classic.col.variants ?? {});
 </script>
 
@@ -83,23 +83,23 @@
 <DocsSection>
 	<H2>Usage</H2>
 	<CodePreview {code} title="+page.svelte">
-		<Table
-			><Colgroup><Col variants={['narrow']} /><Col /></Colgroup><Tbody
-				><Tr><Td>Plan</Td><Td>Starter</Td></Tr></Tbody
-			></Table
-		>
+		<Table>
+			<Colgroup><Col variants={['narrow']} /><Col /></Colgroup><Tbody>
+				<Tr><Td>Plan</Td><Td>Starter</Td></Tr>
+			</Tbody>
+		</Table>
 	</CodePreview>
-	<P
-		>Use Col inside Colgroup. Column width and background styling work here; put cell padding and
-		text alignment on Th or Td.</P
-	>
+	<P>
+		Use Col inside Colgroup. Column width and background styling work here; put cell padding and
+		text alignment on Th or Td.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>col</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>col</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -125,13 +125,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

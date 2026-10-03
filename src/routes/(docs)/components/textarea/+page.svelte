@@ -85,10 +85,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>textarea</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>textarea</Code> element
+		unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -129,12 +129,11 @@
 	<P>Bind value to read and update the message.</P>
 	<CodePreview
 		code={"<script lang=\"ts\">\n\timport { Div, Textarea, P } from 'sveltewind/components';\n\n\tlet text = $state('');\n</scr" +
-			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Textarea aria-label="Message" bind:value={text} rows={3} />\n\t<P>{text.length} characters</P>\n</Div>\n'}
+			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Textarea aria-label="Message" bind:value={text} rows={3} />\n\n\t<P>{text.length} characters</P>\n</Div>\n'}
 		title="+page.svelte"
 	>
-		<Div class="flex flex-col gap-3"
-			><Textarea aria-label="Message" bind:value={text} rows={3} /><P>{text.length} characters</P
-			></Div
-		>
+		<Div class="flex flex-col gap-3">
+			<Textarea aria-label="Message" bind:value={text} rows={3} /><P>{text.length} characters</P>
+		</Div>
 	</CodePreview>
 </DocsSection>

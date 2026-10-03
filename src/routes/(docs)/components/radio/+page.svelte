@@ -104,10 +104,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -137,12 +137,12 @@
 	<P>Import Radio from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Label, Radio } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Label class="flex items-center gap-2">\n\t<Radio name="default-plan" value="starter" aria-label="Starter plan" />Starter</Label\n>\n'}
+			'ipt>\n\n<Label class="flex items-center gap-2">\n\t<Radio name="default-plan" value="starter" aria-label="Starter plan" />\n\tStarter\n</Label>\n'}
 		title="+page.svelte"
 	>
-		<Label class="flex items-center gap-2"
-			><Radio name="default-plan" value="starter" aria-label="Starter plan" />Starter</Label
-		>
+		<Label class="flex items-center gap-2">
+			<Radio name="default-plan" value="starter" aria-label="Starter plan" />Starter
+		</Label>
 	</CodePreview>
 </DocsSection>
 <DocsSection class="last-of-type:flex md:last-of-type:flex">
@@ -151,15 +151,15 @@
 	<P>Bind related radios to the same group state and give them distinct values.</P>
 	<CodePreview
 		code={"<script lang=\"ts\">\n\timport { Div, Label, Radio, P } from 'sveltewind/components';\n\n\tlet plan = $state('starter');\n</scr" +
-			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Label class="flex gap-2">\n\t\t<Radio name="example-plan" value="starter" bind:group={plan} />Starter</Label\n\t>\n\t<Label class="flex gap-2">\n\t\t<Radio name="example-plan" value="team" bind:group={plan} />Team</Label\n\t>\n\t<P>Selected: {plan}</P>\n</Div>\n'}
+			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Label class="flex gap-2">\n\t\t<Radio name="example-plan" value="starter" bind:group={plan} />\n\t\tStarter\n\t</Label>\n\n\t<Label class="flex gap-2">\n\t\t<Radio name="example-plan" value="team" bind:group={plan} />\n\t\tTeam\n\t</Label>\n\n\t<P>Selected: {plan}</P>\n</Div>\n'}
 		title="+page.svelte"
 	>
-		<Div class="flex flex-col gap-3"
-			><Label class="flex gap-2"
-				><Radio name="example-plan" value="starter" bind:group={plan} />Starter</Label
-			><Label class="flex gap-2"
-				><Radio name="example-plan" value="team" bind:group={plan} />Team</Label
-			><P>Selected: {plan}</P></Div
-		>
+		<Div class="flex flex-col gap-3">
+			<Label class="flex gap-2">
+				<Radio name="example-plan" value="starter" bind:group={plan} />Starter
+			</Label><Label class="flex gap-2">
+				<Radio name="example-plan" value="team" bind:group={plan} />Team
+			</Label><P>Selected: {plan}</P>
+		</Div>
 	</CodePreview>
 </DocsSection>

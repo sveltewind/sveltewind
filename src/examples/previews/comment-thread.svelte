@@ -51,63 +51,75 @@
 	}
 </script>
 
-<Card class="mx-auto max-w-2xl space-y-6"
-	><Div class="flex items-center justify-between"
-		><H2 class="text-2xl font-semibold">Design discussion</H2><Badge
-			>{comments.length} comments</Badge
-		></Div
-	>{#each comments as comment (comment.id)}<Div
-			class="space-y-3 border-b border-gray-200 pb-5 dark:border-gray-700"
-			><Div class="flex gap-3"
-				><Avatar name={comment.author} /><Div class="min-w-0 grow"
-					><P class="text-sm font-semibold">{comment.author}</P><P
-						class="mt-2 text-sm leading-relaxed whitespace-pre-wrap">{comment.text}</P
-					><Div class="mt-2 flex gap-4"
-						><Button
+<Card class="mx-auto max-w-2xl space-y-6">
+	<Div class="flex items-center justify-between">
+		<H2 class="text-2xl font-semibold">Design discussion</H2>
+		<Badge>{comments.length} comments</Badge>
+	</Div>
+	{#each comments as comment (comment.id)}
+		<Div class="space-y-3 border-b border-gray-200 pb-5 dark:border-gray-700">
+			<Div class="flex gap-3">
+				<Avatar name={comment.author} />
+				<Div class="min-w-0 grow">
+					<P class="text-sm font-semibold">{comment.author}</P>
+					<P class="mt-2 text-sm leading-relaxed whitespace-pre-wrap">{comment.text}</P>
+					<Div class="mt-2 flex gap-4">
+						<Button
 							type="button"
 							variants={['ghost']}
 							class="px-0 py-1 text-xs"
 							aria-pressed={comment.liked}
 							onclick={() => (comment.liked = !comment.liked)}
-							>{comment.liked ? 'Liked' : 'Like'} · {comment.likes + Number(comment.liked)}</Button
-						><Button
+						>
+							{comment.liked ? 'Liked' : 'Like'} · {comment.likes + Number(comment.liked)}
+						</Button>
+						<Button
 							type="button"
 							variants={['ghost']}
 							class="px-0 py-1 text-xs"
 							onclick={() => {
 								replying = replying === comment.id ? null : comment.id;
 								reply = '';
-							}}>Reply</Button
-						></Div
-					></Div
-				></Div
-			>{#each comment.replies as response}<Div
-					class="ml-8 flex gap-3 rounded-lg bg-primary-500/5 p-3"
-					><Avatar name={response.author} class="size-7" /><Div
-						><P class="text-xs font-semibold">{response.author}</P><P
-							class="mt-1 text-sm whitespace-pre-wrap">{response.text}</P
-						></Div
-					></Div
-				>{/each}{#if replying === comment.id}<Form
-					class="ml-8 space-y-2"
-					onsubmit={(event) => respond(event, comment)}
-					><Textarea
+							}}
+						>
+							Reply
+						</Button>
+					</Div>
+				</Div>
+			</Div>
+			{#each comment.replies as response}
+				<Div class="ml-8 flex gap-3 rounded-lg bg-primary-500/5 p-3">
+					<Avatar name={response.author} class="size-7" />
+					<Div>
+						<P class="text-xs font-semibold">{response.author}</P>
+						<P class="mt-1 text-sm whitespace-pre-wrap">{response.text}</P>
+					</Div>
+				</Div>
+			{/each}
+			{#if replying === comment.id}
+				<Form class="ml-8 space-y-2" onsubmit={(event) => respond(event, comment)}>
+					<Textarea
 						aria-label={'Reply to ' + comment.author}
 						rows={2}
 						bind:value={reply}
 						required
 						placeholder="Write a reply..."
 						class="w-full"
-					/><Button type="submit" disabled={!reply.trim()}>Post reply</Button></Form
-				>{/if}</Div
-		>{/each}<Form class="space-y-3" onsubmit={post}
-		><Textarea
+					/>
+					<Button type="submit" disabled={!reply.trim()}>Post reply</Button>
+				</Form>
+			{/if}
+		</Div>
+	{/each}
+	<Form class="space-y-3" onsubmit={post}>
+		<Textarea
 			aria-label="New comment"
 			rows={3}
 			bind:value={draft}
 			required
 			placeholder="Add to the discussion..."
 			class="w-full"
-		/><Button type="submit" disabled={!draft.trim()}>Post comment</Button></Form
-	></Card
->
+		/>
+		<Button type="submit" disabled={!draft.trim()}>Post comment</Button>
+	</Form>
+</Card>

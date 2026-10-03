@@ -83,10 +83,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>nav</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>nav</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -115,12 +115,12 @@
 	<P>Import Nav from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Nav, A } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Nav aria-label="Example navigation" class="flex gap-4">\n\t<A href="/components">Components</A>\n\t<A href="/getting-started/usage">Usage</A>\n</Nav>\n'}
+			'ipt>\n\n<Nav aria-label="Example navigation" class="flex gap-4">\n\t<A href="/components">Components</A>\n\n\t<A href="/getting-started/usage">Usage</A>\n</Nav>\n'}
 		title="+page.svelte"
 	>
-		<Nav aria-label="Example navigation" class="flex gap-4"
-			><A href="/components">Components</A><A href="/getting-started/usage">Usage</A></Nav
-		>
+		<Nav aria-label="Example navigation" class="flex gap-4">
+			<A href="/components">Components</A><A href="/getting-started/usage">Usage</A>
+		</Nav>
 	</CodePreview>
 </DocsSection>
 <DocsSection class="last-of-type:flex md:last-of-type:flex">
@@ -129,11 +129,11 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Nav, A } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Nav aria-label="Example navigation" class="flex gap-4 text-primary-500 dark:text-primary-400">\n\t<A href="/components">Components</A>\n\t<A href="/getting-started/usage">Usage</A>\n</Nav>\n'}
+			'ipt>\n\n<Nav aria-label="Example navigation" class="flex gap-4 text-primary-500 dark:text-primary-400">\n\t<A href="/components">Components</A>\n\n\t<A href="/getting-started/usage">Usage</A>\n</Nav>\n'}
 		title="+page.svelte"
 	>
-		<Nav aria-label="Example navigation" class="flex gap-4 text-primary-500 dark:text-primary-400"
-			><A href="/components">Components</A><A href="/getting-started/usage">Usage</A></Nav
-		>
+		<Nav aria-label="Example navigation" class="flex gap-4 text-primary-500 dark:text-primary-400">
+			<A href="/components">Components</A><A href="/getting-started/usage">Usage</A>
+		</Nav>
 	</CodePreview>
 </DocsSection>

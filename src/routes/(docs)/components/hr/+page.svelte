@@ -69,8 +69,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Hr, P } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<P>First section.</P><Hr variants={['accent']} /><P>Next section.</P>";
+		'<script lang="ts">\n\timport { Hr, P } from \'sveltewind/components\';\n</scr' +
+		"ipt>\n\n<P>First section.</P>\n<Hr variants={['accent']} />\n<P>Next section.</P>\n";
 	const variants = Object.keys(classic.hr.variants ?? {});
 </script>
 
@@ -87,10 +87,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>hr</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>hr</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -116,13 +116,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

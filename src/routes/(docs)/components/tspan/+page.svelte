@@ -20,8 +20,8 @@
 	import { classic } from '$lib/themes';
 
 	const code =
-		'<script lang="ts">\n  import { Svg, Text, Tspan } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Tspan example"><Text x={10} y={45} font-size={14}><Tspan>First line</Tspan><Tspan x={10} dy={20} variants={[\'primary\']}>Second line</Tspan></Text></Svg>';
+		'<script lang="ts">\n\timport { Svg, Text, Tspan } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Tspan example">\n\t<Text x={10} y={45} font-size={14}>\n\t\t<Tspan>First line</Tspan>\n\t\t<Tspan x={10} dy={20} variants={[\'primary\']}>Second line</Tspan>\n\t</Text>\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -82,27 +82,26 @@
 	const variants = Object.keys(classic.tspan.variants ?? {});
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>Tspan</H1><P
-		>A themed native SVG <Code>tspan</Code> primitive. Render it inside Svg or an appropriate SVG parent.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Tspan example"
-			><Text x={10} y={45} font-size={14}
-				><Tspan>First line</Tspan><Tspan x={10} dy={20} variants={['primary']}>Second line</Tspan
-				></Text
-			></Svg
-		></CodePreview
-	></DocsSection
->
+<DocsSection>
+	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>Tspan</H1><P>
+		A themed native SVG <Code>tspan</Code> primitive. Render it inside Svg or an appropriate SVG parent.
+	</P>
+</DocsSection>
+<DocsSection>
+	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
+		<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Tspan example">
+			<Text x={10} y={45} font-size={14}>
+				<Tspan>First line</Tspan><Tspan x={10} dy={20} variants={['primary']}>Second line</Tspan>
+			</Text>
+		</Svg>
+	</CodePreview>
+</DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>tspan</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>tspan</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -126,13 +125,13 @@
 		</Table>
 	</Card>
 </DocsSection>
-<DocsSection
-	><H2>Styling</H2><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+<DocsSection>
+	<H2>Styling</H2><P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P><P>
+		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
 		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.</P
-	></DocsSection
->
+		accessibility elements do not have a visible box, so their transitions have no visible effect.
+	</P>
+</DocsSection>

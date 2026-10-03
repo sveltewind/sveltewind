@@ -139,10 +139,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -165,11 +165,11 @@
 			</Tbody>
 		</Table>
 	</Card>
-	<P
-		><Code>RangeData</Code> contains numeric max, min, percent, step, and value fields. Custom track,
+	<P>
+		<Code>RangeData</Code> contains numeric max, min, percent, step, and value fields. Custom track,
 		fill, thumb, and label snippets receive this object. Class styles the wrapper; native input attributes
-		are forwarded to the range input.</P
-	>
+		are forwarded to the range input.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
@@ -188,18 +188,18 @@
 	<P>Set bounds and a step, then bind the numeric value.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Div, Range, P } from \'sveltewind/components\';\n\n\tlet volume = $state(40);\n</scr' +
-			'ipt>\n\n<Div class="w-64">\n\t<Range\n\t\taria-label="Volume"\n\t\tmin={0}\n\t\tmax={100}\n\t\tstep={5}\n\t\tbind:value={volume}\n\t\tisLabelVisible={false}\n\t/>\n\t<P>Volume: {volume}</P>\n</Div>\n'}
+			'ipt>\n\n<Div class="w-64">\n\t<Range\n\t\taria-label="Volume"\n\t\tmin={0}\n\t\tmax={100}\n\t\tstep={5}\n\t\tbind:value={volume}\n\t\tisLabelVisible={false}\n\t/>\n\n\t<P>Volume: {volume}</P>\n</Div>\n'}
 		title="+page.svelte"
 	>
-		<Div class="w-64"
-			><Range
+		<Div class="w-64">
+			<Range
 				aria-label="Volume"
 				min={0}
 				max={100}
 				step={5}
 				bind:value={volume}
 				isLabelVisible={false}
-			/><P>Volume: {volume}</P></Div
-		>
+			/><P>Volume: {volume}</P>
+		</Div>
 	</CodePreview>
 </DocsSection>

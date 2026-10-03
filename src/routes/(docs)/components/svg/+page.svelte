@@ -85,25 +85,25 @@
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			>
+			<Tbody>
+				{#each props as prop (prop.name)}<Tr>
+						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
+							{prop.description}
+						</Td>
+					</Tr>{/each}
+			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>Native SVG attributes are forwarded to the svg element. Give meaningful graphics an accessible
-		name; mark decorative graphics aria-hidden.</P
-	>
+	<P>
+		Native SVG attributes are forwarded to the svg element. Give meaningful graphics an accessible
+		name; mark decorative graphics aria-hidden.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
 	<CodePreview
-		code={'<script lang="ts">\n import { Circle, Svg } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Svg aria-label="Circle illustration" role="img" height="64" width="64" viewBox="0 0 64 64">\n <Circle cx="32" cy="32" r="24" fill="currentColor" />\n</Svg>'}
+		code={'<script lang="ts">\n\timport { Circle, Svg } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Svg aria-label="Circle illustration" role="img" height="64" width="64" viewBox="0 0 64 64">\n\t<Circle cx="32" cy="32" r="24" fill="currentColor" />\n</Svg>\n'}
 		title="+page.svelte"
 	>
 		<Svg aria-label="Circle illustration" role="img" height="64" width="64" viewBox="0 0 64 64">
@@ -114,7 +114,7 @@
 <DocsSection>
 	<H2>Usage Examples</H2>
 	<CodePreview
-		code={'<Svg aria-hidden="true" height="32" width="32" viewBox="0 0 32 32" class="text-primary-500">\n <Circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2" />\n</Svg>'}
+		code={'<Svg aria-hidden="true" height="32" width="32" viewBox="0 0 32 32" class="text-primary-500">\n\t<Circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2" />\n</Svg>\n'}
 		title="+page.svelte"
 	>
 		<Svg aria-hidden="true" height="32" width="32" viewBox="0 0 32 32" class="text-primary-500">

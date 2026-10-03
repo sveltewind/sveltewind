@@ -14,14 +14,21 @@
 	);
 </script>
 
-<Card class="mx-auto w-full max-w-2xl space-y-5"
-	><H2 class="text-2xl font-semibold">Product questions</H2><Input
+<Card class="mx-auto w-full max-w-2xl space-y-5">
+	<H2 class="text-2xl font-semibold">Product questions</H2>
+	<Input
 		aria-label="Search questions"
 		placeholder="Search questions..."
 		bind:value={query}
 		class="w-full"
 	/>
-	{#each filtered as item}<Accordion summary={item.question}
-			><P class="text-sm leading-relaxed">{item.answer}</P></Accordion
-		>{/each}{#if !filtered.length}<P role="status">No questions match your search.</P>{/if}</Card
->
+
+	{#each filtered as item}
+		<Accordion summary={item.question}>
+			<P class="text-sm leading-relaxed">{item.answer}</P>
+		</Accordion>
+	{/each}
+	{#if !filtered.length}
+		<P role="status">No questions match your search.</P>
+	{/if}
+</Card>

@@ -90,23 +90,24 @@
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			>
+			<Tbody>
+				{#each props as prop (prop.name)}<Tr>
+						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
+							{prop.description}
+						</Td>
+					</Tr>{/each}
+			</Tbody>
 		</Table>
 	</Card>
-	<P>Use success, warning, error, or info variants. Choose role="alert" for urgent announcements.</P
-	>
+	<P>
+		Use success, warning, error, or info variants. Choose role="alert" for urgent announcements.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
 	<CodePreview
-		code={'<script lang="ts">\n import { Alert } from \'sveltewind/components\';\n </scr' +
-			'ipt>\n\n<Alert>Your changes have been saved.</Alert>'}
+		code={'<script lang="ts">\n\timport { Alert } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Alert>Your changes have been saved.</Alert>\n'}
 		title="+page.svelte"
 	>
 		<Alert>Your changes have been saved.</Alert>
@@ -115,7 +116,7 @@
 <DocsSection>
 	<H2>Usage Examples</H2>
 	<CodePreview
-		code={"<Alert variants={['success']}>Your changes have been saved.</Alert>\n<Alert variants={['warning']}>Your session expires soon.</Alert>\n<Alert role=\"alert\" variants={['error']}>Unable to save your changes.</Alert>\n<Alert variants={['info']}>A new version is available.</Alert>"}
+		code={"<Alert variants={['success']}>Your changes have been saved.</Alert>\n<Alert variants={['warning']}>Your session expires soon.</Alert>\n<Alert role=\"alert\" variants={['error']}>Unable to save your changes.</Alert>\n<Alert variants={['info']}>A new version is available.</Alert>\n"}
 		title="+page.svelte"
 	>
 		<Alert variants={['success']}>Your changes have been saved.</Alert>

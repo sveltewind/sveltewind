@@ -96,26 +96,26 @@
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			>
+			<Tbody>
+				{#each props as prop (prop.name)}<Tr>
+						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
+							{prop.description}
+						</Td>
+					</Tr>{/each}
+			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>Give sections the same native name to allow only one to remain open. Bind open to control
+	<P>
+		Give sections the same native name to allow only one to remain open. Bind open to control
 		expansion programmatically. Transitions apply when isVisible changes; native expansion is
-		immediate.</P
-	>
+		immediate.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
 	<CodePreview
-		code={'<script lang="ts">\n import { Accordion } from \'sveltewind/components\';\n </scr' +
-			'ipt>\n\n<Accordion summary="What is Sveltewind?">A themed component library for Svelte 5.</Accordion>'}
+		code={'<script lang="ts">\n\timport { Accordion } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Accordion summary="What is Sveltewind?">A themed component library for Svelte 5.</Accordion>\n'}
 		title="+page.svelte"
 	>
 		<Accordion summary="What is Sveltewind?">A themed component library for Svelte 5.</Accordion>
@@ -124,7 +124,7 @@
 <DocsSection>
 	<H2>Usage Examples</H2>
 	<CodePreview
-		code={'<Accordion name="faq" summary="First question">First answer.</Accordion>\n<Accordion name="faq" summary="Second question">Second answer.</Accordion>'}
+		code={'<Accordion name="faq" summary="First question">First answer.</Accordion>\n<Accordion name="faq" summary="Second question">Second answer.</Accordion>\n'}
 		title="+page.svelte"
 	>
 		<Accordion name="faq" summary="First question">First answer.</Accordion>

@@ -81,10 +81,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>tr</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>tr</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -113,7 +113,7 @@
 	<P>Use Tr inside a complete table to preserve native table structure.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Table, Thead, Tr, Th, Tbody, Td } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Table>\n\t<Thead>\n\t\t<Tr>\n\t\t\t<Th>Name</Th>\n\t\t\t<Th>Role</Th>\n\t\t</Tr>\n\t</Thead>\n\t<Tbody>\n\t\t<Tr>\n\t\t\t<Td>Ada</Td>\n\t\t\t<Td>Developer</Td>\n\t\t</Tr>\n\t</Tbody>\n</Table>\n'}
+			'ipt>\n\n<Table>\n\t<Thead>\n\t\t<Tr>\n\t\t\t<Th>Name</Th>\n\n\t\t\t<Th>Role</Th>\n\t\t</Tr>\n\t</Thead>\n\n\t<Tbody>\n\t\t<Tr>\n\t\t\t<Td>Ada</Td>\n\n\t\t\t<Td>Developer</Td>\n\t\t</Tr>\n\t</Tbody>\n</Table>\n'}
 		title="+page.svelte"
 	>
 		<Table>
@@ -138,7 +138,7 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Table, Thead, Tr, Th, Tbody, Td } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Table>\n\t<Thead>\n\t\t<Tr class="text-primary-500 dark:text-primary-400">\n\t\t\t<Th>Name</Th>\n\t\t\t<Th>Role</Th>\n\t\t</Tr>\n\t</Thead>\n\t<Tbody>\n\t\t<Tr>\n\t\t\t<Td>Ada</Td>\n\t\t\t<Td>Developer</Td>\n\t\t</Tr>\n\t</Tbody>\n</Table>\n'}
+			'ipt>\n\n<Table>\n\t<Thead>\n\t\t<Tr class="text-primary-500 dark:text-primary-400">\n\t\t\t<Th>Name</Th>\n\n\t\t\t<Th>Role</Th>\n\t\t</Tr>\n\t</Thead>\n\n\t<Tbody>\n\t\t<Tr>\n\t\t\t<Td>Ada</Td>\n\n\t\t\t<Td>Developer</Td>\n\t\t</Tr>\n\t</Tbody>\n</Table>\n'}
 		title="+page.svelte"
 	>
 		<Table>

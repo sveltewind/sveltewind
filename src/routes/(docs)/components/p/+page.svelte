@@ -81,10 +81,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>p</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>p</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -125,11 +125,11 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { P } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<P class="text-primary-500 dark:text-primary-400"\n\t>Build your interface with themed Svelte components.</P\n>\n'}
+			'ipt>\n\n<P class="text-primary-500 dark:text-primary-400">\n\tBuild your interface with themed Svelte components.\n</P>\n'}
 		title="+page.svelte"
 	>
-		<P class="text-primary-500 dark:text-primary-400"
-			>Build your interface with themed Svelte components.</P
-		>
+		<P class="text-primary-500 dark:text-primary-400">
+			Build your interface with themed Svelte components.
+		</P>
 	</CodePreview>
 </DocsSection>

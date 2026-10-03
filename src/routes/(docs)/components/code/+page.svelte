@@ -81,10 +81,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>code</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>code</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -113,7 +113,7 @@
 	<P>Import Code from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { P, Code } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<P>Import components from <Code>sveltewind/components</Code>.</P>\n'}
+			'ipt>\n\n<P>\n\tImport components from\n\t<Code>sveltewind/components</Code>\n\t.\n</P>\n'}
 		title="+page.svelte"
 	>
 		<P>Import components from <Code>sveltewind/components</Code>.</P>
@@ -125,13 +125,13 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { P, Code } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<P\n\t>Import components from <Code class="text-primary-500 dark:text-primary-400"\n\t\t>sveltewind/components</Code\n\t>.</P\n>\n'}
+			'ipt>\n\n<P>\n\tImport components from\n\t<Code class="text-primary-500 dark:text-primary-400">sveltewind/components</Code>\n\t.\n</P>\n'}
 		title="+page.svelte"
 	>
-		<P
-			>Import components from <Code class="text-primary-500 dark:text-primary-400"
-				>sveltewind/components</Code
-			>.</P
-		>
+		<P>
+			Import components from <Code class="text-primary-500 dark:text-primary-400">
+				sveltewind/components
+			</Code>.
+		</P>
 	</CodePreview>
 </DocsSection>

@@ -75,8 +75,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Small } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Small variants={['muted']}>Your preferences are saved locally.</Small>";
+		'<script lang="ts">\n\timport { Small } from \'sveltewind/components\';\n</scr' +
+		"ipt>\n\n<Small variants={['muted']}>Your preferences are saved locally.</Small>\n";
 	const variants = Object.keys(classic.small.variants ?? {});
 </script>
 
@@ -93,10 +93,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>small</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>small</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -122,13 +122,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

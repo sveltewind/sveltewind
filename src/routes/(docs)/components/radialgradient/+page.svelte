@@ -22,8 +22,8 @@
 	import { classic } from '$lib/themes';
 
 	const code =
-		'<script lang="ts">\n  import { Circle, Defs, RadialGradient, Stop, Svg } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="RadialGradient example"><Defs><RadialGradient id="demo-radial"><Stop offset="0%" stop-color="currentColor" /><Stop offset="100%" stop-color="currentColor" stop-opacity={0.1} /></RadialGradient></Defs><Circle cx={50} cy={50} r={45} fill="url(#demo-radial)" class="text-primary-500" /></Svg>';
+		'<script lang="ts">\n\timport { Circle, Defs, RadialGradient, Stop, Svg } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="RadialGradient example">\n\t<Defs>\n\t\t<RadialGradient id="demo-radial">\n\t\t\t<Stop offset="0%" stop-color="currentColor" />\n\t\t\t<Stop offset="100%" stop-color="currentColor" stop-opacity={0.1} />\n\t\t</RadialGradient>\n\t</Defs>\n\t<Circle cx={50} cy={50} r={45} fill="url(#demo-radial)" class="text-primary-500" />\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -84,33 +84,33 @@
 	const variants = Object.keys(classic.radialGradient.variants ?? {});
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>RadialGradient</H1><P
-		>A themed native SVG <Code>radialGradient</Code> primitive. Render it inside Svg or an appropriate
-		SVG parent.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="RadialGradient example"
-			><Defs
-				><RadialGradient id="demo-radial"
-					><Stop offset="0%" stop-color="currentColor" /><Stop
+<DocsSection>
+	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>RadialGradient</H1><P>
+		A themed native SVG <Code>radialGradient</Code> primitive. Render it inside Svg or an appropriate
+		SVG parent.
+	</P>
+</DocsSection>
+<DocsSection>
+	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
+		<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="RadialGradient example">
+			<Defs>
+				<RadialGradient id="demo-radial">
+					<Stop offset="0%" stop-color="currentColor" /><Stop
 						offset="100%"
 						stop-color="currentColor"
 						stop-opacity={0.1}
-					/></RadialGradient
-				></Defs
-			><Circle cx={50} cy={50} r={45} fill="url(#demo-radial)" class="text-primary-500" /></Svg
-		></CodePreview
-	></DocsSection
->
+					/>
+				</RadialGradient>
+			</Defs><Circle cx={50} cy={50} r={45} fill="url(#demo-radial)" class="text-primary-500" />
+		</Svg>
+	</CodePreview>
+</DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>radialGradient</Code
-		> element unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>radialGradient</Code>
+		element unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -134,13 +134,13 @@
 		</Table>
 	</Card>
 </DocsSection>
-<DocsSection
-	><H2>Styling</H2><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+<DocsSection>
+	<H2>Styling</H2><P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P><P>
+		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
 		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.</P
-	></DocsSection
->
+		accessibility elements do not have a visible box, so their transitions have no visible effect.
+	</P>
+</DocsSection>

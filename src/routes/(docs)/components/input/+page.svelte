@@ -110,10 +110,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -136,9 +136,9 @@
 			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>Input does not render children. Use Label or aria-label to give the input an accessible name.</P
-	>
+	<P>
+		Input does not render children. Use Label or aria-label to give the input an accessible name.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
@@ -157,13 +157,13 @@
 	<P>Bind value to read and update text as the user types.</P>
 	<CodePreview
 		code={"<script lang=\"ts\">\n\timport { Div, Input, P } from 'sveltewind/components';\n\n\tlet text = $state('');\n</scr" +
-			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Input aria-label="Your name" bind:value={text} placeholder="Your name" />\n\t<P>Hello, {text || \'friend\'}.</P>\n</Div>\n'}
+			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Input aria-label="Your name" bind:value={text} placeholder="Your name" />\n\n\t<P>Hello, {text || \'friend\'}.</P>\n</Div>\n'}
 		title="+page.svelte"
 	>
-		<Div class="flex flex-col gap-3"
-			><Input aria-label="Your name" bind:value={text} placeholder="Your name" /><P
-				>Hello, {text || 'friend'}.</P
-			></Div
-		>
+		<Div class="flex flex-col gap-3">
+			<Input aria-label="Your name" bind:value={text} placeholder="Your name" /><P>
+				Hello, {text || 'friend'}.
+			</P>
+		</Div>
 	</CodePreview>
 </DocsSection>

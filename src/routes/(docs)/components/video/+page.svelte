@@ -83,10 +83,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>video</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>video</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -112,10 +112,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
-	<P
-		>This poster-only preview shows the native controls. Supply src or Source children to play your
-		own video.</P
-	>
+	<P>
+		This poster-only preview shows the native controls. Supply src or Source children to play your
+		own video.
+	</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Video } from \'sveltewind/components\';\n</scr' +
 			'ipt>\n\n<Video\n\tcontrols\n\tpreload="none"\n\tposter="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"\n\twidth="240"\n\theight="120"\n\taria-label="Example video player"\n/>\n'}
@@ -134,10 +134,10 @@
 <DocsSection class="last-of-type:flex md:last-of-type:flex">
 	<H2>Usage Examples</H2>
 	<H3>Provide media sources</H3>
-	<P
-		>Place Source children inside Video. Replace the sample URL with your video file; this preview
-		displays the player without downloading media.</P
-	>
+	<P>
+		Place Source children inside Video. Replace the sample URL with your video file; this preview
+		displays the player without downloading media.
+	</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Video, Source } from \'sveltewind/components\';\n</scr' +
 			'ipt>\n\n<Video\n\tcontrols\n\tpreload="none"\n\tposter="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"\n\twidth="240"\n\theight="120"\n>\n\t<Source src="/example-video.mp4" type="video/mp4" />\n</Video>\n'}
@@ -148,7 +148,9 @@
 			preload="none"
 			poster="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"
 			width="240"
-			height="120"><Source src="/example-video.mp4" type="video/mp4" /></Video
+			height="120"
 		>
+			<Source src="/example-video.mp4" type="video/mp4" />
+		</Video>
 	</CodePreview>
 </DocsSection>

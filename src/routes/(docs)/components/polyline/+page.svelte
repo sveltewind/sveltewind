@@ -19,8 +19,8 @@
 	import { classic } from '$lib/themes';
 
 	const code =
-		'<script lang="ts">\n  import { Polyline, Svg } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Polyline example"><Polyline points="10,70 30,30 50,60 70,20 90,50" stroke-width={4} variants={[\'outline\', \'primary\', \'rounded\']} /></Svg>';
+		'<script lang="ts">\n\timport { Polyline, Svg } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Polyline example">\n\t<Polyline\n\t\tpoints="10,70 30,30 50,60 70,20 90,50"\n\t\tstroke-width={4}\n\t\tvariants={[\'outline\', \'primary\', \'rounded\']}\n\t/>\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -81,29 +81,28 @@
 	const variants = Object.keys(classic.polyline.variants ?? {});
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>Polyline</H1><P
-		>A themed native SVG <Code>polyline</Code> primitive. Render it inside Svg or an appropriate SVG
-		parent.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Polyline example"
-			><Polyline
+<DocsSection>
+	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>Polyline</H1><P>
+		A themed native SVG <Code>polyline</Code> primitive. Render it inside Svg or an appropriate SVG parent.
+	</P>
+</DocsSection>
+<DocsSection>
+	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
+		<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Polyline example">
+			<Polyline
 				points="10,70 30,30 50,60 70,20 90,50"
 				stroke-width={4}
 				variants={['outline', 'primary', 'rounded']}
-			/></Svg
-		></CodePreview
-	></DocsSection
->
+			/>
+		</Svg>
+	</CodePreview>
+</DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>polyline</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>polyline</Code> element
+		unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -127,13 +126,13 @@
 		</Table>
 	</Card>
 </DocsSection>
-<DocsSection
-	><H2>Styling</H2><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+<DocsSection>
+	<H2>Styling</H2><P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P><P>
+		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
 		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.</P
-	></DocsSection
->
+		accessibility elements do not have a visible box, so their transitions have no visible effect.
+	</P>
+</DocsSection>

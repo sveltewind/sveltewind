@@ -77,8 +77,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Dd, Dl, Dt } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Dl><Dt>Framework</Dt><Dd variants={['muted']}>Svelte</Dd></Dl>";
+		'<script lang="ts">\n\timport { Dd, Dl, Dt } from \'sveltewind/components\';\n</scr' +
+		"ipt>\n\n<Dl>\n\t<Dt>Framework</Dt>\n\t<Dd variants={['muted']}>Svelte</Dd>\n</Dl>\n";
 	const variants = Object.keys(classic.dd.variants ?? {});
 </script>
 
@@ -95,10 +95,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>dd</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>dd</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -124,13 +124,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

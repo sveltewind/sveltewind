@@ -84,10 +84,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>label</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>label</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -116,7 +116,7 @@
 	<P>Import Label from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Field, Label, Input } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Field>\n\t<Label for="default-label">Your name</Label>\n\t<Input id="default-label" />\n</Field>\n'}
+			'ipt>\n\n<Field>\n\t<Label for="default-label">Your name</Label>\n\n\t<Input id="default-label" />\n</Field>\n'}
 		title="+page.svelte"
 	>
 		<Field><Label for="default-label">Your name</Label><Input id="default-label" /></Field>
@@ -128,12 +128,13 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Field, Label, Input } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Field>\n\t<Label class="text-primary-500 dark:text-primary-400" for="default-label">Your name</Label>\n\t<Input id="default-label" />\n</Field>\n'}
+			'ipt>\n\n<Field>\n\t<Label class="text-primary-500 dark:text-primary-400" for="default-label">Your name</Label>\n\n\t<Input id="default-label" />\n</Field>\n'}
 		title="+page.svelte"
 	>
-		<Field
-			><Label class="text-primary-500 dark:text-primary-400" for="default-label">Your name</Label
-			><Input id="default-label" /></Field
-		>
+		<Field>
+			<Label class="text-primary-500 dark:text-primary-400" for="default-label">
+				Your name
+			</Label><Input id="default-label" />
+		</Field>
 	</CodePreview>
 </DocsSection>

@@ -77,8 +77,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Figcaption, Figure, Img } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Figure variants={[\'bordered\']}><Img src="/images/logo-light.svg" alt="Sveltewind" class="w-48" /><Figcaption>Sveltewind logo</Figcaption></Figure>';
+		'<script lang="ts">\n\timport { Figcaption, Figure, Img } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Figure variants={[\'bordered\']}>\n\t<Img src="/images/logo-light.svg" alt="Sveltewind" class="w-48" />\n\t<Figcaption>Sveltewind logo</Figcaption>\n</Figure>\n';
 	const variants = Object.keys(classic.figure.variants ?? {});
 </script>
 
@@ -90,19 +90,19 @@
 <DocsSection>
 	<H2>Usage</H2>
 	<CodePreview {code} title="+page.svelte">
-		<Figure variants={['bordered']}
-			><Img src="/images/logo-light.svg" alt="Sveltewind" class="w-48" /><Figcaption
-				>Sveltewind logo</Figcaption
-			></Figure
-		>
+		<Figure variants={['bordered']}>
+			<Img src="/images/logo-light.svg" alt="Sveltewind" class="w-48" /><Figcaption>
+				Sveltewind logo
+			</Figcaption>
+		</Figure>
 	</CodePreview>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>figure</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>figure</Code> element
+		unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -128,13 +128,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

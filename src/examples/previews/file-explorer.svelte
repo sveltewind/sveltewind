@@ -40,43 +40,54 @@
 	}
 </script>
 
-<Div class="grid w-full gap-4 md:grid-cols-[1.5fr_1fr]"
-	><Card class="space-y-4"
-		><H2 class="text-2xl font-semibold">Team files</H2><Breadcrumbs
+<Div class="grid w-full gap-4 md:grid-cols-[1.5fr_1fr]">
+	<Card class="space-y-4">
+		<H2 class="text-2xl font-semibold">Team files</H2>
+		<Breadcrumbs
 			items={ancestors.map((value) => ({
 				label: value === '/' ? 'Files' : value.split('/').at(-1)!
 			}))}
-		/><Div class="flex flex-wrap gap-2"
-			>{#each ancestors as ancestor}<Button
-					type="button"
-					variants={['ghost']}
-					class="text-xs"
-					onclick={() => open(ancestor)}
-					>{ancestor === '/' ? 'Home' : ancestor.split('/').at(-1)}</Button
-				>{/each}</Div
-		><Input
+		/>
+		<Div class="flex flex-wrap gap-2">
+			{#each ancestors as ancestor}
+				<Button type="button" variants={['ghost']} class="text-xs" onclick={() => open(ancestor)}>
+					{ancestor === '/' ? 'Home' : ancestor.split('/').at(-1)}
+				</Button>
+			{/each}
+		</Div>
+		<Input
 			aria-label="Search this folder"
 			placeholder="Search this folder..."
 			bind:value={query}
 			class="w-full"
-		/><Div class="space-y-2"
-			>{#each entries as entry}<Button
+		/>
+		<Div class="space-y-2">
+			{#each entries as entry}
+				<Button
 					type="button"
 					variants={['ghost']}
 					class="flex w-full items-center justify-between gap-3 rounded-lg border border-gray-200 p-3 text-left dark:border-gray-700"
 					onclick={() => (entry.folder ? open(entry.folder) : (selected = entry))}
-					><span>{entry.folder ? '▣' : '▤'} {entry.name}</span><Badge
-						>{entry.folder ? 'Folder →' : entry.size}</Badge
-					></Button
-				>{/each}{#if !entries.length}<P role="status">No matching files.</P>{/if}</Div
-		></Card
-	><Card class="space-y-4"
-		><H3 class="text-lg font-semibold">File details</H3>{#if selected}<Badge>Document</Badge><P
-				class="font-semibold break-words">{selected.name}</P
-			><P class="text-sm">Size: {selected.size}</P><P class="text-sm"
-				>Modified: {selected.modified}</P
-			><P class="text-xs">Location: {path}</P>{:else}<P class="text-sm"
-				>Open a folder or select a file to inspect its details.</P
-			>{/if}</Card
-	></Div
->
+				>
+					<span>{entry.folder ? '▣' : '▤'} {entry.name}</span>
+					<Badge>{entry.folder ? 'Folder →' : entry.size}</Badge>
+				</Button>
+			{/each}
+			{#if !entries.length}
+				<P role="status">No matching files.</P>
+			{/if}
+		</Div>
+	</Card>
+	<Card class="space-y-4">
+		<H3 class="text-lg font-semibold">File details</H3>
+		{#if selected}
+			<Badge>Document</Badge>
+			<P class="font-semibold break-words">{selected.name}</P>
+			<P class="text-sm">Size: {selected.size}</P>
+			<P class="text-sm">Modified: {selected.modified}</P>
+			<P class="text-xs">Location: {path}</P>
+		{:else}
+			<P class="text-sm">Open a folder or select a file to inspect its details.</P>
+		{/if}
+	</Card>
+</Div>

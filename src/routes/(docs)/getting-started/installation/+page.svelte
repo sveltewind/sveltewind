@@ -16,28 +16,27 @@
 <DocsSection>
 	<H2>Tailwind CSS</H2>
 
-	<P
-		>This library is built on Tailwind CSS. Make sure Tailwind is installed and configured in your
-		project.</P
-	>
+	<P>
+		This library is built on Tailwind CSS. Make sure Tailwind is installed and configured in your
+		project.
+	</P>
 
-	<P
-		>If you don’t have Tailwind set up yet, follow the official installation guide for your
-		framework before continuing.</P
-	>
+	<P>
+		If you don’t have Tailwind set up yet, follow the official installation guide for your framework
+		before continuing.
+	</P>
 </DocsSection>
 
 <DocsSection>
 	<H2>Add the source to Tailwind</H2>
 
-	<P
-		>To ensure all component styles are included, add the library to your Tailwind source
-		configuration:</P
-	>
+	<P>
+		To ensure all component styles are included, add the library to your Tailwind source
+		configuration:
+	</P>
 
 	<CodeBlock
-		code={`@import "tailwindcss";
-@source "../node_modules/sveltewind";`}
+		code={'@import \'tailwindcss\';\n@source "../node_modules/sveltewind";\n'}
 		options={{ lang: 'css' }}
 		title="app.css"
 	/>

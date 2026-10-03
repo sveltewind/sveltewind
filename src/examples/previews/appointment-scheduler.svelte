@@ -44,13 +44,15 @@
 	}
 </script>
 
-<Card class="mx-auto max-w-2xl space-y-6"
-	><Div
-		><Badge>30-minute consultation</Badge><H2 class="mt-3 text-2xl font-semibold"
-			>Choose a time to talk</H2
-		><P class="mt-2 text-sm">Sample availability for October 2026. All times are UTC.</P></Div
-	><Div class="grid grid-cols-5 gap-2"
-		>{#each days as date, i}<Button
+<Card class="mx-auto max-w-2xl space-y-6">
+	<Div>
+		<Badge>30-minute consultation</Badge>
+		<H2 class="mt-3 text-2xl font-semibold">Choose a time to talk</H2>
+		<P class="mt-2 text-sm">Sample availability for October 2026. All times are UTC.</P>
+	</Div>
+	<Div class="grid grid-cols-5 gap-2">
+		{#each days as date, i}
+			<Button
 				type="button"
 				variants={day === i ? [] : ['outline']}
 				class="px-2 text-xs"
@@ -58,25 +60,34 @@
 				onclick={() => {
 					day = i;
 					time = '';
-				}}>{date}</Button
-			>{/each}</Div
-	><H3 class="text-base font-semibold">Available times</H3><Div
-		class="grid grid-cols-2 gap-3 sm:grid-cols-3"
-		>{#each times as slot}<Button
+				}}
+			>
+				{date}
+			</Button>
+		{/each}
+	</Div>
+	<H3 class="text-base font-semibold">Available times</H3>
+	<Div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+		{#each times as slot}
+			<Button
 				type="button"
 				disabled={unavailable[day].includes(slot) || booked[day + ':' + slot]}
 				variants={time === slot ? [] : ['outline']}
 				aria-pressed={time === slot}
-				onclick={() => (time = slot)}>{slot}</Button
-			>{/each}</Div
-	><Form class="space-y-4" onsubmit={confirm}
-		><Field
-			><Label for={uid}>Your name</Label><Input
-				id={uid}
-				bind:value={name}
-				required
-				placeholder="Alex Morgan"
-			/></Field
-		><Button type="submit" disabled={!time || !name.trim()}>Confirm appointment</Button></Form
-	>{#if confirmation}<Alert role="status" variants={['success']}>{confirmation}</Alert>{/if}</Card
->
+				onclick={() => (time = slot)}
+			>
+				{slot}
+			</Button>
+		{/each}
+	</Div>
+	<Form class="space-y-4" onsubmit={confirm}>
+		<Field>
+			<Label for={uid}>Your name</Label>
+			<Input id={uid} bind:value={name} required placeholder="Alex Morgan" />
+		</Field>
+		<Button type="submit" disabled={!time || !name.trim()}>Confirm appointment</Button>
+	</Form>
+	{#if confirmation}
+		<Alert role="status" variants={['success']}>{confirmation}</Alert>
+	{/if}
+</Card>

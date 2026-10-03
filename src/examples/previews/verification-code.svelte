@@ -34,15 +34,18 @@
 	}
 </script>
 
-<Card class="mx-auto max-w-lg space-y-5 text-center"
-	><Badge>Account verification</Badge><H2 class="text-2xl font-semibold"
-		>Enter your six-digit code</H2
-	><P class="text-sm"
-		>Use the demo code <strong>123456</strong>. You can paste all six digits or enter them
-		individually.</P
-	><Form class="space-y-5" onsubmit={verify} onpaste={paste}
-		><Div class="grid grid-cols-6 gap-2"
-			>{#each digits as digit, index}<Input
+<Card class="mx-auto max-w-lg space-y-5 text-center">
+	<Badge>Account verification</Badge>
+	<H2 class="text-2xl font-semibold">Enter your six-digit code</H2>
+	<P class="text-sm">
+		Use the demo code
+		<strong>123456</strong>
+		. You can paste all six digits or enter them individually.
+	</P>
+	<Form class="space-y-5" onsubmit={verify} onpaste={paste}>
+		<Div class="grid grid-cols-6 gap-2">
+			{#each digits as digit, index}
+				<Input
 					aria-label={'Digit ' + (index + 1)}
 					id={uid + index}
 					type="text"
@@ -56,10 +59,15 @@
 					oninput={(event) => enter(event, index)}
 					onkeydown={(event) => keyboard(event, index)}
 					required
-				/>{/each}</Div
-		><Button type="submit" disabled={digits.some((digit) => !digit)}>Verify code</Button></Form
-	>{#if message}<Alert role="status" variants={verified ? ['success'] : ['info']}>{message}</Alert
-		>{/if}<Button
+				/>
+			{/each}
+		</Div>
+		<Button type="submit" disabled={digits.some((digit) => !digit)}>Verify code</Button>
+	</Form>
+	{#if message}
+		<Alert role="status" variants={verified ? ['success'] : ['info']}>{message}</Alert>
+	{/if}
+	<Button
 		type="button"
 		variants={['ghost']}
 		class="text-sm"
@@ -67,6 +75,11 @@
 			resends++;
 			verified = false;
 			message = 'Demo code resent: 123456. No email was sent.';
-		}}>Resend code</Button
-	>{#if resends}<P class="text-xs">{resends} demo resend{resends === 1 ? '' : 's'}</P>{/if}</Card
->
+		}}
+	>
+		Resend code
+	</Button>
+	{#if resends}
+		<P class="text-xs">{resends} demo resend{resends === 1 ? '' : 's'}</P>
+	{/if}
+</Card>

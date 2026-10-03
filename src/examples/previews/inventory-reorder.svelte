@@ -30,31 +30,43 @@
 	);
 </script>
 
-<Card class="w-full space-y-5"
-	><Div class="flex flex-wrap items-center justify-between gap-3"
-		><H2 class="text-2xl font-semibold">Reorder planner</H2><Badge variants={['warning']}
-			>{lowStock} items below target</Badge
-		></Div
-	><Div class="overflow-x-auto"
-		><Table
-			><Thead
-				><Tr><Th>Select</Th><Th>Product</Th><Th>In stock</Th><Th>Target</Th><Th>To order</Th></Tr
-				></Thead
-			><Tbody
-				>{#each products as product}<Tr
-						><Td
-							><Checkbox
+<Card class="w-full space-y-5">
+	<Div class="flex flex-wrap items-center justify-between gap-3">
+		<H2 class="text-2xl font-semibold">Reorder planner</H2>
+		<Badge variants={['warning']}>{lowStock} items below target</Badge>
+	</Div>
+	<Div class="overflow-x-auto">
+		<Table>
+			<Thead>
+				<Tr>
+					<Th>Select</Th>
+					<Th>Product</Th>
+					<Th>In stock</Th>
+					<Th>Target</Th>
+					<Th>To order</Th>
+				</Tr>
+			</Thead>
+			<Tbody>
+				{#each products as product}
+					<Tr>
+						<Td>
+							<Checkbox
 								aria-label={'Select ' + product.name}
 								bind:checked={product.selected}
 								onchange={() => (summary = '')}
-							/></Td
-						><Td><P class="font-medium">{product.name}</P><P class="text-xs">{product.sku}</P></Td
-						><Td
-							><Badge variants={product.stock < product.target ? ['warning'] : ['success']}
-								>{product.stock}</Badge
-							></Td
-						><Td
-							><Input
+							/>
+						</Td>
+						<Td>
+							<P class="font-medium">{product.name}</P>
+							<P class="text-xs">{product.sku}</P>
+						</Td>
+						<Td>
+							<Badge variants={product.stock < product.target ? ['warning'] : ['success']}>
+								{product.stock}
+							</Badge>
+						</Td>
+						<Td>
+							<Input
 								aria-label={'Target for ' + product.name}
 								type="number"
 								min={0}
@@ -68,19 +80,27 @@
 									);
 									summary = '';
 								}}
-							/></Td
-						><Td>{Math.max(0, product.target - product.stock)}</Td></Tr
-					>{/each}</Tbody
-			></Table
-		></Div
-	><P class="text-sm"
-		>Select products and adjust their target levels. Suggested quantities cover the gap from current
-		stock.</P
-	><Button
+							/>
+						</Td>
+						<Td>{Math.max(0, product.target - product.stock)}</Td>
+					</Tr>
+				{/each}
+			</Tbody>
+		</Table>
+	</Div>
+	<P class="text-sm">
+		Select products and adjust their target levels. Suggested quantities cover the gap from current
+		stock.
+	</P>
+	<Button
 		type="button"
 		disabled={!units}
 		onclick={() =>
 			(summary = `Draft purchase order: ${units} units across ${products.filter((product) => product.selected && product.target > product.stock).length} products.`)}
-		>Create purchase-order draft</Button
-	>{#if summary}<Alert role="status" variants={['success']}>{summary}</Alert>{/if}</Card
->
+	>
+		Create purchase-order draft
+	</Button>
+	{#if summary}
+		<Alert role="status" variants={['success']}>{summary}</Alert>
+	{/if}
+</Card>

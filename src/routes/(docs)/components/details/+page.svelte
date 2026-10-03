@@ -91,25 +91,25 @@
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			>
+			<Tbody>
+				{#each props as prop (prop.name)}<Tr>
+						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
+							{prop.description}
+						</Td>
+					</Tr>{/each}
+			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>Use Summary as the first child to provide its accessible toggle. Transitions apply to
-		visibility; open uses native disclosure behavior.</P
-	>
+	<P>
+		Use Summary as the first child to provide its accessible toggle. Transitions apply to
+		visibility; open uses native disclosure behavior.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
 	<CodePreview
-		code={'<script lang="ts">\n import { Details, Summary, P } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Details>\n <Summary>Learn more</Summary>\n <P>Disclosure content.</P>\n</Details>'}
+		code={'<script lang="ts">\n\timport { Details, Summary, P } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Details>\n\t<Summary>Learn more</Summary>\n\n\t<P>Disclosure content.</P>\n</Details>\n'}
 		title="+page.svelte"
 	>
 		<Details>
@@ -121,7 +121,7 @@
 <DocsSection>
 	<H2>Usage Examples</H2>
 	<CodePreview
-		code={'<Details open>\n <Summary>Initially expanded</Summary>\n <P>You can also bind open to control this disclosure.</P>\n</Details>'}
+		code={'<Details open>\n\t<Summary>Initially expanded</Summary>\n\n\t<P>You can also bind open to control this disclosure.</P>\n</Details>\n'}
 		title="+page.svelte"
 	>
 		<Details open>

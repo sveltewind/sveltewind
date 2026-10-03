@@ -84,10 +84,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -116,16 +116,16 @@
 	<P>Import Field from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Field, Label, Input } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Field>\n\t<Label for="default-email">Email</Label>\n\t<Input id="default-email" type="email" placeholder="you@example.com" />\n</Field>\n'}
+			'ipt>\n\n<Field>\n\t<Label for="default-email">Email</Label>\n\n\t<Input id="default-email" type="email" placeholder="you@example.com" />\n</Field>\n'}
 		title="+page.svelte"
 	>
-		<Field
-			><Label for="default-email">Email</Label><Input
+		<Field>
+			<Label for="default-email">Email</Label><Input
 				id="default-email"
 				type="email"
 				placeholder="you@example.com"
-			/></Field
-		>
+			/>
+		</Field>
 	</CodePreview>
 </DocsSection>
 <DocsSection class="last-of-type:flex md:last-of-type:flex">
@@ -134,15 +134,15 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Field, Label, Input } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Field class="text-primary-500 dark:text-primary-400">\n\t<Label for="default-email">Email</Label>\n\t<Input id="default-email" type="email" placeholder="you@example.com" />\n</Field>\n'}
+			'ipt>\n\n<Field class="text-primary-500 dark:text-primary-400">\n\t<Label for="default-email">Email</Label>\n\n\t<Input id="default-email" type="email" placeholder="you@example.com" />\n</Field>\n'}
 		title="+page.svelte"
 	>
-		<Field class="text-primary-500 dark:text-primary-400"
-			><Label for="default-email">Email</Label><Input
+		<Field class="text-primary-500 dark:text-primary-400">
+			<Label for="default-email">Email</Label><Input
 				id="default-email"
 				type="email"
 				placeholder="you@example.com"
-			/></Field
-		>
+			/>
+		</Field>
 	</CodePreview>
 </DocsSection>

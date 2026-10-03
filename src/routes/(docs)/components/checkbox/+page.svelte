@@ -96,10 +96,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -122,10 +122,10 @@
 			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>Class styles the wrapping label. Native input attributes, including name, required, and
-		disabled, are forwarded to the hidden checkbox input.</P
-	>
+	<P>
+		Class styles the wrapping label. Native input attributes, including name, required, and
+		disabled, are forwarded to the hidden checkbox input.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>

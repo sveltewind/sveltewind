@@ -107,10 +107,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -133,11 +133,11 @@
 			</Tbody>
 		</Table>
 	</Card>
-	<P
-		><Code>TriggerProps</Code> contains button IDs, ARIA attributes, native popover target attributes,
+	<P>
+		<Code>TriggerProps</Code> contains button IDs, ARIA attributes, native popover target attributes,
 		onclick, style, and type. Spread the complete object onto the trigger. The default trigger reads
-		Toggle popover.</P
-	>
+		Toggle popover.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
@@ -153,18 +153,18 @@
 <DocsSection class="last-of-type:flex md:last-of-type:flex">
 	<H2>Usage Examples</H2>
 	<H3>Custom trigger</H3>
-	<P
-		>Spread the provided trigger attributes onto your button to preserve toggling and positioning.</P
-	>
+	<P>
+		Spread the provided trigger attributes onto your button to preserve toggling and positioning.
+	</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Popover, Button, P } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Popover placement="right" gap={12} aria-label="More information"\n\t>{#snippet trigger(props)}<Button {...props}>More information</Button>{/snippet}<P\n\t\t>Content beside the trigger.</P\n\t>\n</Popover>\n'}
+			'ipt>\n\n<Popover placement="right" gap={12} aria-label="More information">\n\t{#snippet trigger(props)}\n\t\t<Button {...props}>More information</Button>\n\t{/snippet}\n\t<P>Content beside the trigger.</P>\n</Popover>\n'}
 		title="+page.svelte"
 	>
-		<Popover placement="right" gap={12} aria-label="More information"
-			>{#snippet trigger(props)}<Button {...props}>More information</Button>{/snippet}<P
-				>Content beside the trigger.</P
-			></Popover
-		>
+		<Popover placement="right" gap={12} aria-label="More information">
+			{#snippet trigger(props)}<Button {...props}>More information</Button>{/snippet}<P>
+				Content beside the trigger.
+			</P>
+		</Popover>
 	</CodePreview>
 </DocsSection>

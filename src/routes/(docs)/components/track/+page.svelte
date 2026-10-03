@@ -70,8 +70,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Track, Video } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Video controls aria-label="Video player"><Track kind="captions" label="English" srclang="en" /></Video>';
+		'<script lang="ts">\n\timport { Track, Video } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Video controls aria-label="Video player">\n\t<Track kind="captions" label="English" srclang="en" />\n</Video>\n';
 	const variants = Object.keys(classic.track.variants ?? {});
 </script>
 
@@ -83,21 +83,21 @@
 <DocsSection>
 	<H2>Usage</H2>
 	<CodePreview {code} title="+page.svelte">
-		<Video controls aria-label="Video player"
-			><Track kind="captions" label="English" srclang="en" /></Video
-		>
+		<Video controls aria-label="Video player">
+			<Track kind="captions" label="English" srclang="en" />
+		</Video>
 	</CodePreview>
-	<P
-		>Track provides captions or other timed text inside Audio or Video. Set src to your WebVTT file.
-		It has no visible box to style or animate.</P
-	>
+	<P>
+		Track provides captions or other timed text inside Audio or Video. Set src to your WebVTT file.
+		It has no visible box to style or animate.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>track</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>track</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -123,13 +123,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

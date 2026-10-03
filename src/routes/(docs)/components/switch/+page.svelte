@@ -91,26 +91,26 @@
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			>
+			<Tbody>
+				{#each props as prop (prop.name)}<Tr>
+						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
+							{prop.description}
+						</Td>
+					</Tr>{/each}
+			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>Native input attributes and handlers go to the checkbox; type and role are fixed to checkbox
-		and switch. The class prop styles the wrapping label. element binds the input. Supply children
-		or an accessible label. Theme keys switch and switchControl style the label and input.</P
-	>
+	<P>
+		Native input attributes and handlers go to the checkbox; type and role are fixed to checkbox and
+		switch. The class prop styles the wrapping label. element binds the input. Supply children or an
+		accessible label. Theme keys switch and switchControl style the label and input.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
 	<CodePreview
-		code={'<script lang="ts">\n import { Switch, P } from \'sveltewind/components\';\n let checked = $state(false);\n</scr' +
-			"ipt>\n\n<Switch bind:checked>Notifications</Switch>\n<P>Notifications: {checked ? 'on' : 'off'}</P>"}
+		code={'<script lang="ts">\n\timport { Switch, P } from \'sveltewind/components\';\n\tlet checked = $state(false);\n</scr' +
+			"ipt>\n\n<Switch bind:checked>Notifications</Switch>\n<P>Notifications: {checked ? 'on' : 'off'}</P>\n"}
 		title="+page.svelte"
 	>
 		<Switch bind:checked>Notifications</Switch>
@@ -120,7 +120,7 @@
 <DocsSection>
 	<H2>Usage Examples</H2>
 	<CodePreview
-		code={'<Switch checked name="notifications" value="enabled">Notifications</Switch>\n<Switch disabled>Unavailable setting</Switch>\n<Switch aria-label="Enable dark mode" />'}
+		code={'<Switch checked name="notifications" value="enabled">Notifications</Switch>\n<Switch disabled>Unavailable setting</Switch>\n<Switch aria-label="Enable dark mode" />\n'}
 		title="+page.svelte"
 	>
 		<Switch checked name="notifications" value="enabled">Notifications</Switch>

@@ -78,8 +78,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Dd, Div, Dl, Dt } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Dl variants={['spacious']}><Div><Dt>Framework</Dt><Dd>Svelte</Dd></Div><Div><Dt>Styling</Dt><Dd>Tailwind CSS</Dd></Div></Dl>";
+		'<script lang="ts">\n\timport { Dd, Div, Dl, Dt } from \'sveltewind/components\';\n</scr' +
+		"ipt>\n\n<Dl variants={['spacious']}>\n\t<Div>\n\t\t<Dt>Framework</Dt>\n\t\t<Dd>Svelte</Dd>\n\t</Div>\n\t<Div>\n\t\t<Dt>Styling</Dt>\n\t\t<Dd>Tailwind CSS</Dd>\n\t</Div>\n</Dl>\n";
 	const variants = Object.keys(classic.dl.variants ?? {});
 </script>
 
@@ -91,18 +91,17 @@
 <DocsSection>
 	<H2>Usage</H2>
 	<CodePreview {code} title="+page.svelte">
-		<Dl variants={['spacious']}
-			><Div><Dt>Framework</Dt><Dd>Svelte</Dd></Div><Div><Dt>Styling</Dt><Dd>Tailwind CSS</Dd></Div
-			></Dl
-		>
+		<Dl variants={['spacious']}>
+			<Div><Dt>Framework</Dt><Dd>Svelte</Dd></Div><Div><Dt>Styling</Dt><Dd>Tailwind CSS</Dd></Div>
+		</Dl>
 	</CodePreview>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>dl</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>dl</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -128,13 +127,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

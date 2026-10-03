@@ -82,10 +82,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>span</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>span</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -114,7 +114,7 @@
 	<P>Import Span from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { P, Span } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<P>Status: <Span class="text-primary-500">Ready</Span></P>\n'}
+			'ipt>\n\n<P>\n\tStatus:\n\t<Span class="text-primary-500">Ready</Span>\n</P>\n'}
 		title="+page.svelte"
 	>
 		<P>Status: <Span class="text-primary-500">Ready</Span></P>
@@ -126,7 +126,7 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { P, Span } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<P>Status: <Span class="text-primary-500 dark:text-primary-400">Ready</Span></P>\n'}
+			'ipt>\n\n<P>\n\tStatus:\n\t<Span class="text-primary-500 dark:text-primary-400">Ready</Span>\n</P>\n'}
 		title="+page.svelte"
 	>
 		<P>Status: <Span class="text-primary-500 dark:text-primary-400">Ready</Span></P>

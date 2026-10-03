@@ -84,23 +84,24 @@
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			>
+			<Tbody>
+				{#each props as prop (prop.name)}<Tr>
+						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
+							{prop.description}
+						</Td>
+					</Tr>{/each}
+			</Tbody>
 		</Table>
 	</Card>
-	<P>Status variants include success, warning, error, and info. Badges are noninteractive labels.</P
-	>
+	<P>
+		Status variants include success, warning, error, and info. Badges are noninteractive labels.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
 	<CodePreview
-		code={'<script lang="ts">\n import { Badge } from \'sveltewind/components\';\n </scr' +
-			'ipt>\n\n<Badge>New</Badge>'}
+		code={'<script lang="ts">\n\timport { Badge } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Badge>New</Badge>\n'}
 		title="+page.svelte"
 	>
 		<Badge>New</Badge>
@@ -109,7 +110,7 @@
 <DocsSection>
 	<H2>Usage Examples</H2>
 	<CodePreview
-		code={"<Badge variants={['success']}>Active</Badge>\n<Badge variants={['warning']}>Pending</Badge>\n<Badge variants={['error']}>Failed</Badge>\n<Badge variants={['info']}>3 updates</Badge>"}
+		code={"<Badge variants={['success']}>Active</Badge>\n<Badge variants={['warning']}>Pending</Badge>\n<Badge variants={['error']}>Failed</Badge>\n<Badge variants={['info']}>3 updates</Badge>\n"}
 		title="+page.svelte"
 	>
 		<Badge variants={['success']}>Active</Badge>

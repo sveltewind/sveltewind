@@ -17,14 +17,6 @@
 	import { fade } from 'svelte/transition';
 
 	// helper
-	const codeSanitizer = (scriptCode: string, body: string) =>
-		`<scr` +
-		`ipt lang="ts">
-${scriptCode}
-</scr` +
-		`ipt>
-
-${body}`;
 
 	// $state
 	let isVisibilityExampleVisible = $state(true);
@@ -36,7 +28,8 @@ ${body}`;
 	<H1>Usage</H1>
 
 	<P>
-		Once installed, you can start using components immediately.<br />
+		Once installed, you can start using components immediately.
+		<br />
 		All components are fully typed, built for Svelte 5, and designed to work out of the box with minimal
 		setup.
 	</P>
@@ -48,10 +41,8 @@ ${body}`;
 	<P>Use <A href="/components">components</A> just like native HTML elements.</P>
 
 	<CodePreview
-		code={codeSanitizer(
-			"\timport { Button } from 'sveltewind/components';",
-			'<Button>Click Me</Button>'
-		)}
+		code={'<script lang="ts">\n\timport { Button } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Button>Click Me</Button>\n'}
 		title="+page.svelte"
 	>
 		<Button>Click Me</Button>
@@ -64,10 +55,8 @@ ${body}`;
 	<P>Components are built with a powerful <Code>variants</Code> prop, which control styling.</P>
 
 	<CodePreview
-		code={codeSanitizer(
-			"\timport { Div, Button } from 'sveltewind/components';",
-			'<Div class="flex gap-4">\r\n\t\t\t<Button>Primary Button</Button>\r\n\t\t\t<Button variants={[\'ghost\']}>Ghost Button</Button>\r\n\t\t</Div>'
-		)}
+		code={'<script lang="ts">\n\timport { Div, Button } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Div class="flex gap-4">\n\t<Button>Primary Button</Button>\n\n\t<Button variants={[\'ghost\']}>Ghost Button</Button>\n</Div>\n'}
 		title="+page.svelte"
 	>
 		<Div class="flex gap-4">
@@ -83,10 +72,8 @@ ${body}`;
 	<P>You can reuse styles from other components using dot notation.</P>
 
 	<CodePreview
-		code={codeSanitizer(
-			"\timport { Div, A } from 'sveltewind/components';",
-			'<Div class="flex items-center gap-4">\r\n\t\t\t<A href="#composing-styles-across-components">Standard Link</A>\r\n\t\t\t<A href="#composing-styles-across-components" variants={[\'button.base\']}>Button Link</A>\r\n\t\t</Div>'
-		)}
+		code={'<script lang="ts">\n\timport { Div, A } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Div class="flex items-center gap-4">\n\t<A href="#composing-styles-across-components">Standard Link</A>\n\n\t<A href="#composing-styles-across-components" variants={[\'button.base\']}>Button Link</A>\n</Div>\n'}
 		title="+page.svelte"
 	>
 		<Div class="flex items-center gap-4">
@@ -109,19 +96,17 @@ ${body}`;
 	<P>You can always pass additional classes too.</P>
 
 	<CodePreview
-		code={codeSanitizer(
-			"\timport { Button } from 'sveltewind/components';",
-			'<Button class="w-full">Full Width Button</Button>'
-		)}
+		code={'<script lang="ts">\n\timport { Button } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Button class="w-full">Full Width Button</Button>\n'}
 		title="+page.svelte"
 	>
 		<Button class="w-full">Full Width Button</Button>
 	</CodePreview>
 
-	<P
-		>Custom classes are merged using npm package <Code>tailwind-merge</Code>, so conflicts are
-		resolved automatically.</P
-	>
+	<P>
+		Custom classes are merged using npm package <Code>tailwind-merge</Code>, so conflicts are
+		resolved automatically.
+	</P>
 </DocsSection>
 
 <DocsSection>
@@ -130,16 +115,14 @@ ${body}`;
 	<P>Component's mount/unmount state can be controlled with the <Code>isVisible</Code> prop.</P>
 
 	<CodePreview
-		code={codeSanitizer(
-			"\timport { Div, Button, A } from 'sveltewind/components';\n\t\n\t// $state\n\tlet isVisibilityExampleVisible = $state(true);",
-			'<Div class="flex items-center gap-4">\r\n\t\t\t<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}\r\n\t\t\t\t>Toggle Visibility</Button\r\n\t\t\t>\r\n\t\t\t<A href="#visibility" isVisible={isVisibilityExampleVisible}>Visible Link</A>\r\n\t\t</Div>'
-		)}
+		code={'<script lang="ts">\n\timport { Div, Button, A } from \'sveltewind/components\';\n\n\t// $state\n\tlet isVisibilityExampleVisible = $state(true);\n</scr' +
+			'ipt>\n\n<Div class="flex items-center gap-4">\n\t<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}>\n\t\tToggle Visibility\n\t</Button>\n\n\t<A href="#visibility" isVisible={isVisibilityExampleVisible}>Visible Link</A>\n</Div>\n'}
 		title="+page.svelte"
 	>
 		<Div class="flex items-center gap-4">
-			<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}
-				>Toggle Visibility</Button
-			>
+			<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}>
+				Toggle Visibility
+			</Button>
 			<A href="#visibility" isVisible={isVisibilityExampleVisible}>Visible Link</A>
 		</Div>
 	</CodePreview>
@@ -151,16 +134,14 @@ ${body}`;
 	<P>All components support transitions using Svelte’s native transition functions.</P>
 
 	<CodePreview
-		code={codeSanitizer(
-			"\timport { fade } from 'svelte/transition';\n\timport { Div, Button, A } from 'sveltewind/components';\n\t\n\t// $state\n\tlet isVisibilityExampleVisible = $state(true);",
-			'<Div class="flex items-center gap-4">\r\n\t\t\t<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}\r\n\t\t\t\t>Toggle Visibility</Button\r\n\t\t\t>\r\n\t\t\t<A\r\n\t\t\t\thref="#transitions"\r\n\t\t\t\tisVisible={isVisibilityExampleVisible}\r\n\t\t\t\ttransition={[fade, { duration: 1000 }]}\r\n\t\t\t>\r\n\t\t\t\tVisible Link\r\n\t\t\t</A>\r\n\t\t</Div>'
-		)}
+		code={"<script lang=\"ts\">\n\timport { fade } from 'svelte/transition';\n\timport { Div, Button, A } from 'sveltewind/components';\n\n\t// $state\n\tlet isVisibilityExampleVisible = $state(true);\n</scr" +
+			'ipt>\n\n<Div class="flex items-center gap-4">\n\t<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}>\n\t\tToggle Visibility\n\t</Button>\n\n\t<A\n\t\thref="#transitions"\n\t\tisVisible={isVisibilityExampleVisible}\n\t\ttransition={[fade, { duration: 1000 }]}\n\t>\n\t\tVisible Link\n\t</A>\n</Div>\n'}
 		title="+page.svelte"
 	>
 		<Div class="flex items-center gap-4">
-			<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}
-				>Toggle Visibility</Button
-			>
+			<Button onclick={() => (isVisibilityExampleVisible = !isVisibilityExampleVisible)}>
+				Toggle Visibility
+			</Button>
 			<A
 				href="#transitions"
 				isVisible={isVisibilityExampleVisible}

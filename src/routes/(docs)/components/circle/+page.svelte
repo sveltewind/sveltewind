@@ -82,10 +82,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>circle</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>circle</Code> element
+		unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -117,9 +117,9 @@
 			'ipt>\n\n<svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Circle">\n\t<Circle cx="32" cy="32" r="24" fill="currentColor" />\n</svg>\n'}
 		title="+page.svelte"
 	>
-		<svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Circle"
-			><Circle cx="32" cy="32" r="24" fill="currentColor" /></svg
-		>
+		<svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Circle">
+			<Circle cx="32" cy="32" r="24" fill="currentColor" />
+		</svg>
 	</CodePreview>
 </DocsSection>
 <DocsSection class="last-of-type:flex md:last-of-type:flex">
@@ -131,14 +131,14 @@
 			'ipt>\n\n<svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Circle">\n\t<Circle\n\t\tclass="text-primary-500 dark:text-primary-400"\n\t\tcx="32"\n\t\tcy="32"\n\t\tr="24"\n\t\tfill="currentColor"\n\t/>\n</svg>\n'}
 		title="+page.svelte"
 	>
-		<svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Circle"
-			><Circle
+		<svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Circle">
+			<Circle
 				class="text-primary-500 dark:text-primary-400"
 				cx="32"
 				cy="32"
 				r="24"
 				fill="currentColor"
-			/></svg
-		>
+			/>
+		</svg>
 	</CodePreview>
 </DocsSection>

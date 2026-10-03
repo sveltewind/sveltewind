@@ -19,8 +19,8 @@
 	import { classic } from '$lib/themes';
 
 	const code =
-		'<script lang="ts">\n  import { Svg, SvgImage } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="SvgImage example"><SvgImage href="/images/logo-light.svg" x={5} y={35} width={90} height={30} preserveAspectRatio="xMidYMid meet" /></Svg>';
+		'<script lang="ts">\n\timport { Svg, SvgImage } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="SvgImage example">\n\t<SvgImage\n\t\thref="/images/logo-light.svg"\n\t\tx={5}\n\t\ty={35}\n\t\twidth={90}\n\t\theight={30}\n\t\tpreserveAspectRatio="xMidYMid meet"\n\t/>\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -81,31 +81,31 @@
 	const variants = Object.keys(classic.svgImage.variants ?? {});
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>SvgImage</H1><P
-		>A themed native SVG <Code>image</Code> primitive. Render it inside Svg or an appropriate SVG parent.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="SvgImage example"
-			><SvgImage
+<DocsSection>
+	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>SvgImage</H1><P>
+		A themed native SVG <Code>image</Code> primitive. Render it inside Svg or an appropriate SVG parent.
+	</P>
+</DocsSection>
+<DocsSection>
+	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
+		<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="SvgImage example">
+			<SvgImage
 				href="/images/logo-light.svg"
 				x={5}
 				y={35}
 				width={90}
 				height={30}
 				preserveAspectRatio="xMidYMid meet"
-			/></Svg
-		></CodePreview
-	></DocsSection
->
+			/>
+		</Svg>
+	</CodePreview>
+</DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>image</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>image</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -129,13 +129,13 @@
 		</Table>
 	</Card>
 </DocsSection>
-<DocsSection
-	><H2>Styling</H2><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+<DocsSection>
+	<H2>Styling</H2><P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P><P>
+		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
 		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.</P
-	></DocsSection
->
+		accessibility elements do not have a visible box, so their transitions have no visible effect.
+	</P>
+</DocsSection>

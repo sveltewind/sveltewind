@@ -49,25 +49,37 @@
 	}
 </script>
 
-<Card class={`mx-auto max-w-2xl space-y-5 ${compact ? 'p-3' : 'p-6'}`}
-	><Div class="flex flex-wrap items-center justify-between gap-3"
-		><H2 class="text-2xl font-semibold">Workspace commands</H2><Button
+<Card class={`mx-auto max-w-2xl space-y-5 ${compact ? 'p-3' : 'p-6'}`}>
+	<Div class="flex flex-wrap items-center justify-between gap-3">
+		<H2 class="text-2xl font-semibold">Workspace commands</H2>
+		<Button
 			type="button"
 			aria-haspopup="dialog"
 			aria-expanded={open}
 			onclick={() => {
 				query = '';
 				open = true;
-			}}>Open palette</Button
-		></Div
-	><P class="text-sm"
-		>Search for an action, use ↑ and ↓ to choose it, and press Enter. Escape closes the dialog.</P
-	>{#if screen === 'projects'}<Div class={compact ? 'space-y-1' : 'space-y-3'}
-			>{#each projects as project}<Div
+			}}
+		>
+			Open palette
+		</Button>
+	</Div>
+	<P class="text-sm">
+		Search for an action, use ↑ and ↓ to choose it, and press Enter. Escape closes the dialog.
+	</P>
+	{#if screen === 'projects'}
+		<Div class={compact ? 'space-y-1' : 'space-y-3'}>
+			{#each projects as project}
+				<Div
 					class={`rounded-lg border border-gray-200 dark:border-gray-700 ${compact ? 'p-2' : 'p-4'}`}
-					><P class="font-medium">{project}</P><Badge>Active project</Badge></Div
-				>{/each}</Div
-		>{:else}<Form
+				>
+					<P class="font-medium">{project}</P>
+					<Badge>Active project</Badge>
+				</Div>
+			{/each}
+		</Div>
+	{:else}
+		<Form
 			class="flex flex-col gap-3 sm:flex-row"
 			onsubmit={(event) => {
 				event.preventDefault();
@@ -75,18 +87,27 @@
 				name = '';
 				screen = 'projects';
 			}}
-			><Input
+		>
+			<Input
 				class="min-w-0 grow"
 				aria-label="Project name"
 				bind:value={name}
 				placeholder="Name your project"
 				required
-			/><Button type="submit">Create project</Button></Form
-		>{/if}{#if message}<Alert role="status" variants={['info']}>{message}</Alert>{/if}<Dialog
+			/>
+			<Button type="submit">Create project</Button>
+		</Form>
+	{/if}
+	{#if message}
+		<Alert role="status" variants={['info']}>{message}</Alert>
+	{/if}
+	<Dialog
 		bind:isVisible={open}
 		aria-labelledby={uid + '-title'}
 		class="w-[calc(100vw-2rem)] max-w-lg space-y-4"
-		><H3 id={uid + '-title'} class="text-lg font-semibold">Command palette</H3><Input
+	>
+		<H3 id={uid + '-title'} class="text-lg font-semibold">Command palette</H3>
+		<Input
 			bind:element={input}
 			bind:value={query}
 			class="w-full"
@@ -97,17 +118,25 @@
 			aria-controls={uid + '-results'}
 			aria-activedescendant={filtered.length ? uid + '-command-' + active : undefined}
 			onkeydown={keyboard}
-		/><Div id={uid + '-results'} role="listbox" aria-label="Commands" class="space-y-1"
-			>{#each filtered as command, i}<Button
+		/>
+		<Div id={uid + '-results'} role="listbox" aria-label="Commands" class="space-y-1">
+			{#each filtered as command, i}
+				<Button
 					id={uid + '-command-' + i}
 					type="button"
 					role="option"
 					aria-selected={active === i}
 					variants={active === i ? ['soft'] : ['ghost']}
 					class="flex w-full items-center justify-between gap-3 text-left"
-					onclick={() => run(i)}><span>{command.label}</span><Badge>{command.group}</Badge></Button
-				>{/each}{#if !filtered.length}<P role="status" class="p-3 text-sm">No matching commands.</P
-				>{/if}</Div
-		></Dialog
-	></Card
->
+					onclick={() => run(i)}
+				>
+					<span>{command.label}</span>
+					<Badge>{command.group}</Badge>
+				</Button>
+			{/each}
+			{#if !filtered.length}
+				<P role="status" class="p-3 text-sm">No matching commands.</P>
+			{/if}
+		</Div>
+	</Dialog>
+</Card>

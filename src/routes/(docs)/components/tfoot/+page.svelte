@@ -75,8 +75,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Table, Tbody, Td, Tfoot, Tr } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Table><Tbody><Tr><Td>Starter</Td><Td>$10</Td></Tr></Tbody><Tfoot variants={['bordered']}><Tr><Td>Total</Td><Td>$10</Td></Tr></Tfoot></Table>";
+		'<script lang="ts">\n\timport { Table, Tbody, Td, Tfoot, Tr } from \'sveltewind/components\';\n</scr' +
+		"ipt>\n\n<Table>\n\t<Tbody>\n\t\t<Tr>\n\t\t\t<Td>Starter</Td>\n\t\t\t<Td>$10</Td>\n\t\t</Tr>\n\t</Tbody>\n\t<Tfoot variants={['bordered']}>\n\t\t<Tr>\n\t\t\t<Td>Total</Td>\n\t\t\t<Td>$10</Td>\n\t\t</Tr>\n\t</Tfoot>\n</Table>\n";
 	const variants = Object.keys(classic.tfoot.variants ?? {});
 </script>
 
@@ -88,19 +88,19 @@
 <DocsSection>
 	<H2>Usage</H2>
 	<CodePreview {code} title="+page.svelte">
-		<Table
-			><Tbody><Tr><Td>Starter</Td><Td>$10</Td></Tr></Tbody><Tfoot variants={['bordered']}
-				><Tr><Td>Total</Td><Td>$10</Td></Tr></Tfoot
-			></Table
-		>
+		<Table>
+			<Tbody><Tr><Td>Starter</Td><Td>$10</Td></Tr></Tbody><Tfoot variants={['bordered']}>
+				<Tr><Td>Total</Td><Td>$10</Td></Tr>
+			</Tfoot>
+		</Table>
 	</CodePreview>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>tfoot</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>tfoot</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -126,13 +126,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

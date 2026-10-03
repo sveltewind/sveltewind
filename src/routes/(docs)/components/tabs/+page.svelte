@@ -97,10 +97,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -123,10 +123,10 @@
 			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>Each <Code>Tab</Code> contains a string title and a value of any type. Custom children replace the
-		generated buttons; render the selected content separately.</P
-	>
+	<P>
+		Each <Code>Tab</Code> contains a string title and a value of any type. Custom children replace the
+		generated buttons; render the selected content separately.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
@@ -151,17 +151,17 @@
 	<P>Render the associated content separately using the selected value.</P>
 	<CodePreview
 		code={"<script lang=\"ts\">\n\timport { Div, Tabs, P } from 'sveltewind/components';\n\n\tlet tab = $state('overview');\n</scr" +
-			"ipt>\n\n<Div class=\"flex flex-col gap-3\">\n\t<Tabs\n\t\ttabs={[\n\t\t\t{ title: 'Overview', value: 'overview' },\n\t\t\t{ title: 'Details', value: 'details' }\n\t\t]}\n\t\tbind:value={tab}\n\t/>\n\t<P>{tab === 'overview' ? 'Overview content' : 'Detail content'}</P>\n</Div>\n"}
+			"ipt>\n\n<Div class=\"flex flex-col gap-3\">\n\t<Tabs\n\t\ttabs={[\n\t\t\t{ title: 'Overview', value: 'overview' },\n\t\t\t{ title: 'Details', value: 'details' }\n\t\t]}\n\t\tbind:value={tab}\n\t/>\n\n\t<P>{tab === 'overview' ? 'Overview content' : 'Detail content'}</P>\n</Div>\n"}
 		title="+page.svelte"
 	>
-		<Div class="flex flex-col gap-3"
-			><Tabs
+		<Div class="flex flex-col gap-3">
+			<Tabs
 				tabs={[
 					{ title: 'Overview', value: 'overview' },
 					{ title: 'Details', value: 'details' }
 				]}
 				bind:value={tab}
-			/><P>{tab === 'overview' ? 'Overview content' : 'Detail content'}</P></Div
-		>
+			/><P>{tab === 'overview' ? 'Overview content' : 'Detail content'}</P>
+		</Div>
 	</CodePreview>
 </DocsSection>

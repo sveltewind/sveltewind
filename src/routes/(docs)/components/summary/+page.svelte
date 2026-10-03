@@ -85,25 +85,25 @@
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			>
+			<Tbody>
+				{#each props as prop (prop.name)}<Tr>
+						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
+							{prop.description}
+						</Td>
+					</Tr>{/each}
+			</Tbody>
 		</Table>
 	</Card>
-	<P
-		>Place Summary first inside Details. The browser supplies mouse and keyboard activation and
-		disclosure semantics.</P
-	>
+	<P>
+		Place Summary first inside Details. The browser supplies mouse and keyboard activation and
+		disclosure semantics.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Default Implementation</H2>
 	<CodePreview
-		code={'<script lang="ts">\n import { Details, Summary, P } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Details>\n <Summary>Account settings</Summary>\n <P>Your preferences go here.</P>\n</Details>'}
+		code={'<script lang="ts">\n\timport { Details, Summary, P } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<Details>\n\t<Summary>Account settings</Summary>\n\n\t<P>Your preferences go here.</P>\n</Details>\n'}
 		title="+page.svelte"
 	>
 		<Details>
@@ -115,7 +115,7 @@
 <DocsSection>
 	<H2>Usage Examples</H2>
 	<CodePreview
-		code={'<Details>\n <Summary class="cursor-pointer font-semibold">Custom toggle style</Summary>\n <P>Content is revealed when expanded.</P>\n</Details>'}
+		code={'<Details>\n\t<Summary class="cursor-pointer font-semibold">Custom toggle style</Summary>\n\n\t<P>Content is revealed when expanded.</P>\n</Details>\n'}
 		title="+page.svelte"
 	>
 		<Details>

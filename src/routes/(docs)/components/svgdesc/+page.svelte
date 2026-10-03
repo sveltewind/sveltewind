@@ -20,8 +20,8 @@
 	import { classic } from '$lib/themes';
 
 	const code =
-		'<script lang="ts">\n  import { Rect, Svg, SvgDesc } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="SvgDesc example" aria-describedby="demo-description"><SvgDesc id="demo-description">A violet rectangle with rounded corners.</SvgDesc><Rect x={10} y={20} width={80} height={60} rx={8} variants={[\'fill\', \'primary\']} /></Svg>';
+		'<script lang="ts">\n\timport { Rect, Svg, SvgDesc } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Svg\n\tviewBox="0 0 100 100"\n\tclass="size-40"\n\trole="img"\n\taria-label="SvgDesc example"\n\taria-describedby="demo-description"\n>\n\t<SvgDesc id="demo-description">A violet rectangle with rounded corners.</SvgDesc>\n\t<Rect x={10} y={20} width={80} height={60} rx={8} variants={[\'fill\', \'primary\']} />\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -82,36 +82,37 @@
 	const variants = Object.keys(classic.svgDesc.variants ?? {});
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>SvgDesc</H1><P
-		>A themed native SVG <Code>desc</Code> primitive. Render it inside Svg or an appropriate SVG parent.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><Svg
+<DocsSection>
+	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>SvgDesc</H1><P>
+		A themed native SVG <Code>desc</Code> primitive. Render it inside Svg or an appropriate SVG parent.
+	</P>
+</DocsSection>
+<DocsSection>
+	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
+		<Svg
 			viewBox="0 0 100 100"
 			class="size-40"
 			role="img"
 			aria-label="SvgDesc example"
 			aria-describedby="demo-description"
-			><SvgDesc id="demo-description">A violet rectangle with rounded corners.</SvgDesc><Rect
+		>
+			<SvgDesc id="demo-description">A violet rectangle with rounded corners.</SvgDesc><Rect
 				x={10}
 				y={20}
 				width={80}
 				height={60}
 				rx={8}
 				variants={['fill', 'primary']}
-			/></Svg
-		></CodePreview
-	></DocsSection
->
+			/>
+		</Svg>
+	</CodePreview>
+</DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>desc</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>desc</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -135,13 +136,13 @@
 		</Table>
 	</Card>
 </DocsSection>
-<DocsSection
-	><H2>Styling</H2><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+<DocsSection>
+	<H2>Styling</H2><P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P><P>
+		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
 		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.</P
-	></DocsSection
->
+		accessibility elements do not have a visible box, so their transitions have no visible effect.
+	</P>
+</DocsSection>

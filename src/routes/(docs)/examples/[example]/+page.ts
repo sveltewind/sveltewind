@@ -3,7 +3,7 @@ import type { PageLoad } from './$types';
 
 const previews = import.meta.glob<{ default: Component }>('/src/examples/previews/*.svelte');
 const sources = import.meta.glob<string>('/src/examples/previews/*.svelte', {
-	query: '?raw',
+	query: '?example-code&raw',
 	import: 'default'
 });
 
@@ -13,6 +13,6 @@ export const load: PageLoad = async ({ data }) => {
 	return {
 		...data,
 		Preview: preview.default,
-		source: source.replace("from '$lib/components'", "from 'sveltewind/components'")
+		source
 	};
 };

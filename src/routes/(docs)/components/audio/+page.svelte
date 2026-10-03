@@ -75,8 +75,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Audio } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Audio controls aria-label="Audio player">Your browser does not support audio playback.</Audio>';
+		'<script lang="ts">\n\timport { Audio } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Audio controls aria-label="Audio player">Your browser does not support audio playback.</Audio>\n';
 	const variants = Object.keys(classic.audio.variants ?? {});
 </script>
 
@@ -90,17 +90,17 @@
 	<CodePreview {code} title="+page.svelte">
 		<Audio controls aria-label="Audio player">Your browser does not support audio playback.</Audio>
 	</CodePreview>
-	<P
-		>Provide a src attribute or Source children for playback. Native player appearance varies by
-		browser.</P
-	>
+	<P>
+		Provide a src attribute or Source children for playback. Native player appearance varies by
+		browser.
+	</P>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>audio</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>audio</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -126,13 +126,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

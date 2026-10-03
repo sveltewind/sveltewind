@@ -77,11 +77,6 @@
 	];
 
 	// helpers
-	const exampleCode = (markup: string) =>
-		'<scr' +
-		'ipt lang="ts">\n  import { A } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n' +
-		markup;
 </script>
 
 <DocsSection>
@@ -116,12 +111,13 @@
 
 <DocsSection>
 	<H2>Default Implementation</H2>
-	<P
-		>Provide a destination and link content. The default theme adds an underline and hover and focus
-		colors.</P
-	>
+	<P>
+		Provide a destination and link content. The default theme adds an underline and hover and focus
+		colors.
+	</P>
 	<CodePreview
-		code={exampleCode('<A href="/getting-started/usage">Explore Sveltewind</A>')}
+		code={'<script lang="ts">\n\timport { A } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<A href="/getting-started/usage">Explore Sveltewind</A>\n'}
 		title="+page.svelte"
 	>
 		<A href="/getting-started/usage">Explore Sveltewind</A>
@@ -133,22 +129,20 @@
 	<H3>Ghost</H3>
 	<P>The default theme's <Code>ghost</Code> variant removes the underline.</P>
 	<CodePreview
-		code={exampleCode(
-			'<A href="/getting-started/usage" variants={[\'ghost\']}>Explore Sveltewind</A>'
-		)}
+		code={'<script lang="ts">\n\timport { A } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<A href="/getting-started/usage" variants={[\'ghost\']}>Explore Sveltewind</A>\n'}
 		title="+page.svelte"
 	>
 		<A href="/getting-started/usage" variants={['ghost']}>Explore Sveltewind</A>
 	</CodePreview>
 
 	<H3>Button</H3>
-	<P
-		>Use <Code>button.base</Code> to give the link button styling while preserving native link behavior.</P
-	>
+	<P>
+		Use <Code>button.base</Code> to give the link button styling while preserving native link behavior.
+	</P>
 	<CodePreview
-		code={exampleCode(
-			'<A href="/getting-started/usage" variants={[\'button.base\']}>Get started</A>'
-		)}
+		code={'<script lang="ts">\n\timport { A } from \'sveltewind/components\';\n</scr' +
+			'ipt>\n\n<A href="/getting-started/usage" variants={[\'button.base\']}>Get started</A>\n'}
 		title="+page.svelte"
 	>
 		<A href="/getting-started/usage" variants={['button.base']}>Get started</A>
@@ -157,13 +151,12 @@
 	<H3>Outline button</H3>
 	<P>Combine the button's base styles with <Code>button.variant.outline</Code>.</P>
 	<CodePreview
-		code={exampleCode(
-			"<A href=\"/getting-started/usage\" variants={['button.base', 'button.variant.outline']}>Get started</A>"
-		)}
+		code={'<script lang="ts">\n\timport { A } from \'sveltewind/components\';\n</scr' +
+			"ipt>\n\n<A href=\"/getting-started/usage\" variants={['button.base', 'button.variant.outline']}>\n\tGet started\n</A>\n"}
 		title="+page.svelte"
 	>
-		<A href="/getting-started/usage" variants={['button.base', 'button.variant.outline']}
-			>Get started</A
-		>
+		<A href="/getting-started/usage" variants={['button.base', 'button.variant.outline']}>
+			Get started
+		</A>
 	</CodePreview>
 </DocsSection>

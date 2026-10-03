@@ -35,10 +35,12 @@
 	}
 </script>
 
-<Card class="mx-auto w-full max-w-2xl space-y-5"
-	><H2 class="text-2xl font-semibold">Contact sales</H2><P class="text-sm"
-		>Complete the fields below. This example keeps your submission in this browser session.</P
-	>
+<Card class="mx-auto w-full max-w-2xl space-y-5">
+	<H2 class="text-2xl font-semibold">Contact sales</H2>
+	<P class="text-sm">
+		Complete the fields below. This example keeps your submission in this browser session.
+	</P>
+
 	<Form
 		class="space-y-4"
 		onsubmit={submit}
@@ -47,39 +49,45 @@
 			summary = {};
 		}}
 	>
-		{#each fields as field, i}<Field
-				><Label for={uid + i}>{field.label}</Label>
-				{#if field.type === 'textarea'}<Textarea
-						id={uid + i}
-						name={field.label}
-						required
-						rows={3}
-						placeholder={field.label}
-					/>
-				{:else}<Input
+		{#each fields as field, i}
+			<Field>
+				<Label for={uid + i}>{field.label}</Label>
+
+				{#if field.type === 'textarea'}
+					<Textarea id={uid + i} name={field.label} required rows={3} placeholder={field.label} />
+				{:else}
+					<Input
 						id={uid + i}
 						name={field.label}
 						type={field.type}
 						required
 						min={field.type === 'number' ? 1 : undefined}
 						placeholder={field.label}
-					/>{/if}</Field
-			>{/each}
+					/>
+				{/if}
+			</Field>
+		{/each}
 
-		<Div class="flex flex-wrap gap-3"
-			><Button type="submit">Send inquiry</Button><Button type="reset" variants={['outline']}
-				>Reset</Button
-			></Div
-		>
+		<Div class="flex flex-wrap gap-3">
+			<Button type="submit">Send inquiry</Button>
+			<Button type="reset" variants={['outline']}>Reset</Button>
+		</Div>
 	</Form>
-	{#if submitted}<Alert variants={['success']} role="status"
-			>Demo submission received. No data was sent to a server.</Alert
-		>
-		<Dl class="space-y-2"
-			>{#each Object.entries(summary) as [key, value]}<Div
-					><Dt class="text-xs font-semibold">{key}</Dt><Dd class="text-sm break-words"
-						>{key.toLowerCase().includes('password') ? '••••••••' : value}</Dd
-					></Div
-				>{/each}</Dl
-		>{/if}</Card
->
+
+	{#if submitted}
+		<Alert variants={['success']} role="status">
+			Demo submission received. No data was sent to a server.
+		</Alert>
+
+		<Dl class="space-y-2">
+			{#each Object.entries(summary) as [key, value]}
+				<Div>
+					<Dt class="text-xs font-semibold">{key}</Dt>
+					<Dd class="text-sm break-words">
+						{key.toLowerCase().includes('password') ? '••••••••' : value}
+					</Dd>
+				</Div>
+			{/each}
+		</Dl>
+	{/if}
+</Card>

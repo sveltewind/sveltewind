@@ -84,10 +84,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>legend</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>legend</Code> element
+		unless handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -116,7 +116,7 @@
 	<P>Import Legend from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Fieldset, Legend, Checkbox } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Fieldset>\n\t<Legend>Account preferences</Legend>\n\t<Checkbox>Send notifications</Checkbox>\n</Fieldset>\n'}
+			'ipt>\n\n<Fieldset>\n\t<Legend>Account preferences</Legend>\n\n\t<Checkbox>Send notifications</Checkbox>\n</Fieldset>\n'}
 		title="+page.svelte"
 	>
 		<Fieldset><Legend>Account preferences</Legend><Checkbox>Send notifications</Checkbox></Fieldset>
@@ -128,13 +128,13 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Fieldset, Legend, Checkbox } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Fieldset>\n\t<Legend class="text-primary-500 dark:text-primary-400">Account preferences</Legend>\n\t<Checkbox>Send notifications</Checkbox>\n</Fieldset>\n'}
+			'ipt>\n\n<Fieldset>\n\t<Legend class="text-primary-500 dark:text-primary-400">Account preferences</Legend>\n\n\t<Checkbox>Send notifications</Checkbox>\n</Fieldset>\n'}
 		title="+page.svelte"
 	>
-		<Fieldset
-			><Legend class="text-primary-500 dark:text-primary-400">Account preferences</Legend><Checkbox
-				>Send notifications</Checkbox
-			></Fieldset
-		>
+		<Fieldset>
+			<Legend class="text-primary-500 dark:text-primary-400">Account preferences</Legend><Checkbox>
+				Send notifications
+			</Checkbox>
+		</Fieldset>
 	</CodePreview>
 </DocsSection>

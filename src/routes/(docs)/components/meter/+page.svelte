@@ -76,8 +76,8 @@
 	];
 
 	const code =
-		'<script lang="ts">\n  import { Label, Meter } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Label for="primitive-storage">Storage used</Label><Meter id="primitive-storage" min={0} max={100} value={65}>65%</Meter>';
+		'<script lang="ts">\n\timport { Label, Meter } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Label for="primitive-storage">Storage used</Label>\n<Meter id="primitive-storage" min={0} max={100} value={65}>65%</Meter>\n';
 	const variants = Object.keys(classic.meter.variants ?? {});
 </script>
 
@@ -93,17 +93,19 @@
 			id="primitive-storage"
 			min={0}
 			max={100}
-			value={65}>65%</Meter
+			value={65}
 		>
+			65%
+		</Meter>
 	</CodePreview>
 	<P>Use Meter for a measurement within a known range. Use Progress for task completion.</P>
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>meter</Code> element
-		unless handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>meter</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -129,13 +131,13 @@
 </DocsSection>
 <DocsSection>
 	<H2>Styling</H2>
-	<P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	>
-	<P
-		>Use class for local overrides or variants for reusable theme styles. All five presets include
+	<P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P>
+	<P>
+		Use class for local overrides or variants for reusable theme styles. All five presets include
 		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.</P
-	>
+		inTransition, and outTransition props.
+	</P>
 </DocsSection>

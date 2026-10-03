@@ -83,10 +83,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>ol</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>ol</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -115,7 +115,7 @@
 	<P>Import Ol from sveltewind/components and use it as shown below.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Ol, Li } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Ol class="list-decimal pl-6">\n\t<Li>Install the package</Li>\n\t<Li>Import a component</Li>\n</Ol>\n'}
+			'ipt>\n\n<Ol class="list-decimal pl-6">\n\t<Li>Install the package</Li>\n\n\t<Li>Import a component</Li>\n</Ol>\n'}
 		title="+page.svelte"
 	>
 		<Ol class="list-decimal pl-6"><Li>Install the package</Li><Li>Import a component</Li></Ol>
@@ -127,11 +127,11 @@
 	<P>Use class to merge Tailwind utilities with the component theme.</P>
 	<CodePreview
 		code={'<script lang="ts">\n\timport { Ol, Li } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Ol class="list-decimal pl-6 text-primary-500 dark:text-primary-400">\n\t<Li>Install the package</Li>\n\t<Li>Import a component</Li>\n</Ol>\n'}
+			'ipt>\n\n<Ol class="list-decimal pl-6 text-primary-500 dark:text-primary-400">\n\t<Li>Install the package</Li>\n\n\t<Li>Import a component</Li>\n</Ol>\n'}
 		title="+page.svelte"
 	>
-		<Ol class="list-decimal pl-6 text-primary-500 dark:text-primary-400"
-			><Li>Install the package</Li><Li>Import a component</Li></Ol
-		>
+		<Ol class="list-decimal pl-6 text-primary-500 dark:text-primary-400">
+			<Li>Install the package</Li><Li>Import a component</Li>
+		</Ol>
 	</CodePreview>
 </DocsSection>

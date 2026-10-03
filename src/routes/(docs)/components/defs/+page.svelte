@@ -22,8 +22,8 @@
 	import { classic } from '$lib/themes';
 
 	const code =
-		'<script lang="ts">\n  import { Defs, LinearGradient, Rect, Stop, Svg } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Defs example"><Defs><LinearGradient id="demo-fill"><Stop offset="0%" stop-color="currentColor" /><Stop offset="100%" stop-color="currentColor" stop-opacity={0.2} /></LinearGradient></Defs><Rect width={100} height={100} fill="url(#demo-fill)" class="text-primary-500" /></Svg>';
+		'<script lang="ts">\n\timport { Defs, LinearGradient, Rect, Stop, Svg } from \'sveltewind/components\';\n</scr' +
+		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Defs example">\n\t<Defs>\n\t\t<LinearGradient id="demo-fill">\n\t\t\t<Stop offset="0%" stop-color="currentColor" />\n\t\t\t<Stop offset="100%" stop-color="currentColor" stop-opacity={0.2} />\n\t\t</LinearGradient>\n\t</Defs>\n\t<Rect width={100} height={100} fill="url(#demo-fill)" class="text-primary-500" />\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -84,32 +84,32 @@
 	const variants = Object.keys(classic.defs.variants ?? {});
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>Defs</H1><P
-		>A themed native SVG <Code>defs</Code> primitive. Render it inside Svg or an appropriate SVG parent.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Defs example"
-			><Defs
-				><LinearGradient id="demo-fill"
-					><Stop offset="0%" stop-color="currentColor" /><Stop
+<DocsSection>
+	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>Defs</H1><P>
+		A themed native SVG <Code>defs</Code> primitive. Render it inside Svg or an appropriate SVG parent.
+	</P>
+</DocsSection>
+<DocsSection>
+	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
+		<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Defs example">
+			<Defs>
+				<LinearGradient id="demo-fill">
+					<Stop offset="0%" stop-color="currentColor" /><Stop
 						offset="100%"
 						stop-color="currentColor"
 						stop-opacity={0.2}
-					/></LinearGradient
-				></Defs
-			><Rect width={100} height={100} fill="url(#demo-fill)" class="text-primary-500" /></Svg
-		></CodePreview
-	></DocsSection
->
+					/>
+				</LinearGradient>
+			</Defs><Rect width={100} height={100} fill="url(#demo-fill)" class="text-primary-500" />
+		</Svg>
+	</CodePreview>
+</DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>defs</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>defs</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -133,13 +133,13 @@
 		</Table>
 	</Card>
 </DocsSection>
-<DocsSection
-	><H2>Styling</H2><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+<DocsSection>
+	<H2>Styling</H2><P>
+		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+			{/if}<Code>{variant}</Code>{/each}.
+	</P><P>
+		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
 		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.</P
-	></DocsSection
->
+		accessibility elements do not have a visible box, so their transitions have no visible effect.
+	</P>
+</DocsSection>

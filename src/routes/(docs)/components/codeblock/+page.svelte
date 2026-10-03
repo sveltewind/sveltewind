@@ -142,10 +142,10 @@
 </DocsSection>
 <DocsSection>
 	<H2>Props</H2>
-	<P
-		>Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
-		handled by the component.</P
-	>
+	<P>
+		Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
+		handled by the component.
+	</P>
 	<Card class="self-start overflow-x-auto p-0">
 		<Table>
 			<Thead>
@@ -179,7 +179,7 @@
 	>
 		<CodeBlock
 			title="hello.ts"
-			code="const hello = 'world';"
+			code={"const hello = 'world';\n"}
 			options={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}
 		/>
 	</CodePreview>
@@ -195,7 +195,7 @@
 	>
 		<CodeBlock
 			title="hello.ts"
-			code="const hello = 'world';"
+			code={"const hello = 'world';\n"}
 			isLineNumbersVisible={false}
 			options={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}
 		/>
