@@ -5,7 +5,17 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script>
-			const localStorageDarkMode = localStorage.getItem('darkMode') || 'false';
+			let localStorageDarkMode = 'false';
+			let siteStyle = 'classic';
+			try {
+				localStorageDarkMode = localStorage.getItem('darkMode') || 'false';
+				const savedStyle = localStorage.getItem('sveltewindStyle');
+				if (['classic', 'minimal', 'sharp', 'soft', 'studio'].includes(savedStyle))
+					siteStyle = savedStyle;
+			} catch {
+				/* Storage is optional. */
+			}
+			document.documentElement.setAttribute('data-style', siteStyle);
 			document.documentElement.setAttribute(
 				'data-theme',
 				localStorageDarkMode === 'true' ? 'dark' : 'light'

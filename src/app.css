@@ -1,21 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 @import 'tailwindcss';
+@import './lib/themes/palettes.css';
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-	--color-primary-50: oklch(96.9% 0.016 293.756);
-	--color-primary-100: oklch(94.3% 0.029 294.588);
-	--color-primary-200: oklch(89.4% 0.057 293.283);
-	--color-primary-300: oklch(81.1% 0.111 293.571);
-	--color-primary-400: oklch(70.2% 0.183 293.541);
-	--color-primary-500: oklch(60.6% 0.25 292.717);
-	--color-primary-600: oklch(54.1% 0.281 293.009);
-	--color-primary-700: oklch(49.1% 0.27 292.581);
-	--color-primary-800: oklch(43.2% 0.232 292.759);
-	--color-primary-900: oklch(38% 0.189 293.745);
-	--color-primary-950: oklch(28.3% 0.141 291.089);
-
 	--color-gray-50: #faf9fa;
 	--color-gray-100: #f2f1f4;
 	--color-gray-200: #e4e3e8;

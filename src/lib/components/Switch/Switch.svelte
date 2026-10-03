@@ -50,6 +50,7 @@
 		class={theme.resolve('switchControl')}
 		role="switch"
 		{theme}
+		variants={['unstyled']}
 		type="checkbox"
 	/>
 	{#if children}<Span {theme}>{@render children()}</Span>{/if}

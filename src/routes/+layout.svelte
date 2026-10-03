@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
-	import { A, Button, Container, Div, Header, Logo, Nav } from '$components';
-	import { Github, Moon, Sun } from '$lib/icons';
+	import { A, Button, Container, Div, Header, Logo, Nav, Option, Select } from '$components';
+	import { Github, Moon, Palette, Sun } from '$lib/icons';
 	import { theme } from '$lib/theme';
-	import { theme as defaultTheme } from '$lib/themes/default';
+	import { classic, minimal, sharp, soft, studio } from '$lib/themes';
 	import { nav as navLinks, type NavLink, type NavSection } from '$state/nav/nav.svelte';
 	import { untrack, type Snippet } from 'svelte';
 	import { slide } from 'svelte/transition';
@@ -13,6 +13,7 @@
 	import '../app.css';
 
 	// types
+	type PresetName = keyof typeof presets;
 	type Props = {
 		children?: Snippet;
 	};
@@ -20,7 +21,12 @@
 	// $props
 	let { children }: Props = $props();
 
+	// Presets
+	const presets = { classic, minimal, sharp, soft, studio };
+	const presetNames = Object.keys(presets) as PresetName[];
+
 	// $state
+	let selectedPreset = $state<PresetName>('classic');
 	let isDarkMode = $state(false);
 	const nav: {
 		isOpen: boolean;
@@ -43,7 +49,32 @@
 	// $effects
 	$effect(() => {
 		untrack(() => {
-			theme.set.theme(defaultTheme);
+			if (!browser) return;
+			try {
+				isDarkMode = localStorage.getItem('darkMode') === 'true';
+				const saved = localStorage.getItem('sveltewindStyle');
+				if (saved && Object.hasOwn(presets, saved)) selectedPreset = saved as PresetName;
+			} catch {
+				// Storage can be disabled; theme controls still work for this visit.
+			}
+		});
+	});
+
+	$effect(() => {
+		const preset = presets[selectedPreset];
+		untrack(() => {
+			// Site-specific additions must never mutate an exported library preset.
+			theme.set.theme(
+				Object.fromEntries(
+					Object.entries(preset).map(([key, component]) => [
+						key,
+						{
+							base: component.base,
+							variants: { ...component.variants }
+						}
+					])
+				)
+			);
 			theme.set.component('blockLink', {
 				base: twMerge(
 					theme.get.component('card').base,
@@ -67,18 +98,25 @@
 					'flex flex-col hover:inset-ring-primary-500 hover:bg-primary-500/10 focus:inset-ring-primary-500 focus:bg-primary-500/10'
 				)
 			);
-
-			if (browser) {
-				const localStorageDarkMode = localStorage.getItem('darkMode') || 'false';
-				isDarkMode = localStorageDarkMode === 'true';
-			}
 		});
+		if (browser) {
+			document.documentElement.setAttribute('data-style', selectedPreset);
+			try {
+				localStorage.setItem('sveltewindStyle', selectedPreset);
+			} catch {
+				/* Optional persistence. */
+			}
+		}
 	});
 
 	$effect(() => {
 		document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
 		if (browser) {
-			localStorage.setItem('darkMode', String(isDarkMode));
+			try {
+				localStorage.setItem('darkMode', String(isDarkMode));
+			} catch {
+				/* Optional persistence. */
+			}
 		}
 	});
 </script>
@@ -101,7 +139,7 @@
 			)}
 		>
 			<A
-				class="-mx-6"
+				class="-mx-3 px-3 sm:-mx-6 sm:px-6"
 				href="/"
 				onclick={() => (nav.isOpen = false)}
 				variants={['button.base', 'button.variant.ghost']}
@@ -110,6 +148,7 @@
 			</A>
 			<Div class="-mr-3 flex items-center">
 				{@render linksSnippet()}
+				{@render themeSelectorSnippet()}
 				{@render darkModeButtonSnippet()}
 				{@render githubButtonSnippet()}
 				{@render navButtonSnippet()}
@@ -141,7 +180,7 @@
 {#snippet darkModeButtonSnippet()}
 	<Button
 		aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-		class="relative flex items-center justify-center overflow-hidden"
+		class="relative flex size-9 items-center justify-center overflow-hidden sm:size-12"
 		onclick={() => (isDarkMode = !isDarkMode)}
 		variants={['icon', 'ghost']}
 	>
@@ -190,7 +229,7 @@
 	<Button
 		aria-label={nav.isOpen ? 'Close navigation' : 'Open navigation'}
 		aria-expanded={nav.isOpen}
-		class="relative lg:hidden"
+		class="relative size-9 sm:size-12 lg:hidden"
 		onclick={() => (nav.isOpen = !nav.isOpen)}
 		variants={['icon', 'ghost']}
 	>
@@ -248,5 +287,24 @@
 				{/if}
 			{/each}
 		</Div>
+	</Div>
+{/snippet}
+
+{#snippet themeSelectorSnippet()}
+	<Div class="relative ml-1 flex items-center">
+		<Palette
+			aria-hidden="true"
+			class="pointer-events-none absolute left-2.5 size-4 text-primary-500 sm:left-2"
+		/>
+		<Select
+			aria-label={`Site style: ${selectedPreset}`}
+			title={`Site style: ${selectedPreset}. Change the style across the whole site.`}
+			bind:value={selectedPreset}
+			class="size-9 cursor-pointer appearance-none p-0 text-transparent sm:h-auto sm:w-27 sm:appearance-auto sm:py-2 sm:pr-1 sm:pl-7 sm:text-xs sm:text-gray-950 sm:capitalize sm:dark:text-gray-50"
+		>
+			{#each presetNames as name}<Option value={name}
+					>{name[0].toUpperCase() + name.slice(1)}</Option
+				>{/each}
+		</Select>
 	</Div>
 {/snippet}

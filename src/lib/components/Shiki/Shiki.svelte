@@ -181,6 +181,7 @@
 </script>
 
 <Pre
+	{theme}
 	{...restProps}
 	bind:element
 	bind:isVisible
@@ -192,9 +193,9 @@
 	{#if children}
 		{@render children()}
 	{:else}
-		<Code class="m-0 bg-transparent p-0 text-current">
+		<Code {theme} class="m-0 bg-transparent p-0 text-current">
 			{#if isLoading}
-				<Span class="animate-pulse">Loading...</Span>
+				<Span {theme} class="animate-pulse">Loading...</Span>
 			{:else}
 				{@html html}
 			{/if}

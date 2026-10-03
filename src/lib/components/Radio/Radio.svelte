@@ -58,6 +58,7 @@
 		{outTransition}
 		{theme}
 		{transition}
+		variants={['unstyled']}
 		type="radio"
 		{value}
 	/>

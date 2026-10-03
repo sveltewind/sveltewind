@@ -70,5 +70,13 @@
 		<Span {theme}>{@render children()}</Span>
 	{/if}
 
-	<Input {...restProps} bind:checked bind:element class="sr-only p-0" {theme} type="checkbox" />
+	<Input
+		{...restProps}
+		bind:checked
+		bind:element
+		class="sr-only p-0"
+		{theme}
+		variants={['unstyled']}
+		type="checkbox"
+	/>
 </Label>

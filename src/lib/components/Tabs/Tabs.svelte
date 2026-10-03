@@ -50,6 +50,7 @@
 </script>
 
 <Div
+	{theme}
 	{...restProps}
 	bind:element
 	bind:isVisible
@@ -63,6 +64,7 @@
 	{:else}
 		{#each tabs as tab}
 			<Button
+				{theme}
 				class={twMerge(
 					'rounded-sm px-5 py-2 inset-ring-1 inset-ring-transparent',
 					tab.value === value

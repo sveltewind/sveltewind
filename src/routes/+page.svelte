@@ -24,7 +24,7 @@
 		Link,
 		Palette
 	} from '$lib/icons';
-	import { Theme } from '$lib/theme';
+	import { theme, Theme } from '$lib/theme';
 
 	// Types
 	type Step = { code: string; description: string; label: string; title: string };
@@ -53,7 +53,7 @@
 			label: 'Reuse it',
 			title: 'Same styles. Different element.',
 			description: 'Use button styles on a link or any component.',
-			code: `<A href="/getting-started/usage"\n  variants={['button.base']}>\n  Get Started\n</A>`
+			code: `<A href="/getting-started/usage" variants={['button.base']}>\n  Get Started\n</A>`
 		}
 	];
 	const features = [
@@ -83,8 +83,6 @@
 			description: 'Use button styles on a link or any component.'
 		}
 	];
-	const buttonBase =
-		'inline-flex items-center justify-center rounded-lg px-8 py-3.5 font-medium text-white bg-primary-500 hover:bg-primary-600 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500';
 
 	// $state
 	let selectedStep = $state(0);
@@ -95,14 +93,15 @@
 	const step = $derived(steps[selectedStep]);
 	const demoTheme = $derived(
 		new Theme({
-			a: { base: '' },
+			a: { ...theme.get.component('a') },
 			button: {
 				base:
-					buttonBase +
+					(theme.get.base('button') || '') +
 					(selectedStep === 1
 						? ' bg-teal-500 hover:bg-teal-600 focus-visible:outline-teal-500'
 						: ''),
 				variants: {
+					...theme.get.component('button')?.variants,
 					outline:
 						'bg-transparent text-primary-600 inset-ring-1 inset-ring-primary-500 hover:bg-primary-500/10 dark:text-primary-300'
 				}
@@ -288,7 +287,7 @@
 							code={step.code}
 							options={{ lang: selectedStep === 1 ? 'javascript' : 'svelte' }}
 							isLineNumbersVisible={false}
-							class="min-h-14 overflow-x-auto p-4 text-[11px] sm:text-xs [&_code]:bg-transparent [&_code]:p-0"
+							class="min-h-21 overflow-x-auto p-4 text-[11px] sm:text-xs [&_code]:bg-transparent [&_code]:p-0"
 						/>
 					</Card>
 					<P aria-live="polite" class="mt-3 min-h-5 text-xs text-gray-600 dark:text-gray-400"

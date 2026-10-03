@@ -63,7 +63,7 @@
 			{@render children()}
 		{:else}
 			{#each options as option}
-				<Option value={option.value}>
+				<Option {theme} value={option.value}>
 					{option.label}
 				</Option>
 			{/each}

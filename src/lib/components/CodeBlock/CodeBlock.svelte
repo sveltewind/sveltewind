@@ -67,6 +67,7 @@
 </script>
 
 <Card
+	{theme}
 	{...restProps}
 	bind:element
 	bind:isVisible
@@ -81,9 +82,9 @@
 		{#if header}
 			{@render header()}
 		{:else}
-			<Card class="flex items-center justify-between rounded-b-none py-0">
-				<Span>{title}</Span>
-				<Button onclick={copyClickHandler} variants={['icon', 'ghost']}>
+			<Card {theme} class="flex items-center justify-between rounded-b-none py-0">
+				<Span {theme}>{title}</Span>
+				<Button {theme} onclick={copyClickHandler} variants={['icon', 'ghost']}>
 					{#if isCopied}
 						<Check />
 					{:else}
@@ -95,8 +96,8 @@
 		{#if body}
 			{@render body()}
 		{:else}
-			<Card class="-mt-px max-h-80 overflow-auto rounded-t-none">
-				<Shiki bind:html bind:isLoading {code} {isLineNumbersVisible} {options} />
+			<Card {theme} class="-mt-px max-h-80 overflow-auto rounded-t-none">
+				<Shiki {theme} bind:html bind:isLoading {code} {isLineNumbersVisible} {options} />
 			</Card>
 		{/if}
 	{/if}

@@ -82,12 +82,12 @@ class Theme {
 	};
 
 	set = {
-		theme: (nextTheme: ThemeObject) => {
+		theme: (nextTheme: ThemeObject): Theme => {
 			this.theme = nextTheme;
 			return this;
 		},
 
-		component: (componentName: string, component: ThemeComponent) => {
+		component: (componentName: string, component: ThemeComponent): Theme => {
 			this.theme[componentName] = {
 				base: component.base,
 				variants: { ...(component.variants ?? {}) }
@@ -95,13 +95,13 @@ class Theme {
 			return this;
 		},
 
-		base: (componentName: string, base: string) => {
+		base: (componentName: string, base: string): Theme => {
 			const component = this.ensureComponent(componentName);
 			component.base = base;
 			return this;
 		},
 
-		variant: (componentName: string, variantName: string, variant: string) => {
+		variant: (componentName: string, variantName: string, variant: string): Theme => {
 			const component = this.ensureComponent(componentName);
 			component.variants![variantName] = variant;
 			return this;
@@ -109,7 +109,7 @@ class Theme {
 	};
 
 	update = {
-		theme: (update: ThemeUpdate) => {
+		theme: (update: ThemeUpdate): Theme => {
 			for (const componentName in update) {
 				const componentUpdate = update[componentName];
 				if (componentUpdate) {
@@ -119,7 +119,7 @@ class Theme {
 			return this;
 		},
 
-		component: (componentName: string, update: ThemeComponentUpdate) => {
+		component: (componentName: string, update: ThemeComponentUpdate): Theme => {
 			const component = this.ensureComponent(componentName);
 
 			if (update.base) {
@@ -138,13 +138,13 @@ class Theme {
 			return this;
 		},
 
-		base: (componentName: string, base: string) => {
+		base: (componentName: string, base: string): Theme => {
 			const component = this.ensureComponent(componentName);
 			component.base = twMerge(component.base, base);
 			return this;
 		},
 
-		variant: (componentName: string, variantName: string, variant: string) => {
+		variant: (componentName: string, variantName: string, variant: string): Theme => {
 			const component = this.ensureComponent(componentName);
 			const current = component.variants?.[variantName] ?? '';
 

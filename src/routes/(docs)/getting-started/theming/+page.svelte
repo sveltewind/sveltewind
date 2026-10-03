@@ -3,6 +3,8 @@
 		A,
 		BlockLink,
 		Button,
+		Badge,
+		Card,
 		Code,
 		CodeBlock,
 		CodePreview,
@@ -16,6 +18,30 @@
 	} from '$components';
 	import { BookOpen, Puzzle } from '$lib/icons';
 	import { Theme } from '$lib/theme';
+	import { classic, minimal, sharp, soft, studio } from '$lib/themes';
+	const presetPreviews = [
+		{
+			name: 'Classic',
+			description: 'Balanced rounded controls with a violet accent.',
+			theme: new Theme(classic)
+		},
+		{
+			name: 'Soft',
+			description: 'Gentle surfaces and generous curves with a rose accent.',
+			theme: new Theme(soft)
+		},
+		{ name: 'Sharp', description: 'Square edges with a sky accent.', theme: new Theme(sharp) },
+		{
+			name: 'Minimal',
+			description: 'Quiet monochrome surfaces and understated borders.',
+			theme: new Theme(minimal)
+		},
+		{
+			name: 'Studio',
+			description: 'Elevated surfaces with an emerald accent.',
+			theme: new Theme(studio)
+		}
+	];
 
 	// helper
 	const codeSanitizer = (scriptCode: string, body: string) =>
@@ -78,6 +104,79 @@ ${body}`;
 		You can use the global theme, update it at runtime, create your own theme instances, or provide a
 		different theme to a single component.
 	</P>
+</DocsSection>
+
+<DocsSection>
+	<H2>Bundled styles</H2>
+	<P
+		>Use the Site style selector in the header to change the global preset throughout the site.
+		Light and dark mode work independently. Explicit classes and local themes still take precedence.</P
+	>
+	<P
+		>Classic is the renamed original theme. The former default export remains a compatibility alias.
+		All five presets include every library component and the same reusable variants.</P
+	>
+	<CodeBlock
+		title="+layout.svelte"
+		options={{ lang: 'ts' }}
+		code={"import { theme } from 'sveltewind/theme';\nimport { classic, soft, sharp, minimal, studio } from 'sveltewind/themes';\n\n// Copy before making site-specific updates.\ntheme.set.theme(structuredClone(soft));"}
+	/>
+	<P
+		>Import the optional Tailwind 4 palette stylesheet and set data-style on the root element to
+		classic, soft, sharp, minimal, or studio to use each preset's accent colors. These previews use
+		the site's current accent so you can compare their shapes independently.</P
+	>
+	<CodeBlock
+		title="app.css"
+		options={{ lang: 'css' }}
+		code={"@import 'tailwindcss';\n@import 'sveltewind/themes/palettes.css';"}
+	/>
+	<CodeBlock
+		title="JavaScript"
+		options={{ lang: 'ts' }}
+		code={"document.documentElement.dataset.style = 'soft';"}
+	/>
+	<Div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+		{#each presetPreviews as preset}
+			<Card theme={preset.theme} class="flex flex-col items-start gap-4">
+				<H3 class="text-lg">{preset.name}</H3>
+				<P class="text-sm">{preset.description}</P>
+				<Button theme={preset.theme} type="button">Primary button</Button>
+				<Input
+					theme={preset.theme}
+					aria-label={`${preset.name} input preview`}
+					placeholder="Your email"
+				/>
+			</Card>
+		{/each}
+	</Div>
+</DocsSection>
+
+<DocsSection>
+	<H2>Reusable variants</H2>
+	<P
+		>Combine variant names to change appearance, size, and shape. Component classes are merged last.
+		You can also reuse styles with references such as button.base and button.variant.soft.</P
+	>
+	<CodePreview
+		title="+page.svelte"
+		code={`<Button variants={['soft', 'sm', 'pill']}>Soft button</Button>\n<Button variants={['danger']}>Delete</Button>\n<Card variants={['elevated', 'compact']}>Elevated card</Card>\n<Input variants={['filled', 'sm']} placeholder="Email" />\n<Badge variants={['success']}>Active</Badge>`}
+	>
+		<Div class="flex flex-wrap items-center gap-3">
+			<Button type="button" variants={['soft', 'sm', 'pill']}>Soft button</Button>
+			<Button type="button" variants={['danger']}>Delete</Button>
+			<Badge variants={['success']}>Active</Badge>
+		</Div>
+	</CodePreview>
+	<P
+		>Buttons support primary, secondary, ghost, outline, soft, danger, success, link, pill, square,
+		full, icon, and xs/sm/md/lg. Inputs support filled, error, success, unstyled, and sizes. Cards,
+		dialogs, popovers, and fieldsets support compact, spacious, elevated, flat, outline, and soft.</P
+	>
+	<P
+		>Layout primitives support row, column, stack, center, and grid. Text supports accent, muted,
+		and uppercase. Tables support compact, striped, and hover; lists support plain and compact.</P
+	>
 </DocsSection>
 
 <DocsSection>

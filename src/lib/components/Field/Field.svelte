@@ -41,6 +41,7 @@
 </script>
 
 <Div
+	{theme}
 	{...restProps}
 	bind:element
 	bind:isVisible
