@@ -327,7 +327,7 @@
 {#snippet navLinkSnippet(navLink: NavLink)}
 	<A
 		class={twMerge(
-			'border-l py-3 pl-6',
+			'border-l py-3 pl-6 no-underline hover:no-underline focus:no-underline',
 			page.url.pathname === navLink.href
 				? 'border-primary-500 text-primary-500'
 				: 'border-gray-300 text-gray-950/50 hover:text-gray-950 focus:text-gray-950 dark:border-gray-700 dark:text-gray-50/50 dark:hover:text-gray-50 dark:focus:text-gray-50'
