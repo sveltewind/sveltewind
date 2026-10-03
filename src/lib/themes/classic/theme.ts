@@ -359,5 +359,176 @@ theme.textarea = {
 	variants: { ...theme.input.variants }
 };
 
+// Restrained HTML primitives; all style presets inherit their variants.
+Object.assign(theme, {
+	abbr: {
+		base: 'decoration-dotted underline-offset-4',
+		variants: { plain: 'no-underline', underlined: 'underline' }
+	},
+	address: {
+		base: 'not-italic',
+		variants: { compact: 'text-sm', muted: 'text-gray-500 dark:text-gray-400' }
+	},
+	article: {
+		base: 'min-w-0',
+		variants: { compact: 'space-y-3', spacious: 'space-y-6' }
+	},
+	audio: {
+		base: 'max-w-full',
+		variants: { compact: 'h-10', full: 'w-full' }
+	},
+	blockquote: {
+		base: 'border-l-2 border-gray-300 pl-4 dark:border-gray-600',
+		variants: { accent: 'border-primary-500 dark:border-primary-500', plain: 'border-0 pl-0' }
+	},
+	canvas: {
+		base: 'max-w-full',
+		variants: {
+			bordered: 'rounded-md inset-ring-1 inset-ring-gray-200 dark:inset-ring-gray-700',
+			responsive: 'h-auto w-full'
+		}
+	},
+	caption: {
+		base: 'caption-top py-3 text-left text-sm text-gray-500 dark:text-gray-400',
+		variants: { bottom: 'caption-bottom', center: 'text-center' }
+	},
+	cite: {
+		base: 'italic',
+		variants: { muted: 'text-gray-500 dark:text-gray-400', plain: 'not-italic' }
+	},
+	col: {
+		base: '',
+		variants: { narrow: 'w-24', wide: 'w-64' }
+	},
+	colgroup: {
+		base: '',
+		variants: { narrow: 'w-24', wide: 'w-64' }
+	},
+	datalist: {
+		base: '',
+		variants: { hidden: 'hidden' }
+	},
+	dd: {
+		base: 'min-w-0',
+		variants: { indented: 'pl-4', muted: 'text-gray-500 dark:text-gray-400' }
+	},
+	dl: {
+		base: 'min-w-0',
+		variants: { compact: 'space-y-2', spacious: 'space-y-6' }
+	},
+	dt: {
+		base: 'font-medium',
+		variants: {
+			muted: 'text-gray-500 dark:text-gray-400',
+			uppercase: 'text-xs uppercase tracking-wide'
+		}
+	},
+	em: {
+		base: 'italic',
+		variants: {
+			accent: 'text-primary-600 dark:text-primary-400',
+			subtle: 'text-gray-600 dark:text-gray-400'
+		}
+	},
+	figcaption: {
+		base: 'mt-2 text-sm text-gray-500 dark:text-gray-400',
+		variants: { center: 'text-center', compact: 'text-xs' }
+	},
+	figure: {
+		base: 'min-w-0',
+		variants: {
+			bordered: 'rounded-md p-4 inset-ring-1 inset-ring-gray-200 dark:inset-ring-gray-700',
+			compact: 'space-y-1'
+		}
+	},
+	footer: {
+		base: 'min-w-0',
+		variants: {
+			bordered: 'border-t border-gray-200 pt-6 dark:border-gray-700',
+			compact: 'py-3 text-sm'
+		}
+	},
+	hr: {
+		base: 'my-4 border-0 border-t border-gray-200 dark:border-gray-700',
+		variants: { accent: 'border-primary-500 dark:border-primary-500', spacious: 'my-8' }
+	},
+	iframe: {
+		base: 'max-w-full border-0',
+		variants: {
+			bordered: 'rounded-md inset-ring-1 inset-ring-gray-200 dark:inset-ring-gray-700',
+			responsive: 'aspect-video h-auto w-full'
+		}
+	},
+	kbd: {
+		base: 'rounded-sm px-1.5 py-0.5 font-mono text-xs inset-ring-1 inset-ring-gray-300 dark:inset-ring-gray-600',
+		variants: { plain: 'rounded-none p-0 inset-ring-0', raised: 'shadow-sm' }
+	},
+	mark: {
+		base: 'rounded-sm bg-primary-500/15 px-0.5 text-inherit',
+		variants: {
+			solid: 'bg-primary-500 text-white',
+			underline:
+				'rounded-none bg-transparent px-0 underline decoration-primary-500 decoration-2 underline-offset-4'
+		}
+	},
+	meter: {
+		base: 'h-2 w-full appearance-none overflow-hidden rounded-sm bg-gray-200 dark:bg-gray-700 [&::-webkit-meter-bar]:h-full [&::-webkit-meter-bar]:border-0 [&::-webkit-meter-bar]:rounded-none [&::-webkit-meter-bar]:bg-gray-200 dark:[&::-webkit-meter-bar]:bg-gray-700 [&::-webkit-meter-optimum-value]:bg-primary-500 [&::-webkit-meter-suboptimum-value]:bg-primary-500 [&::-webkit-meter-even-less-good-value]:bg-primary-500 [&::-moz-meter-bar]:bg-primary-500',
+		variants: { compact: 'h-1', large: 'h-4' }
+	},
+	optgroup: {
+		base: 'font-medium',
+		variants: { muted: 'text-gray-500 dark:text-gray-400', normal: 'font-normal' }
+	},
+	output: {
+		base: 'tabular-nums',
+		variants: {
+			accent: 'text-primary-600 dark:text-primary-400',
+			muted: 'text-gray-500 dark:text-gray-400'
+		}
+	},
+	picture: {
+		base: 'block max-w-full',
+		variants: { full: 'w-full', inline: 'inline-block' }
+	},
+	progress: {
+		base: 'h-2 w-full appearance-none overflow-hidden rounded-sm bg-gray-200 dark:bg-gray-700 [&::-webkit-progress-bar]:bg-gray-200 dark:[&::-webkit-progress-bar]:bg-gray-700 [&::-webkit-progress-value]:bg-primary-500 [&::-moz-progress-bar]:bg-primary-500',
+		variants: { compact: 'h-1', large: 'h-4' }
+	},
+	q: {
+		base: '',
+		variants: { accent: 'text-primary-600 dark:text-primary-400', italic: 'italic' }
+	},
+	samp: {
+		base: 'font-mono text-sm',
+		variants: {
+			muted: 'text-gray-500 dark:text-gray-400',
+			soft: 'rounded-sm bg-gray-100 px-1 dark:bg-gray-800'
+		}
+	},
+	small: {
+		base: 'text-sm',
+		variants: { muted: 'text-gray-500 dark:text-gray-400', tiny: 'text-xs' }
+	},
+	strong: {
+		base: 'font-semibold',
+		variants: { accent: 'text-primary-600 dark:text-primary-400', bold: 'font-bold' }
+	},
+	tfoot: {
+		base: 'font-medium',
+		variants: {
+			bordered: 'border-t border-gray-200 dark:border-gray-700',
+			soft: 'bg-gray-100 dark:bg-gray-900'
+		}
+	},
+	time: {
+		base: 'tabular-nums',
+		variants: { compact: 'text-sm', muted: 'text-gray-500 dark:text-gray-400' }
+	},
+	track: {
+		base: '',
+		variants: { hidden: 'hidden' }
+	}
+});
+
 export default theme;
 export { theme };
