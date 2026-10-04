@@ -357,7 +357,17 @@ theme.tabs.variants = { pill: 'rounded-full', full: 'w-full [&>button]:flex-1' }
 theme.checkbox.variants = { compact: 'gap-1 text-sm' };
 theme.switch.variants = { ...theme.checkbox.variants };
 // Copy these entries so updating one control does not mutate another control's styles.
-theme.select = { base: theme.input.base, variants: { ...theme.input.variants } };
+// Remove the native iOS appearance so inset rings remain visible without adding border width.
+theme.select = {
+	base: twMerge(
+		theme.input.base,
+		"appearance-none pr-10 bg-no-repeat bg-[length:1rem_1rem] bg-[position:right_0.75rem_center] rtl:bg-[position:left_0.75rem_center] bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2016%2016%22%20fill=%22none%22%20stroke=%22%236b7280%22%20stroke-width=%221.5%22%3E%3Cpath%20d=%22m4%206%204%204%204-4%22/%3E%3C/svg%3E')] [&[multiple]]:bg-none [&[multiple]]:pr-6 [&[size]]:bg-none"
+	),
+	variants: {
+		...theme.input.variants,
+		unstyled: twMerge(theme.input.variants.unstyled, 'bg-none')
+	}
+};
 theme.textarea = {
 	base: twMerge(theme.input.base, 'min-h-24 resize-y'),
 	variants: { ...theme.input.variants }
