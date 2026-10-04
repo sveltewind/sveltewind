@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.14.0](https://github.com/sveltewind/sveltewind/compare/v4.13.0...v4.14.0) (2026-10-04)
+
+
+### Features
+
+* add Calendar component ([c3b17ee](https://github.com/sveltewind/sveltewind/commit/c3b17ee4324dbb5004c6de6b7e23f02c2dd4f210))
+* add categories and search for components ([df647ce](https://github.com/sveltewind/sveltewind/commit/df647ce43e587cc035657fae62696275b157f78e))
+* add examples ([f1543ed](https://github.com/sveltewind/sveltewind/commit/f1543ed163fe2f48ce25197d33733ecc0c6fa787))
+* fix navigation links on frontend docs site ([f2df6b6](https://github.com/sveltewind/sveltewind/commit/f2df6b61a51ec86c0346dd6324fcdbefa8d4b631))
+* format preview code ([f935511](https://github.com/sveltewind/sveltewind/commit/f935511c18ceb096016868e15910e1a02ecb6dcd))
+* update Code and Radio variants ([7c74ca7](https://github.com/sveltewind/sveltewind/commit/7c74ca70dfe34f73929665042fe62c96b2ee8839))
+* update component doc examples ([a982f81](https://github.com/sveltewind/sveltewind/commit/a982f81b59651f8d6ee4a06900dbd128264f8deb))
+* update component previews ([7f3e87c](https://github.com/sveltewind/sveltewind/commit/7f3e87cb71c609c48d4f61668420ff00b8bce432))
+* update previews ([0932e99](https://github.com/sveltewind/sveltewind/commit/0932e99a5a77b247a8099221bd01dfe6f524ff12))
+
+
+### Bug Fixes
+
+* docs component preview placeholders ([2c1d108](https://github.com/sveltewind/sveltewind/commit/2c1d1085af30dc13c16ef841642eb5b8cc798d26))
+
 ## [4.13.0](https://github.com/sveltewind/sveltewind/compare/v4.12.0...v4.13.0) (2026-10-03)
 
 
