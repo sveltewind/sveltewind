@@ -117,6 +117,40 @@ export function readComponentExamples(
 				}
 			}
 		}
+		// Each branch needs only the imports referenced by its remaining script and markup.
+		const instance = parse(code, { modern: true }).instance!;
+		const importEdits: { start: number; end: number; replacement: string }[] = [];
+		for (const statement of instance.content.body) {
+			if (statement.type !== 'ImportDeclaration' || !statement.specifiers.length) continue;
+			const range = position(statement);
+			const remainder = code.slice(0, range.start) + code.slice(range.end);
+			const used = statement.specifiers.filter((specifier) =>
+				new RegExp(`\\b${specifier.local.name}\\b`).test(remainder)
+			);
+			if (used.length === statement.specifiers.length) continue;
+			const named = used
+				.filter((specifier) => specifier.type === 'ImportSpecifier')
+				.map((specifier) => {
+					const part = position(specifier);
+					return code.slice(part.start, part.end);
+				});
+			const bindings = used
+				.filter((specifier) => specifier.type !== 'ImportSpecifier')
+				.map((specifier) =>
+					specifier.type === 'ImportNamespaceSpecifier'
+						? `* as ${specifier.local.name}`
+						: specifier.local.name
+				);
+			if (named.length) bindings.push(`{ ${named.join(', ')} }`);
+			importEdits.push({
+				...range,
+				replacement: used.length
+					? `import ${/^import\s+type\b/.test(code.slice(range.start, range.end)) ? 'type ' : ''}${bindings.join(', ')} from ${JSON.stringify(statement.source.value)};`
+					: ''
+			});
+		}
+		for (const edit of importEdits.sort((a, b) => b.start - a.start))
+			code = code.slice(0, edit.start) + edit.replacement + code.slice(edit.end);
 		result[kind] = { ...info, code };
 		branch = branch.alternate?.nodes.find((node) => node.type === 'IfBlock');
 	}
