@@ -1,21 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		Details,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Summary,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, CodePreview, Details, P, Summary } from '$components';
 	const props = [
 		{
 			name: 'children',
@@ -78,55 +62,34 @@
 			description: 'Local variants or references to other theme styles.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Details.svelte';
+	import examples from '$components/ComponentDoc/previews/Details.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Details</H1>
-	<P>A primitive native disclosure container with bindable open state.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>Native attributes and event handlers are forwarded to the <Code>details</Code> element.</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}<Tr>
-						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
-							{prop.description}
-						</Td>
-					</Tr>{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>
-		Use Summary as the first child to provide its accessible toggle. Transitions apply to
-		visibility; open uses native disclosure behavior.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Details, Summary, P } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Details>\n\t<Summary>Learn more</Summary>\n\n\t<P>Disclosure content.</P>\n</Details>\n'}
-		title="+page.svelte"
-	>
-		<Details>
-			<Summary>Learn more</Summary>
-			<P>Disclosure content.</P>
-		</Details>
-	</CodePreview>
-</DocsSection>
-<DocsSection>
-	<H2>Usage Examples</H2>
-	<CodePreview
-		code={'<Details open>\n\t<Summary>Initially expanded</Summary>\n\n\t<P>You can also bind open to control this disclosure.</P>\n</Details>\n'}
-		title="+page.svelte"
-	>
-		<Details open>
-			<Summary>Initially expanded</Summary>
-			<P>You can also bind open to control this disclosure.</P>
-		</Details>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Details" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A primitive native disclosure container with bindable open state.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>Native attributes and event handlers are forwarded to the <Code>details</Code> element.</P>
+		<P>
+			Use Summary as the first child to provide its accessible toggle. Transitions apply to
+			visibility; open uses native disclosure behavior.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<Details open>\n\t<Summary>Initially expanded</Summary>\n\n\t<P>You can also bind open to control this disclosure.</P>\n</Details>\n'}
+				title="+page.svelte"
+			>
+				<Details open>
+					<Summary>Initially expanded</Summary>
+					<P>You can also bind open to control this disclosure.</P>
+				</Details>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

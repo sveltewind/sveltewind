@@ -1,22 +1,6 @@
 <script lang="ts">
-	import { composedExample } from '$components/ComposedPreview/examples';
-	import {
-		Card,
-		Code,
-		CodePreview,
-		ComposedPreview,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
-	const code = composedExample('Datatable');
+	import { Code, P, Td, Th } from '$components';
+
 	const props = [
 		{
 			description: 'Replaces the built-in toolbar, table, and pagination content.',
@@ -224,59 +208,56 @@
 		'datatableUnsortedIcon',
 		'datatableWarningIcon'
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Datatable.svelte';
+	import examples from '$components/ComponentDoc/previews/Datatable.svelte?component-examples&raw';
 </script>
 
-<DocsSection
-	><H1>Datatable</H1><P
-		>Editable, sortable tables with typed filters, selection, creation dialogs, and built-in
-		pagination.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><ComposedPreview name="Datatable" /></CodePreview
-	><P
-		>The preview supports creating, editing, and deleting local records. Application callbacks
-		persist changes; the component never writes data to a server.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Data and selection</H2><P
-		>Explicit columns define the table order and work with an empty dataset. Without columns, fields
-		are inferred from the first row. Provide a unique id or _id for each record, or supply
-		getRowKey. Its index is the original input index before local filtering and sorting. Selection
-		clears when the input rows reference changes and when the user changes sort, filters, or page.</P
-	><P
-		>Bind sort, filters, and pagination to observe their state. For remote data, set
-		isDataControlled, supply totalRows and the current page of rows, and fetch data in the
-		callbacks. Each feature can be disabled individually. isDeletable also controls row selection.</P
-	><P
-		>Column snippets and td receive column, key, row, value, and update; render a Td component in
-		these snippets. Dotted keys are passed unchanged to onupdate, so the application can persist
-		nested fields. table, tbody, thead, th, and toolbar provide additional rendering overrides.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Props</H2><P
-		>Native Div attributes and events are forwarded to the root. Common theme, visibility, and
-		transition props are supported. Feature flags default to true except isDataControlled, which
-		defaults to false. Pagination defaults to page 1 with 10 rows per page.</P
-	><Card class="overflow-x-auto p-0"
-		><Table
-			><Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Description</Th></Tr></Thead><Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.description}</Td></Tr
-					>{/each}</Tbody
-			></Table
-		></Card
-	></DocsSection
->
-<DocsSection
-	><H2>Theming</H2><P
-		>All presets include Datatable styles. The compact root variant reduces text size. The supplied
-		theme also reaches every built-in primitive.</P
-	><P
-		>Theme entries: {#each parts as part, index (part)}{#if index > 0},
-			{/if}<Code>{part}</Code>{/each}.</P
-	></DocsSection
->
+<ComponentDoc name="Datatable" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>
+			Editable, sortable tables with typed filters, selection, creation dialogs, and built-in
+			pagination.
+		</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native Div attributes and events are forwarded to the root. Common theme, visibility, and
+			transition props are supported. Feature flags default to true except isDataControlled, which
+			defaults to false. Pagination defaults to page 1 with 10 rows per page.
+		</P>
+	{/snippet}
+	{#snippet usageNotes()}
+		<P>
+			The preview supports creating, editing, and deleting local records. Application callbacks
+			persist changes; the component never writes data to a server.
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Explicit columns define the table order and work with an empty dataset. Without columns,
+			fields are inferred from the first row. Provide a unique id or _id for each record, or supply
+			getRowKey. Its index is the original input index before local filtering and sorting. Selection
+			clears when the input rows reference changes and when the user changes sort, filters, or page.
+		</P>
+		<P>
+			Bind sort, filters, and pagination to observe their state. For remote data, set
+			isDataControlled, supply totalRows and the current page of rows, and fetch data in the
+			callbacks. Each feature can be disabled individually. isDeletable also controls row selection.
+		</P>
+		<P>
+			Column snippets and td receive column, key, row, value, and update; render a Td component in
+			these snippets. Dotted keys are passed unchanged to onupdate, so the application can persist
+			nested fields. table, tbody, thead, th, and toolbar provide additional rendering overrides.
+		</P>
+		<P>
+			All presets include Datatable styles. The compact root variant reduces text size. The supplied
+			theme also reaches every built-in primitive.
+		</P>
+		<P>
+			Theme entries: {#each parts as part, index (part)}{#if index > 0},
+				{/if}<Code>{part}</Code>{/each}.
+		</P>
+	{/snippet}
+</ComponentDoc>

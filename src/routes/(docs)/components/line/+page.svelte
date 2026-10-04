@@ -1,26 +1,7 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		Line,
-		P,
-		Svg,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, Line, P, Svg } from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n\timport { Line, Svg } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Line example">\n\t<Line\n\t\tx1={10}\n\t\ty1={20}\n\t\tx2={90}\n\t\ty2={80}\n\t\tstroke-width={4}\n\t\tvariants={[\'outline\', \'primary\', \'rounded\']}\n\t/>\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -79,63 +60,33 @@
 	];
 
 	const variants = Object.keys(classic.line.variants ?? {});
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Line.svelte';
+	import examples from '$components/ComponentDoc/previews/Line.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>Line</H1><P>
-		A themed native SVG <Code>line</Code> primitive. Render it inside Svg or an appropriate SVG parent.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
-		<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Line example">
-			<Line
-				x1={10}
-				y1={20}
-				x2={90}
-				y2={80}
-				stroke-width={4}
-				variants={['outline', 'primary', 'rounded']}
-			/>
-		</Svg>
-	</CodePreview>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>line</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Styling</H2><P>
-		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.
-	</P><P>
-		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
-		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.
-	</P>
-</DocsSection>
+<ComponentDoc name="Line" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>
+			A themed native SVG <Code>line</Code> primitive. Render it inside Svg or an appropriate SVG parent.
+		</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>line</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+			geometry. Classes and explicit attributes let you customize the drawing. Definition and
+			accessibility elements do not have a visible box, so their transitions have no visible effect.
+		</P>
+	{/snippet}
+</ComponentDoc>

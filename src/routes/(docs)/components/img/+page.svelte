@@ -1,21 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		Img,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, CodePreview, H3, Img, P } from '$components';
 
 	const props = [
 		{
@@ -73,73 +57,39 @@
 			description: 'Local variant names or theme references such as button.base.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Img.svelte';
+	import examples from '$components/ComponentDoc/previews/Img.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Img</H1>
-	<P>A themed native image with forwarded image attributes.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>img</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Img from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Img } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Img\n\tsrc="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"\n\talt="Illustrated sky"\n\twidth="240"\n\theight="120"\n/>\n'}
-		title="+page.svelte"
-	>
-		<Img
-			src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"
-			alt="Illustrated sky"
-			width="240"
-			height="120"
-		/>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Custom classes</H3>
-	<P>Use class to merge Tailwind utilities with the component theme.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Img } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Img\n\tclass="text-primary-500 dark:text-primary-400"\n\tsrc="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"\n\talt="Illustrated sky"\n\twidth="240"\n\theight="120"\n/>\n'}
-		title="+page.svelte"
-	>
-		<Img
-			class="text-primary-500 dark:text-primary-400"
-			src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"
-			alt="Illustrated sky"
-			width="240"
-			height="120"
-		/>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Img" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed native image with forwarded image attributes.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>img</Code> element unless
+			handled by the component.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Custom classes</H3>
+		<P>Use class to merge Tailwind utilities with the component theme.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { Img } from \'sveltewind/components\';\n</scr' +
+					'ipt>\n\n<Img\n\tclass="text-primary-500 dark:text-primary-400"\n\tsrc="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"\n\talt="Illustrated sky"\n\twidth="240"\n\theight="120"\n/>\n'}
+				title="+page.svelte"
+			>
+				<Img
+					class="text-primary-500 dark:text-primary-400"
+					src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"
+					alt="Illustrated sky"
+					width="240"
+					height="120"
+				/>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

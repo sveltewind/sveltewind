@@ -1,22 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		Div,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		Input,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, CodePreview, Div, H3, Input, P } from '$components';
 
 	const props = [
 		{
@@ -101,69 +84,40 @@
 	];
 
 	let text = $state('');
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Input.svelte';
+	import examples from '$components/ComponentDoc/previews/Input.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Input</H1>
-	<P>A themed native input with a bindable value.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>
-		Input does not render children. Use Label or aria-label to give the input an accessible name.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Input from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Input } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Input aria-label="Email address" type="email" placeholder="you@example.com" />\n'}
-		title="+page.svelte"
-	>
-		<Input aria-label="Email address" type="email" placeholder="you@example.com" />
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Bind the value</H3>
-	<P>Bind value to read and update text as the user types.</P>
-	<CodePreview
-		code={"<script lang=\"ts\">\n\timport { Div, Input, P } from 'sveltewind/components';\n\n\tlet text = $state('');\n</scr" +
-			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Input aria-label="Your name" bind:value={text} placeholder="Your name" />\n\n\t<P>Hello, {text || \'friend\'}.</P>\n</Div>\n'}
-		title="+page.svelte"
-	>
-		<Div class="flex flex-col gap-3">
-			<Input aria-label="Your name" bind:value={text} placeholder="Your name" /><P>
-				Hello, {text || 'friend'}.
-			</P>
-		</Div>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Input" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed native input with a bindable value.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element
+			unless handled by the component.
+		</P>
+		<P>
+			Input does not render children. Use Label or aria-label to give the input an accessible name.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Bind the value</H3>
+		<P>Bind value to read and update text as the user types.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={"<script lang=\"ts\">\n\timport { Div, Input, P } from 'sveltewind/components';\n\n\tlet text = $state('');\n</scr" +
+					'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Input aria-label="Your name" bind:value={text} placeholder="Your name" />\n\n\t<P>Hello, {text || \'friend\'}.</P>\n</Div>\n'}
+				title="+page.svelte"
+			>
+				<Div class="flex flex-col gap-3">
+					<Input aria-label="Your name" bind:value={text} placeholder="Your name" /><P>
+						Hello, {text || 'friend'}.
+					</P>
+				</Div>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

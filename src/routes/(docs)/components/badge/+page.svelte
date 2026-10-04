@@ -1,20 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr,
-		Badge
-	} from '$components';
+	import { Code, CodePreview, P, Badge } from '$components';
 	const props = [
 		{
 			name: 'children',
@@ -71,51 +56,33 @@
 			description: 'Local variants or references to other theme styles.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Badge.svelte';
+	import examples from '$components/ComponentDoc/previews/Badge.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Badge</H1>
-	<P>A compact label for statuses, counts, and categories.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>Native attributes and event handlers are forwarded to the <Code>span</Code> element.</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}<Tr>
-						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
-							{prop.description}
-						</Td>
-					</Tr>{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>
-		Status variants include success, warning, error, and info. Badges are noninteractive labels.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Badge } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Badge>New</Badge>\n'}
-		title="+page.svelte"
-	>
-		<Badge>New</Badge>
-	</CodePreview>
-</DocsSection>
-<DocsSection>
-	<H2>Usage Examples</H2>
-	<CodePreview
-		code={"<Badge variants={['success']}>Active</Badge>\n<Badge variants={['warning']}>Pending</Badge>\n<Badge variants={['error']}>Failed</Badge>\n<Badge variants={['info']}>3 updates</Badge>\n"}
-		title="+page.svelte"
-	>
-		<Badge variants={['success']}>Active</Badge>
-		<Badge variants={['warning']}>Pending</Badge>
-		<Badge variants={['error']}>Failed</Badge>
-		<Badge variants={['info']}>3 updates</Badge>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Badge" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A compact label for statuses, counts, and categories.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>Native attributes and event handlers are forwarded to the <Code>span</Code> element.</P>
+		<P>
+			Status variants include success, warning, error, and info. Badges are noninteractive labels.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={"<Badge variants={['success']}>Active</Badge>\n<Badge variants={['warning']}>Pending</Badge>\n<Badge variants={['error']}>Failed</Badge>\n<Badge variants={['info']}>3 updates</Badge>\n"}
+				title="+page.svelte"
+			>
+				<Badge variants={['success']}>Active</Badge>
+				<Badge variants={['warning']}>Pending</Badge>
+				<Badge variants={['error']}>Failed</Badge>
+				<Badge variants={['info']}>3 updates</Badge>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

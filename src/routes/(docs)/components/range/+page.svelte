@@ -1,22 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		Div,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Range,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, CodePreview, Div, H3, P, Range } from '$components';
 
 	const props = [
 		{
@@ -130,76 +113,47 @@
 	];
 
 	let volume = $state(40);
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Range.svelte';
+	import examples from '$components/ComponentDoc/previews/Range.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Range</H1>
-	<P>A native range input with customizable track, fill, thumb, and value label.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>
-		<Code>RangeData</Code> contains numeric max, min, percent, step, and value fields. Custom track,
-		fill, thumb, and label snippets receive this object. Class styles the wrapper; native input attributes
-		are forwarded to the range input.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Range from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Range } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Range aria-label="Volume" class="mt-6 w-64" value={40} />\n'}
-		title="+page.svelte"
-	>
-		<Range aria-label="Volume" class="mt-6 w-64" value={40} />
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Bind the value</H3>
-	<P>Set bounds and a step, then bind the numeric value.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Div, Range, P } from \'sveltewind/components\';\n\n\tlet volume = $state(40);\n</scr' +
-			'ipt>\n\n<Div class="w-64">\n\t<Range\n\t\taria-label="Volume"\n\t\tmin={0}\n\t\tmax={100}\n\t\tstep={5}\n\t\tbind:value={volume}\n\t\tisLabelVisible={false}\n\t/>\n\n\t<P>Volume: {volume}</P>\n</Div>\n'}
-		title="+page.svelte"
-	>
-		<Div class="w-64">
-			<Range
-				aria-label="Volume"
-				min={0}
-				max={100}
-				step={5}
-				bind:value={volume}
-				isLabelVisible={false}
-			/><P>Volume: {volume}</P>
-		</Div>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Range" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A native range input with customizable track, fill, thumb, and value label.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element
+			unless handled by the component.
+		</P>
+		<P>
+			<Code>RangeData</Code> contains numeric max, min, percent, step, and value fields. Custom track,
+			fill, thumb, and label snippets receive this object. Class styles the wrapper; native input attributes
+			are forwarded to the range input.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Bind the value</H3>
+		<P>Set bounds and a step, then bind the numeric value.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { Div, Range, P } from \'sveltewind/components\';\n\n\tlet volume = $state(40);\n</scr' +
+					'ipt>\n\n<Div class="w-64">\n\t<Range\n\t\taria-label="Volume"\n\t\tmin={0}\n\t\tmax={100}\n\t\tstep={5}\n\t\tbind:value={volume}\n\t\tisLabelVisible={false}\n\t/>\n\n\t<P>Volume: {volume}</P>\n</Div>\n'}
+				title="+page.svelte"
+			>
+				<Div class="w-64">
+					<Range
+						aria-label="Volume"
+						min={0}
+						max={100}
+						step={5}
+						bind:value={volume}
+						isLabelVisible={false}
+					/><P>Volume: {volume}</P>
+				</Div>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

@@ -1,23 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		Field,
-		H1,
-		H2,
-		H3,
-		Input,
-		Label,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, CodePreview, Field, H3, Input, Label, P } from '$components';
 
 	const props = [
 		{
@@ -75,66 +57,37 @@
 			description: 'Local variant names or theme references such as button.base.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Label.svelte';
+	import examples from '$components/ComponentDoc/previews/Label.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Label</H1>
-	<P>A native label for associating text with a form control.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>label</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Label from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Field, Label, Input } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Field>\n\t<Label for="default-label">Your name</Label>\n\n\t<Input id="default-label" />\n</Field>\n'}
-		title="+page.svelte"
-	>
-		<Field><Label for="default-label">Your name</Label><Input id="default-label" /></Field>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Custom classes</H3>
-	<P>Use class to merge Tailwind utilities with the component theme.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Field, Label, Input } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Field>\n\t<Label class="text-primary-500 dark:text-primary-400" for="default-label">Your name</Label>\n\n\t<Input id="default-label" />\n</Field>\n'}
-		title="+page.svelte"
-	>
-		<Field>
-			<Label class="text-primary-500 dark:text-primary-400" for="default-label">
-				Your name
-			</Label><Input id="default-label" />
-		</Field>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Label" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A native label for associating text with a form control.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>label</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Custom classes</H3>
+		<P>Use class to merge Tailwind utilities with the component theme.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { Field, Label, Input } from \'sveltewind/components\';\n</scr' +
+					'ipt>\n\n<Field>\n\t<Label class="text-primary-500 dark:text-primary-400" for="default-label">Your name</Label>\n\n\t<Input id="default-label" />\n</Field>\n'}
+				title="+page.svelte"
+			>
+				<Field>
+					<Label class="text-primary-500 dark:text-primary-400" for="default-label">
+						Your name
+					</Label><Input id="default-label" />
+				</Field>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

@@ -1,20 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		Colgroup,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, Colgroup, P, Table } from '$components';
 	import { classic } from '$lib/themes';
 
 	const props = [
@@ -74,67 +59,38 @@
 		}
 	];
 
-	const code =
-		'<script lang="ts">\n\timport { Colgroup, Table, Tbody, Td, Tr } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Table>\n\t<Colgroup span={2} variants={['wide']} />\n\t<Tbody>\n\t\t<Tr>\n\t\t\t<Td>Plan</Td>\n\t\t\t<Td>Starter</Td>\n\t\t</Tr>\n\t</Tbody>\n</Table>\n";
 	const variants = Object.keys(classic.colgroup.variants ?? {});
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Colgroup.svelte';
+	import examples from '$components/ComponentDoc/previews/Colgroup.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Colgroup</H1>
-	<P>A themed native <Code>colgroup</Code> primitive.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Usage</H2>
-	<CodePreview {code} title="+page.svelte">
-		<Table>
-			<Colgroup span={2} variants={['wide']} /><Tbody><Tr><Td>Plan</Td><Td>Starter</Td></Tr></Tbody>
-		</Table>
-	</CodePreview>
-	<P>
-		Use Colgroup inside Table before its row groups. It can contain Col components or use a span
-		attribute.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>colgroup</Code> element
-		unless handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Styling</H2>
-	<P>
-		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.
-	</P>
-	<P>
-		Use class for local overrides or variants for reusable theme styles. All five presets include
-		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.
-	</P>
-</DocsSection>
+<ComponentDoc name="Colgroup" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed native <Code>colgroup</Code> primitive.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>colgroup</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet usageNotes()}
+		<P>
+			Use Colgroup inside Table before its row groups. It can contain Col components or use a span
+			attribute.
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			Use class for local overrides or variants for reusable theme styles. All five presets include
+			this primitive and its variants. Enter and exit transitions use the shared transition,
+			inTransition, and outTransition props.
+		</P>
+	{/snippet}
+</ComponentDoc>

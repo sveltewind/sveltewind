@@ -1,23 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		Div,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		Label,
-		P,
-		Radio,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, CodePreview, Div, H3, Label, P, Radio } from '$components';
 
 	const props = [
 		{
@@ -95,71 +77,40 @@
 	];
 
 	let plan = $state('starter');
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Radio.svelte';
+	import examples from '$components/ComponentDoc/previews/Radio.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Radio</H1>
-	<P>A styled native radio input with a bindable group.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>The handle snippet replaces the native input. Use isVisible to hide the control.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Radio from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Label, Radio } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Label class="flex items-center gap-2">\n\t<Radio name="default-plan" value="starter" aria-label="Starter plan" />\n\tStarter\n</Label>\n'}
-		title="+page.svelte"
-	>
-		<Label class="flex items-center gap-2">
-			<Radio name="default-plan" value="starter" aria-label="Starter plan" />Starter
-		</Label>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Share a group</H3>
-	<P>Bind related radios to the same group state and give them distinct values.</P>
-	<CodePreview
-		code={"<script lang=\"ts\">\n\timport { Div, Label, Radio, P } from 'sveltewind/components';\n\n\tlet plan = $state('starter');\n</scr" +
-			'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Label class="flex gap-2">\n\t\t<Radio name="example-plan" value="starter" bind:group={plan} />\n\t\tStarter\n\t</Label>\n\n\t<Label class="flex gap-2">\n\t\t<Radio name="example-plan" value="team" bind:group={plan} />\n\t\tTeam\n\t</Label>\n\n\t<P>Selected: {plan}</P>\n</Div>\n'}
-		title="+page.svelte"
-	>
-		<Div class="flex flex-col gap-3">
-			<Label class="flex gap-2">
-				<Radio name="example-plan" value="starter" bind:group={plan} />Starter
-			</Label><Label class="flex gap-2">
-				<Radio name="example-plan" value="team" bind:group={plan} />Team
-			</Label><P>Selected: {plan}</P>
-		</Div>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Radio" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A styled native radio input with a bindable group.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element
+			unless handled by the component.
+		</P>
+		<P>The handle snippet replaces the native input. Use isVisible to hide the control.</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Share a group</H3>
+		<P>Bind related radios to the same group state and give them distinct values.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={"<script lang=\"ts\">\n\timport { Div, Label, Radio, P } from 'sveltewind/components';\n\n\tlet plan = $state('starter');\n</scr" +
+					'ipt>\n\n<Div class="flex flex-col gap-3">\n\t<Label class="flex gap-2">\n\t\t<Radio name="example-plan" value="starter" bind:group={plan} />\n\t\tStarter\n\t</Label>\n\n\t<Label class="flex gap-2">\n\t\t<Radio name="example-plan" value="team" bind:group={plan} />\n\t\tTeam\n\t</Label>\n\n\t<P>Selected: {plan}</P>\n</Div>\n'}
+				title="+page.svelte"
+			>
+				<Div class="flex flex-col gap-3">
+					<Label class="flex gap-2">
+						<Radio name="example-plan" value="starter" bind:group={plan} />Starter
+					</Label><Label class="flex gap-2">
+						<Radio name="example-plan" value="team" bind:group={plan} />Team
+					</Label><P>Selected: {plan}</P>
+				</Div>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

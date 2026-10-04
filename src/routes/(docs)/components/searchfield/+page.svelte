@@ -1,24 +1,7 @@
 <script lang="ts">
-	import { composedExample } from '$components/ComposedPreview/examples';
-	import {
-		Card,
-		Code,
-		CodePreview,
-		ComposedPreview,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, P } from '$components';
 	import { classic } from '$lib/themes';
 
-	const code = composedExample('SearchField');
 	const props = [
 		{
 			defaultValue: 'undefined',
@@ -52,7 +35,7 @@
 		},
 		{
 			defaultValue: '$bindable(true)',
-			description: 'Bindable visibility; Drawer starts closed.',
+			description: 'Bindable visibility state.',
 			name: 'isVisible',
 			type: 'boolean'
 		},
@@ -119,45 +102,39 @@
 	];
 	const variants = Object.keys(classic.searchField.variants ?? {});
 	const parts = ['searchField', 'searchFieldClear', 'searchFieldInput', 'searchFieldSubmit'];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/SearchField.svelte';
+	import examples from '$components/ComponentDoc/previews/SearchField.svelte?component-examples&raw';
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>SearchField</H1><P
-		>A native search form with an input, clear control, and submit action.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><ComposedPreview name="SearchField" /></CodePreview
-	><P
-		>{'onSearch receives the current query and prevents native submission. Without it, normal form submission is preserved. Native action and method attributes are forwarded to Form.'}</P
-	></DocsSection
->
-<DocsSection
-	><H2>Props</H2><P
-		>Native attributes and event handlers are forwarded to the root Form component. Common
-		transitions apply to that root.</P
-	><Card class="overflow-x-auto p-0"
-		><Table
-			><Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead><Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			></Table
-		></Card
-	></DocsSection
->
-<DocsSection
-	><H2>Styling</H2><P
-		>Theme entries: {#each parts as part, index (part)}{#if index > 0},
-			{/if}<Code>{part}</Code>{/each}.</P
-	><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>All presets include this component and its themeable parts. Use class for a local override, or
-		update the component and part entries through the theme API.</P
-	></DocsSection
->
+<ComponentDoc name="SearchField" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A native search form with an input, clear control, and submit action.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the root Form component. Common
+			transitions apply to that root.
+		</P>
+	{/snippet}
+	{#snippet usageNotes()}
+		<P>
+			{'onSearch receives the current query and prevents native submission. Without it, normal form submission is preserved. Native action and method attributes are forwarded to Form.'}
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Theme entries: {#each parts as part, index (part)}{#if index > 0},
+				{/if}<Code>{part}</Code>{/each}.
+		</P>
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			All presets include this component and its themeable parts. Use class for a local override, or
+			update the component and part entries through the theme API.
+		</P>
+	{/snippet}
+</ComponentDoc>

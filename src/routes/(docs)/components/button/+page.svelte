@@ -1,21 +1,5 @@
 <script lang="ts">
-	import {
-		Button,
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Button, Code, CodePreview, H3, P } from '$components';
 
 	const props = [
 		{
@@ -73,62 +57,20 @@
 			description: 'Local variant names or theme references such as button.base.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Button.svelte';
+	import examples from '$components/ComponentDoc/previews/Button.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Button</H1>
-	<P>A themed native button for actions and form submission.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>button</Code> element
-		unless handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Button from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Button } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Button type="button">Save changes</Button>\n'}
-		title="+page.svelte"
-	>
-		<Button type="button">Save changes</Button>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Outline</H3>
-	<P>Use the default theme outline variant for a secondary action.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Button } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Button type="button" variants={[\'outline\']}>Save changes</Button>\n'}
-		title="+page.svelte"
-	>
-		<Button type="button" variants={['outline']}>Save changes</Button>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Button" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed native button for actions and form submission.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>button</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+</ComponentDoc>

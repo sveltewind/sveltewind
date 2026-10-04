@@ -1,22 +1,5 @@
 <script lang="ts">
-	import {
-		Button,
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Popover,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Button, Code, CodePreview, H3, P, Popover } from '$components';
 
 	const props = [
 		{
@@ -98,73 +81,44 @@
 			description: 'Local variant names or theme references such as button.base.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Popover.svelte';
+	import examples from '$components/ComponentDoc/previews/Popover.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Popover</H1>
-	<P>An anchored native popover with a trigger, placement, and bindable visibility.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>
-		<Code>TriggerProps</Code> contains button IDs, ARIA attributes, native popover target attributes,
-		onclick, style, and type. Spread the complete object onto the trigger. The default trigger reads
-		Toggle popover.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Popover from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Popover, P } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Popover aria-label="Example popover">\n\t<P>Hello from the popover.</P>\n</Popover>\n'}
-		title="+page.svelte"
-	>
-		<Popover aria-label="Example popover"><P>Hello from the popover.</P></Popover>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Custom trigger</H3>
-	<P>
-		Spread the provided trigger attributes onto your button to preserve toggling and positioning.
-	</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Popover, Button, P } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Popover placement="right" gap={12} aria-label="More information">\n\t{#snippet trigger(props)}\n\t\t<Button {...props}>More information</Button>\n\t{/snippet}\n\t<P>Content beside the trigger.</P>\n</Popover>\n'}
-		title="+page.svelte"
-	>
-		<Popover placement="right" gap={12} aria-label="More information">
-			{#snippet trigger(props)}<Button {...props}>More information</Button>{/snippet}<P>
-				Content beside the trigger.
-			</P>
-		</Popover>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Popover" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>An anchored native popover with a trigger, placement, and bindable visibility.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
+			handled by the component.
+		</P>
+		<P>
+			<Code>TriggerProps</Code> contains button IDs, ARIA attributes, native popover target attributes,
+			onclick, style, and type. Spread the complete object onto the trigger. The default trigger reads
+			Toggle popover.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Custom trigger</H3>
+		<P>
+			Spread the provided trigger attributes onto your button to preserve toggling and positioning.
+		</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { Popover, Button, P } from \'sveltewind/components\';\n</scr' +
+					'ipt>\n\n<Popover placement="right" gap={12} aria-label="More information">\n\t{#snippet trigger(props)}\n\t\t<Button {...props}>More information</Button>\n\t{/snippet}\n\t<P>Content beside the trigger.</P>\n</Popover>\n'}
+				title="+page.svelte"
+			>
+				<Popover placement="right" gap={12} aria-label="More information">
+					{#snippet trigger(props)}<Button {...props}>More information</Button>{/snippet}<P>
+						Content beside the trigger.
+					</P>
+				</Popover>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

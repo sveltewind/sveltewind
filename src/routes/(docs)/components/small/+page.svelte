@@ -1,20 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Small,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, P, Small } from '$components';
 	import { classic } from '$lib/themes';
 
 	const props = [
@@ -74,61 +59,32 @@
 		}
 	];
 
-	const code =
-		'<script lang="ts">\n\timport { Small } from \'sveltewind/components\';\n</scr' +
-		"ipt>\n\n<Small variants={['muted']}>Your preferences are saved locally.</Small>\n";
 	const variants = Object.keys(classic.small.variants ?? {});
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Small.svelte';
+	import examples from '$components/ComponentDoc/previews/Small.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Small</H1>
-	<P>A themed native <Code>small</Code> primitive.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Usage</H2>
-	<CodePreview {code} title="+page.svelte">
-		<Small variants={['muted']}>Your preferences are saved locally.</Small>
-	</CodePreview>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>small</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Styling</H2>
-	<P>
-		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.
-	</P>
-	<P>
-		Use class for local overrides or variants for reusable theme styles. All five presets include
-		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.
-	</P>
-</DocsSection>
+<ComponentDoc name="Small" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed native <Code>small</Code> primitive.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>small</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			Use class for local overrides or variants for reusable theme styles. All five presets include
+			this primitive and its variants. Enter and exit transitions use the shared transition,
+			inTransition, and outTransition props.
+		</P>
+	{/snippet}
+</ComponentDoc>

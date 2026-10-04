@@ -1,29 +1,7 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		Defs,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Path,
-		Svg,
-		Table,
-		Tbody,
-		Td,
-		Text,
-		TextPath,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, P, Svg, TextPath } from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n\timport { Defs, Path, Svg, Text, TextPath } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="TextPath example">\n\t<Defs>\n\t\t<Path id="demo-text-path" d="M10 70 Q50 10 90 70" />\n\t</Defs>\n\t<Text font-size={12}>\n\t\t<TextPath href="#demo-text-path" startOffset="50%" text-anchor="middle" variants={[\'primary\']}>\n\t\t\tAlong a curve\n\t\t</TextPath>\n\t</Text>\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -82,65 +60,34 @@
 	];
 
 	const variants = Object.keys(classic.textPath.variants ?? {});
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/TextPath.svelte';
+	import examples from '$components/ComponentDoc/previews/TextPath.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>TextPath</H1><P>
-		A themed native SVG <Code>textPath</Code> primitive. Render it inside Svg or an appropriate SVG parent.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
-		<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="TextPath example">
-			<Defs><Path id="demo-text-path" d="M10 70 Q50 10 90 70" /></Defs><Text font-size={12}>
-				<TextPath
-					href="#demo-text-path"
-					startOffset="50%"
-					text-anchor="middle"
-					variants={['primary']}
-				>
-					Along a curve
-				</TextPath>
-			</Text>
-		</Svg>
-	</CodePreview>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>textPath</Code> element
-		unless handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Styling</H2><P>
-		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.
-	</P><P>
-		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
-		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.
-	</P>
-</DocsSection>
+<ComponentDoc name="TextPath" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>
+			A themed native SVG <Code>textPath</Code> primitive. Render it inside Svg or an appropriate SVG
+			parent.
+		</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>textPath</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+			geometry. Classes and explicit attributes let you customize the drawing. Definition and
+			accessibility elements do not have a visible box, so their transitions have no visible effect.
+		</P>
+	{/snippet}
+</ComponentDoc>

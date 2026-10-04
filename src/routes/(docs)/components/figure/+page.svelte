@@ -1,22 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		Figcaption,
-		Figure,
-		H1,
-		H2,
-		Img,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, Figure, P } from '$components';
 	import { classic } from '$lib/themes';
 
 	const props = [
@@ -76,65 +59,32 @@
 		}
 	];
 
-	const code =
-		'<script lang="ts">\n\timport { Figcaption, Figure, Img } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Figure variants={[\'bordered\']}>\n\t<Img src="/images/logo-light.svg" alt="Sveltewind" class="w-48" />\n\t<Figcaption>Sveltewind logo</Figcaption>\n</Figure>\n';
 	const variants = Object.keys(classic.figure.variants ?? {});
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Figure.svelte';
+	import examples from '$components/ComponentDoc/previews/Figure.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Figure</H1>
-	<P>A themed native <Code>figure</Code> primitive.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Usage</H2>
-	<CodePreview {code} title="+page.svelte">
-		<Figure variants={['bordered']}>
-			<Img src="/images/logo-light.svg" alt="Sveltewind" class="w-48" /><Figcaption>
-				Sveltewind logo
-			</Figcaption>
-		</Figure>
-	</CodePreview>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>figure</Code> element
-		unless handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Styling</H2>
-	<P>
-		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.
-	</P>
-	<P>
-		Use class for local overrides or variants for reusable theme styles. All five presets include
-		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.
-	</P>
-</DocsSection>
+<ComponentDoc name="Figure" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed native <Code>figure</Code> primitive.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>figure</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			Use class for local overrides or variants for reusable theme styles. All five presets include
+			this primitive and its variants. Enter and exit transitions use the shared transition,
+			inTransition, and outTransition props.
+		</P>
+	{/snippet}
+</ComponentDoc>

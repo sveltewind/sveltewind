@@ -1,24 +1,7 @@
 <script lang="ts">
-	import { composedExample } from '$components/ComposedPreview/examples';
-	import {
-		Card,
-		Code,
-		CodePreview,
-		ComposedPreview,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, P } from '$components';
 	import { classic } from '$lib/themes';
 
-	const code = composedExample('DropdownMenu');
 	const props = [
 		{
 			defaultValue: 'undefined',
@@ -46,7 +29,7 @@
 		},
 		{
 			defaultValue: '$bindable(true)',
-			description: 'Bindable visibility; Drawer starts closed.',
+			description: 'Bindable visibility state.',
 			name: 'isVisible',
 			type: 'boolean'
 		},
@@ -101,45 +84,39 @@
 	];
 	const variants = Object.keys(classic.dropdownMenu.variants ?? {});
 	const parts = ['dropdownMenu', 'dropdownMenuItem', 'dropdownMenuList', 'dropdownMenuPanel'];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/DropdownMenu.svelte';
+	import examples from '$components/ComponentDoc/previews/DropdownMenu.svelte?component-examples&raw';
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>DropdownMenu</H1><P
-		>A popover action menu with arrow-key navigation, typeahead, and focus restoration.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><ComposedPreview name="DropdownMenu" /></CodePreview
-	><P
-		>{'Use Up/Down, Home/End, or type a label to move through enabled items. Escape returns focus to the trigger. Tab closes the menu and continues navigation. children replaces the trigger label content.'}</P
-	></DocsSection
->
-<DocsSection
-	><H2>Props</H2><P
-		>Native attributes and event handlers are forwarded to the root Div component. Common
-		transitions apply to that root.</P
-	><Card class="overflow-x-auto p-0"
-		><Table
-			><Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead><Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			></Table
-		></Card
-	></DocsSection
->
-<DocsSection
-	><H2>Styling</H2><P
-		>Theme entries: {#each parts as part, index (part)}{#if index > 0},
-			{/if}<Code>{part}</Code>{/each}.</P
-	><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>All presets include this component and its themeable parts. Use class for a local override, or
-		update the component and part entries through the theme API.</P
-	></DocsSection
->
+<ComponentDoc name="DropdownMenu" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A popover action menu with arrow-key navigation, typeahead, and focus restoration.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the root Div component. Common
+			transitions apply to that root.
+		</P>
+	{/snippet}
+	{#snippet usageNotes()}
+		<P>
+			{'Use Up/Down, Home/End, or type a label to move through enabled items. Escape returns focus to the trigger. Tab closes the menu and continues navigation. children replaces the trigger label content.'}
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Theme entries: {#each parts as part, index (part)}{#if index > 0},
+				{/if}<Code>{part}</Code>{/each}.
+		</P>
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			All presets include this component and its themeable parts. Use class for a local override, or
+			update the component and part entries through the theme API.
+		</P>
+	{/snippet}
+</ComponentDoc>

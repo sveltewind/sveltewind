@@ -1,24 +1,7 @@
 <script lang="ts">
-	import { composedExample } from '$components/ComposedPreview/examples';
-	import {
-		Card,
-		Code,
-		CodePreview,
-		ComposedPreview,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, P } from '$components';
 	import { classic } from '$lib/themes';
 
-	const code = composedExample('Carousel');
 	const props = [
 		{
 			defaultValue: 'undefined',
@@ -52,7 +35,7 @@
 		},
 		{
 			defaultValue: '$bindable(true)',
-			description: 'Bindable visibility; Drawer starts closed.',
+			description: 'Bindable visibility state.',
 			name: 'isVisible',
 			type: 'boolean'
 		},
@@ -120,45 +103,39 @@
 		'carouselSlide',
 		'carouselTrack'
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Carousel.svelte';
+	import examples from '$components/ComponentDoc/previews/Carousel.svelte?component-examples&raw';
 </script>
 
-<DocsSection
-	><P class="text-primary-500 dark:text-primary-500">Components</P><H1>Carousel</H1><P
-		>A scroll-snap carousel with manual controls, keyboard navigation, and responsive slides.</P
-	></DocsSection
->
-<DocsSection
-	><H2>Usage</H2><CodePreview {code} title="+page.svelte"
-		><ComposedPreview name="Carousel" /></CodePreview
-	><P
-		>{'No automatic rotation is used. Arrow controls and focused-track keyboard navigation respect reduced motion. perView controls desktop columns; tablets show at most two and small screens show one. Provide slides with unique IDs.'}</P
-	></DocsSection
->
-<DocsSection
-	><H2>Props</H2><P
-		>Native attributes and event handlers are forwarded to the root Div component. Common
-		transitions apply to that root.</P
-	><Card class="overflow-x-auto p-0"
-		><Table
-			><Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead><Tbody
-				>{#each props as prop (prop.name)}<Tr
-						><Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td
-							>{prop.description}</Td
-						></Tr
-					>{/each}</Tbody
-			></Table
-		></Card
-	></DocsSection
->
-<DocsSection
-	><H2>Styling</H2><P
-		>Theme entries: {#each parts as part, index (part)}{#if index > 0},
-			{/if}<Code>{part}</Code>{/each}.</P
-	><P
-		>Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.</P
-	><P
-		>All presets include this component and its themeable parts. Use class for a local override, or
-		update the component and part entries through the theme API.</P
-	></DocsSection
->
+<ComponentDoc name="Carousel" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A scroll-snap carousel with manual controls, keyboard navigation, and responsive slides.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the root Div component. Common
+			transitions apply to that root.
+		</P>
+	{/snippet}
+	{#snippet usageNotes()}
+		<P>
+			{'No automatic rotation is used. Arrow controls and focused-track keyboard navigation respect reduced motion. perView controls desktop columns; tablets show at most two and small screens show one. Provide slides with unique IDs.'}
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Theme entries: {#each parts as part, index (part)}{#if index > 0},
+				{/if}<Code>{part}</Code>{/each}.
+		</P>
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			All presets include this component and its themeable parts. Use class for a local override, or
+			update the component and part entries through the theme API.
+		</P>
+	{/snippet}
+</ComponentDoc>

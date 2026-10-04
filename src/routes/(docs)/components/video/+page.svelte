@@ -1,22 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Source,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr,
-		Video
-	} from '$components';
+	import { Code, CodePreview, H3, P, Source, Video } from '$components';
 
 	const props = [
 		{
@@ -74,83 +57,50 @@
 			description: 'Local variant names or theme references such as button.base.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Video.svelte';
+	import examples from '$components/ComponentDoc/previews/Video.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Video</H1>
-	<P>A native video element with forwarded playback and media attributes.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>video</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>
-		This poster-only preview shows the native controls. Supply src or Source children to play your
-		own video.
-	</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Video } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Video\n\tcontrols\n\tpreload="none"\n\tposter="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"\n\twidth="240"\n\theight="120"\n\taria-label="Example video player"\n/>\n'}
-		title="+page.svelte"
-	>
-		<Video
-			controls
-			preload="none"
-			poster="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"
-			width="240"
-			height="120"
-			aria-label="Example video player"
-		/>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Provide media sources</H3>
-	<P>
-		Place Source children inside Video. Replace the sample URL with your video file; this preview
-		displays the player without downloading media.
-	</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Video, Source } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Video\n\tcontrols\n\tpreload="none"\n\tposter="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"\n\twidth="240"\n\theight="120"\n>\n\t<Source src="/example-video.mp4" type="video/mp4" />\n</Video>\n'}
-		title="+page.svelte"
-	>
-		<Video
-			controls
-			preload="none"
-			poster="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"
-			width="240"
-			height="120"
-		>
-			<Source src="/example-video.mp4" type="video/mp4" />
-		</Video>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Video" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A native video element with forwarded playback and media attributes.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>video</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet usageNotes()}
+		<P>
+			This poster-only preview shows the native controls. Supply src or Source children to play your
+			own video.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Provide media sources</H3>
+		<P>
+			Place Source children inside Video. Replace the sample URL with your video file; this preview
+			displays the player without downloading media.
+		</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { Video, Source } from \'sveltewind/components\';\n</scr' +
+					'ipt>\n\n<Video\n\tcontrols\n\tpreload="none"\n\tposter="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"\n\twidth="240"\n\theight="120"\n>\n\t<Source src="/example-video.mp4" type="video/mp4" />\n</Video>\n'}
+				title="+page.svelte"
+			>
+				<Video
+					controls
+					preload="none"
+					poster="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"
+					width="240"
+					height="120"
+				>
+					<Source src="/example-video.mp4" type="video/mp4" />
+				</Video>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

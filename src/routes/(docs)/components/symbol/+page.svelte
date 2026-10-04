@@ -1,29 +1,7 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		Defs,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Path,
-		Svg,
-		Symbol,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr,
-		Use
-	} from '$components';
+	import { Code, P, Svg, Symbol } from '$components';
 	import { classic } from '$lib/themes';
 
-	const code =
-		'<script lang="ts">\n\timport { Defs, Path, Svg, Symbol, Use } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Symbol example">\n\t<Defs>\n\t\t<Symbol id="demo-symbol" viewBox="0 0 100 100">\n\t\t\t<Path d="M10 50 L40 80 L90 20" fill="none" stroke="currentColor" stroke-width={8} />\n\t\t</Symbol>\n\t</Defs>\n\t<Use href="#demo-symbol" width={100} height={100} class="text-primary-500" />\n</Svg>\n';
 	const props = [
 		{
 			name: 'children',
@@ -82,60 +60,33 @@
 	];
 
 	const variants = Object.keys(classic.symbol.variants ?? {});
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Symbol.svelte';
+	import examples from '$components/ComponentDoc/previews/Symbol.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P><H1>Symbol</H1><P>
-		A themed native SVG <Code>symbol</Code> primitive. Render it inside Svg or an appropriate SVG parent.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Usage</H2><CodePreview {code} title="+page.svelte">
-		<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Symbol example">
-			<Defs>
-				<Symbol id="demo-symbol" viewBox="0 0 100 100">
-					<Path d="M10 50 L40 80 L90 20" fill="none" stroke="currentColor" stroke-width={8} />
-				</Symbol>
-			</Defs><Use href="#demo-symbol" width={100} height={100} class="text-primary-500" />
-		</Svg>
-	</CodePreview>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>symbol</Code> element
-		unless handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Styling</H2><P>
-		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.
-	</P><P>
-		Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
-		geometry. Classes and explicit attributes let you customize the drawing. Definition and
-		accessibility elements do not have a visible box, so their transitions have no visible effect.
-	</P>
-</DocsSection>
+<ComponentDoc name="Symbol" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>
+			A themed native SVG <Code>symbol</Code> primitive. Render it inside Svg or an appropriate SVG parent.
+		</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>symbol</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
+			geometry. Classes and explicit attributes let you customize the drawing. Definition and
+			accessibility elements do not have a visible box, so their transitions have no visible effect.
+		</P>
+	{/snippet}
+</ComponentDoc>

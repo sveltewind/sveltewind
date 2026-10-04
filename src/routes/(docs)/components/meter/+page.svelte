@@ -1,21 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		Label,
-		Meter,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, Meter, P } from '$components';
 	import { classic } from '$lib/themes';
 
 	const props = [
@@ -75,69 +59,35 @@
 		}
 	];
 
-	const code =
-		'<script lang="ts">\n\timport { Label, Meter } from \'sveltewind/components\';\n</scr' +
-		'ipt>\n\n<Label for="primitive-storage">Storage used</Label>\n<Meter id="primitive-storage" min={0} max={100} value={65}>65%</Meter>\n';
 	const variants = Object.keys(classic.meter.variants ?? {});
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Meter.svelte';
+	import examples from '$components/ComponentDoc/previews/Meter.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Meter</H1>
-	<P>A themed native <Code>meter</Code> primitive.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Usage</H2>
-	<CodePreview {code} title="+page.svelte">
-		<Label for="primitive-storage">Storage used</Label><Meter
-			id="primitive-storage"
-			min={0}
-			max={100}
-			value={65}
-		>
-			65%
-		</Meter>
-	</CodePreview>
-	<P>Use Meter for a measurement within a known range. Use Progress for task completion.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>meter</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Styling</H2>
-	<P>
-		Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-			{/if}<Code>{variant}</Code>{/each}.
-	</P>
-	<P>
-		Use class for local overrides or variants for reusable theme styles. All five presets include
-		this primitive and its variants. Enter and exit transitions use the shared transition,
-		inTransition, and outTransition props.
-	</P>
-</DocsSection>
+<ComponentDoc name="Meter" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed native <Code>meter</Code> primitive.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>meter</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet usageNotes()}
+		<P>Use Meter for a measurement within a known range. Use Progress for task completion.</P>
+	{/snippet}
+	{#snippet notes()}
+		<P>
+			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
+				{/if}<Code>{variant}</Code>{/each}.
+		</P>
+		<P>
+			Use class for local overrides or variants for reusable theme styles. All five presets include
+			this primitive and its variants. Enter and exit transitions use the shared transition,
+			inTransition, and outTransition props.
+		</P>
+	{/snippet}
+</ComponentDoc>

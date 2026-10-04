@@ -4,6 +4,7 @@ import { format, resolveConfig } from 'prettier';
 import { parse } from 'svelte/compiler';
 import type { Plugin } from 'vite';
 import { composeExampleSource } from './src/components/ComposedPreview/composeExampleSource';
+import { readComponentExamples } from './src/components/ComponentDoc/readExamples';
 
 // Give compact markup line breaks before Prettier lays out its tags and blocks.
 // Work on markup nodes only: script strings and preformatted text stay intact.
@@ -76,6 +77,13 @@ export function exampleCodePlugin(): Plugin {
 		},
 		async load(source) {
 			const [filename, query = ''] = source.split('?');
+			if (new URLSearchParams(query).has('component-examples')) {
+				this.addWatchFile(filename);
+				const examples = readComponentExamples(await readFile(filename, 'utf8'));
+				for (const example of Object.values(examples))
+					example.code = await formatExampleCode(example.code);
+				return `export default ${JSON.stringify(examples)};`;
+			}
 			if (new URLSearchParams(query).has('example-code')) {
 				this.addWatchFile(filename);
 				const code = (await readFile(filename, 'utf8')).replace(

@@ -1,20 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr,
-		Alert
-	} from '$components';
+	import { Code, CodePreview, P, Alert } from '$components';
 	const props = [
 		{
 			name: 'children',
@@ -77,51 +62,33 @@
 			description: 'Local variants or references to other theme styles.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Alert.svelte';
+	import examples from '$components/ComponentDoc/previews/Alert.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Alert</H1>
-	<P>A themed message container for status updates and feedback.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>Native attributes and event handlers are forwarded to the <Code>div</Code> element.</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead><Tr><Th>Prop</Th><Th>Type</Th><Th>Default</Th><Th>Description</Th></Tr></Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}<Tr>
-						<Td><Code>{prop.name}</Code></Td><Td>{prop.type}</Td><Td>{prop.defaultValue}</Td><Td>
-							{prop.description}
-						</Td>
-					</Tr>{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>
-		Use success, warning, error, or info variants. Choose role="alert" for urgent announcements.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Alert } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Alert>Your changes have been saved.</Alert>\n'}
-		title="+page.svelte"
-	>
-		<Alert>Your changes have been saved.</Alert>
-	</CodePreview>
-</DocsSection>
-<DocsSection>
-	<H2>Usage Examples</H2>
-	<CodePreview
-		code={"<Alert variants={['success']}>Your changes have been saved.</Alert>\n<Alert variants={['warning']}>Your session expires soon.</Alert>\n<Alert role=\"alert\" variants={['error']}>Unable to save your changes.</Alert>\n<Alert variants={['info']}>A new version is available.</Alert>\n"}
-		title="+page.svelte"
-	>
-		<Alert variants={['success']}>Your changes have been saved.</Alert>
-		<Alert variants={['warning']}>Your session expires soon.</Alert>
-		<Alert role="alert" variants={['error']}>Unable to save your changes.</Alert>
-		<Alert variants={['info']}>A new version is available.</Alert>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Alert" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed message container for status updates and feedback.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>Native attributes and event handlers are forwarded to the <Code>div</Code> element.</P>
+		<P>
+			Use success, warning, error, or info variants. Choose role="alert" for urgent announcements.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={"<Alert variants={['success']}>Your changes have been saved.</Alert>\n<Alert variants={['warning']}>Your session expires soon.</Alert>\n<Alert role=\"alert\" variants={['error']}>Unable to save your changes.</Alert>\n<Alert variants={['info']}>A new version is available.</Alert>\n"}
+				title="+page.svelte"
+			>
+				<Alert variants={['success']}>Your changes have been saved.</Alert>
+				<Alert variants={['warning']}>Your session expires soon.</Alert>
+				<Alert role="alert" variants={['error']}>Unable to save your changes.</Alert>
+				<Alert variants={['info']}>A new version is available.</Alert>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

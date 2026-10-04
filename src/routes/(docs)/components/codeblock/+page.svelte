@@ -1,21 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodeBlock,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, CodeBlock, CodePreview, H3, P } from '$components';
 
 	const props = [
 		{
@@ -133,71 +117,38 @@
 			description: 'Local variant names or theme references such as button.base.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/CodeBlock.svelte';
+	import examples from '$components/ComponentDoc/previews/CodeBlock.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>CodeBlock</H1>
-	<P>A syntax-highlighted code card with a title and copy button.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import CodeBlock from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { CodeBlock } from \'sveltewind/components\';\n</scr' +
-			"ipt>\n\n<CodeBlock\n\ttitle=\"hello.ts\"\n\tcode={\"const hello = 'world';\"}\n\toptions={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}\n/>\n"}
-		title="+page.svelte"
-	>
-		<CodeBlock
-			title="hello.ts"
-			code={"const hello = 'world';\n"}
-			options={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}
-		/>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Hide line numbers</H3>
-	<P>Keep the title and copy action while hiding line numbers.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { CodeBlock } from \'sveltewind/components\';\n</scr' +
-			"ipt>\n\n<CodeBlock\n\ttitle=\"hello.ts\"\n\tcode={\"const hello = 'world';\"}\n\tisLineNumbersVisible={false}\n\toptions={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}\n/>\n"}
-		title="+page.svelte"
-	>
-		<CodeBlock
-			title="hello.ts"
-			code={"const hello = 'world';\n"}
-			isLineNumbersVisible={false}
-			options={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}
-		/>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="CodeBlock" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A syntax-highlighted code card with a title and copy button.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
+			handled by the component.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Hide line numbers</H3>
+		<P>Keep the title and copy action while hiding line numbers.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { CodeBlock } from \'sveltewind/components\';\n</scr' +
+					"ipt>\n\n<CodeBlock\n\ttitle=\"hello.ts\"\n\tcode={\"const hello = 'world';\"}\n\tisLineNumbersVisible={false}\n\toptions={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}\n/>\n"}
+				title="+page.svelte"
+			>
+				<CodeBlock
+					title="hello.ts"
+					code={"const hello = 'world';\n"}
+					isLineNumbersVisible={false}
+					options={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}
+				/>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

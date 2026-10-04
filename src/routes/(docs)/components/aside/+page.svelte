@@ -1,21 +1,5 @@
 <script lang="ts">
-	import {
-		Aside,
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Aside, Code, CodePreview, H3, P } from '$components';
 
 	const props = [
 		{
@@ -73,62 +57,33 @@
 			description: 'Local variant names or theme references such as button.base.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Aside.svelte';
+	import examples from '$components/ComponentDoc/previews/Aside.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Aside</H1>
-	<P>A semantic aside for supplementary content.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>aside</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Aside from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Aside } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Aside>Aside content</Aside>\n'}
-		title="+page.svelte"
-	>
-		<Aside>Aside content</Aside>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Custom classes</H3>
-	<P>Use class to merge Tailwind utilities with the component theme.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Aside } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Aside class="text-primary-500 dark:text-primary-400">Aside content</Aside>\n'}
-		title="+page.svelte"
-	>
-		<Aside class="text-primary-500 dark:text-primary-400">Aside content</Aside>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Aside" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A semantic aside for supplementary content.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>aside</Code> element
+			unless handled by the component.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Custom classes</H3>
+		<P>Use class to merge Tailwind utilities with the component theme.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { Aside } from \'sveltewind/components\';\n</scr' +
+					'ipt>\n\n<Aside class="text-primary-500 dark:text-primary-400">Aside content</Aside>\n'}
+				title="+page.svelte"
+			>
+				<Aside class="text-primary-500 dark:text-primary-400">Aside content</Aside>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

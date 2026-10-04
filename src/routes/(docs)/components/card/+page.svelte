@@ -1,20 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Card, Code, CodePreview, H3, P } from '$components';
 
 	const props = [
 		{
@@ -72,62 +57,33 @@
 			description: 'Local variant names or theme references such as button.base.'
 		}
 	];
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Card.svelte';
+	import examples from '$components/ComponentDoc/previews/Card.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Card</H1>
-	<P>A themed div with padding, rounded corners, and an inset border.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Card from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Card } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Card>Card content</Card>\n'}
-		title="+page.svelte"
-	>
-		<Card>Card content</Card>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Custom classes</H3>
-	<P>Use class to merge Tailwind utilities with the component theme.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Card } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Card class="text-primary-500 dark:text-primary-400">Card content</Card>\n'}
-		title="+page.svelte"
-	>
-		<Card class="text-primary-500 dark:text-primary-400">Card content</Card>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Card" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A themed div with padding, rounded corners, and an inset border.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
+			handled by the component.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Custom classes</H3>
+		<P>Use class to merge Tailwind utilities with the component theme.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { Card } from \'sveltewind/components\';\n</scr' +
+					'ipt>\n\n<Card class="text-primary-500 dark:text-primary-400">Card content</Card>\n'}
+				title="+page.svelte"
+			>
+				<Card class="text-primary-500 dark:text-primary-400">Card content</Card>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

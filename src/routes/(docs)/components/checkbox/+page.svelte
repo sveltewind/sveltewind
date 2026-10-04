@@ -1,21 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Checkbox,
-		Code,
-		CodePreview,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Table,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Checkbox, Code, CodePreview, H3, P } from '$components';
 
 	const props = [
 		{
@@ -87,67 +71,38 @@
 	];
 
 	let checked = $state(false);
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Checkbox.svelte';
+	import examples from '$components/ComponentDoc/previews/Checkbox.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Checkbox</H1>
-	<P>A labeled checkbox with a custom visual indicator and bindable checked state.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>
-		Class styles the wrapping label. Native input attributes, including name, required, and
-		disabled, are forwarded to the hidden checkbox input.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Checkbox from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Checkbox } from \'sveltewind/components\';\n</scr' +
-			'ipt>\n\n<Checkbox>Receive email updates</Checkbox>\n'}
-		title="+page.svelte"
-	>
-		<Checkbox>Receive email updates</Checkbox>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Bind checked state</H3>
-	<P>Bind checked to keep application state in sync with the control.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Checkbox, P } from \'sveltewind/components\';\n\n\tlet checked = $state(false);\n</scr' +
-			"ipt>\n\n<Checkbox bind:checked>Receive email updates</Checkbox>\n<P>Updates: {checked ? 'enabled' : 'disabled'}</P>\n"}
-		title="+page.svelte"
-	>
-		<Checkbox bind:checked>Receive email updates</Checkbox>
-		<P>Updates: {checked ? 'enabled' : 'disabled'}</P>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Checkbox" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A labeled checkbox with a custom visual indicator and bindable checked state.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>input</Code> element
+			unless handled by the component.
+		</P>
+		<P>
+			Class styles the wrapping label. Native input attributes, including name, required, and
+			disabled, are forwarded to the hidden checkbox input.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Bind checked state</H3>
+		<P>Bind checked to keep application state in sync with the control.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={'<script lang="ts">\n\timport { Checkbox, P } from \'sveltewind/components\';\n\n\tlet checked = $state(false);\n</scr' +
+					"ipt>\n\n<Checkbox bind:checked>Receive email updates</Checkbox>\n<P>Updates: {checked ? 'enabled' : 'disabled'}</P>\n"}
+				title="+page.svelte"
+			>
+				<Checkbox bind:checked>Receive email updates</Checkbox>
+				<P>Updates: {checked ? 'enabled' : 'disabled'}</P>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>

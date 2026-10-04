@@ -1,22 +1,5 @@
 <script lang="ts">
-	import {
-		Card,
-		Code,
-		CodePreview,
-		Div,
-		DocsSection,
-		H1,
-		H2,
-		H3,
-		P,
-		Table,
-		Tabs,
-		Tbody,
-		Td,
-		Th,
-		Thead,
-		Tr
-	} from '$components';
+	import { Code, CodePreview, Div, H3, P, Tabs } from '$components';
 
 	const props = [
 		{
@@ -88,80 +71,45 @@
 	];
 
 	let tab = $state('overview');
+
+	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
+	import Demo from '$components/ComponentDoc/previews/Tabs.svelte';
+	import examples from '$components/ComponentDoc/previews/Tabs.svelte?component-examples&raw';
 </script>
 
-<DocsSection>
-	<P class="text-primary-500 dark:text-primary-500">Components</P>
-	<H1>Tabs</H1>
-	<P>A group of buttons with a bindable selected value.</P>
-</DocsSection>
-<DocsSection>
-	<H2>Props</H2>
-	<P>
-		Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
-		handled by the component.
-	</P>
-	<Card class="self-start overflow-x-auto p-0">
-		<Table>
-			<Thead>
-				<Tr>
-					<Th>Prop</Th>
-					<Th>Type</Th>
-					<Th>Default</Th>
-					<Th>Description</Th>
-				</Tr>
-			</Thead>
-			<Tbody>
-				{#each props as prop (prop.name)}
-					<Tr>
-						<Td><Code>{prop.name}</Code></Td>
-						<Td>{prop.type}</Td>
-						<Td>{prop.defaultValue}</Td>
-						<Td>{prop.description}</Td>
-					</Tr>
-				{/each}
-			</Tbody>
-		</Table>
-	</Card>
-	<P>
-		Each <Code>Tab</Code> contains a string title and a value of any type. Custom children replace the
-		generated buttons; render the selected content separately.
-	</P>
-</DocsSection>
-<DocsSection>
-	<H2>Default Implementation</H2>
-	<P>Import Tabs from sveltewind/components and use it as shown below.</P>
-	<CodePreview
-		code={'<script lang="ts">\n\timport { Tabs } from \'sveltewind/components\';\n</scr' +
-			"ipt>\n\n<Tabs\n\ttabs={[\n\t\t{ title: 'Overview', value: 'overview' },\n\t\t{ title: 'Details', value: 'details' }\n\t]}\n\tvalue=\"overview\"\n/>\n"}
-		title="+page.svelte"
-	>
-		<Tabs
-			tabs={[
-				{ title: 'Overview', value: 'overview' },
-				{ title: 'Details', value: 'details' }
-			]}
-			value="overview"
-		/>
-	</CodePreview>
-</DocsSection>
-<DocsSection class="last-of-type:flex md:last-of-type:flex">
-	<H2>Usage Examples</H2>
-	<H3>Bind the selection</H3>
-	<P>Render the associated content separately using the selected value.</P>
-	<CodePreview
-		code={"<script lang=\"ts\">\n\timport { Div, Tabs, P } from 'sveltewind/components';\n\n\tlet tab = $state('overview');\n</scr" +
-			"ipt>\n\n<Div class=\"flex flex-col gap-3\">\n\t<Tabs\n\t\ttabs={[\n\t\t\t{ title: 'Overview', value: 'overview' },\n\t\t\t{ title: 'Details', value: 'details' }\n\t\t]}\n\t\tbind:value={tab}\n\t/>\n\n\t<P>{tab === 'overview' ? 'Overview content' : 'Detail content'}</P>\n</Div>\n"}
-		title="+page.svelte"
-	>
-		<Div class="flex flex-col gap-3">
-			<Tabs
-				tabs={[
-					{ title: 'Overview', value: 'overview' },
-					{ title: 'Details', value: 'details' }
-				]}
-				bind:value={tab}
-			/><P>{tab === 'overview' ? 'Overview content' : 'Detail content'}</P>
-		</Div>
-	</CodePreview>
-</DocsSection>
+<ComponentDoc name="Tabs" {props} demo={Demo} {examples}>
+	{#snippet description()}
+		<P>A group of buttons with a bindable selected value.</P>
+	{/snippet}
+	{#snippet propNotes()}
+		<P>
+			Native attributes and event handlers are forwarded to the underlying <Code>div</Code> element unless
+			handled by the component.
+		</P>
+		<P>
+			Each <Code>Tab</Code> contains a string title and a value of any type. Custom children replace
+			the generated buttons; render the selected content separately.
+		</P>
+	{/snippet}
+	{#snippet additionalExamples()}
+		<H3>Bind the selection</H3>
+		<P>Render the associated content separately using the selected value.</P>
+		<div data-example-preview class="w-full min-w-0">
+			<CodePreview
+				code={"<script lang=\"ts\">\n\timport { Div, Tabs, P } from 'sveltewind/components';\n\n\tlet tab = $state('overview');\n</scr" +
+					"ipt>\n\n<Div class=\"flex flex-col gap-3\">\n\t<Tabs\n\t\ttabs={[\n\t\t\t{ title: 'Overview', value: 'overview' },\n\t\t\t{ title: 'Details', value: 'details' }\n\t\t]}\n\t\tbind:value={tab}\n\t/>\n\n\t<P>{tab === 'overview' ? 'Overview content' : 'Detail content'}</P>\n</Div>\n"}
+				title="+page.svelte"
+			>
+				<Div class="flex flex-col gap-3">
+					<Tabs
+						tabs={[
+							{ title: 'Overview', value: 'overview' },
+							{ title: 'Details', value: 'details' }
+						]}
+						bind:value={tab}
+					/><P>{tab === 'overview' ? 'Overview content' : 'Detail content'}</P>
+				</Div>
+			</CodePreview>
+		</div>
+	{/snippet}
+</ComponentDoc>
