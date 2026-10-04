@@ -1,5 +1,22 @@
 <script lang="ts">
-	import { A, BlockLink, Card, ComposedPreview, Div, DocsSection, H1, H2, P } from '$components';
+	import {
+		A,
+		Badge,
+		BlockLink,
+		Card,
+		ComposedPreview,
+		Div,
+		DocsSection,
+		H1,
+		H2,
+		H3,
+		Input,
+		P,
+		Span
+	} from '$components';
+	import { page } from '$app/state';
+	import { Search } from '$lib/icons';
+	import { componentCatalog, componentCategories } from '$components/catalog';
 	import * as Components from '$lib/components';
 	import { tooltip } from '$lib/attachments';
 	import type { Component, ComponentProps, Snippet } from 'svelte';
@@ -15,9 +32,40 @@
 	};
 
 	// Constants
-	const componentNames = Object.keys(Components)
-		.filter((name): name is ComponentName => /^[A-Z]/.test(name))
-		.sort((a, b) => a.localeCompare(b));
+	let query = $state('');
+	let requestedCategory = $state('all');
+	$effect(() => {
+		query = page.url.searchParams.get('q') ?? '';
+		requestedCategory = page.url.searchParams.get('category') ?? 'all';
+	});
+	const category = $derived(
+		componentCategories.some((item) => item.id === requestedCategory) ? requestedCategory : 'all'
+	);
+	const filtered = $derived(
+		componentCatalog.filter(
+			(component) =>
+				(category === 'all' || component.category === category) &&
+				query
+					.trim()
+					.toLowerCase()
+					.split(/\s+/)
+					.every((term) => component.searchText.includes(term))
+		)
+	);
+	const groups = $derived(
+		componentCategories
+			.map((item) => ({
+				...item,
+				components: filtered.filter((component) => component.category === item.id)
+			}))
+			.filter((item) => item.components.length)
+	);
+	function categoryHref(id: string) {
+		const params = new URLSearchParams();
+		if (id !== 'all') params.set('category', id);
+		if (query.trim()) params.set('q', query.trim());
+		return `/components${params.size ? '?' + params.toString() : ''}`;
+	}
 	const image = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="120" viewBox="0 0 240 120"><rect width="240" height="120" rx="8" fill="#e0e7ff"/><circle cx="180" cy="30" r="16" fill="#818cf8"/><path d="M0 120 70 40 130 100 165 65 240 120" fill="#6366f1"/></svg>')}`;
 
 	// $state
@@ -159,6 +207,7 @@
 </script>
 
 <DocsSection>
+	<Badge>{componentCatalog.length} components · {componentCategories.length} categories</Badge>
 	<H1>Components</H1>
 	<P>
 		Sveltewind provides primitives and higher-level components for Svelte 5. Browse the components
@@ -171,40 +220,93 @@
 	</P>
 </DocsSection>
 
-<DocsSection>
-	<H2>All components</H2>
-	<Div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-		{#each componentNames as name (name)}
-			<Card class="flex min-w-0 flex-col p-0">
-				<Div class="flex min-h-48 min-w-0 grow items-center justify-center overflow-hidden p-6">
-					{@const config: Preview = previews[name] ?? { children: name }}
-					{#if config.preview}
-						{@render config.preview()}
-					{:else}
-						{@const PreviewComponent = Components[name] as Component<
-							Record<string, unknown> & { children?: Snippet }
-						>}
-						{#if config.children !== undefined}
-							<PreviewComponent {...config.props}>
-								{#if typeof config.children === 'string'}
-									{config.children}
-								{:else}
-									{@render config.children()}
-								{/if}
-							</PreviewComponent>
-						{:else}
-							<PreviewComponent {...config.props} />
-						{/if}
-					{/if}
-				</Div>
-				<A
-					class="block rounded-b-md border-t border-gray-200 px-4 py-3 text-center font-medium dark:border-gray-700"
-					href={`/components/${name.toLowerCase()}`}
-					variants={['ghost']}>{name}</A
-				>
-			</Card>
+<DocsSection class="last-of-type:flex md:last-of-type:flex">
+	<H2>Browse components</H2>
+	<form action="/components" method="GET" class="relative w-full">
+		<Search
+			class="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-gray-500"
+			aria-hidden="true"
+		/>
+		<Input
+			name="q"
+			type="search"
+			aria-label="Search components"
+			placeholder="Search components, uses, or categories..."
+			bind:value={query}
+			class="w-full pl-11"
+		/>
+		{#if category !== 'all'}<input type="hidden" name="category" value={category} />{/if}
+	</form>
+	<Div role="group" aria-label="Component categories" class="flex flex-wrap gap-2">
+		{#each [{ id: 'all', title: 'All components', components: componentCatalog }, ...componentCategories] as item (item.id)}
+			<A
+				href={categoryHref(item.id)}
+				aria-current={category === item.id ? 'page' : undefined}
+				variants={['ghost']}
+				class={`rounded-full border px-3 py-2 text-xs no-underline hover:no-underline ${category === item.id ? 'border-primary-500 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-gray-200 text-gray-600 hover:border-primary-500 dark:border-gray-700 dark:text-gray-400'}`}
+			>
+				{item.title}<Span class="ml-1 opacity-60">{item.components.length}</Span>
+			</A>
 		{/each}
 	</Div>
+	<P role="status" aria-live="polite" class="text-sm text-gray-500">
+		{filtered.length}
+		{filtered.length === 1 ? 'component' : 'components'}{query.trim()
+			? ` matching "${query.trim()}"`
+			: ''}
+	</P>
+	{#each groups as group (group.id)}
+		<Div class="w-full space-y-4">
+			<H3>{group.title}</H3>
+			<P class="text-sm text-gray-500">{group.description}</P>
+			<Div
+				data-example-preview
+				data-component-category={group.id}
+				class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+			>
+				{#each group.components as component (component.name)}
+					{@const name = component.name}
+					<Card class="flex min-w-0 flex-col p-0">
+						<Div class="flex min-h-48 min-w-0 grow items-center justify-center overflow-hidden p-6">
+							{@const config: Preview = previews[name] ?? { children: name }}
+							{#if config.preview}
+								{@render config.preview()}
+							{:else}
+								{@const PreviewComponent = Components[name] as Component<
+									Record<string, unknown> & { children?: Snippet }
+								>}
+								{#if config.children !== undefined}
+									<PreviewComponent {...config.props}>
+										{#if typeof config.children === 'string'}
+											{config.children}
+										{:else}
+											{@render config.children()}
+										{/if}
+									</PreviewComponent>
+								{:else}
+									<PreviewComponent {...config.props} />
+								{/if}
+							{/if}
+						</Div>
+						<A
+							class="block rounded-b-md border-t border-gray-200 px-4 py-3 text-center font-medium dark:border-gray-700"
+							href={`/components/${name.toLowerCase()}`}
+							variants={['ghost']}
+						>
+							{name}
+						</A>
+					</Card>
+				{/each}
+			</Div>
+		</Div>
+	{/each}
+	{#if !filtered.length}
+		<Card class="space-y-3 py-12 text-center">
+			<P class="text-lg font-semibold">No components found</P>
+			<P>Try another search or choose a different category.</P>
+			<A href="/components" onclick={() => (query = '')}>Reset filters</A>
+		</Card>
+	{/if}
 </DocsSection>
 
 <DocsSection>
@@ -252,9 +354,9 @@
 
 {#snippet footerPreview()}
 	<Components.Footer variants={['bordered']} class="w-full">
-		<Components.P class="text-sm font-semibold text-gray-950 dark:text-gray-50"
-			>Sveltewind</Components.P
-		>
+		<Components.P class="text-sm font-semibold text-gray-950 dark:text-gray-50">
+			Sveltewind
+		</Components.P>
 		<Components.Nav aria-label="Example footer links" class="mt-3 flex flex-wrap gap-4">
 			<Components.A href="/getting-started/usage" class="text-xs">Docs</Components.A>
 			<Components.A href="/components" class="text-xs">Components</Components.A>
@@ -301,9 +403,9 @@
 {/snippet}
 
 {#snippet radioPreview()}
-	<Components.Label class="flex items-center gap-2"
-		><Components.Radio aria-label="Example radio" value="example" /> Choose me</Components.Label
-	>
+	<Components.Label class="flex items-center gap-2">
+		<Components.Radio aria-label="Example radio" value="example" /> Choose me
+	</Components.Label>
 {/snippet}
 
 {#snippet selectChildren()}
@@ -321,23 +423,23 @@
 
 {#snippet tablePreview()}
 	<Components.Table>
-		<Components.Thead
-			><Components.Tr
-				><Components.Th>Name</Components.Th><Components.Th>Role</Components.Th></Components.Tr
-			></Components.Thead
-		>
-		<Components.Tbody
-			><Components.Tr
-				><Components.Td>Ada</Components.Td><Components.Td>Developer</Components.Td></Components.Tr
-			></Components.Tbody
-		>
+		<Components.Thead>
+			<Components.Tr>
+				<Components.Th>Name</Components.Th><Components.Th>Role</Components.Th>
+			</Components.Tr>
+		</Components.Thead>
+		<Components.Tbody>
+			<Components.Tr>
+				<Components.Td>Ada</Components.Td><Components.Td>Developer</Components.Td>
+			</Components.Tr>
+		</Components.Tbody>
 	</Components.Table>
 {/snippet}
 
 {#snippet tooltipPreview()}
-	<Components.Button {@attach tooltip({ content: 'Hello from Tooltip.' })}
-		>Hover or focus</Components.Button
-	>
+	<Components.Button {@attach tooltip({ content: 'Hello from Tooltip.' })}>
+		Hover or focus
+	</Components.Button>
 	<Components.Tooltip />
 {/snippet}
 
@@ -349,49 +451,43 @@
 {/snippet}
 
 {#snippet clipPathPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="ClipPath example"
-		><Components.Defs
-			><Components.ClipPath id="gallery-clippath-clip"
-				><Components.Circle cx={50} cy={50} r={35} /></Components.ClipPath
-			></Components.Defs
-		><Components.Rect
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="ClipPath example">
+		<Components.Defs>
+			<Components.ClipPath id="gallery-clippath-clip">
+				<Components.Circle cx={50} cy={50} r={35} />
+			</Components.ClipPath>
+		</Components.Defs><Components.Rect
 			width={100}
 			height={100}
 			clip-path="url(#gallery-clippath-clip)"
 			variants={['fill', 'primary']}
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet defsPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Defs example"
-		><Components.Defs
-			><Components.LinearGradient id="gallery-defs-fill"
-				><Components.Stop offset="0%" stop-color="currentColor" /><Components.Stop
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Defs example">
+		<Components.Defs>
+			<Components.LinearGradient id="gallery-defs-fill">
+				<Components.Stop offset="0%" stop-color="currentColor" /><Components.Stop
 					offset="100%"
 					stop-color="currentColor"
 					stop-opacity={0.2}
-				/></Components.LinearGradient
-			></Components.Defs
-		><Components.Rect
+				/>
+			</Components.LinearGradient>
+		</Components.Defs><Components.Rect
 			width={100}
 			height={100}
 			fill="url(#gallery-defs-fill)"
 			class="text-primary-500"
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet ellipsePreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Ellipse example"
-		><Components.Ellipse
-			cx={50}
-			cy={50}
-			rx={40}
-			ry={25}
-			variants={['fill', 'primary']}
-		/></Components.Svg
-	>
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Ellipse example">
+		<Components.Ellipse cx={50} cy={50} rx={40} ry={25} variants={['fill', 'primary']} />
+	</Components.Svg>
 {/snippet}
 
 {#snippet foreignObjectPreview()}
@@ -400,36 +496,32 @@
 		class="size-24"
 		role="img"
 		aria-label="ForeignObject example"
-		><Components.ForeignObject x={5} y={5} width={90} height={90}
-			><Components.Div class="p-2 text-xs">HTML content inside SVG.</Components.Div
-			></Components.ForeignObject
-		></Components.Svg
 	>
+		<Components.ForeignObject x={5} y={5} width={90} height={90}>
+			<Components.Div class="p-2 text-xs">HTML content inside SVG.</Components.Div>
+		</Components.ForeignObject>
+	</Components.Svg>
 {/snippet}
 
 {#snippet gPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="G example"
-		><Components.G transform="translate(10 10)" variants={['fill', 'primary']}
-			><Components.Rect width={30} height={30} /><Components.Circle
-				cx={60}
-				cy={60}
-				r={20}
-			/></Components.G
-		></Components.Svg
-	>
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="G example">
+		<Components.G transform="translate(10 10)" variants={['fill', 'primary']}>
+			<Components.Rect width={30} height={30} /><Components.Circle cx={60} cy={60} r={20} />
+		</Components.G>
+	</Components.Svg>
 {/snippet}
 
 {#snippet linePreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Line example"
-		><Components.Line
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Line example">
+		<Components.Line
 			x1={10}
 			y1={20}
 			x2={90}
 			y2={80}
 			stroke-width={4}
 			variants={['outline', 'primary', 'rounded']}
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet linearGradientPreview()}
@@ -438,27 +530,28 @@
 		class="size-24"
 		role="img"
 		aria-label="LinearGradient example"
-		><Components.Defs
-			><Components.LinearGradient id="gallery-lineargradient-linear"
-				><Components.Stop offset="0%" stop-color="currentColor" /><Components.Stop
+	>
+		<Components.Defs>
+			<Components.LinearGradient id="gallery-lineargradient-linear">
+				<Components.Stop offset="0%" stop-color="currentColor" /><Components.Stop
 					offset="100%"
 					stop-color="currentColor"
 					stop-opacity={0.2}
-				/></Components.LinearGradient
-			></Components.Defs
-		><Components.Rect
+				/>
+			</Components.LinearGradient>
+		</Components.Defs><Components.Rect
 			width={100}
 			height={100}
 			fill="url(#gallery-lineargradient-linear)"
 			class="text-primary-500"
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet markerPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Marker example"
-		><Components.Defs
-			><Components.Marker
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Marker example">
+		<Components.Defs>
+			<Components.Marker
 				id="gallery-marker-arrow"
 				viewBox="0 0 10 10"
 				refX={9}
@@ -466,9 +559,10 @@
 				markerWidth={6}
 				markerHeight={6}
 				orient="auto-start-reverse"
-				><Components.Path d="M0 0 L10 5 L0 10 Z" fill="context-stroke" /></Components.Marker
-			></Components.Defs
-		><Components.Line
+			>
+				<Components.Path d="M0 0 L10 5 L0 10 Z" fill="context-stroke" />
+			</Components.Marker>
+		</Components.Defs><Components.Line
 			x1={10}
 			y1={50}
 			x2={80}
@@ -476,80 +570,73 @@
 			stroke-width={3}
 			marker-end="url(#gallery-marker-arrow)"
 			variants={['outline', 'primary']}
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet maskPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Mask example"
-		><Components.Defs
-			><Components.Mask id="gallery-mask-mask"
-				><Components.Rect width={100} height={100} fill="white" /><Components.Circle
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Mask example">
+		<Components.Defs>
+			<Components.Mask id="gallery-mask-mask">
+				<Components.Rect width={100} height={100} fill="white" /><Components.Circle
 					cx={50}
 					cy={50}
 					r={20}
 					fill="black"
-				/></Components.Mask
-			></Components.Defs
-		><Components.Rect
+				/>
+			</Components.Mask>
+		</Components.Defs><Components.Rect
 			width={100}
 			height={100}
 			mask="url(#gallery-mask-mask)"
 			variants={['fill', 'primary']}
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet pathPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Path example"
-		><Components.Path
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Path example">
+		<Components.Path
 			d="M10 50 L40 80 L90 20"
 			stroke-width={5}
 			variants={['outline', 'primary', 'rounded']}
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet patternPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Pattern example"
-		><Components.Defs
-			><Components.Pattern
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Pattern example">
+		<Components.Defs>
+			<Components.Pattern
 				id="gallery-pattern-pattern"
 				width={20}
 				height={20}
 				patternUnits="userSpaceOnUse"
-				><Components.Circle
-					cx={10}
-					cy={10}
-					r={4}
-					variants={['fill', 'primary']}
-				/></Components.Pattern
-			></Components.Defs
-		><Components.Rect
+			>
+				<Components.Circle cx={10} cy={10} r={4} variants={['fill', 'primary']} />
+			</Components.Pattern>
+		</Components.Defs><Components.Rect
 			width={100}
 			height={100}
 			fill="url(#gallery-pattern-pattern)"
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet polygonPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Polygon example"
-		><Components.Polygon
-			points="50,10 90,85 10,85"
-			variants={['fill', 'primary']}
-		/></Components.Svg
-	>
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Polygon example">
+		<Components.Polygon points="50,10 90,85 10,85" variants={['fill', 'primary']} />
+	</Components.Svg>
 {/snippet}
 
 {#snippet polylinePreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Polyline example"
-		><Components.Polyline
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Polyline example">
+		<Components.Polyline
 			points="10,70 30,30 50,60 70,20 90,50"
 			stroke-width={4}
 			variants={['outline', 'primary', 'rounded']}
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet radialGradientPreview()}
@@ -558,48 +645,42 @@
 		class="size-24"
 		role="img"
 		aria-label="RadialGradient example"
-		><Components.Defs
-			><Components.RadialGradient id="gallery-radialgradient-radial"
-				><Components.Stop offset="0%" stop-color="currentColor" /><Components.Stop
+	>
+		<Components.Defs>
+			<Components.RadialGradient id="gallery-radialgradient-radial">
+				<Components.Stop offset="0%" stop-color="currentColor" /><Components.Stop
 					offset="100%"
 					stop-color="currentColor"
 					stop-opacity={0.1}
-				/></Components.RadialGradient
-			></Components.Defs
-		><Components.Circle
+				/>
+			</Components.RadialGradient>
+		</Components.Defs><Components.Circle
 			cx={50}
 			cy={50}
 			r={45}
 			fill="url(#gallery-radialgradient-radial)"
 			class="text-primary-500"
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet rectPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Rect example"
-		><Components.Rect
-			x={10}
-			y={20}
-			width={80}
-			height={60}
-			rx={8}
-			variants={['fill', 'primary']}
-		/></Components.Svg
-	>
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Rect example">
+		<Components.Rect x={10} y={20} width={80} height={60} rx={8} variants={['fill', 'primary']} />
+	</Components.Svg>
 {/snippet}
 
 {#snippet stopPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Stop example"
-		><Components.Defs
-			><Components.LinearGradient id="gallery-stop-stop"
-				><Components.Stop offset="0%" variants={['primary']} /><Components.Stop
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Stop example">
+		<Components.Defs>
+			<Components.LinearGradient id="gallery-stop-stop">
+				<Components.Stop offset="0%" variants={['primary']} /><Components.Stop
 					offset="100%"
 					variants={['primary', 'transparent']}
-				/></Components.LinearGradient
-			></Components.Defs
-		><Components.Rect width={100} height={100} fill="url(#gallery-stop-stop)" /></Components.Svg
-	>
+				/>
+			</Components.LinearGradient>
+		</Components.Defs><Components.Rect width={100} height={100} fill="url(#gallery-stop-stop)" />
+	</Components.Svg>
 {/snippet}
 
 {#snippet svgDescPreview()}
@@ -609,30 +690,31 @@
 		role="img"
 		aria-label="SvgDesc example"
 		aria-describedby="gallery-svgdesc-description"
-		><Components.SvgDesc id="gallery-svgdesc-description"
-			>A violet rectangle with rounded corners.</Components.SvgDesc
-		><Components.Rect
+	>
+		<Components.SvgDesc id="gallery-svgdesc-description">
+			A violet rectangle with rounded corners.
+		</Components.SvgDesc><Components.Rect
 			x={10}
 			y={20}
 			width={80}
 			height={60}
 			rx={8}
 			variants={['fill', 'primary']}
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet svgImagePreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="SvgImage example"
-		><Components.SvgImage
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="SvgImage example">
+		<Components.SvgImage
 			href="/images/logo-light.svg"
 			x={5}
 			y={35}
 			width={90}
 			height={30}
 			preserveAspectRatio="xMidYMid meet"
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet svgTitlePreview()}
@@ -641,84 +723,88 @@
 		class="size-24"
 		role="img"
 		aria-labelledby="gallery-svgtitle-title"
-		><Components.SvgTitle id="gallery-svgtitle-title">A violet rectangle</Components.SvgTitle
-		><Components.Rect
+	>
+		<Components.SvgTitle id="gallery-svgtitle-title">
+			A violet rectangle
+		</Components.SvgTitle><Components.Rect
 			x={10}
 			y={20}
 			width={80}
 			height={60}
 			rx={8}
 			variants={['fill', 'primary']}
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet symbolPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Symbol example"
-		><Components.Defs
-			><Components.Symbol id="gallery-symbol-symbol" viewBox="0 0 100 100"
-				><Components.Path
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Symbol example">
+		<Components.Defs>
+			<Components.Symbol id="gallery-symbol-symbol" viewBox="0 0 100 100">
+				<Components.Path
 					d="M10 50 L40 80 L90 20"
 					fill="none"
 					stroke="currentColor"
 					stroke-width={8}
-				/></Components.Symbol
-			></Components.Defs
-		><Components.Use
+				/>
+			</Components.Symbol>
+		</Components.Defs><Components.Use
 			href="#gallery-symbol-symbol"
 			width={100}
 			height={100}
 			class="text-primary-500"
-		/></Components.Svg
-	>
+		/>
+	</Components.Svg>
 {/snippet}
 
 {#snippet textPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Text example"
-		><Components.Text x={50} y={55} text-anchor="middle" font-size={18} variants={['primary']}
-			>Hello SVG</Components.Text
-		></Components.Svg
-	>
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Text example">
+		<Components.Text x={50} y={55} text-anchor="middle" font-size={18} variants={['primary']}>
+			Hello SVG
+		</Components.Text>
+	</Components.Svg>
 {/snippet}
 
 {#snippet textPathPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="TextPath example"
-		><Components.Defs
-			><Components.Path id="gallery-textpath-text-path" d="M10 70 Q50 10 90 70" /></Components.Defs
-		><Components.Text font-size={12}
-			><Components.TextPath
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="TextPath example">
+		<Components.Defs>
+			<Components.Path id="gallery-textpath-text-path" d="M10 70 Q50 10 90 70" />
+		</Components.Defs><Components.Text font-size={12}>
+			<Components.TextPath
 				href="#gallery-textpath-text-path"
 				startOffset="50%"
 				text-anchor="middle"
-				variants={['primary']}>Along a curve</Components.TextPath
-			></Components.Text
-		></Components.Svg
-	>
+				variants={['primary']}
+			>
+				Along a curve
+			</Components.TextPath>
+		</Components.Text>
+	</Components.Svg>
 {/snippet}
 
 {#snippet tspanPreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Tspan example"
-		><Components.Text x={10} y={45} font-size={14}
-			><Components.Tspan>First line</Components.Tspan><Components.Tspan
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Tspan example">
+		<Components.Text x={10} y={45} font-size={14}>
+			<Components.Tspan>First line</Components.Tspan><Components.Tspan
 				x={10}
 				dy={20}
-				variants={['primary']}>Second line</Components.Tspan
-			></Components.Text
-		></Components.Svg
-	>
+				variants={['primary']}
+			>
+				Second line
+			</Components.Tspan>
+		</Components.Text>
+	</Components.Svg>
 {/snippet}
 
 {#snippet usePreview()}
-	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Use example"
-		><Components.Defs
-			><Components.Path id="gallery-use-shape" d="M10 10 H40 V40 H10 Z" /></Components.Defs
-		><Components.Use href="#gallery-use-shape" variants={['fill', 'primary']} /><Components.Use
+	<Components.Svg viewBox="0 0 100 100" class="size-24" role="img" aria-label="Use example">
+		<Components.Defs>
+			<Components.Path id="gallery-use-shape" d="M10 10 H40 V40 H10 Z" />
+		</Components.Defs><Components.Use
 			href="#gallery-use-shape"
-			x={45}
-			y={45}
 			variants={['fill', 'primary']}
-		/></Components.Svg
-	>
+		/><Components.Use href="#gallery-use-shape" x={45} y={45} variants={['fill', 'primary']} />
+	</Components.Svg>
 {/snippet}
 
 {#snippet brPreview()}

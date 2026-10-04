@@ -1,4 +1,4 @@
-import * as Components from '$lib/components';
+import { componentCatalog, componentCategories } from '$components/catalog';
 import { categories } from '../../examples/catalog';
 
 export type NavItem = NavLink | NavSection;
@@ -35,16 +35,25 @@ export const nav: NavItem[] = $state([
 		title: 'Getting Started'
 	},
 	{
-		children: Object.keys(Components)
-			.filter((key) => {
-				if (key === 'default') return false;
-				if (key === 'noopTransition') return false;
-				return true;
-			})
-			.map((componentName) => ({
-				href: `/components/${componentName.toLowerCase()}`,
-				title: componentName
-			})),
+		children: [
+			{ href: '/components', title: 'All components' },
+			...componentCategories.map((category) => ({
+				title: category.title,
+				isOpen: false,
+				children: [
+					{
+						href: `/components?category=${category.id}`,
+						title: `Browse ${category.title.toLowerCase()}`
+					},
+					...componentCatalog
+						.filter((component) => component.category === category.id)
+						.map((component) => ({
+							href: `/components/${component.name.toLowerCase()}`,
+							title: component.name
+						}))
+				]
+			}))
+		],
 		isOpen: true,
 		title: 'Components'
 	},

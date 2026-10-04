@@ -149,8 +149,36 @@
 		items: [] as OnThisPageItem[]
 	});
 	let visibleSectionIds: string[] = $state([]);
+	let currentCategory = $state<string | null>(null);
 
 	// $derived
+	$effect(() => {
+		const pathname = page.url.pathname;
+		const category = page.url.searchParams.get('category');
+		currentCategory = category;
+		untrack(() => {
+			function expand(items: (NavLink | NavSection)[]): boolean {
+				let matched = false;
+				for (const item of items) {
+					if ('children' in item) {
+						if (expand(item.children)) {
+							item.isOpen = true;
+							matched = true;
+						}
+					} else {
+						const url = new URL(item.href, page.url);
+						if (
+							url.pathname === pathname &&
+							(url.searchParams.get('category') ?? null) === category
+						)
+							matched = true;
+					}
+				}
+				return matched;
+			}
+			expand(navSections);
+		});
+	});
 	const title = $derived(
 		[
 			...page.url.pathname
@@ -244,9 +272,11 @@
 {/snippet}
 
 {#snippet navLinkSnippet(navLink: NavLink)}
+	{@const target = new URL(navLink.href, page.url)}
 	{@render asideLinkSnippet({
 		class:
-			page.url.pathname === navLink.href
+			page.url.pathname === target.pathname &&
+			currentCategory === target.searchParams.get('category')
 				? 'border-primary-500 text-primary-500'
 				: 'border-gray-300 text-gray-950/50 hover:text-gray-950 focus:text-gray-950 dark:border-gray-700 dark:text-gray-50/50 dark:hover:text-gray-50 dark:focus:text-gray-50',
 		href: navLink.href,
@@ -258,14 +288,22 @@
 {#snippet navSectionSnippet(navSection: NavSection, depth = 0)}
 	<Div class="flex flex-col">
 		<Button
+			aria-expanded={navSection.isOpen}
 			class={twMerge(
-				'px-4 py-2 text-left text-sm whitespace-nowrap',
+				'flex items-center justify-between gap-2 px-4 py-2 text-left text-sm whitespace-nowrap',
 				depth > 0 ? 'border-l border-gray-300 pl-4 dark:border-gray-700' : ''
 			)}
 			onclick={() => (navSection.isOpen = !navSection.isOpen)}
 			variants={['ghost', 'square']}
 		>
 			{navSection.title}
+			<ChevronDown
+				aria-hidden="true"
+				class={twMerge(
+					'size-3 shrink-0 transition-transform',
+					navSection.isOpen ? 'rotate-180' : ''
+				)}
+			/>
 		</Button>
 		<Div
 			class="flex flex-col pl-4"
