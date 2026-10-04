@@ -1,17 +1,21 @@
 <script lang="ts">
 	import { Input } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
 	<!-- @example {"title":"Default usage","description":"The component with default styling."} -->
 	<Input aria-label="Email address" type="email" placeholder="you@example.com" />
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the filled variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Input
-		variants={['filled']}
+		variants={[documentationVariant]}
 		aria-label="Email address"
 		type="email"
 		placeholder="you@example.com"

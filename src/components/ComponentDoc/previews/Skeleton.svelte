@@ -3,8 +3,12 @@
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -19,13 +23,13 @@
 		</Div>
 	</Div>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the rectangular variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Div class="w-full min-w-0">
 		<Div class="flex items-center gap-4">
-			<Skeleton variants={['rectangular']} />
+			<Skeleton variants={[documentationVariant]} />
 			<Div class="grow space-y-3">
-				<Skeleton variants={['rectangular']} />
-				<Skeleton variants={['rectangular']} />
+				<Skeleton variants={[documentationVariant]} />
+				<Skeleton variants={[documentationVariant]} />
 			</Div>
 		</Div>
 	</Div>

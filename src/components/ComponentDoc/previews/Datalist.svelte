@@ -1,19 +1,16 @@
 <script lang="ts">
 	import { Datalist, Input, Label, Option } from '$lib/components';
 	const documentationId = $props.id();
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant(
-		'datalist',
-		'example',
-		'rounded-xl border border-primary-500/40 p-4'
-	);
+
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -25,14 +22,10 @@
 		<Option value="Tokyo" />
 	</Datalist>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Label for={documentationId + '-primitive-city'}>City</Label>
 	<Input id={documentationId + '-primitive-city'} list={documentationId + '-primitive-cities'} />
-	<Datalist
-		variants={['example']}
-		theme={documentationTheme}
-		id={documentationId + '-primitive-cities'}
-	>
+	<Datalist variants={[documentationVariant]} id={documentationId + '-primitive-cities'}>
 		<Option value="London" />
 		<Option value="Tokyo" />
 	</Datalist>

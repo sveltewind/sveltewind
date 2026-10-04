@@ -3,8 +3,12 @@
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -15,10 +19,10 @@
 		.
 	</P>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the muted variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<P>
 		Read
-		<Cite variants={['muted']}>The Svelte Handbook</Cite>
+		<Cite variants={[documentationVariant]}>The Svelte Handbook</Cite>
 		.
 	</P>
 {:else if documentationExample === 'class'}

@@ -1,16 +1,20 @@
 <script lang="ts">
 	import { Canvas } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
 	<!-- @example {"title":"Default usage","description":"The component with default styling."} -->
 	<Canvas width={320} height={160} aria-label="Drawing area">Canvas drawing area.</Canvas>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the bordered variant from the component theme."} -->
-	<Canvas variants={['bordered']} width={320} height={160} aria-label="Drawing area">
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Canvas variants={[documentationVariant]} width={320} height={160} aria-label="Drawing area">
 		Canvas drawing area.
 	</Canvas>
 {:else if documentationExample === 'class'}

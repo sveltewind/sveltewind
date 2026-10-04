@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Div, Breadcrumbs } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -17,10 +21,10 @@
 		/>
 	</Div>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the compact variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Div class="w-full min-w-0">
 		<Breadcrumbs
-			variants={['compact']}
+			variants={[documentationVariant]}
 			items={[
 				{ href: '/', label: 'Home' },
 				{ href: '/components', label: 'Components' },

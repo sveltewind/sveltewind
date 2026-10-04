@@ -1,16 +1,13 @@
 <script lang="ts">
 	import { Video } from '$lib/components';
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant(
-		'video',
-		'example',
-		'rounded-xl border-2 border-primary-500/50 shadow-md'
-	);
+
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -24,10 +21,9 @@
 		aria-label="Example video player"
 	/>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Video
-		variants={['example']}
-		theme={documentationTheme}
+		variants={[documentationVariant]}
 		controls
 		preload="none"
 		poster="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20fill%3D%22%236366f1%22%2F%3E%3Ccircle%20cx%3D%22180%22%20cy%3D%2235%22%20r%3D%2220%22%20fill%3D%22%23c7d2fe%22%2F%3E%3C%2Fsvg%3E"

@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Ellipse, Svg } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -11,9 +15,9 @@
 		<Ellipse cx={50} cy={50} rx={40} ry={25} />
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the outline variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Ellipse example">
-		<Ellipse variants={['outline']} cx={50} cy={50} rx={40} ry={25} />
+		<Ellipse variants={[documentationVariant]} cx={50} cy={50} rx={40} ry={25} />
 	</Svg>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply text-rose-500 opacity-75 locally."} -->

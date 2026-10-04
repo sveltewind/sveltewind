@@ -2,8 +2,12 @@
 	import { Label, Optgroup, Option, Select } from '$lib/components';
 	const documentationId = $props.id();
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -16,10 +20,10 @@
 		</Optgroup>
 	</Select>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the muted variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Label for={documentationId + '-primitive-plan'}>Plan</Label>
 	<Select id={documentationId + '-primitive-plan'}>
-		<Optgroup variants={['muted']} label="Personal">
+		<Optgroup variants={[documentationVariant]} label="Personal">
 			<Option value="starter">Starter</Option>
 			<Option value="pro">Pro</Option>
 		</Optgroup>

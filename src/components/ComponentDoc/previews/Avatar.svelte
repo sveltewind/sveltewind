@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Div, Avatar } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -14,11 +18,11 @@
 		</Div>
 	</Div>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the lg variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Div class="w-full min-w-0">
 		<Div class="flex items-center justify-center gap-3">
-			<Avatar variants={['lg']} name="Alex Morgan" />
-			<Avatar variants={['lg']} name="Sam Rivera" />
+			<Avatar variants={[documentationVariant]} name="Alex Morgan" />
+			<Avatar variants={[documentationVariant]} name="Sam Rivera" />
 		</Div>
 	</Div>
 {:else if documentationExample === 'class'}

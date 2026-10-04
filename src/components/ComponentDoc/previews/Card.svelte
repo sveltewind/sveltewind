@@ -3,16 +3,20 @@
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
 	<!-- @example {"title":"Default usage","description":"The component with default styling."} -->
 	<Card>Card content</Card>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the soft variant from the component theme."} -->
-	<Card variants={['soft']}>Card content</Card>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Card variants={[documentationVariant]}>Card content</Card>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply rounded-xl border border-primary-500/40 p-4 locally."} -->
 	<Card class="rounded-xl border border-primary-500/40 p-4">Card content</Card>

@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Polyline, Svg } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -11,9 +15,13 @@
 		<Polyline points="10,70 30,30 50,60 70,20 90,50" stroke-width={4} />
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the fill variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Polyline example">
-		<Polyline variants={['fill']} points="10,70 30,30 50,60 70,20 90,50" stroke-width={4} />
+		<Polyline
+			variants={[documentationVariant]}
+			points="10,70 30,30 50,60 70,20 90,50"
+			stroke-width={4}
+		/>
 	</Svg>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply text-rose-500 opacity-75 locally."} -->

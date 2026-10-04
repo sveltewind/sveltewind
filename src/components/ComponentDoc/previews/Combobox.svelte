@@ -8,8 +8,12 @@
 	];
 	let selected = $state('');
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -21,9 +25,14 @@
 		</P>
 	</Div>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the compact variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Div class="w-full min-w-0">
-		<Combobox variants={['compact']} {options} label="Favorite tool" bind:value={selected} />
+		<Combobox
+			variants={[documentationVariant]}
+			{options}
+			label="Favorite tool"
+			bind:value={selected}
+		/>
 		<P aria-live="polite" class="mt-3 text-xs">
 			{selected ? `Selected: ${selected}` : 'Type to search, or use the arrow keys.'}
 		</P>

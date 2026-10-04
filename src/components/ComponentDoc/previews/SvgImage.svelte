@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Svg, SvgImage } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -18,10 +22,10 @@
 		/>
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the grayscale variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="SvgImage example">
 		<SvgImage
-			variants={['grayscale']}
+			variants={[documentationVariant]}
 			href="/images/logo-light.svg"
 			x={5}
 			y={35}

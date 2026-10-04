@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { Circle, Defs, RadialGradient, Stop, Svg } from '$lib/components';
 	const documentationId = $props.id();
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant('radialGradient', 'example', 'text-rose-500 opacity-75');
+
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -28,14 +29,10 @@
 		/>
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme. This element configures its parent; it does not render a standalone box."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="RadialGradient example">
 		<Defs>
-			<RadialGradient
-				variants={['example']}
-				theme={documentationTheme}
-				id={documentationId + '-demo-radial'}
-			>
+			<RadialGradient variants={[documentationVariant]} id={documentationId + '-demo-radial'}>
 				<Stop offset="0%" stop-color="currentColor" />
 				<Stop offset="100%" stop-color="currentColor" stop-opacity={0.1} />
 			</RadialGradient>

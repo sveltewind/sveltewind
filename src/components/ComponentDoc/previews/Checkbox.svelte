@@ -1,16 +1,20 @@
 <script lang="ts">
 	import { Checkbox } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
 	<!-- @example {"title":"Default usage","description":"The component with default styling."} -->
 	<Checkbox>Receive email updates</Checkbox>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the compact variant from the component theme."} -->
-	<Checkbox variants={['compact']}>Receive email updates</Checkbox>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Checkbox variants={[documentationVariant]}>Receive email updates</Checkbox>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply rounded-xl border border-primary-500/40 p-4 locally."} -->
 	<Checkbox class="rounded-xl border border-primary-500/40 p-4">Receive email updates</Checkbox>

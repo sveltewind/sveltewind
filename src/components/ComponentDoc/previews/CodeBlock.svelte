@@ -1,18 +1,15 @@
 <script lang="ts">
 	import { CodeBlock } from '$lib/components';
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant(
-		'codeBlock',
-		'example',
-		'rounded-xl border border-primary-500/40 p-4'
-	);
+
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -23,10 +20,9 @@
 		options={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}
 	/>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<CodeBlock
-		variants={['example']}
-		theme={documentationTheme}
+		variants={[documentationVariant]}
 		title="hello.ts"
 		code={"const hello = 'world';"}
 		options={{ lang: 'ts', themes: { light: 'github-light', dark: 'github-dark' } }}

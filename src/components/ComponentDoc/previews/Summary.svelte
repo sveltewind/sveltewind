@@ -1,18 +1,15 @@
 <script lang="ts">
 	import { Details, Summary, P } from '$lib/components';
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant(
-		'summary',
-		'example',
-		'font-semibold tracking-wide text-primary-600 dark:text-primary-400'
-	);
+
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -23,9 +20,9 @@
 		<P>Your preferences go here.</P>
 	</Details>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Details>
-		<Summary variants={['example']} theme={documentationTheme}>Account settings</Summary>
+		<Summary variants={[documentationVariant]}>Account settings</Summary>
 
 		<P>Your preferences go here.</P>
 	</Details>

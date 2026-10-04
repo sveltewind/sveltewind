@@ -3,16 +3,20 @@
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
 	<!-- @example {"title":"Default usage","description":"The component with default styling."} -->
 	<Small>Your preferences are saved locally.</Small>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the muted variant from the component theme."} -->
-	<Small variants={['muted']}>Your preferences are saved locally.</Small>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Small variants={[documentationVariant]}>Your preferences are saved locally.</Small>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply font-semibold tracking-wide text-primary-600 dark:text-primary-400 locally."} -->
 	<Small class="font-semibold tracking-wide text-primary-600 dark:text-primary-400">

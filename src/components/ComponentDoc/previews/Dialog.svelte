@@ -2,8 +2,12 @@
 	import { Button, Dialog, P } from '$lib/components';
 	let open = $state(false);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -15,9 +19,9 @@
 		<Button type="button" onclick={() => (open = false)}>Close</Button>
 	</Dialog>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the compact variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Button type="button" onclick={() => (open = true)}>Open dialog</Button>
-	<Dialog variants={['compact']} bind:isVisible={open} aria-label="Example dialog">
+	<Dialog variants={[documentationVariant]} bind:isVisible={open} aria-label="Example dialog">
 		<P>Hello from Dialog.</P>
 
 		<Button type="button" onclick={() => (open = false)}>Close</Button>

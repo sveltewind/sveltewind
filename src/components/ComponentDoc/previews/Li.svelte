@@ -1,18 +1,15 @@
 <script lang="ts">
 	import { Ul, Li } from '$lib/components';
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant(
-		'li',
-		'example',
-		'font-semibold tracking-wide text-primary-600 dark:text-primary-400'
-	);
+
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -23,11 +20,11 @@
 		<Li>Build your interface</Li>
 	</Ul>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Ul>
-		<Li variants={['example']} theme={documentationTheme}>Install Sveltewind</Li>
+		<Li variants={[documentationVariant]}>Install Sveltewind</Li>
 
-		<Li variants={['example']} theme={documentationTheme}>Build your interface</Li>
+		<Li variants={[documentationVariant]}>Build your interface</Li>
 	</Ul>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply font-semibold tracking-wide text-primary-600 dark:text-primary-400 locally."} -->

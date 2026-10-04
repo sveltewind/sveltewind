@@ -2,8 +2,12 @@
 	import { Div, SearchField, P } from '$lib/components';
 	let message = $state('');
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -17,10 +21,10 @@
 		<P aria-live="polite" class="mt-3 text-xs">{message}</P>
 	</Div>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the compact variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Div class="w-full min-w-0">
 		<SearchField
-			variants={['compact']}
+			variants={[documentationVariant]}
 			label="Search components"
 			placeholder="Find a component..."
 			onSearch={(value) => (message = value ? `Searching for ${value}` : 'Enter a search term.')}

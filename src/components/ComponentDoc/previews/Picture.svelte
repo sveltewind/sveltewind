@@ -3,8 +3,12 @@
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -14,8 +18,8 @@
 		<Img src="/images/logo-light.svg" alt="Sveltewind" class="w-48" />
 	</Picture>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the full variant from the component theme."} -->
-	<Picture variants={['full']}>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Picture variants={[documentationVariant]}>
 		<Source media="(prefers-color-scheme: dark)" srcset="/images/logo-dark.svg" />
 		<Img src="/images/logo-light.svg" alt="Sveltewind" class="w-48" />
 	</Picture>

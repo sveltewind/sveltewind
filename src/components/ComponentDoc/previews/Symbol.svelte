@@ -2,8 +2,12 @@
 	import { Defs, Path, Svg, Symbol, Use } from '$lib/components';
 	const documentationId = $props.id();
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -22,10 +26,14 @@
 		/>
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the fill variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Symbol example">
 		<Defs>
-			<Symbol variants={['fill']} id={documentationId + '-demo-symbol'} viewBox="0 0 100 100">
+			<Symbol
+				variants={[documentationVariant]}
+				id={documentationId + '-demo-symbol'}
+				viewBox="0 0 100 100"
+			>
 				<Path d="M10 50 L40 80 L90 20" fill="none" stroke="currentColor" stroke-width={8} />
 			</Symbol>
 		</Defs>

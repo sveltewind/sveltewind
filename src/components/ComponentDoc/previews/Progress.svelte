@@ -2,8 +2,12 @@
 	import { Label, Progress } from '$lib/components';
 	const documentationId = $props.id();
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -11,9 +15,14 @@
 	<Label for={documentationId + '-primitive-upload'}>Upload progress</Label>
 	<Progress id={documentationId + '-primitive-upload'} max={100} value={60}>60%</Progress>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the compact variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Label for={documentationId + '-primitive-upload'}>Upload progress</Label>
-	<Progress variants={['compact']} id={documentationId + '-primitive-upload'} max={100} value={60}>
+	<Progress
+		variants={[documentationVariant]}
+		id={documentationId + '-primitive-upload'}
+		max={100}
+		value={60}
+	>
 		60%
 	</Progress>
 {:else if documentationExample === 'class'}

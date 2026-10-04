@@ -1,17 +1,21 @@
 <script lang="ts">
 	import { Iframe } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
 	<!-- @example {"title":"Default usage","description":"The component with default styling."} -->
 	<Iframe title="Embedded example" srcdoc="<p>Hello from an embedded document.</p>" />
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the bordered variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Iframe
-		variants={['bordered']}
+		variants={[documentationVariant]}
 		title="Embedded example"
 		srcdoc="<p>Hello from an embedded document.</p>"
 	/>

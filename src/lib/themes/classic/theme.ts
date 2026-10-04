@@ -1,5 +1,6 @@
 import type { ThemeObject } from '$lib/theme/types';
 import { twMerge } from 'tailwind-merge';
+import { completeVariants } from '../completeVariants.js';
 
 const defaults = {
 	backdropBlur: 'backdrop-blur',
@@ -1114,6 +1115,8 @@ Object.assign(theme, {
 	datatableUnsortedIcon: { base: 'size-4 opacity-50', variants: { compact: 'text-sm' } },
 	datatableWarningIcon: { base: 'size-24', variants: { compact: 'text-sm' } }
 });
+
+completeVariants(theme);
 
 export default theme;
 export { theme };

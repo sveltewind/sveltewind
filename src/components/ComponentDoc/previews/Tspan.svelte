@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Svg, Text, Tspan } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -14,11 +18,11 @@
 		</Text>
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the bold variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Tspan example">
 		<Text x={10} y={45} font-size={14}>
-			<Tspan variants={['bold']}>First line</Tspan>
-			<Tspan variants={['bold']} x={10} dy={20}>Second line</Tspan>
+			<Tspan variants={[documentationVariant]}>First line</Tspan>
+			<Tspan variants={[documentationVariant]} x={10} dy={20}>Second line</Tspan>
 		</Text>
 	</Svg>
 {:else if documentationExample === 'class'}

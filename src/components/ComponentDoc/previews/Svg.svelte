@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { Circle, Svg } from '$lib/components';
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant('svg', 'example', 'text-rose-500 opacity-75');
+
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -15,10 +16,9 @@
 		<Circle cx="32" cy="32" r="24" fill="currentColor" />
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg
-		variants={['example']}
-		theme={documentationTheme}
+		variants={[documentationVariant]}
 		aria-label="Circle illustration"
 		role="img"
 		height="64"

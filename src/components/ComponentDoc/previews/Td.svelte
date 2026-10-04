@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { Table, Thead, Tr, Th, Tbody, Td } from '$lib/components';
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant('td', 'example', 'bg-primary-500/10');
+
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -29,7 +30,7 @@
 		</Tbody>
 	</Table>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Table>
 		<Thead>
 			<Tr>
@@ -41,9 +42,9 @@
 
 		<Tbody>
 			<Tr>
-				<Td variants={['example']} theme={documentationTheme}>Ada</Td>
+				<Td variants={[documentationVariant]}>Ada</Td>
 
-				<Td variants={['example']} theme={documentationTheme}>Developer</Td>
+				<Td variants={[documentationVariant]}>Developer</Td>
 			</Tr>
 		</Tbody>
 	</Table>

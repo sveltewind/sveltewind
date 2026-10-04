@@ -1,26 +1,23 @@
 <script lang="ts">
 	import { Header } from '$lib/components';
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant(
-		'header',
-		'example',
-		'rounded-xl border border-primary-500/40 p-4'
-	);
+
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
 	<!-- @example {"title":"Default usage","description":"The component with default styling."} -->
 	<Header>Header content</Header>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
-	<Header variants={['example']} theme={documentationTheme}>Header content</Header>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Header variants={[documentationVariant]}>Header content</Header>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply rounded-xl border border-primary-500/40 p-4 locally."} -->
 	<Header class="rounded-xl border border-primary-500/40 p-4">Header content</Header>

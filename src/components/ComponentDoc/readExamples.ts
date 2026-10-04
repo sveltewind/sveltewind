@@ -7,7 +7,10 @@ function position(node: unknown): { start: number; end: number } {
 }
 
 // Extract the exact branch rendered by each demo; Vite formats these at build time.
-export function readComponentExamples(source: string): ComponentExamples {
+export function readComponentExamples(
+	source: string,
+	variantNames: string[] = []
+): ComponentExamples {
 	const ast = parse(source, { modern: true });
 	if (!ast.instance) throw new Error('Component demo needs a script');
 	let script = source.slice(ast.instance.start, ast.instance.end);
@@ -23,7 +26,7 @@ export function readComponentExamples(source: string): ComponentExamples {
 						(property) =>
 							property.type === 'Property' &&
 							property.key.type === 'Identifier' &&
-							property.key.name === 'documentationExample'
+							['documentationExample', 'documentationVariant'].includes(property.key.name)
 					)
 			)
 		) {
@@ -36,7 +39,8 @@ export function readComponentExamples(source: string): ComponentExamples {
 		.replaceAll("from '$lib/components'", "from 'sveltewind/components'")
 		.replaceAll("from '$lib/theme'", "from 'sveltewind/theme'")
 		.replaceAll("from '$lib/themes'", "from 'sveltewind/themes'")
-		.replaceAll("from '$lib/attachments'", "from 'sveltewind/attachments'");
+		.replaceAll("from '$lib/attachments'", "from 'sveltewind/attachments'")
+		.replaceAll("from '$lib/icons'", "from 'sveltewind/icons'");
 	const result = {} as ComponentExamples;
 	let branch = ast.fragment.nodes.find((node) => node.type === 'IfBlock');
 	while (branch?.type === 'IfBlock') {
@@ -118,5 +122,18 @@ export function readComponentExamples(source: string): ComponentExamples {
 	}
 	for (const kind of ['default', 'variant', 'class', 'props', 'content'] as const)
 		if (!result[kind]) throw new Error(`Missing ${kind} component example`);
+	result.variants = Object.fromEntries(
+		variantNames.map((name) => [
+			name,
+			{
+				title: name,
+				description: `Apply the ${name} variant.`,
+				code: result.variant.code.replaceAll(
+					'variants={[documentationVariant]}',
+					`variants={${JSON.stringify([name])}}`
+				)
+			}
+		])
+	);
 	return result;
 }

@@ -1,18 +1,15 @@
 <script lang="ts">
 	import { Button, Tooltip } from '$lib/components';
 	import { tooltip } from '$lib/attachments';
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant(
-		'tooltip',
-		'example',
-		'rounded-xl border border-primary-500/40 p-4'
-	);
+
 	let active = $state(false);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -31,7 +28,7 @@
 	<!-- Mount one Tooltip renderer in your application layout. -->
 	<Tooltip isVisible={active} />
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Button
 		type="button"
 		onmouseenter={() => (active = true)}
@@ -44,7 +41,7 @@
 	</Button>
 
 	<!-- Mount one Tooltip renderer in your application layout. -->
-	<Tooltip isVisible={active} variants={['example']} theme={documentationTheme} />
+	<Tooltip variants={[documentationVariant]} isVisible={active} />
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply rounded-xl border border-primary-500/40 p-4 locally."} -->
 	<Button

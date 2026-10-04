@@ -2,8 +2,12 @@
 	import { Defs, LinearGradient, Rect, Stop, Svg } from '$lib/components';
 	const documentationId = $props.id();
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -18,12 +22,12 @@
 		<Rect width={100} height={100} fill={'url(#' + documentationId + '-demo-stop)'} />
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the current variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Stop example">
 		<Defs>
 			<LinearGradient id={documentationId + '-demo-stop'}>
-				<Stop variants={['current']} offset="0%" />
-				<Stop variants={['current']} offset="100%" />
+				<Stop variants={[documentationVariant]} offset="0%" />
+				<Stop variants={[documentationVariant]} offset="100%" />
 			</LinearGradient>
 		</Defs>
 		<Rect width={100} height={100} fill={'url(#' + documentationId + '-demo-stop)'} />

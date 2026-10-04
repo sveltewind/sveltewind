@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Table, Thead, Tr, Th, Tbody, Td } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -25,8 +29,8 @@
 		</Tbody>
 	</Table>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the compact variant from the component theme."} -->
-	<Table variants={['compact']}>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Table variants={[documentationVariant]}>
 		<Thead>
 			<Tr>
 				<Th>Name</Th>

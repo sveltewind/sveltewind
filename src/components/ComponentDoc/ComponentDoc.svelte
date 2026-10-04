@@ -22,10 +22,10 @@
 		usageNotes?: Snippet;
 		additionalExamples?: Snippet;
 		notes?: Snippet;
-		demo: Component<{ documentationExample?: ExampleKind }>;
+		demo: Component<{ documentationExample?: ExampleKind; documentationVariant?: string }>;
 		examples: ComponentExamples;
 	} = $props();
-	const variations = ['variant', 'class', 'props', 'content'] as const;
+	const variations = ['class', 'props', 'content'] as const;
 </script>
 
 <DocsSection>
@@ -69,6 +69,21 @@
 
 <DocsSection class="last-of-type:flex md:last-of-type:flex">
 	<H2>Examples</H2>
+	<H3>Theme variants</H3>
+	<P>Every variant available for {name} in the built-in themes is shown below.</P>
+	{#each Object.entries(examples.variants) as [variant, example] (variant)}
+		<P><Code>{variant}</Code> — {example.description}</P>
+		<div
+			data-example-preview
+			data-component-example="variant"
+			data-variant={variant}
+			class="w-full min-w-0"
+		>
+			<CodePreview code={example.code} title="+page.svelte">
+				<Demo documentationExample="variant" documentationVariant={variant} />
+			</CodePreview>
+		</div>
+	{/each}
 	{#each variations as kind}
 		<H3>{examples[kind].title}</H3>
 		<P>{examples[kind].description}</P>

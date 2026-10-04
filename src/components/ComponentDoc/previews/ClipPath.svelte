@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { Circle, ClipPath, Defs, Rect, Svg } from '$lib/components';
 	const documentationId = $props.id();
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant('clipPath', 'example', 'text-rose-500 opacity-75');
+
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -26,14 +27,10 @@
 		/>
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme. This element configures its parent; it does not render a standalone box."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="ClipPath example">
 		<Defs>
-			<ClipPath
-				variants={['example']}
-				theme={documentationTheme}
-				id={documentationId + '-demo-clip'}
-			>
+			<ClipPath variants={[documentationVariant]} id={documentationId + '-demo-clip'}>
 				<Circle cx={50} cy={50} r={35} />
 			</ClipPath>
 		</Defs>

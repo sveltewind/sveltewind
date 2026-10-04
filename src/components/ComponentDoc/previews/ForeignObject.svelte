@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Div, ForeignObject, Svg } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -13,9 +17,9 @@
 		</ForeignObject>
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the clip variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="ForeignObject example">
-		<ForeignObject variants={['clip']} x={5} y={5} width={90} height={90}>
+		<ForeignObject variants={[documentationVariant]} x={5} y={5} width={90} height={90}>
 			<Div class="p-2 text-xs">HTML content inside SVG.</Div>
 		</ForeignObject>
 	</Svg>

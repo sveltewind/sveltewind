@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Ol, Li } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -13,8 +17,8 @@
 		<Li>Import a component</Li>
 	</Ol>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the plain variant from the component theme."} -->
-	<Ol variants={['plain']}>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Ol variants={[documentationVariant]}>
 		<Li>Install the package</Li>
 
 		<Li>Import a component</Li>

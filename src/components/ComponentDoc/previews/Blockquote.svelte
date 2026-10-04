@@ -3,8 +3,12 @@
 	import { Button as VisibilityButton } from '$lib/components';
 	let exampleVisible = $state(true);
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -13,8 +17,8 @@
 		<P>Build something useful.</P>
 	</Blockquote>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the accent variant from the component theme."} -->
-	<Blockquote variants={['accent']}>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Blockquote variants={[documentationVariant]}>
 		<P>Build something useful.</P>
 	</Blockquote>
 {:else if documentationExample === 'class'}

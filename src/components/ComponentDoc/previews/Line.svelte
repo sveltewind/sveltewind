@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Line, Svg } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -11,9 +15,9 @@
 		<Line x1={10} y1={20} x2={90} y2={80} stroke-width={4} />
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the fill variant from the component theme."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Line example">
-		<Line variants={['fill']} x1={10} y1={20} x2={90} y2={80} stroke-width={4} />
+		<Line variants={[documentationVariant]} x1={10} y1={20} x2={90} y2={80} stroke-width={4} />
 	</Svg>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply text-rose-500 opacity-75 locally."} -->

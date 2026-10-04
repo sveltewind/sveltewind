@@ -1,16 +1,20 @@
 <script lang="ts">
 	import { Badge } from '$lib/components';
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
 	<!-- @example {"title":"Default usage","description":"The component with default styling."} -->
 	<Badge>New</Badge>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Use the pill variant from the component theme."} -->
-	<Badge variants={['pill']}>New</Badge>
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
+	<Badge variants={[documentationVariant]}>New</Badge>
 {:else if documentationExample === 'class'}
 	<!-- @example {"title":"Class overrides","description":"Apply rounded-full font-semibold shadow-sm locally."} -->
 	<Badge class="rounded-full font-semibold shadow-sm">New</Badge>

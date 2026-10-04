@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { Circle, Defs, Pattern, Rect, Svg } from '$lib/components';
 	const documentationId = $props.id();
-	import { Theme as DocumentationTheme } from '$lib/theme';
-	import { classic as documentationPreset } from '$lib/themes';
-	const documentationTheme = new DocumentationTheme(structuredClone(documentationPreset));
-	documentationTheme.set.variant('pattern', 'example', 'text-rose-500 opacity-75');
+
 	let {
-		documentationExample = 'default'
-	}: { documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content' } = $props();
+		documentationExample = 'default',
+		documentationVariant = ''
+	}: {
+		documentationVariant?: string;
+		documentationExample?: 'default' | 'variant' | 'class' | 'props' | 'content';
+	} = $props();
 </script>
 
 {#if documentationExample === 'default'}
@@ -26,12 +27,11 @@
 		<Rect width={100} height={100} fill={'url(#' + documentationId + '-demo-pattern)'} />
 	</Svg>
 {:else if documentationExample === 'variant'}
-	<!-- @example {"title":"Theme variants","description":"Define a reusable example variant on a local theme. This element configures its parent; it does not render a standalone box."} -->
+	<!-- @example {"title":"Theme variants","description":"Apply a built-in theme variant."} -->
 	<Svg viewBox="0 0 100 100" class="size-40" role="img" aria-label="Pattern example">
 		<Defs>
 			<Pattern
-				variants={['example']}
-				theme={documentationTheme}
+				variants={[documentationVariant]}
 				id={documentationId + '-demo-pattern'}
 				width={20}
 				height={20}
