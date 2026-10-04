@@ -1,6 +1,7 @@
 import type { ThemeObject } from '$lib/theme/types';
 import { twMerge } from 'tailwind-merge';
 import { completeVariants } from '../completeVariants.js';
+import { completeSecondaryVariants } from '../secondaryVariants.js';
 
 const defaults = {
 	backdropBlur: 'backdrop-blur',
@@ -278,8 +279,6 @@ Object.assign(theme.button.variants!, sizes, {
 	pill: 'rounded-full',
 	primary:
 		'bg-primary-500 text-white hover:bg-primary-600 focus:bg-primary-600 dark:bg-primary-500 dark:text-white dark:hover:bg-primary-600 dark:hover:text-white dark:focus:bg-primary-600 dark:focus:text-white',
-	secondary:
-		'bg-gray-200 text-gray-950 hover:bg-gray-300 hover:text-gray-950 focus:bg-gray-300 focus:text-gray-950 dark:bg-gray-800 dark:text-gray-50 dark:hover:bg-gray-700 dark:hover:text-gray-50 dark:focus:bg-gray-700 dark:focus:text-gray-50',
 	soft: 'bg-primary-500/10 text-primary-600 hover:bg-primary-500/20 hover:text-primary-600 focus:bg-primary-500/20 focus:text-primary-600 dark:bg-primary-500/10 dark:hover:bg-primary-500/20 dark:focus:bg-primary-500/20 dark:text-primary-300 dark:hover:text-primary-300 dark:focus:text-primary-300',
 	success:
 		'bg-green-600 text-white hover:bg-green-700 focus:bg-green-700 focus:outline-green-500/30 dark:bg-green-600 dark:text-white dark:hover:bg-green-700 dark:hover:text-white dark:focus:bg-green-700 dark:focus:text-white'
@@ -1175,6 +1174,12 @@ Object.assign(theme, {
 });
 
 completeVariants(theme);
+theme.checkbox.variants.secondary =
+	'[&_[data-checkbox-control][data-checked=true]]:bg-secondary-500 [&_[data-checkbox-control][data-checked=true]]:text-(--secondary-foreground-500) [&_[data-checkbox-control][data-checked=true]]:hover:bg-secondary-600 [&_[data-checkbox-control][data-checked=true]]:hover:text-(--secondary-foreground-600) [&_[data-checkbox-control][data-checked=true]]:focus:bg-secondary-600 [&_[data-checkbox-control][data-checked=true]]:focus:text-(--secondary-foreground-600) dark:[&_[data-checkbox-control][data-checked=true]]:bg-secondary-500 dark:[&_[data-checkbox-control][data-checked=true]]:hover:bg-secondary-600 dark:[&_[data-checkbox-control][data-checked=true]]:focus:bg-secondary-600';
+theme.range.variants!.secondary = '[&_[data-range-fill]]:bg-secondary-500';
+theme.switch.variants.secondary =
+	'[&_[role=switch]]:checked:bg-secondary-500 dark:[&_[role=switch]]:checked:bg-secondary-500';
+completeSecondaryVariants(theme);
 
 export default theme;
 export { theme };

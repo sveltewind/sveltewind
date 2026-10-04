@@ -1,6 +1,9 @@
-/* Optional Tailwind 4 accent palettes, independent of the component style presets. */
+/* Optional Tailwind 4 primary and secondary palettes, independent of the component style presets. */
 /* Include the library's component and preset classes in consuming builds. */
 @source '../';
+
+/* Secondary variants are derived from primary classes at runtime. */
+@source inline("[&::-moz-meter-bar]:bg-secondary-500 [&::-moz-meter-bar]:text-(--secondary-foreground-500) [&::-moz-progress-bar]:bg-secondary-500 [&::-moz-progress-bar]:text-(--secondary-foreground-500) [&::-webkit-meter-even-less-good-value]:bg-secondary-500 [&::-webkit-meter-even-less-good-value]:text-(--secondary-foreground-500) [&::-webkit-meter-optimum-value]:bg-secondary-500 [&::-webkit-meter-optimum-value]:text-(--secondary-foreground-500) [&::-webkit-meter-suboptimum-value]:bg-secondary-500 [&::-webkit-meter-suboptimum-value]:text-(--secondary-foreground-500) [&::-webkit-progress-value]:bg-secondary-500 [&::-webkit-progress-value]:text-(--secondary-foreground-500) [&_tbody_tr]:hover:bg-secondary-500/5 [&_tbody_tr]:hover:text-(--secondary-foreground-500) [stop-color:var(--color-secondary-500)] bg-secondary-100 bg-secondary-500 bg-secondary-500/10 bg-secondary-500/15 bg-secondary-500/5 border-secondary-500 checked:bg-secondary-500 checked:text-(--secondary-foreground-500) dark:bg-secondary-500 dark:bg-secondary-500/10 dark:bg-secondary-500/5 dark:bg-secondary-950 dark:border-secondary-500 dark:checked:bg-secondary-500 dark:checked:text-(--secondary-foreground-500) dark:focus:bg-secondary-500/10 dark:focus:bg-secondary-500/20 dark:focus:bg-secondary-600 dark:focus:text-(--secondary-foreground-500) dark:focus:text-(--secondary-foreground-600) dark:focus:text-secondary-200 dark:focus:text-secondary-300 dark:hover:bg-secondary-500/10 dark:hover:bg-secondary-500/20 dark:hover:bg-secondary-600 dark:hover:text-(--secondary-foreground-500) dark:hover:text-(--secondary-foreground-600) dark:hover:text-secondary-200 dark:hover:text-secondary-300 dark:text-(--secondary-foreground-500) dark:text-(--secondary-foreground-950) dark:text-gray-50 dark:text-secondary-100 dark:text-secondary-200 dark:text-secondary-300 dark:text-secondary-400 decoration-secondary-500 focus-visible:inset-ring-secondary-500 focus-visible:outline-secondary-500 focus-within:outline-secondary-500 focus:bg-secondary-500/10 focus:bg-secondary-500/20 focus:bg-secondary-600 focus:outline-secondary-500/30 focus:text-(--secondary-foreground-500) focus:text-(--secondary-foreground-600) focus:text-secondary-500 focus:text-secondary-600 focus:text-secondary-700 hover:bg-secondary-500/10 hover:bg-secondary-500/20 hover:bg-secondary-600 hover:decoration-secondary-500 hover:text-(--secondary-foreground-500) hover:text-(--secondary-foreground-600) hover:text-secondary-500 hover:text-secondary-600 hover:text-secondary-700 inset-ring-secondary-500 inset-ring-secondary-500/20 marker:text-secondary-500 ring-secondary-500 shadow-secondary-500/20 text-(--secondary-foreground-100) text-(--secondary-foreground-500) text-secondary-200 text-secondary-500 text-secondary-600 text-secondary-800 text-secondary-950");
 
 @theme {
 	--color-primary-50: oklch(96.9% 0.016 293.756);
@@ -14,6 +17,33 @@
 	--color-primary-800: oklch(43.2% 0.232 292.759);
 	--color-primary-900: oklch(38% 0.189 293.745);
 	--color-primary-950: oklch(28.3% 0.141 291.089);
+
+	--color-secondary-50: oklch(96.9% 0.016 353.756);
+	--color-secondary-100: oklch(94.3% 0.029 354.588);
+	--color-secondary-200: oklch(89.4% 0.057 353.283);
+	--color-secondary-300: oklch(81.1% 0.111 353.571);
+	--color-secondary-400: oklch(70.2% 0.183 353.541);
+	--color-secondary-500: oklch(60.6% 0.25 352.717);
+	--color-secondary-600: oklch(54.1% 0.223458 353.009);
+	--color-secondary-700: oklch(49.1% 0.203082 352.581);
+	--color-secondary-800: oklch(43.2% 0.178577 352.759);
+	--color-secondary-900: oklch(38% 0.156599 353.745);
+	--color-secondary-950: oklch(28.3% 0.117629 351.089);
+}
+
+/* Neutral foregrounds chosen by contrast for each secondary shade. */
+:root {
+	--secondary-foreground-50: var(--color-gray-950);
+	--secondary-foreground-100: var(--color-gray-950);
+	--secondary-foreground-200: var(--color-gray-950);
+	--secondary-foreground-300: var(--color-gray-950);
+	--secondary-foreground-400: var(--color-gray-950);
+	--secondary-foreground-500: var(--color-gray-950);
+	--secondary-foreground-600: var(--color-gray-50);
+	--secondary-foreground-700: var(--color-gray-50);
+	--secondary-foreground-800: var(--color-gray-50);
+	--secondary-foreground-900: var(--color-gray-50);
+	--secondary-foreground-950: var(--color-gray-50);
 }
 
 html[data-color='violet'] {
@@ -28,6 +58,30 @@ html[data-color='violet'] {
 	--color-primary-800: oklch(43.2% 0.232 292.759);
 	--color-primary-900: oklch(38% 0.189 293.745);
 	--color-primary-950: oklch(28.3% 0.141 291.089);
+
+	--color-secondary-50: oklch(96.9% 0.016 353.756);
+	--color-secondary-100: oklch(94.3% 0.029 354.588);
+	--color-secondary-200: oklch(89.4% 0.057 353.283);
+	--color-secondary-300: oklch(81.1% 0.111 353.571);
+	--color-secondary-400: oklch(70.2% 0.183 353.541);
+	--color-secondary-500: oklch(60.6% 0.25 352.717);
+	--color-secondary-600: oklch(54.1% 0.223458 353.009);
+	--color-secondary-700: oklch(49.1% 0.203082 352.581);
+	--color-secondary-800: oklch(43.2% 0.178577 352.759);
+	--color-secondary-900: oklch(38% 0.156599 353.745);
+	--color-secondary-950: oklch(28.3% 0.117629 351.089);
+
+	--secondary-foreground-50: var(--color-gray-950);
+	--secondary-foreground-100: var(--color-gray-950);
+	--secondary-foreground-200: var(--color-gray-950);
+	--secondary-foreground-300: var(--color-gray-950);
+	--secondary-foreground-400: var(--color-gray-950);
+	--secondary-foreground-500: var(--color-gray-950);
+	--secondary-foreground-600: var(--color-gray-50);
+	--secondary-foreground-700: var(--color-gray-50);
+	--secondary-foreground-800: var(--color-gray-50);
+	--secondary-foreground-900: var(--color-gray-50);
+	--secondary-foreground-950: var(--color-gray-50);
 }
 
 html[data-color='rose'] {
@@ -42,6 +96,30 @@ html[data-color='rose'] {
 	--color-primary-800: oklch(45.5% 0.188 13.697);
 	--color-primary-900: oklch(41% 0.159 10.272);
 	--color-primary-950: oklch(27.1% 0.105 12.094);
+
+	--color-secondary-50: oklch(96.9% 0.015 72.422);
+	--color-secondary-100: oklch(94.1% 0.03 72.58);
+	--color-secondary-200: oklch(89.2% 0.058 70.001);
+	--color-secondary-300: oklch(81% 0.117 71.638);
+	--color-secondary-400: oklch(71.2% 0.151325 73.428);
+	--color-secondary-500: oklch(64.5% 0.135241 76.439);
+	--color-secondary-600: oklch(58.6% 0.122332 77.585);
+	--color-secondary-700: oklch(51.4% 0.107563 76.935);
+	--color-secondary-800: oklch(45.5% 0.096575 73.697);
+	--color-secondary-900: oklch(41% 0.088669 70.272);
+	--color-secondary-950: oklch(27.1% 0.057999 72.094);
+
+	--secondary-foreground-50: var(--color-gray-950);
+	--secondary-foreground-100: var(--color-gray-950);
+	--secondary-foreground-200: var(--color-gray-950);
+	--secondary-foreground-300: var(--color-gray-950);
+	--secondary-foreground-400: var(--color-gray-950);
+	--secondary-foreground-500: var(--color-gray-950);
+	--secondary-foreground-600: var(--color-gray-950);
+	--secondary-foreground-700: var(--color-gray-50);
+	--secondary-foreground-800: var(--color-gray-50);
+	--secondary-foreground-900: var(--color-gray-50);
+	--secondary-foreground-950: var(--color-gray-50);
 }
 
 html[data-color='sky'] {
@@ -56,6 +134,30 @@ html[data-color='sky'] {
 	--color-primary-800: oklch(44.3% 0.11 240.79);
 	--color-primary-900: oklch(39.1% 0.09 240.876);
 	--color-primary-950: oklch(29.3% 0.066 243.157);
+
+	--color-secondary-50: oklch(97.7% 0.012244 296.62);
+	--color-secondary-100: oklch(95.1% 0.026 296.824);
+	--color-secondary-200: oklch(90.1% 0.051798 290.902);
+	--color-secondary-300: oklch(82.8% 0.092362 290.318);
+	--color-secondary-400: oklch(74.6% 0.143742 292.661);
+	--color-secondary-500: oklch(68.5% 0.169 297.323);
+	--color-secondary-600: oklch(58.8% 0.158 301.966);
+	--color-secondary-700: oklch(50% 0.134 302.749);
+	--color-secondary-800: oklch(44.3% 0.11 300.79);
+	--color-secondary-900: oklch(39.1% 0.09 300.876);
+	--color-secondary-950: oklch(29.3% 0.066 303.157);
+
+	--secondary-foreground-50: var(--color-gray-950);
+	--secondary-foreground-100: var(--color-gray-950);
+	--secondary-foreground-200: var(--color-gray-950);
+	--secondary-foreground-300: var(--color-gray-950);
+	--secondary-foreground-400: var(--color-gray-950);
+	--secondary-foreground-500: var(--color-gray-950);
+	--secondary-foreground-600: var(--color-gray-950);
+	--secondary-foreground-700: var(--color-gray-50);
+	--secondary-foreground-800: var(--color-gray-50);
+	--secondary-foreground-900: var(--color-gray-50);
+	--secondary-foreground-950: var(--color-gray-50);
 }
 
 html[data-color='emerald'] {
@@ -70,6 +172,30 @@ html[data-color='emerald'] {
 	--color-primary-800: oklch(43.2% 0.095 166.913);
 	--color-primary-900: oklch(37.8% 0.077 168.94);
 	--color-primary-950: oklch(26.2% 0.051 172.552);
+
+	--color-secondary-50: oklch(97.9% 0.013114 226.113);
+	--color-secondary-100: oklch(95% 0.033177 223.051);
+	--color-secondary-200: oklch(90.5% 0.062881 224.15);
+	--color-secondary-300: oklch(84.5% 0.103433 224.978);
+	--color-secondary-400: oklch(76.5% 0.142739 223.223);
+	--color-secondary-500: oklch(69.6% 0.129085 222.48);
+	--color-secondary-600: oklch(59.6% 0.111208 223.225);
+	--color-secondary-700: oklch(50.8% 0.096787 225.612);
+	--color-secondary-800: oklch(43.2% 0.083335 226.913);
+	--color-secondary-900: oklch(37.8% 0.074453 228.94);
+	--color-secondary-950: oklch(26.2% 0.051 232.552);
+
+	--secondary-foreground-50: var(--color-gray-950);
+	--secondary-foreground-100: var(--color-gray-950);
+	--secondary-foreground-200: var(--color-gray-950);
+	--secondary-foreground-300: var(--color-gray-950);
+	--secondary-foreground-400: var(--color-gray-950);
+	--secondary-foreground-500: var(--color-gray-950);
+	--secondary-foreground-600: var(--color-gray-950);
+	--secondary-foreground-700: var(--color-gray-50);
+	--secondary-foreground-800: var(--color-gray-50);
+	--secondary-foreground-900: var(--color-gray-50);
+	--secondary-foreground-950: var(--color-gray-50);
 }
 
 html[data-color='amber'] {
@@ -84,6 +210,30 @@ html[data-color='amber'] {
 	--color-primary-800: oklch(47.3% 0.137 46.201);
 	--color-primary-900: oklch(41.4% 0.112 45.904);
 	--color-primary-950: oklch(27.9% 0.077 45.635);
+
+	--color-secondary-50: oklch(98.7% 0.019475 155.277);
+	--color-secondary-100: oklch(96.2% 0.058808 155.617);
+	--color-secondary-200: oklch(92.4% 0.12 155.746);
+	--color-secondary-300: oklch(87.9% 0.169 151.605);
+	--color-secondary-400: oklch(82.8% 0.189 144.429);
+	--color-secondary-500: oklch(76.9% 0.188 130.08);
+	--color-secondary-600: oklch(66.6% 0.155487 118.318);
+	--color-secondary-700: oklch(55.5% 0.12039 108.998);
+	--color-secondary-800: oklch(47.3% 0.100969 106.201);
+	--color-secondary-900: oklch(41.4% 0.088237 105.904);
+	--color-secondary-950: oklch(27.9% 0.059382 105.635);
+
+	--secondary-foreground-50: var(--color-gray-950);
+	--secondary-foreground-100: var(--color-gray-950);
+	--secondary-foreground-200: var(--color-gray-950);
+	--secondary-foreground-300: var(--color-gray-950);
+	--secondary-foreground-400: var(--color-gray-950);
+	--secondary-foreground-500: var(--color-gray-950);
+	--secondary-foreground-600: var(--color-gray-950);
+	--secondary-foreground-700: var(--color-gray-50);
+	--secondary-foreground-800: var(--color-gray-50);
+	--secondary-foreground-900: var(--color-gray-50);
+	--secondary-foreground-950: var(--color-gray-50);
 }
 
 html[data-color='slate'] {
@@ -98,4 +248,28 @@ html[data-color='slate'] {
 	--color-primary-800: oklch(27.9% 0.041 260.031);
 	--color-primary-900: oklch(20.8% 0.042 265.755);
 	--color-primary-950: oklch(12.9% 0.042 264.695);
+
+	--color-secondary-50: oklch(98.4% 0.003 307.858);
+	--color-secondary-100: oklch(96.8% 0.007 307.896);
+	--color-secondary-200: oklch(92.9% 0.013 315.508);
+	--color-secondary-300: oklch(86.9% 0.022 312.894);
+	--color-secondary-400: oklch(70.4% 0.04 316.788);
+	--color-secondary-500: oklch(55.4% 0.046 317.417);
+	--color-secondary-600: oklch(44.6% 0.043 317.281);
+	--color-secondary-700: oklch(37.2% 0.044 317.287);
+	--color-secondary-800: oklch(27.9% 0.041 320.031);
+	--color-secondary-900: oklch(20.8% 0.042 325.755);
+	--color-secondary-950: oklch(12.9% 0.042 324.695);
+
+	--secondary-foreground-50: var(--color-gray-950);
+	--secondary-foreground-100: var(--color-gray-950);
+	--secondary-foreground-200: var(--color-gray-950);
+	--secondary-foreground-300: var(--color-gray-950);
+	--secondary-foreground-400: var(--color-gray-950);
+	--secondary-foreground-500: var(--color-gray-50);
+	--secondary-foreground-600: var(--color-gray-50);
+	--secondary-foreground-700: var(--color-gray-50);
+	--secondary-foreground-800: var(--color-gray-50);
+	--secondary-foreground-900: var(--color-gray-50);
+	--secondary-foreground-950: var(--color-gray-50);
 }

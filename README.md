@@ -145,7 +145,11 @@ document.documentElement.dataset.color = 'emerald';
 document.documentElement.dataset.theme = 'light';
 ```
 
-Palettes update the `--color-primary-50` through `--color-primary-950` CSS variables, so your own `bg-primary-500`, `text-primary-600`, and other primary utilities follow the same selection. Persist preferences in your app if you want them remembered across visits.
+Palettes update the `--color-primary-50` through `--color-primary-950` and `--color-secondary-50` through `--color-secondary-950` CSS variables. Secondary shades use the primary shade's OKLCH lightness with a +60° hue shift; chroma is reduced where needed to fit sRGB. Slate's secondary stays nearly neutral. Both `primary-*` and `secondary-*` Tailwind utilities follow the selected palette. Persist preferences in your app if you want them remembered across visits.
+
+Components with primary colors in their base styles or a `primary` variant also provide `variants={['secondary']}`. Combine it after another variant to override shared primary color states, or use `bg-secondary-500`, `text-secondary-600`, and other secondary utilities directly. Override the secondary CSS variables independently to supply your own palette.
+
+Secondary background variants retain the corresponding primary shade numbers in light and dark modes. Their text uses gray-50 or gray-950, selected for the better contrast against each shade via `--secondary-foreground-*` variables. When overriding secondary colors, update these foreground variables too.
 
 Status colors keep their meaning across palettes: success is green, error and danger are red, warning is amber, and info is blue.
 

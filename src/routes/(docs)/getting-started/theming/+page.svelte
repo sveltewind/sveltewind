@@ -119,9 +119,17 @@
 		semantic colors: success is green, error and danger are red, warning is amber, and info is blue.
 	</P>
 	<P>
-		Import the palette stylesheet to register the primary Tailwind colors. Set data-color on the
-		root element to apply a palette. Changing data-color updates components using primary utilities
-		without replacing the style theme.
+		Import the palette stylesheet to register the primary and secondary Tailwind colors. Set
+		data-color on the root element to apply a palette. Changing data-color updates components using
+		either palette's utilities without replacing the style theme.
+	</P>
+	<P>
+		Secondary shades shift each primary shade's OKLCH hue by 60 degrees while retaining its
+		lightness. Chroma is reduced where needed to fit sRGB; Slate remains nearly neutral. Use
+		secondary utilities such as bg-secondary-500 or a component's secondary variant. Both palettes
+		provide shades 50 through 950, and secondary CSS variables can be overridden independently.
+		Secondary backgrounds use the same shades as their primary counterparts in both modes. Text is
+		gray-50 or gray-950, selected for contrast through the secondary foreground variables.
 	</P>
 	<CodeBlock
 		title="app.css"
@@ -139,6 +147,9 @@
 				<H3 class="text-lg">{preset.name}</H3>
 				<P class="text-sm">{preset.description}</P>
 				<Button theme={preset.theme} type="button">Primary button</Button>
+				<Button theme={preset.theme} variants={['secondary']} type="button">
+					Secondary button
+				</Button>
 				<Input
 					theme={preset.theme}
 					aria-label={`${preset.name} input preview`}

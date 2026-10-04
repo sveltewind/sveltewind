@@ -53,6 +53,8 @@
 	{:else}
 		<Div
 			{theme}
+			data-checkbox-control
+			data-checked={checked}
 			class={twMerge(
 				'flex size-6 items-center justify-center bg-transparent p-0',
 				checked

@@ -83,7 +83,7 @@
 		{#if fill}
 			{@render fill(rangeData)}
 		{:else}
-			<Div {theme} class="h-1 w-full rounded-full bg-primary-500" />
+			<Div {theme} data-range-fill class="h-1 w-full rounded-full bg-primary-500" />
 		{/if}
 	</Div>
 	<Div
