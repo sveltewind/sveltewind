@@ -181,7 +181,7 @@ const theme: ThemeObject = {
 		base: twMerge(
 			defaults.insetRing.neutral,
 			defaults.transition,
-			'appearance-none w-6 aspect-square rounded-full p-0',
+			'appearance-none size-6 shrink-0 aspect-square rounded-full p-0',
 			'checked:bg-primary-500 checked:inset-ring-5 checked:inset-ring-gray-950 dark:checked:inset-ring-gray-50'
 		)
 	},
@@ -349,7 +349,9 @@ theme.img.variants = {
 };
 theme.pre.variants = { wrap: 'whitespace-pre-wrap break-words' };
 theme.code.variants = {
-	subtle: 'bg-gray-100 text-primary-600 dark:bg-gray-800 dark:text-primary-300'
+	subtle: 'bg-gray-100 text-primary-800 dark:bg-gray-800 dark:text-primary-200',
+	accent: 'bg-primary-100 text-primary-950 dark:bg-primary-950 dark:text-primary-100',
+	muted: 'bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-400'
 };
 theme.tabs.variants = { pill: 'rounded-full', full: 'w-full [&>button]:flex-1' };
 theme.checkbox.variants = { compact: 'gap-1 text-sm' };

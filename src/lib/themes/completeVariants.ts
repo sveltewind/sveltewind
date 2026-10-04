@@ -9,7 +9,9 @@ export function completeVariants(theme: ThemeObject): void {
 	for (const [name, component] of Object.entries(theme)) {
 		if (Object.keys(component.variants ?? {}).length >= 3) continue;
 		let additions: Record<string, string>;
-		if (['source', 'track', 'datalist'].includes(name)) {
+		if (name === 'radio') {
+			additions = { compact: 'size-4', comfortable: 'size-6', large: 'size-8' };
+		} else if (['source', 'track', 'datalist'].includes(name)) {
 			additions = { hidden: 'hidden', visible: 'block', unstyled: 'appearance-none' };
 		} else if (name === 'br') {
 			additions = { hidden: 'hidden', block: 'block', responsive: 'hidden sm:block' };

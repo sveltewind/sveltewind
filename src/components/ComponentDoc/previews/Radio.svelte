@@ -29,10 +29,10 @@
 		Starter
 	</Label>
 {:else if documentationExample === 'class'}
-	<!-- @example {"title":"Class overrides","description":"Apply rounded-xl border border-primary-500/40 p-4 locally."} -->
+	<!-- @example {"title":"Class overrides","description":"Increase the control size and customize its border while retaining a square aspect ratio."} -->
 	<Label class="flex items-center gap-2">
 		<Radio
-			class="rounded-xl border border-primary-500/40 p-4"
+			class="size-8 border-2 border-primary-500/40"
 			name={documentationId + '-default-plan'}
 			value="starter"
 			aria-label="Starter plan"
