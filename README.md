@@ -200,3 +200,7 @@ The repository includes the library and its SvelteKit documentation site.
 Run `npm run check` for Svelte and TypeScript diagnostics, or `npm run build` to build the site, package the library, and validate package exports.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history. Report bugs or propose improvements through [GitHub issues](https://github.com/sveltewind/sveltewind/issues).
+
+## License
+
+Sveltewind is open source under the [MIT License](LICENSE).

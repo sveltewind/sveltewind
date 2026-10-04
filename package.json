@@ -1,6 +1,7 @@
 {
 	"name": "sveltewind",
 	"version": "4.14.0",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
