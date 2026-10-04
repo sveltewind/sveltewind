@@ -16,7 +16,7 @@
 		"test": "npm run test:unit -- --run",
 		"prepublishOnly": "npm run package",
 		"npm-publish": "git push --follow-tags origin main && npm publish",
-		"release": "commit-and-tag-version && npm run npm-publish",
+		"release": "commit-and-tag-version && npm login && npm run npm-publish",
 		"build:site": "vite build"
 	},
 	"files": [

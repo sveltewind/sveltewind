@@ -1118,6 +1118,52 @@ Object.assign(theme, {
 	datatableWarningIcon: { base: 'size-24', variants: { compact: 'text-sm' } }
 });
 
+Object.assign(theme, {
+	calendar: {
+		base: 'w-80 max-w-full rounded-lg bg-white p-4 text-gray-900 dark:bg-gray-950 dark:text-gray-100',
+		variants: {
+			compact: 'w-64 p-2 text-sm [&_[data-calendar-date]]:h-8',
+			bordered: 'border border-gray-200 dark:border-gray-700',
+			soft: 'bg-gray-100 dark:bg-gray-900'
+		}
+	},
+	calendarHeader: {
+		base: 'mb-3 flex items-center justify-between gap-2',
+		variants: {}
+	},
+	calendarTitle: {
+		base: 'text-sm font-semibold',
+		variants: {}
+	},
+	calendarNavigation: {
+		base: 'flex size-8 items-center justify-center rounded-md border-0 bg-transparent p-0 text-xl text-gray-700 shadow-none hover:text-gray-700 focus:text-gray-700 focus:bg-gray-100 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-transparent dark:text-gray-200 dark:hover:text-gray-200 dark:focus:text-gray-200 dark:focus:bg-gray-800 dark:hover:bg-gray-800',
+		variants: {}
+	},
+	calendarGrid: {
+		base: 'w-full table-fixed border-collapse text-center',
+		variants: {}
+	},
+	calendarWeekday: {
+		base: 'h-8 p-0 text-center text-xs font-medium text-gray-500 dark:text-gray-400',
+		variants: {}
+	},
+	calendarHead: { base: 'bg-transparent dark:bg-transparent', variants: {} },
+	calendarRow: { base: 'border-0', variants: {} },
+	calendarCell: {
+		base: 'p-0.5',
+		variants: {}
+	},
+	calendarDay: {
+		base: 'flex h-10 w-full items-center justify-center rounded-md border-0 bg-transparent p-0 text-sm font-normal text-gray-900 shadow-none hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:bg-transparent dark:text-gray-100 dark:hover:text-gray-100 dark:focus:text-gray-100 dark:focus:bg-gray-800 dark:hover:bg-gray-800',
+		variants: {
+			today: 'ring-1 ring-primary-500',
+			selected:
+				'bg-primary-500 text-white hover:text-white focus:text-white hover:bg-primary-600 focus:bg-primary-600 dark:bg-primary-500 dark:text-white dark:hover:text-white dark:focus:text-white dark:hover:bg-primary-600 dark:focus:bg-primary-600',
+			disabled: 'cursor-not-allowed opacity-40'
+		}
+	}
+});
+
 completeVariants(theme);
 
 export default theme;

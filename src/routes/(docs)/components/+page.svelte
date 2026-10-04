@@ -85,6 +85,7 @@
 		Br: { preview: brPreview },
 		Breadcrumbs: { preview: breadcrumbsPreview },
 		Button: { children: 'Button' },
+		Calendar: { props: { value: '2026-10-15', variants: ['compact'] } },
 		Carousel: { preview: carouselPreview },
 		Checkbox: { children: 'Remember me' },
 		Circle: { preview: circlePreview },

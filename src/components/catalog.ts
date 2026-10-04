@@ -15,6 +15,7 @@ export const componentCategories: Category[] = [
 		description: 'Inputs, selections, uploads, and form structure.',
 		components: [
 			'Button',
+			'Calendar',
 			'Checkbox',
 			'Combobox',
 			'Datalist',
@@ -198,6 +199,7 @@ const keywords: Partial<Record<ComponentName, string>> = {
 	A: 'anchor hyperlink link',
 	Abbr: 'abbreviation acronym',
 	Button: 'action submit click',
+	Calendar: 'date picker month day selection',
 	Combobox: 'autocomplete dropdown searchable select',
 	Caption: 'table title caption',
 	Col: 'table column',

@@ -1,6 +1,9 @@
 import { createPreset } from '../createPreset.js';
 
 const theme = createPreset({
+	calendar: { base: 'rounded-xl shadow-lg' },
+	calendarDay: { base: 'rounded-lg' },
+	calendarNavigation: { base: 'rounded-lg' },
 	datatableScroll: { base: 'rounded-xl shadow-sm' },
 	datatableDialog: { base: 'rounded-xl shadow-sm' },
 	accordion: {

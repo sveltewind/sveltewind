@@ -13,6 +13,8 @@ export { default as Blockquote } from './Blockquote/Blockquote.svelte';
 export { default as Br } from './Br/Br.svelte';
 export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs.svelte';
 export { default as Button } from './Button/Button.svelte';
+export { default as Calendar } from './Calendar/Calendar.svelte';
+export type { CalendarDay } from './Calendar/types.js';
 export { default as Canvas } from './Canvas/Canvas.svelte';
 export { default as Caption } from './Caption/Caption.svelte';
 export { default as Card } from './Card/Card.svelte';
