@@ -58,7 +58,7 @@
 			class={twMerge(
 				'flex size-6 items-center justify-center bg-transparent p-0',
 				checked
-					? 'bg-primary-500 text-white hover:bg-primary-600 focus:bg-primary-600 focus:ring-primary-500/30 dark:bg-primary-500 dark:hover:bg-primary-600 dark:focus:bg-primary-600 dark:focus:ring-primary-500/30'
+					? 'bg-primary-500 text-primary-contrast-500 hover:bg-primary-600 hover:text-primary-contrast-600 focus:bg-primary-600 focus:text-primary-contrast-600 focus:ring-primary-500/30 dark:bg-primary-500 dark:text-primary-contrast-500 dark:hover:bg-primary-600 dark:hover:text-primary-contrast-600 dark:focus:bg-primary-600 dark:focus:text-primary-contrast-600 dark:focus:ring-primary-500/30'
 					: undefined
 			)}
 			variants={['button.base', 'button.variant.ghost', 'input.base']}

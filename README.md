@@ -10,7 +10,7 @@ A Svelte 5 component library styled with Tailwind CSS 4. Build from HTML primiti
 
 - **Composable components:** HTML primitives such as `A`, `Button`, `Details`, and `Summary`, alongside `Accordion`, `Dialog`, `Popover`, `Switch`, and more.
 - **Shared styling:** Set base classes and reusable variants globally, or pass a separate theme to an individual component.
-- **Independent style and color:** Five style presets and six primary palettes, with light and dark mode support.
+- **Independent style and color:** Five style presets and all 26 Tailwind color families, with primary/secondary palettes and light and dark mode support.
 - **Native Svelte:** Typed HTML attributes, snippets, event handlers, bindable elements, and configurable enter and exit transitions.
 - **Tailwind overrides:** Component `class` values merge with theme classes using `tailwind-merge`.
 
@@ -131,7 +131,7 @@ theme.set.theme(structuredClone(soft));
 
 The former `default` export remains an alias for `classic`.
 
-Presets control shape, spacing, and surface treatment. Set `data-color` on the root HTML element to independently select `violet`, `rose`, `sky`, `emerald`, `amber`, or `slate`. Violet is the initial palette. Set `data-theme="dark"` to enable the dark utilities configured above:
+Presets control shape, spacing, and surface treatment. Set `data-color` on the root HTML element to select a palette independently. Violet is the initial palette. Available palettes are `red`, `orange`, `amber`, `yellow`, `lime`, `green`, `emerald`, `teal`, `cyan`, `sky`, `blue`, `indigo`, `violet`, `purple`, `fuchsia`, `pink`, `rose`, `slate`, `gray`, `zinc`, `neutral`, `stone`, `taupe`, `mauve`, `mist`, and `olive`. Set `data-theme="dark"` to enable the dark utilities configured above:
 
 ```html
 <!-- src/app.html -->
@@ -145,11 +145,22 @@ document.documentElement.dataset.color = 'emerald';
 document.documentElement.dataset.theme = 'light';
 ```
 
-Palettes update the `--color-primary-50` through `--color-primary-950` and `--color-secondary-50` through `--color-secondary-950` CSS variables. Secondary shades use the primary shade's OKLCH lightness with a +60° hue shift; chroma is reduced where needed to fit sRGB. Slate's secondary stays nearly neutral. Both `primary-*` and `secondary-*` Tailwind utilities follow the selected palette. Persist preferences in your app if you want them remembered across visits.
+Palettes update the `--color-primary-50` through `--color-primary-950` and `--color-secondary-50` through `--color-secondary-950` CSS variables. Secondary shades use the primary shade's OKLCH lightness with a +60° hue shift; chroma is reduced where needed to fit sRGB. Neutral palettes retain their low chroma. Both `primary-*` and `secondary-*` Tailwind utilities follow the selected palette. Persist preferences in your app if you want them remembered across visits.
 
 Components with primary colors in their base styles or a `primary` variant also provide `variants={['secondary']}`. Combine it after another variant to override shared primary color states, or use `bg-secondary-500`, `text-secondary-600`, and other secondary utilities directly. Override the secondary CSS variables independently to supply your own palette.
 
 Secondary background variants retain the corresponding primary shade numbers in light and dark modes. Their text uses gray-50 or gray-950, selected for the better contrast against each shade via `--secondary-foreground-*` variables. When overriding secondary colors, update these foreground variables too.
+
+Primary backgrounds use the same approach: `--primary-foreground-*` selects gray-50 or gray-950 for each palette and shade. Use `text-primary-contrast` with `bg-primary-500`, or pair matching shades such as `bg-primary-600 text-primary-contrast-600`. Update the foreground variables when supplying custom primary colors.
+
+Text and icons inherit the foreground. Components with their own text classes need an inheritance override when placed inside a primary surface:
+
+```svelte
+<Card class="bg-primary-500 text-primary-contrast [&_*]:text-inherit">
+	<H2>Primary card</H2>
+	<P>Content uses the primary background's contrast color.</P>
+</Card>
+```
 
 Status colors keep their meaning across palettes: success is green, error and danger are red, warning is amber, and info is blue.
 

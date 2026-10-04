@@ -95,7 +95,7 @@
 			<Div class="flex grow flex-col gap-4 p-5" aria-live="polite">
 				{#each current.messages as message}
 					<P
-						class={`max-w-[85%] rounded-xl px-4 py-3 text-sm ${message.mine ? 'ml-auto bg-primary-500 text-white' : 'mr-auto bg-gray-100 dark:bg-gray-800'}`}
+						class={`max-w-[85%] rounded-xl px-4 py-3 text-sm ${message.mine ? 'ml-auto bg-primary-500 text-primary-contrast-500' : 'mr-auto bg-gray-100 dark:bg-gray-800'}`}
 					>
 						{message.text}
 					</P>

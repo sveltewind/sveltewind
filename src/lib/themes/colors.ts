@@ -1,3 +1,30 @@
 /** Accent palettes, independent of component style presets. */
-export const colors = ['violet', 'rose', 'sky', 'emerald', 'amber', 'slate'] as const;
+export const colors = [
+	'red',
+	'orange',
+	'amber',
+	'yellow',
+	'lime',
+	'green',
+	'emerald',
+	'teal',
+	'cyan',
+	'sky',
+	'blue',
+	'indigo',
+	'violet',
+	'purple',
+	'fuchsia',
+	'pink',
+	'rose',
+	'slate',
+	'gray',
+	'zinc',
+	'neutral',
+	'stone',
+	'taupe',
+	'mauve',
+	'mist',
+	'olive'
+] as const;
 export type ColorName = (typeof colors)[number];

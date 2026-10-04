@@ -21,7 +21,7 @@ export function completeSecondaryVariants(theme: ThemeObject): void {
 		// selected per palette/shade instead of lightening the background in dark mode.
 		const foregrounds: string[] = [];
 		if (
-			/(?:^|[\s:])text-(?:primary-\d+|white|black|gray-\d+)(?:\s|$)/.test(
+			/(?:^|[\s:])text-(?:primary-(?:contrast-)?\d+|white|black|gray-\d+)(?:\s|$)/.test(
 				`${component.base} ${primary ?? ''}`
 			)
 		) {

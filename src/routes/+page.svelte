@@ -267,7 +267,7 @@
 							class={`flex min-h-12 items-center justify-center gap-2 rounded-lg px-1 py-2 text-[11px] font-normal focus-visible:outline-2 focus-visible:outline-primary-500 ${selectedStep === index ? 'bg-gray-100 dark:bg-gray-800/70' : ''}`}
 						>
 							<Span
-								class={`flex size-7 shrink-0 items-center justify-center rounded-full text-xs ${selectedStep === index ? 'bg-primary-500 text-white' : 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-300'}`}
+								class={`flex size-7 shrink-0 items-center justify-center rounded-full text-xs ${selectedStep === index ? 'bg-primary-500 text-primary-contrast-500' : 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-300'}`}
 							>
 								{index + 1}
 							</Span>

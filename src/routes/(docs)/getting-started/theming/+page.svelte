@@ -18,7 +18,7 @@
 	} from '$components';
 	import { BookOpen, Puzzle } from '$lib/icons';
 	import { Theme } from '$lib/theme';
-	import { classic, minimal, sharp, soft, studio } from '$lib/themes';
+	import { classic, colors, minimal, sharp, soft, studio } from '$lib/themes';
 	const presetPreviews = [
 		{
 			name: 'Classic',
@@ -51,7 +51,7 @@
 			base: 'text-primary-500 underline underline-offset-4'
 		},
 		button: {
-			base: 'rounded-full bg-primary-500 px-6 py-3 text-white hover:bg-primary-600',
+			base: 'rounded-full bg-primary-500 px-6 py-3 text-primary-contrast-500 hover:bg-primary-600 hover:text-primary-contrast-600',
 			variants: {
 				ghost: 'bg-transparent text-primary-500 hover:bg-primary-50',
 				square: 'rounded-none'
@@ -63,7 +63,7 @@
 
 	exampleTheme.set.theme({
 		button: {
-			base: 'rounded-md bg-primary-500 px-6 py-3 text-white hover:bg-primary-600'
+			base: 'rounded-md bg-primary-500 px-6 py-3 text-primary-contrast-500 hover:bg-primary-600 hover:text-primary-contrast-600'
 		}
 	});
 
@@ -114,10 +114,11 @@
 	/>
 	<P>
 		Styles change geometry, spacing, and surface treatment without selecting a color. Use the Color
-		selector in Settings to choose violet, rose, sky, emerald, amber, or slate independently. These
-		previews use the currently selected primary palette for accents. Status variants keep their
-		semantic colors: success is green, error and danger are red, warning is amber, and info is blue.
+		selector in Settings to choose any of Tailwind's {colors.length} color families independently. These
+		previews use the currently selected primary palette for accents. Status variants keep their semantic
+		colors: success is green, error and danger are red, warning is amber, and info is blue.
 	</P>
+	<P>Available palettes: {colors.join(', ')}. Violet is the default.</P>
 	<P>
 		Import the palette stylesheet to register the primary and secondary Tailwind colors. Set
 		data-color on the root element to apply a palette. Changing data-color updates components using
@@ -125,11 +126,12 @@
 	</P>
 	<P>
 		Secondary shades shift each primary shade's OKLCH hue by 60 degrees while retaining its
-		lightness. Chroma is reduced where needed to fit sRGB; Slate remains nearly neutral. Use
-		secondary utilities such as bg-secondary-500 or a component's secondary variant. Both palettes
-		provide shades 50 through 950, and secondary CSS variables can be overridden independently.
-		Secondary backgrounds use the same shades as their primary counterparts in both modes. Text is
-		gray-50 or gray-950, selected for contrast through the secondary foreground variables.
+		lightness. Chroma is reduced where needed to fit sRGB; neutral palettes retain their low chroma.
+		Use secondary utilities such as bg-secondary-500 or a component's secondary variant. Both
+		palettes provide shades 50 through 950, and secondary CSS variables can be overridden
+		independently. Secondary backgrounds use the same shades as their primary counterparts in both
+		modes. Text is gray-50 or gray-950, selected for contrast through the secondary foreground
+		variables.
 	</P>
 	<CodeBlock
 		title="app.css"
@@ -209,7 +211,7 @@
 	</P>
 
 	<CodeBlock
-		code={"import { Theme } from 'sveltewind/theme';\n\nexport const customTheme = new Theme({\n\ta: {\n\t\tbase: 'text-primary-500 underline underline-offset-4'\n\t},\n\tbutton: {\n\t\tbase: 'rounded-full bg-primary-500 px-6 py-3 text-white hover:bg-primary-600',\n\t\tvariants: {\n\t\t\tghost: 'bg-transparent text-primary-500 hover:bg-primary-50',\n\t\t\tsquare: 'rounded-none'\n\t\t}\n\t}\n});\n"}
+		code={"import { Theme } from 'sveltewind/theme';\n\nexport const customTheme = new Theme({\n\ta: {\n\t\tbase: 'text-primary-500 underline underline-offset-4'\n\t},\n\tbutton: {\n\t\tbase: 'rounded-full bg-primary-500 px-6 py-3 text-primary-contrast-500 hover:bg-primary-600 hover:text-primary-contrast-600',\n\t\tvariants: {\n\t\t\tghost: 'bg-transparent text-primary-500 hover:bg-primary-50',\n\t\t\tsquare: 'rounded-none'\n\t\t}\n\t}\n});\n"}
 		options={{ lang: 'ts' }}
 		title="customTheme.ts"
 	/>
@@ -244,7 +246,7 @@
 	</P>
 
 	<CodePreview
-		code={"<script lang=\"ts\">\n\timport { A, Button, Div, Input } from 'sveltewind/components';\n\timport { theme } from 'sveltewind/theme';\n\n\t// Set the entire theme object\n\ttheme.set.theme({\n\t\tbutton: {\n\t\t\tbase: 'rounded-md bg-primary-500 px-6 py-3 text-white hover:bg-primary-600'\n\t\t}\n\t});\n\n\t// Set a specific component's object\n\ttheme.set.component('a', {\n\t\tbase: 'text-primary-500 underline'\n\t});\n\n\t// Set a component's base styles\n\ttheme.set.base(\n\t\t'input',\n\t\t'rounded-md px-6 py-3 inset-ring inset-ring-primary-500 placeholder:text-primary-500/50'\n\t);\n\n\t// Set a component's variant style\n\ttheme.set.variant('button', 'ghost', 'bg-transparent text-primary-500 hover:bg-primary-500/10');\n</scr" +
+		code={"<script lang=\"ts\">\n\timport { A, Button, Div, Input } from 'sveltewind/components';\n\timport { theme } from 'sveltewind/theme';\n\n\t// Set the entire theme object\n\ttheme.set.theme({\n\t\tbutton: {\n\t\t\tbase: 'rounded-md bg-primary-500 px-6 py-3 text-primary-contrast-500 hover:bg-primary-600 hover:text-primary-contrast-600'\n\t\t}\n\t});\n\n\t// Set a specific component's object\n\ttheme.set.component('a', {\n\t\tbase: 'text-primary-500 underline'\n\t});\n\n\t// Set a component's base styles\n\ttheme.set.base(\n\t\t'input',\n\t\t'rounded-md px-6 py-3 inset-ring inset-ring-primary-500 placeholder:text-primary-500/50'\n\t);\n\n\t// Set a component's variant style\n\ttheme.set.variant('button', 'ghost', 'bg-transparent text-primary-500 hover:bg-primary-500/10');\n</scr" +
 			'ipt>\n\n<Div class="flex flex-col items-center gap-4 lg:flex-row">\n\t<Button>New Button</Button>\n\t<A href="#set">New Link</A>\n\t<Input placeholder="New Input" />\n\t<Button variants={[\'ghost\']}>Ghost Button</Button>\n</Div>\n'}
 		title="+page.svelte"
 	>
@@ -278,7 +280,7 @@
 	</P>
 
 	<CodePreview
-		code={"<script lang=\"ts\">\n\timport { A, Button, Div } from 'sveltewind/components';\n\timport { Theme } from 'sveltewind/theme';\n\tconst customTheme = new Theme({\n\t\ta: {\n\t\t\tbase: 'text-primary-500 underline underline-offset-4'\n\t\t},\n\t\tbutton: {\n\t\t\tbase: 'rounded-full bg-primary-500 px-6 py-3 text-white hover:bg-primary-600',\n\t\t\tvariants: {\n\t\t\t\tghost: 'bg-transparent text-primary-500 hover:bg-primary-50',\n\t\t\t\tsquare: 'rounded-none'\n\t\t\t}\n\t\t}\n\t});\n</scr" +
+		code={"<script lang=\"ts\">\n\timport { A, Button, Div } from 'sveltewind/components';\n\timport { Theme } from 'sveltewind/theme';\n\tconst customTheme = new Theme({\n\t\ta: {\n\t\t\tbase: 'text-primary-500 underline underline-offset-4'\n\t\t},\n\t\tbutton: {\n\t\t\tbase: 'rounded-full bg-primary-500 px-6 py-3 text-primary-contrast-500 hover:bg-primary-600 hover:text-primary-contrast-600',\n\t\t\tvariants: {\n\t\t\t\tghost: 'bg-transparent text-primary-500 hover:bg-primary-50',\n\t\t\t\tsquare: 'rounded-none'\n\t\t\t}\n\t\t}\n\t});\n</scr" +
 			'ipt>\n\n<Div class="flex gap-4">\n\t<Button theme={customTheme}>Custom Button</Button>\n\t<A href="#create-your-own-theme" theme={customTheme}>Custom Link</A>\n</Div>\n'}
 	>
 		<Div class="flex gap-4">
@@ -297,7 +299,7 @@
 	</P>
 
 	<CodePreview
-		code={"<script lang=\"ts\">\n\timport { Button, Div } from 'sveltewind/components';\n\timport { Theme } from 'sveltewind/theme';\n\n\tconst exampleTheme = new Theme({\n\t\tbutton: {\n\t\t\tbase: 'rounded-md bg-primary-500 px-6 py-3 text-white hover:bg-primary-600',\n\t\t\tvariants: {\n\t\t\t\tghost: 'bg-transparent text-primary-500 hover:bg-primary-500/10'\n\t\t\t}\n\t\t}\n\t});\n</scr" +
+		code={"<script lang=\"ts\">\n\timport { Button, Div } from 'sveltewind/components';\n\timport { Theme } from 'sveltewind/theme';\n\n\tconst exampleTheme = new Theme({\n\t\tbutton: {\n\t\t\tbase: 'rounded-md bg-primary-500 px-6 py-3 text-primary-contrast-500 hover:bg-primary-600 hover:text-primary-contrast-600',\n\t\t\tvariants: {\n\t\t\t\tghost: 'bg-transparent text-primary-500 hover:bg-primary-500/10'\n\t\t\t}\n\t\t}\n\t});\n</scr" +
 			'ipt>\n\n<Div class="flex gap-4">\n\t<Button>Default</Button>\n\t<Button theme={exampleTheme}>Custom</Button>\n\t<Button theme={exampleTheme} variants={[\'ghost\']}>Ghost</Button>\n</Div>\n'}
 	>
 		<Div class="flex gap-4">
@@ -323,6 +325,25 @@
 			<A href="#">Default Link</A>
 			<A href="#" variants={['button.base']}>Button Link</A>
 		</Div>
+	</CodePreview>
+</DocsSection>
+
+<DocsSection>
+	<H2>Primary Background Contrast</H2>
+	<P>
+		Primary backgrounds use gray-50 or gray-950, whichever has better contrast with the selected
+		palette and shade. Pair bg-primary-500 with text-primary-contrast, or match another shade with
+		text-primary-contrast-600. Custom palettes should also update the --primary-foreground-*
+		variables. Text and icons inherit the foreground; use an inheritance override for children that
+		supply their own text styles.
+	</P>
+	<CodePreview
+		code={'<Card class="bg-primary-500 text-primary-contrast [&_*]:text-inherit">\n\t<H2>Primary card</H2>\n\t<P>Content uses the primary background\'s contrast color.</P>\n</Card>\n'}
+	>
+		<Card class="bg-primary-500 text-primary-contrast [&_*]:text-inherit">
+			<H2>Primary card</H2>
+			<P>Content uses the primary background's contrast color.</P>
+		</Card>
 	</CodePreview>
 </DocsSection>
 

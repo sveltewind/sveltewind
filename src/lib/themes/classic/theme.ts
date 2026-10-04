@@ -73,7 +73,7 @@ const theme: ThemeObject = {
 			'cursor-pointer',
 			'no-underline',
 			'outline-transparent outline-2 focus:outline-primary-500/30',
-			'text-white hover:text-white focus:text-white'
+			'text-primary-contrast-500 hover:text-primary-contrast-600 focus:text-primary-contrast-600 dark:text-primary-contrast-500 dark:hover:text-primary-contrast-600 dark:focus:text-primary-contrast-600'
 		),
 		variants: {
 			icon: 'aspect-square px-0 py-0 h-12 flex items-center justify-center',
@@ -99,7 +99,7 @@ const theme: ThemeObject = {
 		base: twMerge('flex items-center gap-2 cursor-pointer')
 	},
 	code: {
-		base: 'bg-primary-500 text-primary-200 rounded-sm px-1'
+		base: 'bg-primary-500 text-primary-contrast-500 rounded-sm px-1'
 	},
 	codeBlock: { base: 'p-0 overflow-visible' },
 	container: {
@@ -273,15 +273,15 @@ const layouts = {
 
 Object.assign(theme.button.variants!, sizes, {
 	danger:
-		'bg-red-600 text-white hover:bg-red-700 focus:bg-red-700 focus:outline-red-500/30 dark:bg-red-600 dark:text-white dark:hover:bg-red-700 dark:hover:text-white dark:focus:bg-red-700 dark:focus:text-white',
+		'bg-red-600 text-white hover:bg-red-700 hover:text-white focus:bg-red-700 focus:text-white focus:outline-red-500/30 dark:bg-red-600 dark:text-white dark:hover:bg-red-700 dark:hover:text-white dark:focus:bg-red-700 dark:focus:text-white',
 	full: 'w-full justify-center',
 	link: 'bg-transparent p-0 text-primary-600 underline hover:bg-transparent hover:text-primary-700 focus:bg-transparent focus:text-primary-700 dark:bg-transparent dark:hover:bg-transparent dark:focus:bg-transparent dark:text-primary-400 dark:hover:text-primary-300 dark:focus:text-primary-300',
 	pill: 'rounded-full',
 	primary:
-		'bg-primary-500 text-white hover:bg-primary-600 focus:bg-primary-600 dark:bg-primary-500 dark:text-white dark:hover:bg-primary-600 dark:hover:text-white dark:focus:bg-primary-600 dark:focus:text-white',
+		'bg-primary-500 text-primary-contrast-500 hover:bg-primary-600 focus:bg-primary-600 dark:bg-primary-500 dark:text-primary-contrast-500 dark:hover:bg-primary-600 dark:hover:text-primary-contrast-600 dark:focus:bg-primary-600 dark:focus:text-primary-contrast-600',
 	soft: 'bg-primary-500/10 text-primary-600 hover:bg-primary-500/20 hover:text-primary-600 focus:bg-primary-500/20 focus:text-primary-600 dark:bg-primary-500/10 dark:hover:bg-primary-500/20 dark:focus:bg-primary-500/20 dark:text-primary-300 dark:hover:text-primary-300 dark:focus:text-primary-300',
 	success:
-		'bg-green-600 text-white hover:bg-green-700 focus:bg-green-700 focus:outline-green-500/30 dark:bg-green-600 dark:text-white dark:hover:bg-green-700 dark:hover:text-white dark:focus:bg-green-700 dark:focus:text-white'
+		'bg-green-600 text-white hover:bg-green-700 hover:text-white focus:bg-green-700 focus:text-white focus:outline-green-500/30 dark:bg-green-600 dark:text-white dark:hover:bg-green-700 dark:hover:text-white dark:focus:bg-green-700 dark:focus:text-white'
 });
 // Interaction states belong in the base so they apply to every visual variant.
 theme.button.variants!.outline =
@@ -479,7 +479,7 @@ Object.assign(theme, {
 	mark: {
 		base: 'rounded-sm bg-primary-500/15 px-0.5 text-inherit',
 		variants: {
-			solid: 'bg-primary-500 text-white',
+			solid: 'bg-primary-500 text-primary-contrast-500',
 			underline:
 				'rounded-none bg-transparent px-0 underline decoration-primary-500 decoration-2 underline-offset-4'
 		}
@@ -1027,7 +1027,7 @@ Object.assign(theme, {
 		base: 'inline-flex size-9 shrink-0 items-center justify-center rounded-full p-0 text-sm font-medium',
 		variants: {
 			complete: 'bg-primary-500/10 text-primary-600 dark:text-primary-300',
-			current: 'bg-primary-500 text-white',
+			current: 'bg-primary-500 text-primary-contrast-500',
 			upcoming: 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
 		}
 	},
@@ -1095,7 +1095,7 @@ Object.assign(theme, {
 	datatableDialog: { base: 'flex flex-col gap-4', variants: { compact: 'text-sm' } },
 	datatableFilterAnchor: { base: 'relative', variants: { compact: 'text-sm' } },
 	datatableFilterCount: {
-		base: 'pointer-events-none absolute -top-1.5 -right-1.5 flex aspect-square w-4 items-center justify-center rounded-full bg-primary-500 text-[.625rem] text-white',
+		base: 'pointer-events-none absolute -top-1.5 -right-1.5 flex aspect-square w-4 items-center justify-center rounded-full bg-primary-500 text-[.625rem] text-primary-contrast-500',
 		variants: { compact: 'text-sm' }
 	},
 	datatableFilters: {
@@ -1167,7 +1167,7 @@ Object.assign(theme, {
 		variants: {
 			today: 'ring-1 ring-primary-500',
 			selected:
-				'bg-primary-500 text-white hover:text-white focus:text-white hover:bg-primary-600 focus:bg-primary-600 dark:bg-primary-500 dark:text-white dark:hover:text-white dark:focus:text-white dark:hover:bg-primary-600 dark:focus:bg-primary-600',
+				'bg-primary-500 text-primary-contrast-500 hover:text-primary-contrast-600 focus:text-primary-contrast-600 hover:bg-primary-600 focus:bg-primary-600 dark:bg-primary-500 dark:text-primary-contrast-500 dark:hover:text-primary-contrast-600 dark:focus:text-primary-contrast-600 dark:hover:bg-primary-600 dark:focus:bg-primary-600',
 			disabled: 'cursor-not-allowed opacity-40'
 		}
 	}
