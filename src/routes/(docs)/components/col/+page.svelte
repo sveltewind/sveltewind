@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, Col, Colgroup, P, Td, Th } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -53,8 +52,6 @@
 		}
 	];
 
-	const variants = Object.keys(classic.col.variants ?? {});
-
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
 	import Demo from '$components/ComponentDoc/previews/Col.svelte';
 	import examples from '$components/ComponentDoc/previews/Col.svelte?component-examples&raw';
@@ -74,17 +71,6 @@
 		<P>
 			Use Col inside Colgroup. Column width and background styling work here; put cell padding and
 			text alignment on Th or Td.
-		</P>
-	{/snippet}
-	{#snippet notes()}
-		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			Use class for local overrides or variants for reusable theme styles. All five presets include
-			this primitive and its variants. Enter and exit transitions use the shared transition,
-			inTransition, and outTransition props.
 		</P>
 	{/snippet}
 </ComponentDoc>

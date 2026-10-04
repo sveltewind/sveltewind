@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, Iframe, P } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -59,8 +58,6 @@
 		}
 	];
 
-	const variants = Object.keys(classic.iframe.variants ?? {});
-
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
 	import Demo from '$components/ComponentDoc/previews/Iframe.svelte';
 	import examples from '$components/ComponentDoc/previews/Iframe.svelte?component-examples&raw';
@@ -80,17 +77,6 @@
 		<P>
 			Provide an accessible title. Set src or srcdoc and use sandbox permissions appropriate for the
 			embedded content.
-		</P>
-	{/snippet}
-	{#snippet notes()}
-		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			Use class for local overrides or variants for reusable theme styles. All five presets include
-			this primitive and its variants. Enter and exit transitions use the shared transition,
-			inTransition, and outTransition props.
 		</P>
 	{/snippet}
 </ComponentDoc>

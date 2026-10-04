@@ -227,14 +227,18 @@
 			transition props are supported. Feature flags default to true except isDataControlled, which
 			defaults to false. Pagination defaults to page 1 with 10 rows per page.
 		</P>
+
+		<P>
+			Theme entries: {#each parts as part, index (part)}{#if index > 0},
+				{/if}<Code>{part}</Code>{/each}.
+		</P>
 	{/snippet}
 	{#snippet usageNotes()}
 		<P>
 			The preview supports creating, editing, and deleting local records. Application callbacks
 			persist changes; the component never writes data to a server.
 		</P>
-	{/snippet}
-	{#snippet notes()}
+
 		<P>
 			Explicit columns define the table order and work with an empty dataset. Without columns,
 			fields are inferred from the first row. Provide a unique id or _id for each record, or supply
@@ -250,14 +254,6 @@
 			Column snippets and td receive column, key, row, value, and update; render a Td component in
 			these snippets. Dotted keys are passed unchanged to onupdate, so the application can persist
 			nested fields. table, tbody, thead, th, and toolbar provide additional rendering overrides.
-		</P>
-		<P>
-			All presets include Datatable styles. The compact root variant reduces text size. The supplied
-			theme also reaches every built-in primitive.
-		</P>
-		<P>
-			Theme entries: {#each parts as part, index (part)}{#if index > 0},
-				{/if}<Code>{part}</Code>{/each}.
 		</P>
 	{/snippet}
 </ComponentDoc>

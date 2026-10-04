@@ -94,7 +94,8 @@
 			name: 'variants',
 			type: 'string[]',
 			defaultValue: '[]',
-			description: 'Ordered variants: compact, bordered, soft; supports theme references.'
+			description:
+				'Ordered variants: compact (reduced width/day height), bordered (outline), soft (surface). Variants can be combined and support theme references.'
 		},
 		{
 			name: 'theme',
@@ -153,6 +154,12 @@
 			Native attributes and events are forwarded to the root Div. Import Calendar from
 			sveltewind/components; CalendarDay is also exported as a type.
 		</P>
+
+		<P>
+			Theme entries: {#each parts as part, index (part)}{#if index > 0},
+				{/if}<Code>{part}</Code>{/each}. The calendarDay entry uses today, selected, and disabled
+			state variants.
+		</P>
 	{/snippet}
 	{#snippet usageNotes()}
 		<P>
@@ -175,18 +182,6 @@
 			constraints change. Use a hidden input bound to value when submitting a native form. Keep
 			custom day content non-interactive and provide any additional accessible day description in
 			your snippet.
-		</P>
-	{/snippet}
-	{#snippet notes()}
-		<P>
-			All bundled themes, including the legacy default alias, support compact, bordered, and soft.
-			Compact reduces width and day height; bordered adds an outline; soft changes the surface.
-			Variants can be combined.
-		</P>
-		<P>
-			Theme entries: {#each parts as part, index (part)}{#if index > 0},
-				{/if}<Code>{part}</Code>{/each}. The calendarDay entry uses today, selected, and disabled
-			state variants.
 		</P>
 	{/snippet}
 </ComponentDoc>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, Ellipse, P, Svg } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -59,8 +58,6 @@
 		}
 	];
 
-	const variants = Object.keys(classic.ellipse.variants ?? {});
-
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
 	import Demo from '$components/ComponentDoc/previews/Ellipse.svelte';
 	import examples from '$components/ComponentDoc/previews/Ellipse.svelte?component-examples&raw';
@@ -77,17 +74,6 @@
 		<P>
 			Native attributes and event handlers are forwarded to the underlying <Code>ellipse</Code> element
 			unless handled by the component.
-		</P>
-	{/snippet}
-	{#snippet notes()}
-		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			Native SVG attributes are forwarded, including fill, stroke, transforms, and element-specific
-			geometry. Classes and explicit attributes let you customize the drawing. Definition and
-			accessibility elements do not have a visible box, so their transitions have no visible effect.
 		</P>
 	{/snippet}
 </ComponentDoc>

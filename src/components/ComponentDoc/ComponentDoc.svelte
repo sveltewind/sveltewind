@@ -11,7 +11,6 @@
 		propNotes,
 		usageNotes,
 		additionalExamples,
-		notes,
 		demo: Demo,
 		examples
 	}: {
@@ -21,7 +20,6 @@
 		propNotes?: Snippet;
 		usageNotes?: Snippet;
 		additionalExamples?: Snippet;
-		notes?: Snippet;
 		demo: Component<{ documentationExample?: ExampleKind; documentationVariant?: string }>;
 		examples: ComponentExamples;
 	} = $props();
@@ -95,10 +93,3 @@
 	{/each}
 	{#if additionalExamples}{@render additionalExamples()}{/if}
 </DocsSection>
-
-{#if notes}
-	<DocsSection>
-		<H2>Styling and behavior</H2>
-		{@render notes()}
-	</DocsSection>
-{/if}

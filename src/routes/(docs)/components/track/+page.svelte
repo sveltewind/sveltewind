@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, P, Track, Video } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -53,8 +52,6 @@
 		}
 	];
 
-	const variants = Object.keys(classic.track.variants ?? {});
-
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
 	import Demo from '$components/ComponentDoc/previews/Track.svelte';
 	import examples from '$components/ComponentDoc/previews/Track.svelte?component-examples&raw';
@@ -74,17 +71,6 @@
 		<P>
 			Track provides captions or other timed text inside Audio or Video. Set src to your WebVTT
 			file. It has no visible box to style or animate.
-		</P>
-	{/snippet}
-	{#snippet notes()}
-		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			Use class for local overrides or variants for reusable theme styles. All five presets include
-			this primitive and its variants. Enter and exit transitions use the shared transition,
-			inTransition, and outTransition props.
 		</P>
 	{/snippet}
 </ComponentDoc>

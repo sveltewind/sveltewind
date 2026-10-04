@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, P } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -76,7 +75,7 @@
 			type: 'string[]'
 		}
 	];
-	const variants = Object.keys(classic.drawer.variants ?? {});
+
 	const parts = ['drawer', 'drawerClose', 'drawerContent', 'drawerHeader', 'drawerTitle'];
 
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
@@ -93,24 +92,15 @@
 			Native attributes and event handlers are forwarded to the root Dialog component. Common
 			transitions apply to that root.
 		</P>
-	{/snippet}
-	{#snippet usageNotes()}
-		<P>
-			{'isVisible controls the native modal dialog. Escape dismisses it; native Dialog supplies focus containment. Use position to choose the left or right edge.'}
-		</P>
-	{/snippet}
-	{#snippet notes()}
+
 		<P>
 			Theme entries: {#each parts as part, index (part)}{#if index > 0},
 				{/if}<Code>{part}</Code>{/each}.
 		</P>
+	{/snippet}
+	{#snippet usageNotes()}
 		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			All presets include this component and its themeable parts. Use class for a local override, or
-			update the component and part entries through the theme API.
+			{'isVisible controls the native modal dialog. Escape dismisses it; native Dialog supplies focus containment. Use position to choose the left or right edge.'}
 		</P>
 	{/snippet}
 </ComponentDoc>

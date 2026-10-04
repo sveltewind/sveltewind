@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, P } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -82,7 +81,7 @@
 			type: 'string[]'
 		}
 	];
-	const variants = Object.keys(classic.dropdownMenu.variants ?? {});
+
 	const parts = ['dropdownMenu', 'dropdownMenuItem', 'dropdownMenuList', 'dropdownMenuPanel'];
 
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
@@ -99,24 +98,15 @@
 			Native attributes and event handlers are forwarded to the root Div component. Common
 			transitions apply to that root.
 		</P>
-	{/snippet}
-	{#snippet usageNotes()}
-		<P>
-			{'Use Up/Down, Home/End, or type a label to move through enabled items. Escape returns focus to the trigger. Tab closes the menu and continues navigation. children replaces the trigger label content.'}
-		</P>
-	{/snippet}
-	{#snippet notes()}
+
 		<P>
 			Theme entries: {#each parts as part, index (part)}{#if index > 0},
 				{/if}<Code>{part}</Code>{/each}.
 		</P>
+	{/snippet}
+	{#snippet usageNotes()}
 		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			All presets include this component and its themeable parts. Use class for a local override, or
-			update the component and part entries through the theme API.
+			{'Use Up/Down, Home/End, or type a label to move through enabled items. Escape returns focus to the trigger. Tab closes the menu and continues navigation. children replaces the trigger label content.'}
 		</P>
 	{/snippet}
 </ComponentDoc>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, Colgroup, P, Table } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -59,8 +58,6 @@
 		}
 	];
 
-	const variants = Object.keys(classic.colgroup.variants ?? {});
-
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
 	import Demo from '$components/ComponentDoc/previews/Colgroup.svelte';
 	import examples from '$components/ComponentDoc/previews/Colgroup.svelte?component-examples&raw';
@@ -80,17 +77,6 @@
 		<P>
 			Use Colgroup inside Table before its row groups. It can contain Col components or use a span
 			attribute.
-		</P>
-	{/snippet}
-	{#snippet notes()}
-		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			Use class for local overrides or variants for reusable theme styles. All five presets include
-			this primitive and its variants. Enter and exit transitions use the shared transition,
-			inTransition, and outTransition props.
 		</P>
 	{/snippet}
 </ComponentDoc>

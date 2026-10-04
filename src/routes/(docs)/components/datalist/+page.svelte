@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, Datalist, Input, P } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -59,8 +58,6 @@
 		}
 	];
 
-	const variants = Object.keys(classic.datalist.variants ?? {});
-
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
 	import Demo from '$components/ComponentDoc/previews/Datalist.svelte';
 	import examples from '$components/ComponentDoc/previews/Datalist.svelte?component-examples&raw';
@@ -80,17 +77,6 @@
 		<P>
 			Datalist provides native suggestions for an Input using the matching list and id attributes.
 			Browser UI controls its presentation.
-		</P>
-	{/snippet}
-	{#snippet notes()}
-		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			Use class for local overrides or variants for reusable theme styles. All five presets include
-			this primitive and its variants. Enter and exit transitions use the shared transition,
-			inTransition, and outTransition props.
 		</P>
 	{/snippet}
 </ComponentDoc>

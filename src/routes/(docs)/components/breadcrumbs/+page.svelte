@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, P } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -70,7 +69,7 @@
 			type: 'string[]'
 		}
 	];
-	const variants = Object.keys(classic.breadcrumbs.variants ?? {});
+
 	const parts = ['breadcrumbs', 'breadcrumbsItem', 'breadcrumbsList', 'breadcrumbsSeparator'];
 
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
@@ -87,24 +86,15 @@
 			Native attributes and event handlers are forwarded to the root Nav component. Common
 			transitions apply to that root.
 		</P>
-	{/snippet}
-	{#snippet usageNotes()}
-		<P>
-			{'The last item is the current page and is rendered as text. Earlier items with href are links.'}
-		</P>
-	{/snippet}
-	{#snippet notes()}
+
 		<P>
 			Theme entries: {#each parts as part, index (part)}{#if index > 0},
 				{/if}<Code>{part}</Code>{/each}.
 		</P>
+	{/snippet}
+	{#snippet usageNotes()}
 		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			All presets include this component and its themeable parts. Use class for a local override, or
-			update the component and part entries through the theme API.
+			{'The last item is the current page and is rendered as text. Earlier items with href are links.'}
 		</P>
 	{/snippet}
 </ComponentDoc>

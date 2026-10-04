@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, P } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -76,7 +75,7 @@
 			type: 'string[]'
 		}
 	];
-	const variants = Object.keys(classic.toaster.variants ?? {});
+
 	const parts = ['toaster'];
 
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
@@ -93,24 +92,15 @@
 			Native attributes and event handlers are forwarded to the root Div component. Common
 			transitions apply to that root.
 		</P>
-	{/snippet}
-	{#snippet usageNotes()}
-		<P>
-			{'Keep the notifications array in your application and give every item a unique id. Dismissed notifications are removed from the bound array. Each item supports title, message, status, and duration.'}
-		</P>
-	{/snippet}
-	{#snippet notes()}
+
 		<P>
 			Theme entries: {#each parts as part, index (part)}{#if index > 0},
 				{/if}<Code>{part}</Code>{/each}.
 		</P>
+	{/snippet}
+	{#snippet usageNotes()}
 		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			All presets include this component and its themeable parts. Use class for a local override, or
-			update the component and part entries through the theme API.
+			{'Keep the notifications array in your application and give every item a unique id. Dismissed notifications are removed from the bound array. Each item supports title, message, status, and duration.'}
 		</P>
 	{/snippet}
 </ComponentDoc>

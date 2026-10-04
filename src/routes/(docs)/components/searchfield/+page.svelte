@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, P } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -100,7 +99,7 @@
 			type: 'string[]'
 		}
 	];
-	const variants = Object.keys(classic.searchField.variants ?? {});
+
 	const parts = ['searchField', 'searchFieldClear', 'searchFieldInput', 'searchFieldSubmit'];
 
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
@@ -117,24 +116,15 @@
 			Native attributes and event handlers are forwarded to the root Form component. Common
 			transitions apply to that root.
 		</P>
-	{/snippet}
-	{#snippet usageNotes()}
-		<P>
-			{'onSearch receives the current query and prevents native submission. Without it, normal form submission is preserved. Native action and method attributes are forwarded to Form.'}
-		</P>
-	{/snippet}
-	{#snippet notes()}
+
 		<P>
 			Theme entries: {#each parts as part, index (part)}{#if index > 0},
 				{/if}<Code>{part}</Code>{/each}.
 		</P>
+	{/snippet}
+	{#snippet usageNotes()}
 		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			All presets include this component and its themeable parts. Use class for a local override, or
-			update the component and part entries through the theme API.
+			{'onSearch receives the current query and prevents native submission. Without it, normal form submission is preserved. Native action and method attributes are forwarded to Form.'}
 		</P>
 	{/snippet}
 </ComponentDoc>

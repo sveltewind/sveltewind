@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Code, P } from '$components';
-	import { classic } from '$lib/themes';
 
 	const props = [
 		{
@@ -94,7 +93,7 @@
 			type: 'string[]'
 		}
 	];
-	const variants = Object.keys(classic.carousel.variants ?? {});
+
 	const parts = [
 		'carousel',
 		'carouselControls',
@@ -118,24 +117,15 @@
 			Native attributes and event handlers are forwarded to the root Div component. Common
 			transitions apply to that root.
 		</P>
-	{/snippet}
-	{#snippet usageNotes()}
-		<P>
-			{'No automatic rotation is used. Arrow controls and focused-track keyboard navigation respect reduced motion. perView controls desktop columns; tablets show at most two and small screens show one. Provide slides with unique IDs.'}
-		</P>
-	{/snippet}
-	{#snippet notes()}
+
 		<P>
 			Theme entries: {#each parts as part, index (part)}{#if index > 0},
 				{/if}<Code>{part}</Code>{/each}.
 		</P>
+	{/snippet}
+	{#snippet usageNotes()}
 		<P>
-			Available variants: {#each variants as variant, index (variant)}{#if index > 0},
-				{/if}<Code>{variant}</Code>{/each}.
-		</P>
-		<P>
-			All presets include this component and its themeable parts. Use class for a local override, or
-			update the component and part entries through the theme API.
+			{'No automatic rotation is used. Arrow controls and focused-track keyboard navigation respect reduced motion. perView controls desktop columns; tablets show at most two and small screens show one. Provide slides with unique IDs.'}
 		</P>
 	{/snippet}
 </ComponentDoc>
