@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.15.0](https://github.com/sveltewind/sveltewind/compare/v4.14.0...v4.15.0) (2026-10-05)
+
+
+### Features
+
+* add MIT license ([8159388](https://github.com/sveltewind/sveltewind/commit/81593880c7b62660f7bd99c461052d9876ed1fc5))
+* add secondary colors ([4a520b0](https://github.com/sveltewind/sveltewind/commit/4a520b0d490a2e56a658022e117fcbb3d6b083a0))
+* expand color palettes and add adaptive primary contrast ([5c15049](https://github.com/sveltewind/sveltewind/commit/5c15049c4c4eec7c0bf2911b57391963e9f4b551))
+
+
+### Bug Fixes
+
+* component example strips unused imports ([a1b04ac](https://github.com/sveltewind/sveltewind/commit/a1b04ac7d6e1e773c40e2df71d0b31a0d9285760))
+* expose transitions package export ([c5ad252](https://github.com/sveltewind/sveltewind/commit/c5ad2528ec2fd1326dd2f2b2a1c972aeb48276aa))
+* select classes ([c7ada7f](https://github.com/sveltewind/sveltewind/commit/c7ada7fa790683ee87060bc420b8c1cd61150aaa))
+* standardize compnent doc structure ([82cf1e7](https://github.com/sveltewind/sveltewind/commit/82cf1e795abd04f1aa0313267adcbe0b5e1d35ce))
+
 ## [4.14.0](https://github.com/sveltewind/sveltewind/compare/v4.13.0...v4.14.0) (2026-10-04)
 
 
