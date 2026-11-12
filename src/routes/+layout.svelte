@@ -57,6 +57,7 @@
 			links: [
 				{ href: '/components', title: 'Components' },
 				{ href: '/examples', title: 'Examples' },
+				{ href: '/blog', title: 'Blog' },
 				{ href: 'https://github.com/sveltewind/sveltewind', title: 'GitHub' }
 			],
 			title: 'Explore'
@@ -84,7 +85,8 @@
 				title: 'Docs'
 			},
 			{ href: '/components', startsWith: '/components', title: 'Components' },
-			{ href: '/examples', startsWith: '/examples', title: 'Examples' }
+			{ href: '/examples', startsWith: '/examples', title: 'Examples' },
+			{ href: '/blog', startsWith: '/blog', title: 'Blog' }
 		]
 	});
 
@@ -239,9 +241,9 @@
 				<A href="/" aria-label="Sveltewind home" variants={['ghost']} class="inline-flex">
 					<Logo />
 				</A>
-				<P class="mt-4 max-w-sm text-sm leading-6"
-					>One theme. Every component. Build your interface with Svelte, then make it yours.</P
-				>
+				<P class="mt-4 max-w-sm text-sm leading-6">
+					One theme. Every component. Build your interface with Svelte, then make it yours.
+				</P>
 			</Div>
 			{#each footerGroups as group (group.title)}
 				<Nav aria-label={`Footer: ${group.title}`} class="flex flex-col items-start gap-3">
@@ -251,8 +253,9 @@
 							href={link.href}
 							variants={['ghost']}
 							class="text-sm text-gray-600 hover:text-primary-600 focus:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 dark:focus:text-primary-400"
-							>{link.title}</A
 						>
+							{link.title}
+						</A>
 					{/each}
 				</Nav>
 			{/each}
@@ -265,8 +268,9 @@
 				href="https://www.npmjs.com/package/sveltewind"
 				variants={['ghost']}
 				class="text-xs text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
-				>Available on npm</A
 			>
+				Available on npm
+			</A>
 		</Div>
 	</Container>
 </Footer>
@@ -416,9 +420,9 @@
 					bind:value={selectedColor}
 					class="w-full px-3 py-2 text-sm"
 				>
-					{#each colors as color}<Option value={color}
-							>{color[0].toUpperCase() + color.slice(1)}</Option
-						>{/each}
+					{#each colors as color}<Option value={color}>
+							{color[0].toUpperCase() + color.slice(1)}
+						</Option>{/each}
 				</Select>
 			</Field>
 		</Div>

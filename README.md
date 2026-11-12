@@ -207,6 +207,8 @@ npm run dev
 
 The repository includes the library and its SvelteKit documentation site.
 
+The site also includes a MongoDB/Mongoose blog and protected authoring area. See [blog infrastructure](docs/blog-infrastructure.md) for environment setup and the free Vercel/Atlas deployment path. Interactive browser compilation of stored Svelte examples is a subsequent phase.
+
 - `src/lib/components` - primitives and composed components.
 - `src/lib/theme` - reactive theme API.
 - `src/lib/themes` - presets and color palettes.

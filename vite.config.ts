@@ -5,6 +5,9 @@ import { exampleCodePlugin } from './vite.example-code';
 
 export default defineConfig({
 	plugins: [exampleCodePlugin(), tailwindcss(), sveltekit()],
+	optimizeDeps: {
+		include: ['tailwind-merge', '@lucide/svelte', 'hast-util-to-html', 'shiki']
+	},
 	test: {
 		expect: { requireAssertions: true },
 		projects: [

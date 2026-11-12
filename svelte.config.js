@@ -1,4 +1,5 @@
-import adapter from '@sveltejs/adapter-static';
+import vercel from '@sveltejs/adapter-vercel';
+import node from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -7,7 +8,9 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [vitePreprocess()],
 	kit: {
-		adapter: adapter(),
+		// Vercel sets this variable during deployment. Local Node builds avoid
+		// Windows symlink privileges required by the Vercel output adapter.
+		adapter: process.env.VERCEL ? vercel() : node(),
 		prerender: {
 			// Preserve existing demo content; fail on any unrelated missing resource.
 			handleHttpError: ({ status, path, message }) => {
@@ -44,6 +47,7 @@ const config = {
 			}
 		},
 		alias: {
+			$server: 'src/server',
 			$attachments: 'src/attachments',
 			$components: 'src/components',
 			$state: 'src/state'
