@@ -42,9 +42,14 @@
 		/>
 	</Div>
 {:else if documentationExample === 'props'}
-	<!-- @example {"title":"Props and behavior","description":"Change disabled while retaining the default component styling."} -->
-	<Div class="w-full min-w-0">
-		<MultiSelect disabled={true} {options} label="Your tools" bind:value={selectedMany} />
+	<!-- @example {"title":"Inline selections","description":"Keep selections inside a fixed-height control. Chips scroll horizontally without wrapping."} -->
+	<Div class="w-full max-w-sm min-w-0">
+		<MultiSelect
+			selectionPlacement="inline"
+			{options}
+			label="Your tools"
+			bind:value={selectedMany}
+		/>
 	</Div>
 {:else if documentationExample === 'content'}
 	<!-- @example {"title":"Content and values","description":"Provide different options, label values."} -->

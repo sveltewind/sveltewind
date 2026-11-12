@@ -15,6 +15,13 @@
 			type: 'string'
 		},
 		{
+			defaultValue: 'true',
+			description:
+				'Close the options after selecting a value. MultiSelect disables this to allow consecutive selections.',
+			name: 'closeOnSelect',
+			type: 'boolean'
+		},
+		{
 			defaultValue: 'false',
 			description: 'See usage notes and the component API.',
 			name: 'disabled',
@@ -37,6 +44,13 @@
 			description: 'Bindable visibility state.',
 			name: 'isVisible',
 			type: 'boolean'
+		},
+		{
+			defaultValue: 'undefined',
+			description:
+				'Content before the search input inside a shared control. Receives a callback to focus the input.',
+			name: 'inputPrefix',
+			type: 'Snippet<[focusInput: () => void]>'
 		},
 		{
 			defaultValue: "'Choose an option'",
@@ -116,6 +130,8 @@
 		'combobox',
 		'comboboxEmpty',
 		'comboboxInput',
+		'comboboxControl',
+		'comboboxInlineInput',
 		'comboboxLabel',
 		'comboboxList',
 		'comboboxOption',
@@ -144,7 +160,9 @@
 	{/snippet}
 	{#snippet usageNotes()}
 		<P>
-			{'Type to filter. Use Up/Down, Home/End, and Enter to select; Escape closes without changing the value. Disabled options cannot be selected. name submits the selected value rather than the search text.'}
+			Type to filter. Use Up/Down, Home/End, and Enter to select; Escape closes without changing the
+			value. Disabled options cannot be selected. <Code>name</Code> submits the selected value rather
+			than the search text.
 		</P>
 	{/snippet}
 </ComponentDoc>

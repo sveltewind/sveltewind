@@ -828,6 +828,12 @@ Object.assign(theme, {
 			compact: 'text-sm'
 		}
 	},
+	comboboxControl: {
+		base: 'flex h-12 min-w-0 items-center gap-2 py-0 focus-within:outline-2 focus-within:outline-primary-500 aria-disabled:cursor-not-allowed aria-disabled:opacity-50'
+	},
+	comboboxInlineInput: {
+		base: 'h-full min-w-40 w-0 flex-1 rounded-none border-0 bg-transparent px-0 py-0 shadow-none inset-ring-0 focus:outline-none focus-visible:outline-none'
+	},
 	comboboxLabel: {
 		base: 'mb-2 block text-sm font-medium',
 		variants: {
@@ -961,7 +967,8 @@ Object.assign(theme, {
 	multiSelectChip: {
 		base: 'inline-flex items-center gap-1 pr-1',
 		variants: {
-			compact: 'text-sm'
+			compact: 'text-sm',
+			inline: 'shrink-0 whitespace-nowrap'
 		}
 	},
 	multiSelectRemove: {
@@ -975,6 +982,9 @@ Object.assign(theme, {
 		variants: {
 			compact: 'text-sm'
 		}
+	},
+	multiSelectInlineValues: {
+		base: 'flex h-full min-w-0 shrink cursor-grab touch-pan-x items-center gap-2 overflow-x-auto overflow-y-hidden select-none active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
 	},
 	searchField: {
 		base: 'relative flex flex-row items-center gap-2 space-y-0',

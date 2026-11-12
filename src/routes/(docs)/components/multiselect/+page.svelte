@@ -75,6 +75,13 @@
 			type: 'string'
 		},
 		{
+			defaultValue: "'below'",
+			description:
+				'Place selected chips below the input or inline in a fixed-height control with horizontal scrolling.',
+			name: 'selectionPlacement',
+			type: "'inline' | 'below'"
+		},
+		{
 			defaultValue: 'globalTheme',
 			description: 'Local Theme instance; defaults to the global theme.',
 			name: 'theme',
@@ -100,7 +107,15 @@
 		}
 	];
 
-	const parts = ['multiSelect', 'multiSelectChip', 'multiSelectRemove', 'multiSelectValues'];
+	const parts = [
+		'multiSelect',
+		'multiSelectChip',
+		'multiSelectRemove',
+		'multiSelectValues',
+		'multiSelectInlineValues',
+		'comboboxControl',
+		'comboboxInlineInput'
+	];
 
 	import ComponentDoc from '$components/ComponentDoc/ComponentDoc.svelte';
 	import Demo from '$components/ComponentDoc/previews/MultiSelect.svelte';
@@ -124,7 +139,18 @@
 	{/snippet}
 	{#snippet usageNotes()}
 		<P>
-			{'Selected values are strings. Each selection becomes a removable chip. name creates one hidden form input per selected value.'}
+			Selected values are strings. Each selection becomes a removable chip. <Code>name</Code> creates
+			one hidden form input per selected value.
+		</P>
+		<P>
+			Use <Code>selectionPlacement="inline"</Code> to keep chips beside the search input. Chips stay
+			on one line with hidden scrollbars and fading overflow edges. Drag the chips or swipe/scroll horizontally
+			to see more. The search input reserves at least 10rem and the control stays the same height. The
+			default <Code>"below"</Code> preserves the original layout.
+		</P>
+		<P>
+			Options stay open after each selection so you can select several in succession. Use Escape,
+			Tab, or click outside to dismiss them.
 		</P>
 	{/snippet}
 </ComponentDoc>
