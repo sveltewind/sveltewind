@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.16.0](https://github.com/sveltewind/sveltewind/compare/v4.15.0...v4.16.0) (2026-11-12)
+
+
+### Features
+
+* add polished inline selections to MultiSelect ([e703c87](https://github.com/sveltewind/sveltewind/commit/e703c87d07cc760362390ad4a8144b466051ccbe))
+
 ## [4.15.0](https://github.com/sveltewind/sveltewind/compare/v4.14.0...v4.15.0) (2026-10-05)
 
 
