@@ -1,8 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { isValidObjectId } from 'mongoose';
 import { VERSION, compile } from 'svelte/compiler';
-import { connectBlogDatabase, isBlogConfigured } from './database';
-import { BlogPost } from './model';
+import { withBlogDatabase, isBlogConfigured } from './database';
 import packageJson from '../../../package.json';
 
 export type PostInput = {
@@ -14,7 +13,7 @@ export type PostInput = {
 	source: string;
 };
 
-export function readPostInput(form: FormData): PostInput {
+export const readPostInput = (form: FormData): PostInput => {
 	const text = (name: string) => {
 		const value = form.get(name);
 		return typeof value === 'string' ? value : '';
@@ -27,9 +26,9 @@ export function readPostInput(form: FormData): PostInput {
 		tags: text('tags'),
 		source: text('source')
 	};
-}
+};
 
-export function validatePost(input: PostInput, publish: boolean) {
+export const validatePost = (input: PostInput, publish: boolean) => {
 	if (!input.title || input.title.length > 160) return 'Enter a title of up to 160 characters.';
 	if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(input.slug) || input.slug.length > 200)
 		return 'Use a slug with lowercase letters, numbers, and single hyphens.';
@@ -50,107 +49,112 @@ export function validatePost(input: PostInput, publish: boolean) {
 		}
 	}
 	return null;
-}
+};
 
 const published = () => ({ status: 'published' as const, publishedAt: { $lte: new Date() } });
 
-export async function listPublishedPosts(page = 1) {
+export const listPublishedPosts = async (page = 1) => {
 	if (!isBlogConfigured()) return { posts: [], hasMore: false };
-	await connectBlogDatabase();
-	const records = await BlogPost.find(published())
-		.select('title slug excerpt tags publishedAt')
-		.sort({ publishedAt: -1, _id: -1 })
-		.skip((page - 1) * 12)
-		.limit(13)
-		.lean();
-	return {
-		posts: records.slice(0, 12).map((post) => ({
+	return withBlogDatabase(async (BlogPost) => {
+		const records = await BlogPost.find(published())
+			.select('title slug excerpt tags publishedAt')
+			.sort({ publishedAt: -1, _id: -1 })
+			.skip((page - 1) * 12)
+			.limit(13)
+			.lean();
+		return {
+			posts: records.slice(0, 12).map((post) => ({
+				title: post.title,
+				slug: post.slug,
+				excerpt: post.excerpt,
+				tags: post.tags,
+				publishedAt: post.publishedAt!.toISOString()
+			})),
+			hasMore: records.length > 12
+		};
+	});
+};
+
+export const getPublishedPost = async (slug: string) => {
+	if (!isBlogConfigured()) error(404, 'Post not found.');
+	return withBlogDatabase(async (BlogPost) => {
+		const post = await BlogPost.findOne({ ...published(), slug }).lean();
+		if (!post) error(404, 'Post not found.');
+		return {
 			title: post.title,
 			slug: post.slug,
 			excerpt: post.excerpt,
+			body: post.body,
 			tags: post.tags,
-			publishedAt: post.publishedAt!.toISOString()
-		})),
-		hasMore: records.length > 12
-	};
-}
-
-export async function getPublishedPost(slug: string) {
-	if (!isBlogConfigured()) error(404, 'Post not found.');
-	await connectBlogDatabase();
-	const post = await BlogPost.findOne({ ...published(), slug }).lean();
-	if (!post) error(404, 'Post not found.');
-	return {
-		title: post.title,
-		slug: post.slug,
-		excerpt: post.excerpt,
-		body: post.body,
-		tags: post.tags,
-		publishedAt: post.publishedAt!.toISOString(),
-		example: post.example
-	};
-}
-
-export async function listAdminPosts() {
-	await connectBlogDatabase();
-	const posts = await BlogPost.find()
-		.select('title slug status updatedAt')
-		.sort({ updatedAt: -1 })
-		.limit(100)
-		.lean();
-	return posts.map((post) => ({
-		id: String(post._id),
-		title: post.title,
-		slug: post.slug,
-		status: post.status,
-		updatedAt: post.updatedAt.toISOString()
-	}));
-}
-
-export async function getAdminPost(id: string) {
-	if (!isValidObjectId(id)) error(404, 'Post not found.');
-	await connectBlogDatabase();
-	const post = await BlogPost.findById(id).lean();
-	if (!post) error(404, 'Post not found.');
-	return {
-		title: post.title,
-		slug: post.slug,
-		excerpt: post.excerpt,
-		body: post.body,
-		tags: post.tags.join(', '),
-		source: post.example?.files[0]?.contents ?? '',
-		status: post.status
-	};
-}
-
-export async function savePost(id: string, input: PostInput, publish: boolean) {
-	await connectBlogDatabase();
-	await BlogPost.init();
-	if (id !== 'new' && !isValidObjectId(id)) error(404, 'Post not found.');
-	const post = id === 'new' ? new BlogPost() : await BlogPost.findById(id);
-	if (!post) error(404, 'Post not found.');
-	post.set({
-		title: input.title,
-		slug: input.slug,
-		excerpt: input.excerpt,
-		body: input.body,
-		tags: [
-			...new Set(
-				input.tags
-					.split(',')
-					.map((tag) => tag.trim())
-					.filter(Boolean)
-			)
-		],
-		status: publish ? 'published' : 'draft',
-		publishedAt: publish ? (post.publishedAt ?? new Date()) : null,
-		example: {
-			entry: 'App.svelte',
-			files: input.source.trim() ? [{ name: 'App.svelte', contents: input.source }] : [],
-			svelteVersion: VERSION,
-			sveltewindVersion: packageJson.version
-		}
+			publishedAt: post.publishedAt!.toISOString(),
+			example: post.example
+		};
 	});
-	await post.save();
-	return String(post._id);
-}
+};
+
+export const listAdminPosts = async () => {
+	return withBlogDatabase(async (BlogPost) => {
+		const posts = await BlogPost.find()
+			.select('title slug status updatedAt')
+			.sort({ updatedAt: -1 })
+			.limit(100)
+			.lean();
+		return posts.map((post) => ({
+			id: String(post._id),
+			title: post.title,
+			slug: post.slug,
+			status: post.status,
+			updatedAt: post.updatedAt.toISOString()
+		}));
+	});
+};
+
+export const getAdminPost = async (id: string) => {
+	if (!isValidObjectId(id)) error(404, 'Post not found.');
+	return withBlogDatabase(async (BlogPost) => {
+		const post = await BlogPost.findById(id).lean();
+		if (!post) error(404, 'Post not found.');
+		return {
+			title: post.title,
+			slug: post.slug,
+			excerpt: post.excerpt,
+			body: post.body,
+			tags: post.tags.join(', '),
+			source: post.example?.files[0]?.contents ?? '',
+			status: post.status
+		};
+	});
+};
+
+export const savePost = async (id: string, input: PostInput, publish: boolean) => {
+	return withBlogDatabase(async (BlogPost) => {
+		await BlogPost.init();
+		if (id !== 'new' && !isValidObjectId(id)) error(404, 'Post not found.');
+		const post = id === 'new' ? new BlogPost() : await BlogPost.findById(id);
+		if (!post) error(404, 'Post not found.');
+		post.set({
+			title: input.title,
+			slug: input.slug,
+			excerpt: input.excerpt,
+			body: input.body,
+			tags: [
+				...new Set(
+					input.tags
+						.split(',')
+						.map((tag) => tag.trim())
+						.filter(Boolean)
+				)
+			],
+			status: publish ? 'published' : 'draft',
+			publishedAt: publish ? (post.publishedAt ?? new Date()) : null,
+			example: {
+				entry: 'App.svelte',
+				files: input.source.trim() ? [{ name: 'App.svelte', contents: input.source }] : [],
+				svelteVersion: VERSION,
+				sveltewindVersion: packageJson.version
+			}
+		});
+		await post.save();
+		return String(post._id);
+	});
+};

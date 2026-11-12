@@ -1,5 +1,4 @@
-import vercel from '@sveltejs/adapter-vercel';
-import node from '@sveltejs/adapter-node';
+import cloudflare from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -8,9 +7,7 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [vitePreprocess()],
 	kit: {
-		// Vercel sets this variable during deployment. Local Node builds avoid
-		// Windows symlink privileges required by the Vercel output adapter.
-		adapter: process.env.VERCEL ? vercel() : node(),
+		adapter: cloudflare(),
 		prerender: {
 			// Preserve existing demo content; fail on any unrelated missing resource.
 			handleHttpError: ({ status, path, message }) => {

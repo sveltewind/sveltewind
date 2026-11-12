@@ -18,7 +18,9 @@
 		"prepublishOnly": "npm run package",
 		"npm-publish": "git push --follow-tags origin main && npm publish",
 		"release": "commit-and-tag-version && npm login && npm run npm-publish",
-		"build:site": "vite build"
+		"build:site": "vite build",
+		"preview:cloudflare": "wrangler dev",
+		"deploy:site": "npm run build:site && wrangler deploy"
 	},
 	"files": [
 		"dist",
@@ -70,6 +72,7 @@
 		"@eslint/js": "^9.36.0",
 		"@lucide/svelte": "^0.548.0",
 		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/adapter-cloudflare": "^7.2.6",
 		"@sveltejs/adapter-node": "^5.5.7",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/adapter-vercel": "^5.10.2",
@@ -100,7 +103,8 @@
 		"typescript-eslint": "^8.44.1",
 		"vite": "^7.1.7",
 		"vitest": "^3.2.4",
-		"vitest-browser-svelte": "^1.1.0"
+		"vitest-browser-svelte": "^1.1.0",
+		"wrangler": "^4.161.0"
 	},
 	"keywords": [
 		"svelte"

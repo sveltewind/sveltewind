@@ -1,4 +1,4 @@
-import mongoose, { Schema, type InferSchemaType } from 'mongoose';
+import { Schema, type Connection, type InferSchemaType } from 'mongoose';
 
 const sourceFileSchema = new Schema(
 	{
@@ -36,6 +36,5 @@ const postSchema = new Schema(
 postSchema.index({ status: 1, publishedAt: -1, _id: -1 });
 
 export type BlogPostRecord = InferSchemaType<typeof postSchema>;
-export const BlogPost: mongoose.Model<BlogPostRecord> =
-	(mongoose.models.BlogPost as mongoose.Model<BlogPostRecord> | undefined) ??
-	mongoose.model<BlogPostRecord>('BlogPost', postSchema);
+export const createBlogPostModel = (connection: Connection) =>
+	connection.model<BlogPostRecord>('BlogPost', postSchema);

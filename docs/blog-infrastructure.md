@@ -2,7 +2,7 @@
 
 The blog and admin routes are part of the same SvelteKit application. Atlas stores posts through Mongoose. Database and authentication code lives in `src/server`, outside the published component library.
 
-The deployment target is Vercel Hobby with Node.js functions and an Atlas Free cluster. Keep the project on the Hobby plan and the database on the Free tier; no paid services are required. Hobby is for personal, non-commercial use and has usage caps. See [Vercel Hobby](https://vercel.com/docs/plans/hobby) and [Atlas Free limits](https://www.mongodb.com/docs/atlas/reference/free-shared-limitations/).
+The site deploys to the existing `sveltewind` Cloudflare Worker, including the prerendered documentation, dynamic blog, and admin routes. Atlas stores the blog data. The Cloudflare adapter and `nodejs_compat` runtime setting support the server's Node.js APIs and Mongoose 9. See [SvelteKit on Cloudflare](https://svelte.dev/docs/kit/adapter-cloudflare) and [MongoDB on Workers](https://developers.cloudflare.com/workers/databases/third-party-integrations/mongodb/).
 
 ## Configuration
 
@@ -28,12 +28,18 @@ MongoDB stores an example's entry point, source file array, and Svelte/Sveltewin
 
 The blog is dynamic; documentation and existing examples continue to prerender. No database access or credentials are required to build the site. A missing MongoDB URI produces an empty public blog; connection failures return a service-unavailable response rather than exposing driver details.
 
-Local builds use the Node adapter so they also work on Windows without symlink privileges. Vercel builds automatically use the Vercel adapter when `VERCEL` is set by the platform. Run `npm run dev` for development. A local production build runs with `node --env-file=.env build`; set `ORIGIN` to the local application's URL when testing form submissions behind a proxy.
+Each database operation opens and closes its own Mongoose connection. Worker requests cannot reuse TCP sockets created by another request; do not replace this with a module-level connection pool. A separate connection adds latency to dynamic blog requests, while prerendered documentation is served directly as static assets.
 
-For Vercel, import the repository as a SvelteKit project on a personal Hobby account. Use Node.js 22, `npm run build:site` as the build command, and add the environment variables from `.env.example` in the project settings. Keep production database credentials out of preview deployments. Match the application region to your Atlas cluster where possible. Test the Vercel deployment URL before pointing the existing domain at it; Cloudflare can continue providing DNS.
+Run `npm run dev` for development. Run `npm run build:site` followed by `npm run preview:cloudflare` to test production output in the local Workers runtime. For that runtime, put local secrets in an untracked `.dev.vars` file; do not copy production credentials into tracked configuration.
 
-The repository is public and belongs to a GitHub organization. Vercel's documented Hobby restriction concerns **private** organization repositories. Use a personal Hobby project rather than a paid Vercel team. Verify that the import screen offers the free plan before proceeding; this change does not create an account, deploy the project, change DNS, or authorize a paid subscription. See [Vercel's Git repository rules](https://vercel.com/docs/git#using-hobby-teams).
+In Cloudflare's existing **Workers & Pages > sveltewind > Settings > Build**, use `npm run build:site` as the build command and `npx wrangler deploy` as the deploy command. The root directory is the repository root. Remove any deploy-command override such as `--assets ./build`; `wrangler.jsonc` defines both the Worker entry point and its assets. Keep the existing custom domain mapping for `sveltewind.com`.
 
-Vercel's free functions do not provide a dedicated outbound IP. Atlas network access must accommodate the chosen deployment, with a dedicated database user and a strong password. Review the [Atlas IP access list documentation](https://www.mongodb.com/docs/atlas/security/ip-access-list/) during configuration.
+The output is `.svelte-kit/cloudflare`: HTML and client assets share the public root, and `_worker.js` handles server routes. The adapter generates `.assetsignore` to exclude the Worker and server files from public asset uploads. Do not deploy the old Node `build` directory, or point assets at its `prerendered` subdirectory; that breaks URLs and leaves server routes without a runtime.
+
+Set `MONGODB_URI`, `BLOG_ADMIN_KEY`, and `BLOG_SESSION_SECRET` as encrypted Worker secrets in Cloudflare's Variables and Secrets settings, or with `npx wrangler secret put NAME`. Set `MONGODB_DB` as a server-side variable if overriding `sveltewind`. These must be runtime settings, not only build variables. Keep production database credentials out of preview deployments. Atlas network access must allow connections from the Worker, with a dedicated database user and a strong password. Review the [Atlas IP access list documentation](https://www.mongodb.com/docs/atlas/security/ip-access-list/).
+
+To deploy from an authenticated local checkout, run `npm run deploy:site`. To validate the bundle without publishing, run `npx wrangler deploy --dry-run` after the build. Publishing the npm library is separate from website deployment; it does not verify the Cloudflare output or runtime. A release push can trigger the connected Cloudflare build, so validate the site before releasing.
+
+After deployment, verify `/`, `/components/multiselect`, `/blog`, and `/admin/login`. The homepage and its `/_app/` assets should return successfully; `/prerendered/` should no longer expose the homepage under a build-directory prefix.
 
 Keep all configuration server-only. Never place credentials in source files, public environment variables, screenshots, or the client bundle.
